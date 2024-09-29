@@ -7,13 +7,13 @@ import (
 func main() {
 	var op1 int
 	var op2 int
-	var operation string
 	fmt.Println("Enter the first operand: ")
 	fmt.Scan(&op1)
 	for op1 == 0 {
 		fmt.Println("Please enter a number")
 		fmt.Scan(&op1)
 	}
+	var operation string
 	fmt.Println("Enter the operation: ")
 	fmt.Scan(&operation)
 	fmt.Println("Enter the second operand: ")
