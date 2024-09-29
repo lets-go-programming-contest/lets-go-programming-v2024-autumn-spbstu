@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
@@ -11,21 +10,17 @@ func main() {
 	var operation string
 	fmt.Println("Enter the first operand: ")
 	fmt.Scan(&op1)
-	_, err := strconv.Atoi(strconv.Itoa(op1))
-	for err == nil {
+	for op1 == 0 {
 		fmt.Println("Please enter a number")
 		fmt.Scan(&op1)
-		_, err = strconv.Atoi(strconv.Itoa(op1))
 	}
 	fmt.Println("Enter the operation: ")
 	fmt.Scan(&operation)
 	fmt.Println("Enter the second operand: ")
 	fmt.Scan(&op2)
-	_, err = strconv.Atoi(strconv.Itoa(op2))
-	for err == nil {
+	for op2 == 0 {
 		fmt.Println("Please enter a number")
 		fmt.Scan(&op2)
-		_, err = strconv.Atoi(strconv.Itoa(op2))
 	}
 	var res int
 	switch operation {
