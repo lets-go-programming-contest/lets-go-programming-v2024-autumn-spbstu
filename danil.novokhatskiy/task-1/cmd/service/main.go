@@ -15,7 +15,11 @@ func main() {
 	}
 	var operation string
 	fmt.Println("Enter the operation: ")
-	fmt.Scan(&operation)
+	_, err = fmt.Scan(&operation)
+	if err != nil {
+		fmt.Println("Invalid input")
+		return
+	}
 	fmt.Println("Enter the second operand: ")
 	_, err = fmt.Scan(&op2)
 	if err != nil {
@@ -38,6 +42,7 @@ func main() {
 		}
 	default:
 		fmt.Println("Invalid operation")
+		return
 	}
 	fmt.Println("Результат:", res)
 }
