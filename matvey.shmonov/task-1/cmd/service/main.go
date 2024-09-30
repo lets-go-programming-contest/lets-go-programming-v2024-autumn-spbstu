@@ -68,16 +68,9 @@ func (c *Calculator) readOperator(prompt string) string {
 // Run запускает калькулятор
 func (c *Calculator) Run() {
 	for {
-		// Читаем первое число
 		operand1 := c.readFloat("Введите первое число: ")
-
-		// Читаем оператор
 		operator := c.readOperator("Выберите операцию (+, -, *, /): ")
-
-		// Читаем второе число
 		operand2 := c.readFloat("Введите второе число: ")
-
-		// Проверка на деление на ноль
 		if operator == "/" && operand2 == 0 {
 			fmt.Println("Ошибка: деление на ноль невозможно.")
 			continue
