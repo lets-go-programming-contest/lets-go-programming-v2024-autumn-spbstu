@@ -7,14 +7,14 @@ import (
 
 func calculate(lhs int, rhs int, op string) int {
     switch op {
-	case "+":
+    case "+":
         return lhs + rhs
-	case "-":
+    case "-":
         return lhs - rhs
-	case "/":
+    case "/":
         return lhs / rhs
     }
-	return lhs * rhs
+    return lhs * rhs
 }
 
 func main() {
