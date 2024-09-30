@@ -8,19 +8,19 @@ func main() {
 	var op1 float64
 	var op2 float64
 	fmt.Println("Enter the first operand: ")
-	fmt.Scan(&op1)
-	for op1 == 0 {
-		fmt.Println("Please enter a number")
-		fmt.Scan(&op1)
+	_, err := fmt.Scan(&op1)
+	if err != nil {
+		fmt.Println("Invalid input")
+		return
 	}
 	var operation string
 	fmt.Println("Enter the operation: ")
 	fmt.Scan(&operation)
 	fmt.Println("Enter the second operand: ")
-	fmt.Scan(&op2)
-	for op2 == 0 {
-		fmt.Println("Please enter a number")
-		fmt.Scan(&op2)
+	_, err = fmt.Scan(&op2)
+	if err != nil {
+		fmt.Println("Invalid input")
+		return
 	}
 	var res float64
 	switch operation {
