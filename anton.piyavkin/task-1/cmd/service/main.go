@@ -1,20 +1,25 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 )
 
-func calculate(lhs int, rhs int, op string) int {
+func calculate(lhs int, rhs int, op string) (int, error) {
     switch op {
     case "+":
-        return lhs + rhs
+        return lhs + rhs, nil
     case "-":
-        return lhs - rhs
+        return lhs - rhs, nil
     case "/":
-        return lhs / rhs
+        if rhs == 0 {
+            return 0, errors.New("деление на 0")
+        }
+        return lhs / rhs, nil
+    default:
+        return lhs * rhs, nil
     }
-    return lhs * rhs
 }
 
 func main() {
@@ -35,9 +40,15 @@ func main() {
     var rhs int
     fmt.Print("Введите второе число:")
     _, err = fmt.Scan(&rhs)
-    if err != nil || (op == "/" && rhs == 0) {
+    if err != nil {
     	fmt.Fprint(os.Stderr, "Некорректное число. Пожалуйста, введите числовое значение.\n")
     	return
     }
-    fmt.Println("Результат:", lhs, op, rhs, "=", calculate(lhs, rhs, op))
+    var res int
+    res, err = calculate(lhs, rhs, op)
+    if err != nil {
+        fmt.Fprint(os.Stderr, err.Error())
+        return
+    }
+    fmt.Println("Результат:", lhs, op, rhs, "=", res)
 }
