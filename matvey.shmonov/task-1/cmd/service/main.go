@@ -8,10 +8,9 @@ import (
 	"strings"
 )
 
-
 func main() {
 	calculator := NewCalculator()
-   
+
 	calculator.Run()
 }
 
@@ -25,7 +24,7 @@ func NewCalculator() *Calculator {
 }
 
 // readFloat считывает число с плавающей запятой
-func (c *Calculator) readFloat(prompt string) (float64, error) {
+func (c *Calculator) readFloat(prompt string) float64 {
 	for {
 		fmt.Print(prompt)
 		input, _ := c.reader.ReadString('\n')
@@ -33,7 +32,7 @@ func (c *Calculator) readFloat(prompt string) (float64, error) {
 
 		value, err := strconv.ParseFloat(input, 64)
 		if err == nil {
-			return value, nil
+			return value
 		}
 
 		fmt.Println("Некорректное число. Пожалуйста, введите числовое значение.")
@@ -70,13 +69,13 @@ func (c *Calculator) readOperator(prompt string) string {
 func (c *Calculator) Run() {
 	for {
 		// Читаем первое число
-		operand1, _ := c.readFloat("Введите первое число: ")
+		operand1 := c.readFloat("Введите первое число: ")
 
 		// Читаем оператор
 		operator := c.readOperator("Выберите операцию (+, -, *, /): ")
 
 		// Читаем второе число
-		operand2, _ := c.readFloat("Введите второе число: ")
+		operand2 := c.readFloat("Введите второе число: ")
 
 		// Проверка на деление на ноль
 		if operator == "/" && operand2 == 0 {
@@ -100,4 +99,3 @@ func (c *Calculator) Run() {
 		fmt.Printf("Результат: %.2f %s %.2f = %.2f\n\n", operand1, operator, operand2, result)
 	}
 }
-
