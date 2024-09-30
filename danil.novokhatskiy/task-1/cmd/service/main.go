@@ -5,8 +5,8 @@ import (
 )
 
 func main() {
-	var op1 int
-	var op2 int
+	var op1 float64
+	var op2 float64
 	fmt.Println("Enter the first operand: ")
 	fmt.Scan(&op1)
 	for op1 == 0 {
@@ -22,7 +22,7 @@ func main() {
 		fmt.Println("Please enter a number")
 		fmt.Scan(&op2)
 	}
-	var res int
+	var res float64
 	switch operation {
 	case "+":
 		res = op1 + op2
@@ -36,8 +36,6 @@ func main() {
 		} else {
 			res = op1 / op2
 		}
-	case "%":
-		res = op1 % op2
 	default:
 		fmt.Println("Invalid operation")
 	}
