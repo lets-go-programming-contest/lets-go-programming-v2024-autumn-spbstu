@@ -13,6 +13,21 @@ func main() {
 	fmt.Println("Калькулятор. Вводите в соответствии с запросами программы")
 	fmt.Println("'выход' - для завершения")
 
+	var actions = map[string]func(firstOperand, secondOperand float64) float64{
+		"*": func(firstOperand, secondOperand float64) float64 {
+			return firstOperand * secondOperand
+		},
+		"+": func(firstOperand, secondOperand float64) float64 {
+			return firstOperand + secondOperand
+		},
+		"-": func(firstOperand, secondOperand float64) float64 {
+			return firstOperand - secondOperand
+		},
+		"/": func(firstOperand, secondOperand float64) float64 {
+			return firstOperand / secondOperand
+		},
+	}
+
 	inputIsValid := func(input string, isOperator bool) bool {
 		if !isOperator {
 			input = strings.ReplaceAll(input, ",", ".")
@@ -24,7 +39,7 @@ func main() {
 			}
 			return false
 		}
-		if input == "+" || input == "*" || input == "/" || input == "-" {
+		if _, exists := actions[input]; exists {
 			return true
 		}
 		return false
@@ -44,30 +59,20 @@ func main() {
 	}
 
 	resultsUserInput := func(userInputs map[int]string) {
-		firstOperand, _ := strconv.ParseFloat(userInputs[0], 64)
+		firstOperand, _ := strconv.ParseFloat(strings.ReplaceAll(userInputs[0], ",", "."), 64)
 		operator := userInputs[1]
-		secondOperand, _ := strconv.ParseFloat(userInputs[2], 64)
+		secondOperand, _ := strconv.ParseFloat(strings.ReplaceAll(userInputs[2], ",", "."), 64)
 
-		var result float64
-		switch operator {
-		case "+":
-			result = firstOperand + secondOperand
-		case "-":
-			result = firstOperand - secondOperand
-		case "*":
-			result = firstOperand * secondOperand
-		case "/":
-			if secondOperand == 0 {
+		if action, exists := actions[operator]; exists {
+			if operator == "/" && secondOperand == 0 {
 				fmt.Println("+++++Ошибка: Деление на ноль+++++")
 				return
 			}
-			result = firstOperand / secondOperand
-		default:
+			result := action(firstOperand, secondOperand)
+			fmt.Printf("Результат: %.2f\n", result)
+		} else {
 			fmt.Println("+++++Ошибка: Неподдерживаемый оператор+++++")
-			return
 		}
-
-		fmt.Printf("Результат: %.2f\n", result)
 	}
 
 	var textForUser = map[int]string{
@@ -76,21 +81,24 @@ func main() {
 		2: "Введите второй операнд:",
 	}
 
-LOOP:
 	for {
 		userInputs := make(map[int]string, 3)
+		var validInput bool
 		for i := 0; i < 3; i++ {
 			fmt.Println(textForUser[i])
 			fmt.Print("> ")
 			userInputs[i] = reader()
 			if endProg(userInputs[i]) {
-				break LOOP
+				return
 			}
-			if !inputIsValid(userInputs[i], i%2 == 1) {
+			validInput = inputIsValid(userInputs[i], i%2 == 1)
+			if !validInput {
 				fmt.Println("+++++Ошибка ввода. Вводите корректные данные+++++")
 				break
 			}
 		}
-		resultsUserInput(userInputs)
+		if validInput {
+			resultsUserInput(userInputs)
+		}
 	}
 }
