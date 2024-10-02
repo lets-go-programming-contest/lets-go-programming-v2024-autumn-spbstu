@@ -1,21 +1,24 @@
 package main
 
 import (
-  "fmt"
-  "github.com/mrqiz/task-1/internal/math"
+	"fmt"
+  "github.com/mrqiz/task-1/internal/input"
+	"github.com/mrqiz/task-1/internal/math"
 )
 
 func main() {
-  calc := math.Calculation{
-    LeftOperand: 42,
-    RightOperand: 52,
-    Operator: '/',
-  }
+	fmt.Println("i guess we doin math now")
 
-  fmt.Println("Lo", calc.LeftOperand)
-  fmt.Println("Ro", calc.RightOperand)
-  fmt.Println("Op", string(calc.Operator))
+	LeftOperand, RightOperand, Operator := input.Read()
 
-	fmt.Printf("Res %.2f\n", math.Calculate(calc))
+	calculateObj := math.Calculation{
+		LeftOperand,
+		RightOperand,
+		Operator,
+	}
+
+	result := math.Calculate(calculateObj)
+
+	fmt.Printf("so the result is %.2f\n", result)
 }
 
