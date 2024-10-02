@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"github.com/mrqiz/task-1/internal/strings"
+	"github.com/mrqiz/task-1/internal/math"
 )
 
 func readNumber(zeroAllowed bool) float64 {
@@ -53,10 +54,17 @@ func readOperator() rune {
 	return []rune(operator)[0]
 }
 
-func Read() (float64, float64, rune) {
+func read() (float64, float64, rune) {
 	lOperand := readNumber(true)
 	operator := readOperator()
 	rOperand := readNumber(string(operator) != "/")
 
 	return lOperand, rOperand, operator
+}
+
+func ReadToCalculation(c *math.Calculation) {
+	leftOperand, rightOperand, operator := read()
+	c.LeftOperand = leftOperand
+	c.RightOperand = rightOperand
+	c.Operator = operator
 }

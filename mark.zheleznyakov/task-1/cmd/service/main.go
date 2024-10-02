@@ -8,17 +8,9 @@ import (
 
 func main() {
 	fmt.Println("i guess we doin math now")
-
-	LeftOperand, RightOperand, Operator := input.Read()
-
-	calculateObj := math.Calculation{
-		LeftOperand,
-		RightOperand,
-		Operator,
-	}
-
-	result := math.Calculate(calculateObj)
-
+	calculation := math.Calculation{}
+	input.ReadToCalculation(&calculation)
+	result := math.Calculate(calculation)
 	fmt.Printf("so the result is %.2f\n", result)
 }
 
