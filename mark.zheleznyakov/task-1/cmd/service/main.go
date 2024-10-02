@@ -10,7 +10,7 @@ func main() {
 	fmt.Println("i guess we doin math now")
 	calculation := math.Calculation{}
 	input.ReadToCalculation(&calculation)
-	result := math.Calculate(calculation)
+	result := math.Calculate(&calculation)
 	fmt.Printf("so the result is %.2f\n", result)
 }
 

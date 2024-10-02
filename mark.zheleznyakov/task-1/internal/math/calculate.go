@@ -1,6 +1,6 @@
 package math
 
-func Calculate(c Calculation) float64 {
+func Calculate(c *Calculation) float64 {
   switch c.Operator {
     case '+':
       return c.LeftOperand + c.RightOperand
