@@ -1,4 +1,4 @@
-package structures
+package math
 
 type Calculation struct {
 	LeftOperand float64
