@@ -7,12 +7,12 @@ import (
 	"github.com/mrqiz/task-1/internal/math"
 )
 
-func readNumber(zeroAllowed bool) float64 {
+func readNumber(label string, zeroAllowed bool) float64 {
   var input string
 	var result float64
 
 	for {
-		fmt.Printf("gimme a number: ")
+		fmt.Printf("gimme the %s number: ", label)
 		fmt.Scanln(&input)
 
 		n, err := strconv.ParseFloat(input, 64)
@@ -55,9 +55,9 @@ func readOperator() rune {
 }
 
 func read() (float64, float64, rune) {
-	lOperand := readNumber(true)
+	lOperand := readNumber("first", true)
 	operator := readOperator()
-	rOperand := readNumber(string(operator) != "/")
+	rOperand := readNumber("second", string(operator) != "/")
 
 	return lOperand, rOperand, operator
 }
@@ -68,3 +68,4 @@ func ReadToCalculation(c *math.Calculation) {
 	c.RightOperand = rightOperand
 	c.Operator = operator
 }
+
