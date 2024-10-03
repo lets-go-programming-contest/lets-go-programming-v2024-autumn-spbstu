@@ -2,18 +2,20 @@ package main
 
 import "fmt"
 
-const ARRAY_SIZE = 10
-
 func main() {
-	nums := [ARRAY_SIZE]int{}
-	var k int
-	for i := range ARRAY_SIZE {
+	var n, k int
+	fmt.Print("Enter the number of elements in the array: ")
+	fmt.Scan(&n)
+	nums := make([]int, n)
+	fmt.Print("Enter the elements: ")
+	for i := range n {
 		fmt.Scan(&nums[i])
 	}
+	fmt.Print("Enter k: ")
 	fmt.Scan(&k)
-	QuickSort(nums[:])
-	fmt.Println(nums)
-	fmt.Println(nums[len(nums) - k])
+	QuickSort(nums)
+	fmt.Printf("Sorted array: %v\n",nums)
+	fmt.Printf("The largest k-th element in an array: %d\n", nums[len(nums)-k])
 }
 
 func QuickSort(nums []int) {
