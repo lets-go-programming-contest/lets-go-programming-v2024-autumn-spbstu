@@ -66,6 +66,6 @@ func main() {
 		result := findKElement(arr, k)
 		fmt.Printf("%d-й наибольший элемент массива: %d\n", k, result)
 	} else {
-		fmt.Println("Некорректное значение k")
+		fmt.Println("Некорректное значение k.")
 	}
 }
