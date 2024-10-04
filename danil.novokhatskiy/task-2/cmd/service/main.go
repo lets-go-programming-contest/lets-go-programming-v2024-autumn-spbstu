@@ -10,20 +10,20 @@ import (
 	"strings"
 )
 
-type MiniHeap []int
+type MinHeap []int
 
-func (h MiniHeap) Len() int { return len(h) }
+func (h MinHeap) Len() int { return len(h) }
 
-func (h MiniHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h MinHeap) Less(i, j int) bool { return h[i] < h[j] }
 
-func (h MiniHeap) Swap(i, j int) {
+func (h MinHeap) Swap(i, j int) {
 	h[i], h[j] = h[j], h[i]
 }
-func (h *MiniHeap) Push(x interface{}) {
+func (h *MinHeap) Push(x interface{}) {
 	*h = append(*h, x.(int))
 }
 
-func (h *MiniHeap) Pop() interface{} {
+func (h *MinHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
 	x := old[n-1]
@@ -31,7 +31,7 @@ func (h *MiniHeap) Pop() interface{} {
 	return x
 }
 func findKElement(arr []int, k int) int {
-	h := &MiniHeap{}
+	h := &MinHeap{}
 	heap.Init(h)
 	for _, num := range arr {
 		heap.Push(h, num)
