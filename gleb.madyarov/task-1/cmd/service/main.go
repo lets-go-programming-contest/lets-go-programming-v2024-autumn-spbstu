@@ -8,7 +8,6 @@ func main() {
 	var op1 float64
 	var op2 float64
 	var operation string
-	var answer float64
 	var choice int
 	var input string
 	for {
@@ -36,13 +35,7 @@ func main() {
 			fmt.Print("enter the operation: ")
 			fmt.Scan(&input)
 			switch input {
-			case "+":
-				operation = input
-			case "-":
-				operation = input
-			case "*":
-				operation = input
-			case "/":
+			case "+", "-", "*", "/":
 				operation = input
 			default:
 				fmt.Println("Invalid input, please try again")
@@ -62,21 +55,17 @@ func main() {
 		}
 		switch operation {
 		case "+":
-			answer = op1 + op2
-			fmt.Println(answer)
+			fmt.Println(op1 + op2)
 		case "-":
-			answer = op1 - op2
-			fmt.Println(answer)
+			fmt.Println(op1 - op2)
 		case "*":
-			answer = op1 * op2
-			fmt.Println(answer)
+			fmt.Println(op1 * op2)
 		case "/":
 			if op2 == 0 {
 				fmt.Println("Division by 0 is impossible")
 				break
 			}
-			answer = op1 / op2
-			fmt.Println(answer)
+			fmt.Println(op1 / op2)
 		default:
 			fmt.Println("Error")
 		}
