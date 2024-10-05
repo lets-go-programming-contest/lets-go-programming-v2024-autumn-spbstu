@@ -63,15 +63,22 @@ func main() {
 		switch operation {
 		case "+":
 			answer = op1 + op2
+			fmt.Println(answer)
 		case "-":
 			answer = op1 - op2
+			fmt.Println(answer)
 		case "*":
 			answer = op1 * op2
+			fmt.Println(answer)
 		case "/":
+			if op2 == 0 {
+				fmt.Println("Division by 0 is impossible")
+				break
+			}
 			answer = op1 / op2
+			fmt.Println(answer)
 		default:
 			fmt.Println("Error")
 		}
-		fmt.Println(answer)
 	}
 }
