@@ -2,29 +2,27 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 func main() {
 	var op1 float64
-	var op2 float64
-	fmt.Println("Enter the first operand: ")
+	fmt.Print("Enter the first operand.\n> ")
 	_, err := fmt.Scan(&op1)
 	if err != nil {
-		fmt.Println("Invalid input")
-		return
+		log.Fatal(err)
 	}
 	var operation string
 	fmt.Println("Enter the operation: ")
 	_, err = fmt.Scan(&operation)
 	if err != nil {
-		fmt.Println("Invalid input")
-		return
+		log.Fatal(err)
 	}
 	fmt.Println("Enter the second operand: ")
+	var op2 float64
 	_, err = fmt.Scan(&op2)
 	if err != nil {
-		fmt.Println("Invalid input")
-		return
+		log.Fatal("Invalid input")
 	}
 	var res float64
 	switch operation {
@@ -36,13 +34,12 @@ func main() {
 		res = op1 * op2
 	case "/":
 		if op2 == 0 {
-			fmt.Println("You can't divide by 0")
+			log.Fatal("You can't divide by 0")
 		} else {
 			res = op1 / op2
 		}
 	default:
-		fmt.Println("Invalid operation")
-		return
+		log.Fatal("Invalid operation")
 	}
 	fmt.Println("Результат:", res)
 }
