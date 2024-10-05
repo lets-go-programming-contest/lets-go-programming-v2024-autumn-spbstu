@@ -35,8 +35,11 @@ func inputNumber(n *float64) {
 func main() {
 	var n1, n2 float64
 	var op string
+	fmt.Println("Enter number: ")
 	inputNumber(&n1)
+	fmt.Println("Enter operation: ")
 	fmt.Scan(&op)
+	fmt.Println("Enter number: ")
 	inputNumber(&n2)
 	res, er := calc(n1, n2, op)
 	if er != nil {
