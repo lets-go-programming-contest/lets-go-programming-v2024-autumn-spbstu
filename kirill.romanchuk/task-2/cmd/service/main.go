@@ -38,7 +38,51 @@ func reader() ([]float64, int) {
 	return nums, k
 }
 
+func GetKthLargest(arr []float64, k int) float64 {
+	n := len(arr)
+	if k < 1 || k > n {
+		panic("k должно быть в пределах длины массива")
+	}
+	return GetKthLargestRecursive(arr, 0, n-1, k-1)
+}
+
+func Partition(arr []float64, low, high int) int {
+	pivot := arr[high]
+	i := low - 1
+
+	for j := low; j < high; j++ {
+		if arr[j] >= pivot {
+			i++
+			arr[i], arr[j] = arr[j], arr[i]
+		}
+	}
+	arr[i+1], arr[high] = arr[high], arr[i+1]
+	return i + 1
+}
+
+func GetKthLargestRecursive(arr []float64, low, high, k int) float64 {
+	if low == high {
+		return arr[low]
+	}
+	pivotIndex := Partition(arr, low, high)
+
+	if k == pivotIndex {
+		return arr[k]
+	} else if k < pivotIndex {
+		return GetKthLargestRecursive(arr, low, pivotIndex-1, k)
+	} else {
+		return GetKthLargestRecursive(arr, pivotIndex+1, high, k)
+	}
+}
+
 func main() {
 	nums, k := reader()
-	fmt.Print(nums, k)
+	fmt.Println("input: nums = ", nums, ", k = ", k)
+	// Написать обработку паники
+	if k > 0 {
+		result := GetKthLargest(nums, k)
+		fmt.Println("Output: ", result)
+	} else {
+		fmt.Println("Некорректное значение k!")
+	}
 }
