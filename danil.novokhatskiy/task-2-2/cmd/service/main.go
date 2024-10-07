@@ -38,7 +38,7 @@ func findKDish(arr *[]int, k int) {
 			heap.Pop(h)
 		}
 	}
-	fmt.Println("Result: ", (*h)[0])
+	fmt.Println("Result:", (*h)[0])
 }
 
 func main() {
@@ -57,9 +57,11 @@ func main() {
 		}
 		arr[i] = tmp
 	}
+	fmt.Println("Enter k value: ")
 	var k int
 	_, err = fmt.Scan(&k)
 	if err != nil {
 		log.Fatal(err)
 	}
+	findKDish(&arr, k)
 }
