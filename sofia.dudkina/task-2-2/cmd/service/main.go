@@ -45,12 +45,15 @@ func main() {
 
 	h := &IntHeap{}
 	heap.Init(h)
-
-	for _, v := range dishes {
-		heap.Push(h, v)
-		if h.Len() > k {
-			heap.Pop(h)
+	if k < N && k > 0 {
+		for _, v := range dishes {
+			heap.Push(h, v)
+			if h.Len() > k {
+				heap.Pop(h)
+			}
 		}
+		fmt.Println((*h)[0])
+	} else {
+		fmt.Println(-1)
 	}
-	fmt.Println((*h)[0])
 }
