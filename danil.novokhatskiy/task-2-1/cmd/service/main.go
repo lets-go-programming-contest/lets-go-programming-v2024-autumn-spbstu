@@ -7,6 +7,8 @@ import (
 
 func processTemperature(k int) {
 	var sign string
+	maxTemp := 30
+	minTemp := 15
 	for i := 0; i < k; i++ {
 		fmt.Print("Enter the temperature: ")
 		fmt.Scan(&sign)
@@ -18,6 +20,18 @@ func processTemperature(k int) {
 		//sign = strings.TrimSpace(sign)
 		if sign != ">=" && sign != "<=" {
 			log.Fatal("Invalid temperature")
+		}
+		if sign == "<=" && temp < maxTemp {
+			maxTemp = temp
+		}
+		if sign == ">=" && temp > minTemp {
+			minTemp = temp
+		}
+		if maxTemp >= minTemp {
+			fmt.Println(minTemp)
+		} else {
+			fmt.Println(-1)
+			break
 		}
 	}
 }
