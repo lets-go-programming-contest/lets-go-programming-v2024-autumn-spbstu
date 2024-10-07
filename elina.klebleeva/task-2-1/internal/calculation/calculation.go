@@ -21,7 +21,7 @@ func CalculateNewTemp(minTemp, maxTemp, currentTemp, newTemp *float64, sign stri
 		*minTemp = math.Max(float64(*minTemp), float64(*newTemp))
 
 	default:
-		return errors.New("неверный ввод знака, допускаются только <= или >=")
+		return errors.New("invalid character input, only <= or >= allowed")
 	}
 
 	return nil

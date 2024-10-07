@@ -8,7 +8,7 @@ import (
 func InputCheckCount() (int, error) {
 	var count int
 	if _, err := fmt.Scan(&count); err != nil || count <= 0 {
-		return 0, errors.New("неверный ввод количества отделов")
+		return 0, errors.New("invalid entry of number of departments")
 	}
 	return count, nil
 }
@@ -26,11 +26,11 @@ func InputCheckNewTemp() (string, float64, error) {
 	)
 
 	if _, err := fmt.Scan(&sign, &newTemp); err != nil {
-		return "", 0, errors.New("неверный ввод знака или температуры")
+		return "", 0, errors.New("invalid sign or temperature input")
 	}
 
 	if newTemp < commonMin || newTemp > commonMax {
-		return "", 0, errors.New("неверный ввод температуры - выход за допустимый диапазон (15 - 30)")
+		return "", 0, errors.New("invalid temperature input - out of range (15 - 30)")
 	}
 
 	return sign, newTemp, nil
