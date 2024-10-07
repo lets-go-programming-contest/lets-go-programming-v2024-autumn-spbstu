@@ -10,18 +10,17 @@ func reader() ([]float64, int) {
 	fmt.Println("Вводите числа для заполнения массива\n" +
 		"(для завершения ввода нажмите Ctrl + Z (Windows) или Ctrl + D (Unix)): ")
 
+	var num float64
 	for {
-		var num float64
 		_, err := fmt.Scan(&num)
-		if err != nil {
-			if err.Error() == "EOF" {
-				break
-			}
-			fmt.Println("Некорректный ввод. Пожалуйста попробуйте ещё раз")
-			var dummy string
-			fmt.Scanln(&dummy)
+		if err == nil {
+			nums = append(nums, num)
+			continue
 		}
-		nums = append(nums, num)
+		if err.Error() == "EOF" {
+			break
+		}
+		fmt.Println("Некорректный ввод. Пожалуйста попробуйте ещё раз")
 	}
 
 	fmt.Println("Введите целочисленное значение k, чтобы получить k-й наибольший элемент массива:")
@@ -76,13 +75,14 @@ func GetKthLargestRecursive(arr []float64, low, high, k int) float64 {
 }
 
 func main() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Произошла ошибка:", r)
+		}
+	}()
+
 	nums, k := reader()
 	fmt.Println("input: nums = ", nums, ", k = ", k)
-	// Написать обработку паники
-	if k > 0 {
-		result := GetKthLargest(nums, k)
-		fmt.Println("Output: ", result)
-	} else {
-		fmt.Println("Некорректное значение k!")
-	}
+	result := GetKthLargest(nums, k)
+	fmt.Println("Output: ", result)
 }
