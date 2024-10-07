@@ -8,14 +8,14 @@ func main() {
 	var op1 float64
 	var op2 float64
 	fmt.Println("Enter the first operand: ")
-	_, err := fmt.Scan(&op1)
+	_, err := fmt.Scanln(&op1)
 	if err != nil {
 		fmt.Println("Invalid input")
 		return
 	}
 	var operation string
 	fmt.Println("Enter the operation: ")
-	_, err = fmt.Scan(&operation)
+	_, err = fmt.Scanln(&operation)
 	if err != nil {
 		fmt.Println("Invalid input")
 		return
