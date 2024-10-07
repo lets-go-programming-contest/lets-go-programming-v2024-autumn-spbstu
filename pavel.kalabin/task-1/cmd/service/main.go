@@ -7,13 +7,13 @@ import (
 
 func getExpression() (first, second float32, sign string) {
     fmt.Print("Введите первое число: ")
-    _, err := fmt.Scan(&first)
+    _, err := fmt.Scanln(&first)
     if err != nil {
         fmt.Fprintln(os.Stderr, "Некорректное число. Пожалуйста, введите числовое значение.")
         os.Exit(1)
     }
     fmt.Print("Введите операцию (+, -, *, /): ")
-    _, err = fmt.Scan(&sign)
+    _, err = fmt.Scanln(&sign)
     if err != nil {
         fmt.Fprintln(os.Stderr, "Некорректный ввод. Пожалуйста, введите корректный знак.")
         os.Exit(1)
@@ -29,7 +29,7 @@ func getExpression() (first, second float32, sign string) {
     }
 
     fmt.Print("Введите второе число: ")
-    _, err = fmt.Scan(&second)
+    _, err = fmt.Scanln(&second)
     if err != nil {
         fmt.Fprintln(os.Stderr, "Некорректное число. Пожалуйста, введите числовое значение.")
         os.Exit(1)
