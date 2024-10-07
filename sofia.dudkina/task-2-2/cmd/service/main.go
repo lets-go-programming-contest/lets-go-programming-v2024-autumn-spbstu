@@ -3,6 +3,7 @@ package main
 import (
 	"container/heap"
 	"fmt"
+	"os"
 )
 
 type IntHeap []int
@@ -32,17 +33,26 @@ func (h *IntHeap) Pop() interface{} {
 }
 func main() {
 	var N, temp int
-	fmt.Scan(&N)
-
+	_, err := fmt.Scan(&N)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 	dishes := make([]int, N)
 	for i := 0; i < N; i++ {
-		fmt.Scan(&temp)
+		_, err = fmt.Scan(&temp)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 		dishes[i] = temp
 	}
 
 	var k int
-	fmt.Scan(&k)
-
+	_, err = fmt.Scan(&k)
+	if err != nil {
+		fmt.Println(err)
+	}
 	h := &IntHeap{}
 	heap.Init(h)
 	if k < N && k > 0 {
