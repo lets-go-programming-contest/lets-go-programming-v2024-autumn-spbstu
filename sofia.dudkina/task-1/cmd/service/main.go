@@ -16,11 +16,11 @@ func calc(n1, n2 float64, op string) (float64, error) {
 		return n1 * n2, nil
 	case "/":
 		if n2 == 0 {
-			return 0, errors.New("Division by zero")
+			return 0, errors.New("division by zero")
 		}
 		return n1 / n2, nil
 	default:
-		return 0, errors.New("Invalid operation")
+		return 0, errors.New("invalid operation")
 	}
 }
 
