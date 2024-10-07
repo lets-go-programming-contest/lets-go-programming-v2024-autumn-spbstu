@@ -1,8 +1,11 @@
 package calculator
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strconv"
+	"strings"
 )
 
 type ConsoleCalculator struct {
@@ -56,13 +59,13 @@ func (c *ConsoleCalculator) Run() {
 }
 
 func readNumberFromConsole() (float64, error) {
-	var numberString string
-	_, err := fmt.Scan(&numberString)
+	in := bufio.NewReader(os.Stdin)
+	input, err := in.ReadString('\n')
 	if err != nil {
 		return 0, err
 	}
 
-	number, err := strconv.ParseFloat(numberString, 64)
+	number, err := strconv.ParseFloat(strings.TrimSpace(input), 64)
 	if err != nil {
 		return 0, err
 	}
@@ -71,27 +74,30 @@ func readNumberFromConsole() (float64, error) {
 }
 
 func readAnswerFromConsole() (bool, error) {
-	var answer string
-	if _, err := fmt.Scan(&answer); err != nil {
+	in := bufio.NewReader(os.Stdin)
+	rowsInput, err := in.ReadString('\n')
+	if err != nil {
 		return false, err
 	}
 
-	if answer == "Yes" {
+	input := strings.TrimSpace(rowsInput)
+
+	if input == "Yes" {
 		return true, nil
-	} else if answer == "No" {
+	} else if input == "No" {
 		return false, nil
 	}
 	return false, fmt.Errorf("incorrect responce")
 }
 
 func getOperationBySymbolFromConsole() (func(o1, o2 float64) (float64, error), error) {
-	var num string
-	_, err := fmt.Scan(&num)
+	in := bufio.NewReader(os.Stdin)
+	num, err := in.ReadString('\n')
 	if err != nil {
 		return nil, err
 	}
 
-	switch num {
+	switch strings.TrimSpace(num) {
 	case "-":
 		return func(o1, o2 float64) (float64, error) {
 			return o1 - o2, nil
