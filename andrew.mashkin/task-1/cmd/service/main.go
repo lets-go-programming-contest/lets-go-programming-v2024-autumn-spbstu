@@ -11,12 +11,15 @@ func main() {
 	var operation string
 	_, err := fmt.Scan(&first, &second)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Некорректное число. Пожалуйста, введите числовое значение.")
 	}
-
 	_, err = fmt.Scan(&operation)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(Calcualte(first, second, operation))
+	result, err := Calcualte(first, second, operation)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(result)
 }
