@@ -29,19 +29,19 @@ func main() {
 	var operator string
 
 	fmt.Print("Введите первое число: ")
-	_, err := fmt.Scan(&num1)
+	_, err := fmt.Scanln(&num1)
 	if err != nil {
 		log.Fatalf("Ошибка: некорректное первое число. %v", err)
 	}
 
 	fmt.Print("Введите второе число: ")
-	_, err = fmt.Scan(&num2)
+	_, err = fmt.Scanln(&num2)
 	if err != nil {
 		log.Fatalf("Ошибка: некорректное второе число. %v", err)
 	}
 
 	fmt.Print("Введите операцию (+, -, *, /): ")
-	_, err = fmt.Scan(&operator)
+	_, err = fmt.Scanln(&operator)
 
 	result, err := Operation(num1, num2, operator)
 	if err != nil {
