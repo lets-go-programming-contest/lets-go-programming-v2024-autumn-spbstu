@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 func main() {
@@ -17,14 +18,12 @@ func main() {
 	fmt.Println("Enter the operation: ")
 	_, err = fmt.Scanln(&operation)
 	if err != nil {
-		fmt.Println("Invalid input")
-		return
+		log.Fatal(err)
 	}
 	fmt.Println("Enter the second operand: ")
 	_, err = fmt.Scan(&op2)
 	if err != nil {
-		fmt.Println("Invalid input")
-		return
+		log.Fatal(err)
 	}
 	var res float64
 	switch operation {
