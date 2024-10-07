@@ -1,4 +1,4 @@
-package structure // Реализация MaxHeap структуры
+package structure
 
 type IntHeap []int
 
