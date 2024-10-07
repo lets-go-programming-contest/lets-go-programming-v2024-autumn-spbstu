@@ -60,5 +60,5 @@ func main() {
 
 	number1, number2, operation := getInput()
 
-	fmt.Printf("%s %g %s %g %s %.2f %s", "Результат:", number1, operation, number2, "=", calculator(number1, number2, operation), "\n")
+	fmt.Printf("Результат: %g %s %g = %.2f\n", number1, operation, number2, calculator(number1, number2, operation))
 }
