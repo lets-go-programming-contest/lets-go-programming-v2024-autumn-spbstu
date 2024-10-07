@@ -1,4 +1,4 @@
-package main
+package calculate
 
 import (
 	"bufio"
@@ -21,7 +21,7 @@ func optimalTemp(int) {
 		value    string
 	)
 
-	in := bufio.NewReader(os.Stdin)
+	in := bufio.NewReader(os.Stdin) //Создание переменной для чтения данных из потока ввода /в дальнейшем нужно для чтения строки/
 	fmt.Print("Enter the number of employees: ")
 	_, err := fmt.Scanln(&k)
 	if err != nil {
@@ -30,13 +30,10 @@ func optimalTemp(int) {
 
 	for i := 0; i < k; i++ {
 		fmt.Print("Enter the temperature: ")
-		value, err = in.ReadString('\n')
-		re, err := regexp.Compile(`([<>]=?)\s*(\d+)`)
-		if err != nil {
-			log.Fatal("Error converting regexp")
-		}
-		matches := re.FindStringSubmatch(value)
-		if len(matches) < 3 {
+		value, err = in.ReadString('\n')             //Чтение строки содержащей пробелы заканчивающейся символом конца строки '\n'
+		re := regexp.MustCompile(`([<>]=?)\s*(\d+)`) //Регулярное выражение для проверки строки на нужный вид
+		matches := re.FindStringSubmatch(value)      //Разделение value на совпадения [вся строка][оператор][число]
+		if len(matches) < 3 {                        //Проверка на правильность ввода,в массиве должно быть 3 переменных
 			log.Fatal(errInput)
 		}
 
@@ -73,18 +70,5 @@ func optimalTemp(int) {
 		} else {
 			fmt.Println(downTemp)
 		}
-	}
-}
-
-func main() {
-	var n int
-	fmt.Print("Enter the number of departments: ")
-	_, err := fmt.Scanln(&n)
-	if err != nil {
-		log.Fatal(errInput)
-	}
-
-	for i := 0; i < n; i++ {
-		optimalTemp(n)
 	}
 }
