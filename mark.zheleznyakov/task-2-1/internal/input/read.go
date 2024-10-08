@@ -22,3 +22,28 @@ func ReadInt(label string) int {
 	}
 }
 
+func ReadCondition() (string, int) {
+	var sign string
+	var temp int
+
+	for {
+		fmt.Printf("reading condition: ")
+		
+		_, err := fmt.Scan(&sign, &temp)
+
+		if err != nil {
+			fmt.Println("unable to read condition")
+			continue
+		}
+
+		if sign != "<=" && sign != ">=" {
+			fmt.Println("bad sign")
+			continue
+		}
+
+		break
+	}
+
+	return sign, temp
+}
+

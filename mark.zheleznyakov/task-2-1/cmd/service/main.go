@@ -5,11 +5,21 @@ import (
 	"github.com/mrqiz/task-2-1/internal/input"
 )
 
+var (
+	initialMinTemp = 15
+	initialMaxTemp = 30
+)
+
 func main() {
 	depts := input.ReadInt("departments count")
-	workersPerDept := input.ReadInt("workers per department")
-	
-	fmt.Printf("got depts: %d\n", depts)
-	fmt.Printf("got workersPerDept: %d\n", workersPerDept)
+
+	for _ = range depts {
+		workersPerDept := input.ReadInt("workers per department")
+    
+    for _ = range workersPerDept {
+      condition, tVal := input.ReadCondition()
+			fmt.Println(condition, tVal)
+		}
+	}
 }
 
