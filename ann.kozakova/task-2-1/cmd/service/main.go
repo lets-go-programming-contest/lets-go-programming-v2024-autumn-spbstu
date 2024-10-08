@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"log"
+
+	"github.com/nutochk/task-2-1/internal/temp"
 )
 
 func main() {
@@ -13,7 +15,6 @@ func main() {
 	if err != nil {
 		log.Fatal(errors.New("incorret data"))
 	}
-
 	for i := 0; i < sections; i++ {
 		fmt.Println("Enter count of workers:")
 		var workers int
@@ -30,23 +31,17 @@ func main() {
 			if !(sign == "<=" || sign == ">=") {
 				log.Fatal(errors.New("incorret data"))
 			}
-			var temp int
-			_, err := fmt.Scan(&temp)
+			var temperature int
+			_, err := fmt.Scan(&temperature)
 			if err != nil {
 				log.Fatal(errors.New("incorret data"))
 			}
-			if sign == "<=" && temp < topT {
-				topT = temp
-			}
-			if sign == ">=" && temp > bottomT {
-				bottomT = temp
-			}
-			if topT >= bottomT {
-				fmt.Println(bottomT)
-			} else {
+			res, err := temp.FindTemp(&topT, &bottomT, &temperature, sign)
+			if err != nil {
 				fmt.Println(-1)
-				break
+				return
 			}
+			fmt.Println(res)
 		}
 	}
 }
