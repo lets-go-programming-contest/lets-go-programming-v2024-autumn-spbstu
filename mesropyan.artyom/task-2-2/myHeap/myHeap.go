@@ -1,14 +1,16 @@
-package MyHeap
+package myHeap
 
 type MyHeap struct {
 	Elems []int
 }
 
-func (h MyHeap) Push(x int) {
-	h.Elems = append(h.Elems, x)
+func (h MyHeap) Push(x any) {
+	if elem, ok := x.(int); ok {
+		h.Elems = append(h.Elems, elem)
+	}
 }
 
-func (h MyHeap) Pop() int {
+func (h MyHeap) Pop() any {
 	if h.Len() != 0 {
 		result := h.Elems[h.Len()-1]
 		h.Elems = h.Elems[:h.Len()-1]
@@ -22,10 +24,7 @@ func (h MyHeap) Len() int {
 }
 
 func (h MyHeap) Less(i, j int) bool {
-	if h.Elems[i] < h.Elems[j] {
-		return true
-	}
-	return false
+	return h.Elems[i] < h.Elems[j]
 }
 
 func (h MyHeap) Swap(i, j int) {
