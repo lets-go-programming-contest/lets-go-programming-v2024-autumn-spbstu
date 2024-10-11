@@ -17,16 +17,16 @@ func (h *MyHeap) Pop() interface{} {
 	return 0
 }
 
-func (h *MyHeap) Len() int {
-	return len(*h)
+func (h MyHeap) Len() int {
+	return len(h)
 }
 
-func (h *MyHeap) Less(i, j int) bool {
-	return (*h)[i] < (*h)[j]
+func (h MyHeap) Less(i, j int) bool {
+	return h[i] < h[j]
 }
 
-func (h *MyHeap) Swap(i, j int) {
-	temp := (*h)[i]
-	(*h)[i] = (*h)[j]
-	(*h)[j] = temp
+func (h MyHeap) Swap(i, j int) {
+	temp := h[i]
+	h[i] = h[j]
+	h[j] = temp
 }
