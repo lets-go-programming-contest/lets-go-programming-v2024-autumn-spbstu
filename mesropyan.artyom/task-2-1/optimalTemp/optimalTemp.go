@@ -3,6 +3,7 @@ package optimaltemp
 import "fmt"
 
 func OptimalTemp() {
+
 	var depCount int
 	var emplCount int
 	var op string
@@ -12,7 +13,10 @@ func OptimalTemp() {
 
 	fmt.Scan(&depCount)
 	for i := 0; i < depCount; i++ {
-		fmt.Scan(&emplCount)
+		if val, err := fmt.Scan(&emplCount); err != nil || val <= 0 {
+			continue
+		}
+	CurDep:
 		for j := 0; j < emplCount; j++ {
 			fmt.Scan(&op)
 			fmt.Scan(&temp)
@@ -27,6 +31,7 @@ func OptimalTemp() {
 				}
 			default:
 				fmt.Println("Incorrect input!")
+				continue CurDep
 			}
 			switch {
 			case lessThan == 31:
@@ -37,6 +42,7 @@ func OptimalTemp() {
 				fmt.Println(moreThan)
 			default:
 				fmt.Println(-1)
+				break CurDep
 			}
 		}
 		moreThan = -1
