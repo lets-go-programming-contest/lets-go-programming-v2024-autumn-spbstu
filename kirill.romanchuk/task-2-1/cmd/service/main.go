@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
 )
 
@@ -36,6 +37,32 @@ func readConditionAndTemperature() (string, int) {
 	return condition, readNum("", LowerBound, UpperBound)
 }
 
+type Department struct {
+	lowerBound int
+	upperBound int
+}
+
+func (d *Department) manageTemperature() {
+	k := readNum("Введите количество сотрудников (1-2000): ", 1, 2000)
+	for j := 0; j < k; j++ {
+		condition, temperature := readConditionAndTemperature()
+
+		switch condition {
+		case ">=":
+			d.lowerBound = int(math.Max(float64(d.lowerBound), float64(temperature)))
+		case "<=":
+			d.upperBound = int(math.Min(float64(d.upperBound), float64(temperature)))
+		}
+
+		if d.lowerBound > d.upperBound {
+			fmt.Println("Невозможно подобрать температуру для этого отдела\n", -1)
+			break
+		} else {
+			fmt.Printf("Подходящая температура для отдела: %d\n", d.lowerBound)
+		}
+	}
+}
+
 func main() {
 	defer func() {
 		if r := recover(); r != nil {
@@ -43,7 +70,12 @@ func main() {
 			os.Exit(1)
 		}
 	}()
-	fmt.Print(readNum("test: ", 1, 2000))
-	fmt.Println()
-	fmt.Print(readConditionAndTemperature())
+	n := readNum("Введите количество отделов (1-2000): ", 1, 2000)
+	departments := make([]Department, n)
+	for i := 0; i < n; i++ {
+		departments[i] = Department{lowerBound: LowerBound, upperBound: UpperBound}
+	}
+	for i := 0; i < n; i++ {
+		departments[i].manageTemperature()
+	}
 }
