@@ -1,19 +1,25 @@
 package optimaltemp
 
-import "fmt"
+import (
+	"fmt"
 
-func OptimalTemp() {
+	myErrors "github.com/artem6554/task-2-1/myErrors"
+)
 
+func OptimalTemp() (err error) {
 	var depCount int
 	var emplCount int
 	var op string
 	var temp int
-	moreThan := -10
-	lessThan := 40
+	moreThan := -1
+	lessThan := 31
 
-	fmt.Scan(&depCount)
+	if _, errDep := fmt.Scan(&depCount); errDep != nil || depCount <= 0 {
+		err = new(myErrors.DepCountError)
+	}
 	for i := 0; i < depCount; i++ {
-		if val, err := fmt.Scan(&emplCount); err != nil || val <= 0 {
+		if _, errEmpl := fmt.Scan(&emplCount); errEmpl != nil || emplCount <= 0 {
+			err = new(myErrors.EmplCountError)
 			continue
 		}
 	CurDep:
@@ -48,4 +54,5 @@ func OptimalTemp() {
 		moreThan = -1
 		lessThan = 31
 	}
+	return
 }
