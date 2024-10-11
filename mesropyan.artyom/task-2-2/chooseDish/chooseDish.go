@@ -11,8 +11,8 @@ func ChooseDish(dishes myHeap.MyHeap) int {
 	var num int
 	fmt.Scan(&num)
 	for i := 0; i < num-1; i++ {
-		heap.Pop(dishes)
+		heap.Pop(&dishes)
 	}
-	result := heap.Pop(dishes).(int)
+	result := heap.Pop(&dishes).(int)
 	return result
 }

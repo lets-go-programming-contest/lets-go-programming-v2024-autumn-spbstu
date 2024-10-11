@@ -3,18 +3,14 @@ package myHeap
 type MyHeap []int
 
 func (h *MyHeap) Push(x interface{}) {
-	if elem, ok := x.(int); ok {
-		*h = append(*h, elem)
-	}
+	*h = append(*h, x.(int))
 }
 
 func (h *MyHeap) Pop() interface{} {
-	if h.Len() != 0 {
-		result := (*h)[(h).Len()-1]
-		*h = (*h)[:h.Len()-1]
-		return result
-	}
-	return 0
+	len := h.Len()
+	res := (*h)[len-1]
+	*h = (*h)[:len-1]
+	return res
 }
 
 func (h *MyHeap) Len() int {
@@ -22,11 +18,9 @@ func (h *MyHeap) Len() int {
 }
 
 func (h *MyHeap) Less(i, j int) bool {
-	return (*h)[i] < (*h)[j]
+	return (*h)[i] > (*h)[j]
 }
 
 func (h *MyHeap) Swap(i, j int) {
-	temp := (*h)[i]
-	(*h)[i] = (*h)[j]
-	(*h)[j] = temp
+	(*h)[i], (*h)[j] = (*h)[j], (*h)[i]
 }
