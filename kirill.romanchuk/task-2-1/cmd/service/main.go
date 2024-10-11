@@ -11,17 +11,24 @@ const (
 	UpperBound = 30
 )
 
-func readNum(message string, min int, max int) int {
-	var num int
-	fmt.Print(message)
+func readIntNum(message string, min int, max int) int {
+	var num float64
+	var resultNum int
+	if message != "" {
+		fmt.Print(message)
+	}
 	_, err := fmt.Scan(&num)
 	if err != nil {
 		panic("ошибка: некорректное значение")
 	}
-	if num < min || num > max {
+	resultNum = int(num)
+	if num != float64(resultNum) {
+		panic("ошибка: число должно быть целым")
+	}
+	if resultNum < min || resultNum > max {
 		panic(fmt.Sprintf("ошибка: значение должно быть в диапазоне от %d до %d", min, max))
 	}
-	return num
+	return resultNum
 }
 
 func readConditionAndTemperature() (string, int) {
@@ -34,7 +41,7 @@ func readConditionAndTemperature() (string, int) {
 	if condition != "<=" && condition != ">=" { //map?
 		panic("Неверное условие: должно быть '<=' или '>='")
 	}
-	return condition, readNum("", LowerBound, UpperBound)
+	return condition, readIntNum("", LowerBound, UpperBound)
 }
 
 type Department struct {
@@ -43,7 +50,7 @@ type Department struct {
 }
 
 func (d *Department) manageTemperature() {
-	k := readNum("Введите количество сотрудников (1-2000): ", 1, 2000)
+	k := readIntNum("Введите количество сотрудников (1-2000): ", 1, 2000)
 	for j := 0; j < k; j++ {
 		condition, temperature := readConditionAndTemperature()
 
@@ -70,7 +77,7 @@ func main() {
 			os.Exit(1)
 		}
 	}()
-	n := readNum("Введите количество отделов (1-2000): ", 1, 2000)
+	n := readIntNum("Введите количество отделов (1-2000): ", 1, 2000)
 	departments := make([]Department, n)
 	for i := 0; i < n; i++ {
 		departments[i] = Department{lowerBound: LowerBound, upperBound: UpperBound}
