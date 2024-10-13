@@ -21,33 +21,12 @@ func main() {
 
 	bounds := make([]structure.TemperatureBounds, n)
 
+	minTemp := 15
+	maxTemp := 30
+
 	for i := 0; i < n; i++ {
-		bounds[i] = structure.TemperatureBounds{Lower: 15, Upper: 30}
+		bounds[i] = structure.TemperatureBounds{Lower: minTemp, Upper: maxTemp}
 	}
 
-	var condition string
-	var k, temp int
-	for i := 0; i < n; i++ {
-		fmt.Print("Введите количество сотрудников: ")
-		k, err = input.ReadInt(reader)
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		for j := 0; j < k; j++ {
-			fmt.Print("Укажите температуру: ")
-			condition, temp, err = input.ReadCondition(reader)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-
-			bounds[i].UpdateBounds(condition, temp)
-			if bounds[i].IsValid() {
-				fmt.Println(bounds[i].Lower)
-			} else {
-				fmt.Println(-1)
-			}
-		}
-	}
+	input.SetTemperature(reader, n, bounds)
 }
