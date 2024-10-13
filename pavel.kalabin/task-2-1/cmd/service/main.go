@@ -14,17 +14,20 @@ func main() {
         sign string
         cond condition.Condition
     )
-	_, err := fmt.Scanln(&N)
+    fmt.Print("N: ")
+    _, err := fmt.Scanln(&N)
 	if err != nil {
         log.Fatalf("Number required: %v", err)
 	}
     for i := 0; i < N; i++ {
+        fmt.Print("K: ")
         _, err = fmt.Scanln(&K)
 		if err != nil {
             log.Fatalf("Number required: %v", err)
 		}
         cond.Init() 
         for j := 0; j < K; j++ {
+            fmt.Printf("Employee #%d: ", j)
             _, err = fmt.Scan(&sign)
             if err != nil {
                 log.Fatalf("String required: %v", err)
@@ -38,6 +41,7 @@ func main() {
                 log.Fatal(err)
             }
             optimal := cond.GetOptimal()
+            fmt.Print("Current oprimal: ")
             fmt.Println(optimal)
         }
     }
