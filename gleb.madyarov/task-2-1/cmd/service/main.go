@@ -2,47 +2,35 @@ package main
 
 import (
 	"fmt"
-	"sort"
+
+	"github.com/Madyarov-Gleb/task-2-1/internal/input"
+	"github.com/Madyarov-Gleb/task-2-1/internal/output"
 )
 
 func main() {
 	var (
-		dep        int
-		emp        int
-		tempSign   string
-		tempValue  int
-		tempLower  []int
-		tempHigher []int
+		dep       int
+		emp       int
+		tempSign  string
+		tempValue int
+		maxHigher int
+		minLower  int
 	)
-	fmt.Scanln(&dep)
+	dep = input.AddNumber()
 	for i := 1; i <= dep; i++ {
-		fmt.Scanln(&emp)
+		emp = input.AddNumber()
+		maxHigher = 0
+		minLower = 100
 		for j := 1; j <= emp; j++ {
-			fmt.Scan(&tempSign)
-			fmt.Scanln(&tempValue)
-			if tempSign == "<=" {
-				tempLower = append(tempLower, tempValue)
+			tempSign = input.AddTempSign()
+			tempValue = input.AddNumber()
+			if tempSign == "<=" && tempValue < minLower {
+				minLower = tempValue
 			}
-			if tempSign == ">=" {
-				tempHigher = append(tempHigher, tempValue)
+			if tempSign == ">=" && tempValue > maxHigher {
+				maxHigher = tempValue
 			}
-			sort.Ints(tempLower)
-			sort.Ints(tempHigher)
-			if len(tempLower) == 0 {
-				fmt.Println(tempHigher[len(tempHigher)-1])
-				continue
-			}
-			if len(tempHigher) == 0 {
-				fmt.Println(tempLower[0])
-				continue
-			}
-			if tempLower[0] >= tempHigher[len(tempHigher)-1] {
-				fmt.Println(tempHigher[len(tempHigher)-1])
-			} else {
-				fmt.Println(-1)
-			}
+			fmt.Println(output.OutAnswer(maxHigher, minLower))
 		}
-		tempLower = nil
-		tempHigher = nil
 	}
 }
