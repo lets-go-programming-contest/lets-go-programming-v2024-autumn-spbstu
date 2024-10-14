@@ -16,11 +16,11 @@ func calculator(firstNumber int, secondNumber int, oper string) (int, error) {
 		return firstNumber * secondNumber, nil
 	case "/":
 		if secondNumber == 0 {
-			return 0, fmt.Errorf("ошибка: деление на ноль")
+			return 0, fmt.Errorf("деление на ноль")
 		}
 		return firstNumber / secondNumber, nil
 	default:
-		return 0, fmt.Errorf("ошибка: неизвестный оператор")
+		return 0, fmt.Errorf("неизвестный оператор")
 	}
 }
 
@@ -69,6 +69,15 @@ func main() {
 			fmt.Fprint(os.Stderr, "Число не должно быть пустым. Пожалуйста, введите верное значение!\n")
 			continue
 		}
+
+		// Преобразование строки во второе число
+		var err error
+		secondNumber, err = strconv.Atoi(input)
+		if err != nil {
+			fmt.Fprint(os.Stderr, "Число введено некорректно. Пожалуйста, введите верное значение!\n")
+			continue
+		}
+
 		break
 	}
 
@@ -76,6 +85,6 @@ func main() {
 	if err != nil {
 		fmt.Println("Ошибка:", err)
 	} else {
-		fmt.Printf("Результат: %d %s %d = %d\n", fistNumber, oper, secondNumber, result)
+		fmt.Println("Результат:", fistNumber, oper, secondNumber, "=", result)
 	}
 }
