@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/IDevFrye/task-2-1/internal/errors"
+	errproc "github.com/IDevFrye/task-2-1/internal/errors"
 )
 
 func GetInt(prompt string, minVal int, maxVal int) int {
@@ -21,10 +21,10 @@ func GetInt(prompt string, minVal int, maxVal int) int {
 			if num <= maxVal && num >= minVal {
 				return num
 			} else {
-				fmt.Println(errors.ErrorIncorectIntBounds)
+				fmt.Println(errproc.ErrorIncorectIntBounds)
 			}
 		} else {
-			fmt.Println(errors.ErrorIncorectInt)
+			fmt.Println(errproc.ErrorIncorectInt)
 		}
 	}
 }
@@ -39,20 +39,20 @@ func GetTempCondition(iter int, prompt string) (string, int) {
 
 		parts := strings.Fields(input)
 		if len(parts) != 2 {
-			fmt.Println(errors.ErrorIncorectCondSpace)
+			fmt.Println(errproc.ErrorIncorectCondSpace)
 			continue
 		}
 
 		cond := parts[0]
 		if cond != "<=" && cond != ">=" {
-			fmt.Println(errors.ErrorIncorectCondComp)
+			fmt.Println(errproc.ErrorIncorectCondComp)
 			continue
 		}
 
 		tempStr := parts[1]
 		temp, err := strconv.Atoi(tempStr)
 		if err != nil {
-			fmt.Println(errors.ErrorIncorectCondTemp)
+			fmt.Println(errproc.ErrorIncorectCondTemp)
 			continue
 		}
 
