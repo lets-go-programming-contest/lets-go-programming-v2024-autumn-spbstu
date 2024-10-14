@@ -31,6 +31,7 @@ func main() {
 				fmt.Println(minT)
 			} else {
 				fmt.Println(-1)
+				break
 			}
 		}
 	}
