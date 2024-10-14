@@ -1,7 +1,7 @@
 package main
 
 import (
-	"anastasiya.soboleva/task-2-1/internal/heap"
+	"anastasiya.soboleva/task-2-2/internal/heap"
 	"fmt"
 	"log"
 )
