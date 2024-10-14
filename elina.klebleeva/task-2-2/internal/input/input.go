@@ -3,7 +3,7 @@ package input
 import (
 	"container/heap"
 	"fmt"
-	"task-2-2/internal/input/inputError"
+	"task-2-2/internal/myErrors/inputError"
 	"task-2-2/pkg/heapInt"
 )
 
