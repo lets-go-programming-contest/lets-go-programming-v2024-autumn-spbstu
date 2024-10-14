@@ -1,10 +1,11 @@
 package main
 
 import (
-	"anastasiya.soboleva/task-2-2/internal/meal"
-	"anastasiya.soboleva/task-2-2/internal/reader"
 	"fmt"
 	"log"
+
+	"anastasiya.soboleva/task-2-2/internal/meal"
+	"anastasiya.soboleva/task-2-2/internal/reader"
 )
 
 func main() {

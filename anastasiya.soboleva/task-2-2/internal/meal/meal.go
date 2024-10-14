@@ -1,8 +1,9 @@
 package meal
 
 import (
-	hp "anastasiya.soboleva/task-2-2/internal/heap"
 	"container/heap"
+
+	hp "anastasiya.soboleva/task-2-2/internal/heap"
 )
 
 func FindKMeal(meals []int, k int) int {
