@@ -1,7 +1,15 @@
 package main
 
-import "github.com/sssidkn/task-2-2/cmd/maxk"
+import (
+	"fmt"
+	"github.com/sssidkn/task-2-2/internal/data"
+)
 
 func main() {
-	maxk.Solution()
+	answer, err := data.Solution()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(answer)
+	}
 }
