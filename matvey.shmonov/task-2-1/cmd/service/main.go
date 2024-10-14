@@ -72,5 +72,5 @@ func processInput(prompt string, re *regexp.Regexp, minT, maxT *int) bool {
 	default: // unreachable
 		log.Panicf("Unknown operator: '%s'", matches[1])
 	}
-	return *minT <= *maxT && *maxT <= MaxTemperature && *minT >= MinTemperature
+	return MinTemperature <= *minT && *minT <= *maxT && *maxT <= MaxTemperature
 }
