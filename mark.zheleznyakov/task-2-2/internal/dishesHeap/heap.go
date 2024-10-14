@@ -1,4 +1,4 @@
-package heap
+package dishesHeap
 
 import (
 	"container/heap"
@@ -31,7 +31,6 @@ func (h *DishesHeap) Pop() any {
 }
 
 func FindDish(h *DishesHeap, k int) int {
-	heap.Init(h)
 	var result int
 	for _ = range k {
 		result = heap.Pop(h).(int)
