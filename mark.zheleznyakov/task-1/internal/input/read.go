@@ -2,15 +2,15 @@ package input
 
 import (
 	"fmt"
-	"strconv"
 	"os"
+	"strconv"
 
-	"github.com/mrqiz/task-1/internal/strings"
 	"github.com/mrqiz/task-1/internal/math"
+	"github.com/mrqiz/task-1/internal/strings"
 )
 
 func readNumber(label string, zeroAllowed bool) float64 {
-  var input string
+	var input string
 	var result float64
 
 	fmt.Printf("gimme the %s number: ", label)
@@ -37,7 +37,7 @@ func readOperator() rune {
 
 	fmt.Printf("gimme an operator: ")
 	fmt.Scanln(&operator)
-	
+
 	allowedOperators := []string{"+", "-", "*", "/"}
 
 	if !strings.Has(allowedOperators, operator) {
@@ -62,4 +62,3 @@ func ReadToCalculation(c *math.Calculation) {
 	c.RightOperand = rightOperand
 	c.Operator = operator
 }
-

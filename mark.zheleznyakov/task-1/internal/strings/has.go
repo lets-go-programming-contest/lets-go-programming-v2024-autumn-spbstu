@@ -8,4 +8,3 @@ func Has(arr []string, str string) bool {
 	_, found := strMap[str]
 	return found
 }
-
