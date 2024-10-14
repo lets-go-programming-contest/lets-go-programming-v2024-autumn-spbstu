@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func readInt(in io.Reader) (int, error) {
+func ReadInt(in io.Reader) (int, error) {
 	reader := bufio.NewReader(in)
 	input, err := reader.ReadString('\n')
 	if err != nil {

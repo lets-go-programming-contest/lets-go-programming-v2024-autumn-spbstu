@@ -6,13 +6,16 @@ import (
 	"io"
 	"strconv"
 	"strings"
+
+	"github.com/Piyavva/task-2-1/internal/input"
+	"github.com/Piyavva/task-2-1/internal/output"
 )
 
-func getTemp(in io.Reader, out io.Writer, n int) error {
+func GetTemp(in io.Reader, out io.Writer, n int) error {
     for i := 0; i < n; i++ {
         lowerBound := 15
         upperBound := 30
-        k, err := input.readInt(in)
+        k, err := input.ReadInt(in)
         if err != nil {
             return err
         }
@@ -38,9 +41,9 @@ func getTemp(in io.Reader, out io.Writer, n int) error {
                 lowerBound = max(lowerBound, temp)
             }
             if (lowerBound <= upperBound) {
-                output.writeInt(upperBound, out)
+                output.WriteInt(upperBound, out)
             } else {
-                output.writeInt(-1, out)
+                output.WriteInt(-1, out)
             }
         }
     }
