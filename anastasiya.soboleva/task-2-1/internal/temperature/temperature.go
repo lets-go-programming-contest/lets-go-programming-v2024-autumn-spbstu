@@ -1,9 +1,5 @@
 package temperature
 
-import (
-	"errors"
-)
-
 type Tracker struct {
 	minTemp int
 	maxTemp int
@@ -16,33 +12,28 @@ func NewTracker() *Tracker {
 	}
 }
 
-func (t *Tracker) ProcessTemperature(op string, value int) (int, error) {
-	if value > 30 || value < 15 {
-		return -1, errors.New("некорректная температура")
-	}
+func (t *Tracker) ProcessTemperature(op string, value int) int {
 
 	switch op {
 	case ">=":
 		if value > t.maxTemp {
-			return -1, nil
+			return -1
 		}
 		if value > t.minTemp {
 			t.minTemp = value
 		}
 	case "<=":
 		if value < t.minTemp {
-			return -1, nil
+			return -1
 		}
 		if value < t.maxTemp {
 			t.maxTemp = value
 		}
-	default:
-		return -1, errors.New("некорректная операция")
 	}
 
 	if t.minTemp > t.maxTemp {
-		return -1, nil
+		return -1
 	}
 
-	return t.minTemp, nil
+	return t.minTemp
 }
