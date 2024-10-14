@@ -6,9 +6,14 @@ import (
 )
 
 func FindDish(dishNum int, dishes heapInt.HeapInt) any {
+
+	tempDishes := make(heapInt.HeapInt, len(dishes))
+	copy(tempDishes, dishes)
+	heap.Init(&tempDishes)
+
 	for i := 0; i < dishNum-1; i++ {
-		heap.Pop(&dishes)
+		heap.Pop(&tempDishes)
 	}
 
-	return heap.Pop(&dishes)
+	return heap.Pop(&tempDishes)
 }
