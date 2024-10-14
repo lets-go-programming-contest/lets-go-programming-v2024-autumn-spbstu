@@ -3,7 +3,7 @@ package heapInt
 type HeapInt []int
 
 func (h *HeapInt) Len() int {
-	return len((*h))
+	return len(*h)
 }
 
 func (h *HeapInt) Less(i int, j int) bool {
@@ -19,7 +19,7 @@ func (h *HeapInt) Push(x interface{}) {
 	if ok {
 		*h = append(*h, a)
 	} else {
-		panic("incorrect type for HeatPush")
+		panic("incorrect type for HeapPush")
 	}
 
 }
