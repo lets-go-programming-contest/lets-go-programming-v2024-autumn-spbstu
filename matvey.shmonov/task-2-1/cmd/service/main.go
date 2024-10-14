@@ -27,7 +27,7 @@ func main() {
 		K := readInt()
 		for range K {
 			prompt := readPrompt(b)
-			if ok := processInput(prompt, re, &minT, &maxT); ok {
+			if processInput(prompt, re, &minT, &maxT) {
 				fmt.Println(minT)
 			} else {
 				fmt.Println(-1)
