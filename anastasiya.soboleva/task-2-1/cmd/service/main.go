@@ -1,9 +1,10 @@
 package main
 
 import (
+	"fmt"
+
 	"anastasiya.soboleva/task-2-1/internal/reader"
 	"anastasiya.soboleva/task-2-1/internal/temperature"
-	"fmt"
 )
 
 func main() {
