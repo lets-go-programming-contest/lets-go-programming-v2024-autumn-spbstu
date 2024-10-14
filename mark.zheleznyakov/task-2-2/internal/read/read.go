@@ -1,8 +1,9 @@
 package read
 
 import (
-	"fmt"
 	"container/heap"
+	"fmt"
+	"os"
 
 	"github.com/mrqiz/task-2-2/internal/dishesHeap"
 )
@@ -10,13 +11,9 @@ import (
 func ReadNumber() int {
 	var n int
 	_, err := fmt.Scan(&n)
-	for {
-		if err != nil {
-			fmt.Println("unable to read a number")
-			continue
-		}
-
-		break
+	if err != nil {
+		fmt.Println("unable to read a number")
+		os.Exit(1)
 	}
 	return n
 }
