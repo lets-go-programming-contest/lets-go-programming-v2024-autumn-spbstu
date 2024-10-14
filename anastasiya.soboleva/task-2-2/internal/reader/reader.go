@@ -12,7 +12,7 @@ func ReadInput() ([]int, int, error) {
 	var n int
 	_, err := fmt.Scanln(&n)
 	if err != nil || n < 1 || n > 10000 {
-		return nil, 0, fmt.Errorf("Ошибка: неккоректный ввод количества блюд ")
+		return nil, 0, fmt.Errorf("Ошибка: некорректный ввод количества блюд ")
 	}
 
 	reader := bufio.NewReader(os.Stdin)
@@ -20,14 +20,14 @@ func ReadInput() ([]int, int, error) {
 	mealsStr := strings.Fields(input)
 
 	if len(mealsStr) != n {
-		return nil, 0, fmt.Errorf("Ошибка: неккоректный ввод последовательности ")
+		return nil, 0, fmt.Errorf("Ошибка: некорректный ввод последовательности ")
 	}
 
 	meals := make([]int, n)
 	for i, mealStr := range mealsStr {
 		meal, err := strconv.Atoi(mealStr)
 		if err != nil || meal < -10000 || meal > 10000 {
-			return nil, 0, fmt.Errorf("Ошибка: неккоректный ввод последовательности ")
+			return nil, 0, fmt.Errorf("Ошибка: некорректный ввод последовательности ")
 		}
 		meals[i] = meal
 	}
@@ -35,7 +35,7 @@ func ReadInput() ([]int, int, error) {
 	var k int
 	_, err = fmt.Scanln(&k)
 	if err != nil || k < 1 || k > n {
-		return nil, 0, fmt.Errorf("Ошибка: неккоректный ввод порядкового номера k-го по предпочтению блюда ")
+		return nil, 0, fmt.Errorf("Ошибка: некорректный ввод порядкового номера k-го по предпочтению блюда ")
 	}
 
 	return meals, k, nil
