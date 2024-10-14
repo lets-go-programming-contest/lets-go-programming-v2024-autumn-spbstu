@@ -3,6 +3,7 @@ package main
 import (
 	"container/heap"
 	"fmt"
+	"github.com/katagiriwhy/task-2-2/internal"
 	"log"
 )
 
@@ -42,26 +43,10 @@ func findKDish(arr *[]int, k int) {
 }
 
 func main() {
-	fmt.Print("Enter the number of dishes: ")
-	var num int
-	_, err := fmt.Scan(&num)
+	arr, k, err := internal.ReadData()
 	if err != nil {
 		log.Fatal(err)
+	} else {
+		findKDish(&arr, k)
 	}
-	arr := make([]int, num)
-	for i := 0; i < num; i++ {
-		var tmp int
-		_, err := fmt.Scan(&tmp)
-		if err != nil || tmp > 10000 || tmp < -10000 {
-			fmt.Println("Invalid input")
-		}
-		arr[i] = tmp
-	}
-	fmt.Println("Enter k value: ")
-	var k int
-	_, err = fmt.Scan(&k)
-	if err != nil {
-		log.Fatal(err)
-	}
-	findKDish(&arr, k)
 }
