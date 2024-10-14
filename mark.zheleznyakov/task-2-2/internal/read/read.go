@@ -2,6 +2,9 @@ package read
 
 import (
 	"fmt"
+	"container/heap"
+
+	"github.com/mrqiz/task-2-2/internal/dishesHeap"
 )
 
 func ReadNumber() int {
@@ -16,4 +19,11 @@ func ReadNumber() int {
 		break
 	}
 	return n
+}
+
+func ReadToHeap(h *dishesHeap.DishesHeap, n int) {
+	for _ = range n {
+		currentDish := ReadNumber()
+		heap.Push(h, currentDish)
+	}
 }
