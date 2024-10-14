@@ -33,13 +33,8 @@ func main() {
 		var input string
 		fmt.Scan(&input)
 
-		if input == "" {
-			fmt.Fprint(os.Stderr, "Число не должно быть пустым. Пожалуйста, введите верное значение!\n")
-			continue
-		}
-
 		var err error
-		fistNumber, err = strconv.Atoi(input)
+		fistNumber, err = fmt.Scan(&input)
 		if err != nil {
 			fmt.Fprint(os.Stderr, "Число введено некорректно. Пожалуйста, введите верное значение!\n")
 			continue
@@ -61,16 +56,10 @@ func main() {
 
 	var secondNumber int
 	for {
-		fmt.Print("Введите второе число: ")
+		fmt.Print("Введите второе число:")
 		var input string
 		fmt.Scan(&input)
 
-		if input == "" {
-			fmt.Fprint(os.Stderr, "Число не должно быть пустым. Пожалуйста, введите верное значение!\n")
-			continue
-		}
-
-		// Преобразование строки во второе число
 		var err error
 		secondNumber, err = strconv.Atoi(input)
 		if err != nil {
