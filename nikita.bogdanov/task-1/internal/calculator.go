@@ -18,12 +18,14 @@ func CalcExpression(num1, num2, operator string) {
 		number2 := new(big.Int)
 		number2.SetString(num2, 10)
 		IntCalc(number1, number2, operator)
+
 	case FLOAT:
 		number1 := new(big.Float).SetPrec(FLOAT_PREC)
 		number1.SetString(num1)
 		number2 := new(big.Float).SetPrec(FLOAT_PREC)
 		number2.SetString(num2)
 		FloatCalc(number1, number2, operator)
+
 	case COMPLEX:
 		number1, _ := ParseComplex(num1)
 		number2, _ := ParseComplex(num2)

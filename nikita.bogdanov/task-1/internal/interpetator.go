@@ -15,6 +15,7 @@ func interpret(num1, num2 string) int {
 		type_num1 = checkType(num1)
 		type_num2 = checkType(num2)
 	)
+
 	var res_type int
 	if type_num1 >= type_num2 {
 		res_type = type_num1

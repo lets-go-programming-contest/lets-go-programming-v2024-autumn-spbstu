@@ -96,7 +96,6 @@ func (bc *BigComplex) Div(other *BigComplex) *BigComplex {
 	if denom.Cmp(big.NewFloat(0)) == 0 {
 		panic("Ошибка: деление на ноль невозможно")
 	}
-
 	realPart := new(big.Float).Quo(
 		new(big.Float).Add(
 			new(big.Float).Mul(bc.Real, other.Real),
