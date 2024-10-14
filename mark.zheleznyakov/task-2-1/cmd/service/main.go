@@ -11,12 +11,12 @@ var (
 )
 
 func main() {
-	depts := input.ReadInt("departments count")
+	depts := input.ReadInt()
 
 	for _ = range depts {
 		minTemp := initialMinTemp
 		maxTemp := initialMaxTemp
-		workersPerDept := input.ReadInt("workers per department")
+		workersPerDept := input.ReadInt()
     
     for _ = range workersPerDept {
       condition, tVal := input.ReadCondition()
