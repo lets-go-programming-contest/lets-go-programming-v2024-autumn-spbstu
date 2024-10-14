@@ -1,9 +1,5 @@
 package heap
 
-import (
-	"container/heap"
-)
-
 type Heap []int
 
 func (h *Heap) Len() int {
@@ -28,20 +24,4 @@ func (h *Heap) Pop() interface{} {
 	x := old[n-1]
 	*h = old[0 : n-1]
 	return x
-}
-
-func FindKMeal(meals []int, k int) int {
-	h := &Heap{}
-	heap.Init(h)
-
-	for _, meal := range meals {
-		heap.Push(h, meal)
-	}
-
-	var kMeal int
-	for i := 0; i < k; i++ {
-		kMeal = heap.Pop(h).(int)
-	}
-
-	return kMeal
 }

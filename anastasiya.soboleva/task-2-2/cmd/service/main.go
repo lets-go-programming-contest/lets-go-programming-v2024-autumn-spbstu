@@ -1,35 +1,19 @@
 package main
 
 import (
-	"anastasiya.soboleva/task-2-2/internal/heap"
+	"anastasiya.soboleva/task-2-2/internal/meal"
+	"anastasiya.soboleva/task-2-2/internal/reader"
 	"fmt"
 	"log"
 )
 
 func main() {
-	var n int
-	_, err := fmt.Scanln(&n)
-	if err != nil || n < 1 || n > 10000 {
-		log.Fatal("Ошибка: неккоректный ввод количества блюд")
+	meals, k, err := reader.ReadInput()
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	meals := make([]int, n)
-	for i := 0; i < n; i++ {
-		var meal int
-		_, err := fmt.Scan(&meal)
-		if err != nil || meal < -10000 || meal > 10000 {
-			log.Fatal("Ошибка: неккоректный ввод последовательности")
-		}
-		meals[i] = meal
-	}
+	result := meal.FindKMeal(meals, k)
 
-	var k int
-	_, err = fmt.Scanln(&k)
-	if err != nil || k < 1 || k > n {
-		log.Fatal("Ошибка: неверный ввод порядкового номера k-го по предпочтению блюда")
-	}
-
-	result := heap.FindKMeal(meals, k)
-
-	fmt.Printf("%d", result)
+	fmt.Printf("%d\n", result)
 }
