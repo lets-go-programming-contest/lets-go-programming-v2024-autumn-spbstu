@@ -1,9 +1,11 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	"os"
 
+	"github.com/kirill.romanchuk/task-2-2/internal/maxheap"
 	"github.com/kirill.romanchuk/task-2-2/internal/utils"
 )
 
@@ -15,6 +17,18 @@ func main() {
 		}
 	}()
 
-	n, values, k := utils.ReadInput()
-	fmt.Print(n, values, k)
+	_, values, k := utils.ReadInput()
+
+	var nums maxheap.IntMaxHeap
+
+	for _, value := range values {
+		heap.Push(&nums, value)
+	}
+
+	var result int
+	for i := 0; i < k; i++ {
+		result = heap.Pop(&nums).(int)
+	}
+
+	fmt.Println(result)
 }
