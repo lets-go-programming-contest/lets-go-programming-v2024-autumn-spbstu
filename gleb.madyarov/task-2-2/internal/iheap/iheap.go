@@ -15,7 +15,10 @@ func (h IntHeap) Swap(i, j int) {
 }
 
 func (h *IntHeap) Push(x interface{}) {
-	*h = append(*h, x.(int))
+	a, ok := x.(int)
+	if ok {
+		*h = append(*h, a)
+	}
 }
 
 func (h *IntHeap) Pop() interface{} {

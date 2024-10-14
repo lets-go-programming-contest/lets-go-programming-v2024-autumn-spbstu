@@ -22,13 +22,10 @@ func InputVal() ([]int, int) {
 		numb []int
 	)
 	n = CheckNumb()
-	//fmt.Scanln(&n)
 	for i := 0; i < n; i++ {
 		ai = CheckNumb()
-		//fmt.Scan(&ai)
 		numb = append(numb, ai)
 	}
 	k = CheckNumb()
-	//fmt.Scanln(&k)
 	return numb, k
 }
