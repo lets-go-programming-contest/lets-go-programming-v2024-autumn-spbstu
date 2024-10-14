@@ -3,8 +3,9 @@ package main
 import (
 	"container/heap"
 	"fmt"
-	"github.com/katagiriwhy/task-2-2/internal"
 	"log"
+
+	"github.com/katagiriwhy/task-2-2/internal"
 )
 
 type Heap []int
