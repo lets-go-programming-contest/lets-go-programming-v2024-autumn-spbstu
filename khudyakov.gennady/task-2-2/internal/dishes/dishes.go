@@ -3,21 +3,12 @@ package dishes
 import (
 	"bufio"
 	"container/heap"
-	"fmt"
 	"strconv"
 	"strings"
 
 	"github.com/KRYST4L614/task-2-2/internal/intheap"
 	"github.com/KRYST4L614/task-2-2/internal/io"
 )
-
-func requestedDishErr(dishNum, dishesSize int) error {
-	return fmt.Errorf("порядковый номер <%v> k-го по предпочтению блюда больше, чем общее кол-во блюд <%v>", dishNum, dishesSize)
-}
-
-func negativeDishErr(dishNum int) error {
-	return fmt.Errorf("порядковый номер <%v> k-го по предпочтению блюда должен быть больше нуля", dishNum)
-}
 
 func FindRequestedDish(dishesData []int, requestedDish int) (int, error) {
 
@@ -69,5 +60,5 @@ func ReadData(reader *bufio.Reader) ([]int, int, error) {
 		return nil, 0, err
 	}
 
-	return dishes, int(k), nil
+	return dishes, k, nil
 }
