@@ -1,6 +1,4 @@
-package heap
-
-import "container/heap"
+package iheap
 
 type IntHeap []int
 
@@ -26,8 +24,4 @@ func (h *IntHeap) Pop() interface{} {
 	x := old[n-1]
 	*h = old[0 : n-1]
 	return x
-}
-
-func Init(h) {
-	heap.Init(h)
 }
