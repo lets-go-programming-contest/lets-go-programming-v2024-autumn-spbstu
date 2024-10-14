@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func addition(a float64, b float64) float64 {
@@ -48,9 +50,12 @@ func calculate(a float64, b float64, operator string) float64 {
 func processOperandInput(intro string) float64 {
 	var operand float64 = 0
 	for {
-		var input string
 		fmt.Print(intro)
-		_, err1 := fmt.Scan(&input)
+
+		reader := bufio.NewReader(os.Stdin)
+		input, err1 := reader.ReadString('\n')
+		input = strings.TrimSpace(input)
+
 		if err1 == nil {
 			num, err2 := strconv.ParseFloat(input, 64)
 			if err2 == nil {
@@ -70,9 +75,14 @@ func processOperatorInput(intro string) string {
 	var exp = ""
 	fmt.Print(intro)
 	for {
-		_, err := fmt.Scan(&exp)
+		reader := bufio.NewReader(os.Stdin)
+		input, err := reader.ReadString('\n')
+		input = strings.TrimSpace(input)
+
 		if err == nil {
-			if exp == "+" || exp == "-" || exp == "*" || exp == "/" {
+
+			if input == "+" || input == "-" || input == "*" || input == "/" {
+				exp = input
 				break
 			}
 		}
@@ -89,9 +99,9 @@ func main() {
 
 	fmt.Println("Welcome to calculator!")
 
-	firstOperand = processOperandInput("Enter the first number:")
-	operator = processOperatorInput("Enter the operator:")
-	secondOperand = processOperandInput("Enter the second number:")
+	firstOperand = processOperandInput("Enter the first number: ")
+	operator = processOperatorInput("Enter the operator: ")
+	secondOperand = processOperandInput("Enter the second number: ")
 
 	fmt.Println("Result:", firstOperand, operator, secondOperand, "=", calculate(firstOperand, secondOperand, operator))
 }
