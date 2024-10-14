@@ -24,11 +24,12 @@ func calc(n1, n2 float64, op string) (float64, error) {
 	}
 }
 
-func inputNumber(n *float64) {
+func inputNumber(n *float64) error {
 	_, err := fmt.Scanln(n)
 	if err != nil {
-		fmt.Println("Please enter a number")
-		os.Exit(1)
+		return errors.New("incorrect input")
+	} else {
+		return nil
 	}
 }
 
@@ -36,11 +37,26 @@ func main() {
 	var n1, n2 float64
 	var op string
 	fmt.Println("Enter number: ")
-	inputNumber(&n1)
+	err := inputNumber(&n1)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
 	fmt.Println("Enter operation: ")
-	fmt.Scanln(&op)
+	_, err = fmt.Scanln(&op)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
 	fmt.Println("Enter number: ")
-	inputNumber(&n2)
+	err = inputNumber(&n2)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
 	res, er := calc(n1, n2, op)
 	if er != nil {
 		fmt.Println(er)
