@@ -1,37 +1,59 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strconv"
+	"strings"
 
 	internal "github.com/IDevFrye/task-1/internal/operations"
 )
 
+var reader = bufio.NewScanner(os.Stdin)
+
 func getOperand(prompt string) float64 {
-	var input string
 	for {
 		fmt.Print(prompt)
-		fmt.Scanln(&input)
-		operand, err := strconv.ParseFloat(input, 64)
+		reader.Scan()
+		input := reader.Text()
+
+		parts := strings.Fields(input)
+
+		if len(parts) != 1 {
+			fmt.Println("> Некорректное значение. Пожалуйста, введите одно числовое значение.")
+			continue
+		}
+
+		operand, err := strconv.ParseFloat(parts[0], 64)
 		if err != nil {
 			fmt.Println("> Некорректное значение. Пожалуйста, введите числовое значение.")
 			continue
 		}
+
 		return operand
 	}
 }
 
 func getOperation() string {
-	var operation string
 	for {
 		fmt.Print("Выберите операцию (+, -, *, /): ")
-		fmt.Scanln(&operation)
-		if _, exists := internal.Operations[operation]; exists {
-			break
+		reader.Scan()
+		input := reader.Text()
+
+		parts := strings.Fields(input)
+		if len(parts) != 1 {
+			fmt.Println("> Некорректная операция. Пожалуйста, используйте символы +, -, * или /.")
+			continue
 		}
+
+		operation := parts[0]
+		if _, exists := internal.Operations[operation]; exists {
+			return operation
+		}
+
 		fmt.Println("> Некорректная операция. Пожалуйста, используйте символы +, -, * или /.")
 	}
-	return operation
 }
 
 func printResult(firstOperand float64, operation string, secondOperand float64, result float64) {
@@ -39,13 +61,15 @@ func printResult(firstOperand float64, operation string, secondOperand float64, 
 }
 
 func askContinue() bool {
-	var continueCalc string
 	for {
 		fmt.Print(">> Хотите выполнить еще одну операцию? (y/n): ")
-		fmt.Scanln(&continueCalc)
-		if continueCalc == "y" {
+		reader.Scan()
+		input := reader.Text()
+		input = strings.TrimSpace(input)
+
+		if input == "y" {
 			return true
-		} else if continueCalc == "n" {
+		} else if input == "n" {
 			fmt.Println("Программа завершена.")
 			return false
 		} else {
