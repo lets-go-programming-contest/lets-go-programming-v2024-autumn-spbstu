@@ -14,6 +14,6 @@ func main() {
 		return
 	}
 
-	fmt.Print(findDish.FindDish(dishNum, dishes))
+	fmt.Println(findDish.FindDish(dishNum, *dishes))
 
 }

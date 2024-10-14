@@ -5,9 +5,10 @@ import (
 	"task-2-2/pkg/heapInt"
 )
 
-func FindDish(dishNum int, dishes *heapInt.HeapInt) any {
+func FindDish(dishNum int, dishes heapInt.HeapInt) any {
 	for i := 0; i < dishNum-1; i++ {
-		heap.Pop(dishes)
+		heap.Pop(&dishes)
 	}
-	return heap.Pop(dishes)
+
+	return heap.Pop(&dishes)
 }
