@@ -21,7 +21,7 @@ func GetInt(prompt string, minVal int, maxVal int) int {
 			if num <= maxVal && num >= minVal {
 				return num
 			} else {
-				fmt.Println(errors.ErrorIncorectInt)
+				fmt.Println(errors.ErrorIncorectIntBounds)
 			}
 		} else {
 			fmt.Println(errors.ErrorIncorectInt)
