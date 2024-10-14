@@ -24,6 +24,10 @@ func main() {
 		for j := 1; j <= emp; j++ {
 			tempSign = input.AddTempSign()
 			tempValue = input.AddNumber()
+			if tempValue < 15 || tempValue > 30 {
+				fmt.Println("Error value")
+				break
+			}
 			if tempSign == "<=" && tempValue < minLower {
 				minLower = tempValue
 			}
