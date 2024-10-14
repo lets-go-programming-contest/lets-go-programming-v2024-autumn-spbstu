@@ -23,8 +23,8 @@ func main() {
 			log.Fatal(errors.New("incorret data"))
 		}
 		fmt.Println("Enter the temperature:")
-		topT := 100
-		bottomT := -100
+		topT := 30
+		bottomT := 15
 		for j := 0; j < workers; j++ {
 			var sign string
 			fmt.Scan(&sign)
