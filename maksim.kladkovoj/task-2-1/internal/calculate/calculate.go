@@ -6,33 +6,33 @@ import (
 	"github.com/Mmmakskl/task-2-1/internal/input"
 )
 
-func OptimalTemp(int) {
+func OptimalTemp(k int) error {
 	var (
-		topTemp  int = 100
-		downTemp int = -100
+		topTemp  int = 30
+		downTemp int = 15
 	)
-
-	fmt.Print("Enter the number of employees: ")
-	k := input.AddNumber()
 
 	for i := 0; i < k; i++ {
 		fmt.Print("Enter the temperature: ")
-		operator, temperature := input.AddTemperature()
+		operator, temperature, err := input.AddTemperature()
+		if err != nil {
+			return err
+		}
 
 		switch operator {
-		case "<=":
+		case input.LessOrEqual:
 			if temperature <= topTemp {
 				topTemp = temperature
 			}
-		case "<":
+		case input.Less:
 			if temperature-1 < topTemp {
 				topTemp = temperature - 1
 			}
-		case ">=":
+		case input.GreaterOrEqual:
 			if temperature >= downTemp {
 				downTemp = temperature
 			}
-		case ">":
+		case input.Greater:
 			if temperature+1 > downTemp {
 				downTemp = temperature + 1
 			}
@@ -47,4 +47,5 @@ func OptimalTemp(int) {
 			fmt.Println(downTemp)
 		}
 	}
+	return nil
 }

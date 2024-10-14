@@ -3,7 +3,6 @@ package input
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"regexp"
 	"strconv"
@@ -11,43 +10,76 @@ import (
 
 const expectedMatchCount = 3
 
-func AddNumber() int {
+type OperatorType int
+
+const (
+	Unknown OperatorType = iota
+	Less
+	LessOrEqual
+	Greater
+	GreaterOrEqual
+)
+
+func ParseTemp(input string) (OperatorType, int, error) {
+	re, err := regexp.Compile(`([<>]=?)\s*(\d+)`)
+	if err != nil {
+		return Unknown, 0, ErrRegexp
+	}
+
+	matches := re.FindStringSubmatch(input)
+	if len(matches) < expectedMatchCount {
+		return Unknown, 0, ErrInput
+	}
+
+	operator := matches[1]
+	var operatorType OperatorType
+	switch operator {
+	case "<":
+		operatorType = Less
+	case "<=":
+		operatorType = LessOrEqual
+	case ">":
+		operatorType = Greater
+	case ">=":
+		operatorType = GreaterOrEqual
+	default:
+		operatorType = Unknown
+	}
+
+	temp, err := strconv.Atoi(matches[2])
+	if err != nil {
+		return Unknown, 0, ErrInput
+	}
+
+	return operatorType, temp, nil
+}
+
+func AddNumber() (int, error) {
 	var number int
 
 	_, err := fmt.Scanln(&number)
 	if err != nil {
-		log.Fatal(ErrInput)
+		return 0, ErrInput
 	}
 
-	return number
+	return number, nil
 }
 
-func AddTemperature() (string, int) {
+func AddTemperature() (OperatorType, int, error) {
 	var (
-		operator string
+		operator OperatorType
 	)
 	in := bufio.NewReader(os.Stdin)
 
 	value, err := in.ReadString('\n')
 	if err != nil {
-		log.Fatal(ErrInput)
+		return Unknown, 0, ErrInput
 	}
 
-	re, err := regexp.Compile(`([<>]=?)\s*(\d+)`)
+	operator, temperature, err := ParseTemp(value)
 	if err != nil {
-		log.Fatal(ErrRegexp)
+		return Unknown, 0, ErrTemp
 	}
 
-	matches := re.FindStringSubmatch(value)
-	if len(matches) < expectedMatchCount {
-		log.Fatal(ErrInput)
-	}
-
-	operator = matches[1]
-	temperature, err := strconv.Atoi(matches[2])
-	if err != nil {
-		log.Fatal(ErrTemp)
-	}
-
-	return operator, temperature
+	return operator, temperature, nil
 }
