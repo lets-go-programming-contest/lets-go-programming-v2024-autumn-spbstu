@@ -25,7 +25,7 @@ func main() {
 			tempSign = input.AddTempSign()
 			tempValue = input.AddNumber()
 			if tempValue < 15 || tempValue > 30 {
-				fmt.Println("Error value")
+				fmt.Println("Invalid temperature value, expected value between 15 and 30")
 				break
 			}
 			if tempSign == "<=" && tempValue < minLower {
