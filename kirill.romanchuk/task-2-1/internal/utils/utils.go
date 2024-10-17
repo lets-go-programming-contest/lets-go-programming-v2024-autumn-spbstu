@@ -37,6 +37,7 @@ func ReadIntNum(message string, min int, max int) int {
 func ReadConditionAndTemperature() (string, int) {
 	var condition string
 	fmt.Print("Введите условие (>= или <=) и затем температуру (15-30): ")
+
 	_, err := fmt.Scan(&condition)
 	if err != nil {
 		panic("ошибка: некорректное значение")
