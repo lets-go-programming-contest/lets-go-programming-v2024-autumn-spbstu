@@ -11,7 +11,7 @@ import (
 func main() {
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Println(r)
+			fmt.Fprintln(os.Stderr, r)
 			os.Exit(1)
 		}
 	}()
