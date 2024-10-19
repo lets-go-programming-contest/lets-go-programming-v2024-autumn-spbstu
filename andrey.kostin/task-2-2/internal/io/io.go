@@ -44,3 +44,17 @@ func getHeapElement(prompt string, minVal int, maxVal int, count int) ([]int, er
 	}
 	return prefs, nil
 }
+
+func getPrefDish(prompt string, minVal int, count int) (int, error) {
+	scanner := bufio.NewScanner(os.Stdin)
+	input := scanner.Text()
+	if numb, err := strconv.Atoi(input); err != nil {
+		if numb <= count && numb >= minVal {
+			return numb, nil
+		} else {
+			return 0, errProc.ErrorIncorectPrefDishBounds
+		}
+	} else {
+		return 0, errProc.ErrorIncorectPrefDish
+	}
+}
