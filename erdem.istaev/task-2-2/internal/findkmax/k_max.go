@@ -15,8 +15,8 @@ func FindKMax(k int, dishes []int, n int) int {
 
 	for i := k; i < n; i++ {
 		if dishes[i] > (*h)[0] {
-			(*h)[0] = dishes[i]
-			heap.Fix(h, 0)
+			heap.Pop(h)
+			heap.Push(h, dishes[i])
 		}
 	}
 
