@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"strings"
 
-	"erdem.istaev/task-2-1/internal/errors"
 	"erdem.istaev/task-2-1/internal/structure"
 )
 
@@ -18,7 +17,7 @@ func ReadInt(reader *bufio.Reader) (int, error) {
 	remSpc := strings.TrimSpace(str)
 	var res int
 	if res, err = strconv.Atoi(remSpc); err != nil {
-		return 0, errors.ErrIncorrectNumber
+		return 0, ErrIncorrectNumber
 	}
 	return res, nil
 }
@@ -31,16 +30,16 @@ func ReadCondition(reader *bufio.Reader) (string, int, error) {
 	remSpc := strings.TrimSpace(str)
 	parts := strings.Split(remSpc, " ")
 	if len(parts) != 2 {
-		return "", 0, errors.ErrIncorrectSeparator
+		return "", 0, ErrIncorrectSeparator
 	}
 
 	if parts[0] != ">=" && parts[0] != "<=" {
-		return "", 0, errors.ErrIncorrectComparsionOp
+		return "", 0, ErrIncorrectComparsionOp
 	}
 
 	var temp int
 	if temp, err = strconv.Atoi(parts[1]); err != nil {
-		return "", 0, errors.ErrIncorrectNumber
+		return "", 0, ErrIncorrectNumber
 	}
 
 	return parts[0], temp, nil
@@ -53,7 +52,8 @@ func SetTemperature(reader *bufio.Reader, n int, bounds []structure.TemperatureB
 		fmt.Print("Введите количество сотрудников: ")
 		k, err := ReadInt(reader)
 		if err != nil {
-			fmt.Println(errors.ErrIncorrectNumber)
+			fmt.Println(ErrIncorrectNumber)
+			return
 		}
 
 		for j := 0; j < k; j++ {
