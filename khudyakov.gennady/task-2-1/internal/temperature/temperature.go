@@ -29,18 +29,21 @@ func TemperatureRequestHandler(constraints TemperatureConstraints, reader *bufio
 			return err
 		}
 
-		if temperature < 15 || temperature > 30 {
-			return temperOutOfRangeErr(constraints)
-		}
-
 		switch term {
 		case ">=":
 			currentMin = temperature
 		case "<=":
 			currentMax = temperature
 		default:
-			return temperTermFormatErr(">=", "<=")
+			return TemperatureTermFormatError{Actual: term}
 		}
+
+		if temperature < 15 || temperature > 30 {
+			writer.WriteString(fmt.Sprintln(-1))
+			writer.Flush()
+			return nil
+		}
+
 		if currentMin > currentMax {
 			writer.WriteString(fmt.Sprintln(-1))
 			writer.Flush()
@@ -60,11 +63,11 @@ func ReadTerm(reader *bufio.Reader) (string, int, error) {
 
 	split := strings.Split(strings.TrimSpace(inputString), " ")
 	if len(split) != 2 {
-		return "", 0, temperFormatErr(inputString)
+		return "", 0, TemperatureFormatError{Actual: inputString}
 	}
 	temperature, err := strconv.ParseInt(split[1], 10, 0)
 	if err != nil {
-		return "", 0, io.ParseIntError(split[1])
+		return "", 0, io.ParseIntError{Actual: split[1]}
 	}
 	return split[0], int(temperature), nil
 }

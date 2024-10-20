@@ -14,7 +14,7 @@ func ReadInt(reader *bufio.Reader) (int, error) {
 
 	result, err := strconv.ParseInt(strings.TrimSpace(inputString), 10, 0)
 	if err != nil {
-		return 0, ParseIntError(inputString)
+		return 0, ParseIntError{inputString}
 	}
 
 	return int(result), nil

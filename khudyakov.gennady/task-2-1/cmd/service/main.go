@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 
 	"github.com/KRYST4L614/task-2-1/internal/io"
@@ -19,15 +18,13 @@ func main() {
 
 	n, err := io.ReadInt(reader)
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		panic(err.Error())
 	}
 
 	for range n {
 		err := temperature.TemperatureRequestHandler(temperConstraints, reader, bufio.NewWriter(os.Stdout))
 		if err != nil {
-			fmt.Println(err)
-			return
+			panic(err.Error())
 		}
 	}
 }

@@ -2,17 +2,20 @@ package temperature
 
 import (
 	"fmt"
-	"strings"
 )
 
-func temperOutOfRangeErr(constraints TemperatureConstraints) error {
-	return fmt.Errorf("некорректное значение температуры. Допускаются значения от %v до %v", constraints.Min, constraints.Max)
+type TemperatureTermFormatError struct {
+	Actual string
 }
 
-func temperTermFormatErr(validValues ...string) error {
-	return fmt.Errorf("некорректное условие для температуры. Допустимы: %v", strings.Join(validValues, ", "))
+func (err TemperatureTermFormatError) Error() string {
+	return fmt.Sprintf("некорректное условие для температуры. Допустимы: <= или >=, получено: %v", err.Actual)
 }
 
-func temperFormatErr(actual string) error {
-	return fmt.Errorf("некорректный ввод. Ожидалось: <=/>= *числовое значение*. Получено: %v", actual)
+type TemperatureFormatError struct {
+	Actual string
+}
+
+func (err TemperatureFormatError) Error() string {
+	return fmt.Sprintf("некорректный ввод. Ожидалось: <=/>= *числовое значение*. Получено: %v", err.Actual)
 }
