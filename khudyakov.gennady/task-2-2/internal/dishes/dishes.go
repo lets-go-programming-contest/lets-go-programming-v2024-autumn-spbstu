@@ -13,9 +13,12 @@ import (
 func FindRequestedDish(dishesData []int, requestedDish int) (int, error) {
 
 	if requestedDish > len(dishesData) {
-		return 0, requestedDishErr(requestedDish, len(dishesData))
+		return 0, RequestedDishError{
+			DishNum:    requestedDish,
+			DishesSize: len(dishesData),
+		}
 	} else if requestedDish < 0 {
-		return 0, negativeDishErr(requestedDish)
+		return 0, NegativeDishNumberError{DishNum: requestedDish}
 	}
 
 	intHeap := &intheap.IntHeap{}

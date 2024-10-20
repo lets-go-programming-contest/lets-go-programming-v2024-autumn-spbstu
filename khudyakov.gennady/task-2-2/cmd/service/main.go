@@ -14,14 +14,12 @@ func main() {
 	dishesData, dishNum, err := dishes.ReadData(reader)
 
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		panic(err.Error())
 	}
 
 	result, err := dishes.FindRequestedDish(dishesData, dishNum)
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		panic(err.Error())
 	}
 
 	fmt.Println(result)

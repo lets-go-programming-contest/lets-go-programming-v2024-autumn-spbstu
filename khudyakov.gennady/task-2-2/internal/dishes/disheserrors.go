@@ -2,10 +2,19 @@ package dishes
 
 import "fmt"
 
-func requestedDishErr(dishNum, dishesSize int) error {
-	return fmt.Errorf("порядковый номер <%v> k-го по предпочтению блюда больше, чем общее кол-во блюд <%v>", dishNum, dishesSize)
+type RequestedDishError struct {
+	DishNum    int
+	DishesSize int
 }
 
-func negativeDishErr(dishNum int) error {
-	return fmt.Errorf("порядковый номер <%v> k-го по предпочтению блюда должен быть больше нуля", dishNum)
+func (err RequestedDishError) Error() string {
+	return fmt.Sprintf("порядковый номер <%v> k-го по предпочтению блюда больше, чем общее кол-во блюд <%v>", err.DishNum, err.DishesSize)
+}
+
+type NegativeDishNumberError struct {
+	DishNum int
+}
+
+func (err NegativeDishNumberError) Error() string {
+	return fmt.Sprintf("порядковый номер <%v> k-го по предпочтению блюда должен быть больше нуля", err.DishNum)
 }
