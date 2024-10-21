@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"math"
 )
 
 const (
@@ -36,7 +37,7 @@ func ReadIntNum(message string, min int, max int) int {
 
 func ReadConditionAndTemperature() (string, int) {
 	var condition string
-	fmt.Print("Введите условие (>= или <=) и затем температуру (15-30): ")
+	fmt.Print("Введите условие (>= или <=) и затем температуру: ")
 
 	_, err := fmt.Scan(&condition)
 	if err != nil {
@@ -47,5 +48,5 @@ func ReadConditionAndTemperature() (string, int) {
 		panic("Неверное условие: должно быть '<=' или '>='")
 	}
 
-	return condition, ReadIntNum("", LowerBound, UpperBound)
+	return condition, ReadIntNum("", math.MinInt, math.MaxInt)
 }
