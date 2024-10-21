@@ -51,7 +51,7 @@ func (d *Department) ManageTemperature() {
 		}
 
 		if d.lowerBound > d.upperBound {
-			fmt.Println("Невозможно подобрать температуру для этого отдела\n", -1)
+			fmt.Println(-1)
 			break
 		} else {
 			fmt.Printf("Подходящая температура для отдела: %d\n", d.lowerBound)
