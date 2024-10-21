@@ -5,16 +5,17 @@ import (
 )
 
 func main() {
-	var topTemp uint const = 15
-	var bottomTemp uint const = 30
+	const topTemp uint = 15
+	const bottomTemp uint = 30
 
 	fmt.Println("Введите количество отделов: ")
-	var departments uint
+	var departments int
 	fmt.Scan(&departments)
+
+	for i := 0; i < departments; i++ {
+		fmt.Println("Введите количество работников отдела: ")
+		var quantityOfWorkers uint
+		fmt.Scan(&quantityOfWorkers)
+	}
 	
-	fmt.Println("Введите количество работников отдела: ")
-	var quantityOfWorkers uint
-	fmt.Scan(&quantityOfWorkers)
-	
-	s := make([]int, 10, 15)
 }
