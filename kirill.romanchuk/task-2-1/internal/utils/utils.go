@@ -5,11 +5,6 @@ import (
 	"math"
 )
 
-const (
-	LowerBound = 15
-	UpperBound = 30
-)
-
 func ReadIntNum(message string, min int, max int) int {
 	var num float64
 	var resultNum int

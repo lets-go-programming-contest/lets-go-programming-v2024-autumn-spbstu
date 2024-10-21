@@ -7,27 +7,32 @@ import (
 	"github.com/kirill.romanchuk/task-2-1/internal/utils"
 )
 
+const (
+	LowerBound = 15
+	UpperBound = 30
+)
+
 type Department struct {
 	lowerBound int
 	upperBound int
 }
 
 func NewDepartment() Department {
-	return Department{lowerBound: utils.LowerBound, upperBound: utils.UpperBound}
+	return Department{lowerBound: LowerBound, upperBound: UpperBound}
 }
 
 func (d *Department) UpdateBounds(condition string, temperature int) error {
 	switch condition {
 	case ">=":
-		if temperature > utils.UpperBound {
-			return fmt.Errorf("ошибка: температура не может быть больше %d", utils.UpperBound)
+		if temperature > UpperBound {
+			return fmt.Errorf("ошибка: температура не может быть больше %d", UpperBound)
 		}
 		d.lowerBound = int(math.Max(float64(d.lowerBound), float64(temperature)))
 		return nil
 
 	case "<=":
-		if temperature < utils.LowerBound {
-			return fmt.Errorf("ошибка: температура не может быть меньше %d", utils.LowerBound)
+		if temperature < LowerBound {
+			return fmt.Errorf("ошибка: температура не может быть меньше %d", LowerBound)
 		}
 		d.upperBound = int(math.Min(float64(d.upperBound), float64(temperature)))
 		return nil
