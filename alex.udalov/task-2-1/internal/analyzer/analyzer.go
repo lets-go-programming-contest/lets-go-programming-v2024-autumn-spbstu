@@ -11,7 +11,6 @@ func AnalyzeDeptCount() int {
 	if err != nil || num < 1 || num > 1000 {
 		log.Fatal("Ошибка некорректное количество отделов")
 	}
-
 	return num
 }
 
