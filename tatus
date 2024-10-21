@@ -1,0 +1,56 @@
+[33mcommit 300b5da75a8f6e2fc87535d680070de6291bbb8c[m[33m ([m[1;36mHEAD -> [m[1;32msofia.dudkina/task-2-1[m[33m, [m[1;31morigin/sofia.dudkina/task-2-1[m[33m)[m
+Author: Sonya <sonyadudkina0307@gmail.com>
+Date:   Mon Oct 14 16:17:24 2024 +0300
+
+    [TASK-2-1] packages added
+
+[33mcommit 14c4d23e0e5e4be8da4d318a552b1086877fa48f[m
+Author: Sonya <sonyadudkina0307@gmail.com>
+Date:   Mon Oct 7 17:38:55 2024 +0300
+
+    [TASK-2-1] done
+
+[33mcommit d7b9c6687551e781db5cf9280d5b1c774782b275[m
+Author: Sonya <sonyadudkina0307@gmail.com>
+Date:   Sat Oct 5 11:00:39 2024 +0300
+
+    done
+
+[33mcommit 164e1596b128ac8c8ff5da3ca85169b42a8c7cb9[m
+Author: Sonya <sonyadudkina0307@gmail.com>
+Date:   Sat Oct 5 10:32:39 2024 +0300
+
+    fix go.mod
+
+[33mcommit 1cd7da54c04f13570fcecada5c1e3e01dbcb185d[m
+Author: Sonya <sonyadudkina0307@gmail.com>
+Date:   Sat Oct 5 10:06:23 2024 +0300
+
+    calculator
+
+[33mcommit 0973f55577d2c7246902c661b9171351853af0fc[m
+Author: Sonya <sonyadudkina0307@gmail.com>
+Date:   Fri Oct 4 22:01:38 2024 +0300
+
+    Initial commit
+
+[33mcommit 4db4accd953b428a7db9e43828dd66e4e795ac02[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: 32602e8 8135f15
+Author: Andrianov Artemii <48699334+andrianovartemii@users.noreply.github.com>
+Date:   Mon Sep 30 14:38:51 2024 +0300
+
+    Merge pull request #4 from lets-go-programming-contest/common/andrianov/readme-fix
+    
+    [COMMON] Fix README.md
+
+[33mcommit 8135f15bb0c84b72ea2dd7ad647f599c6111eb58[m
+Author: andrianovartemii <andrianovartemii@gmail.com>
+Date:   Mon Sep 30 14:37:48 2024 +0300
+
+    [COMMON] Fix README.md
+
+[33mcommit 32602e89e3c836839648c7ac262fabb73eff0463[m
+Author: andrianovartemii <andrianovartemii@gmail.com>
+Date:   Sun Sep 29 14:25:02 2024 +0300
+
+    [COMMON] Initial commit
