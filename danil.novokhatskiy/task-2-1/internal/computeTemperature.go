@@ -1,14 +1,14 @@
 package internal
 
 import (
+	"errors"
 	"fmt"
-	"log"
 	"os"
 )
 
-func ComputeTemp(sign string, temp *int, maxTemp *int, minTemp *int) {
+func ComputeTemp(sign string, temp *int, maxTemp *int, minTemp *int) (err error) {
 	if sign != ">=" && sign != "<=" {
-		log.Fatal("Invalid temperature")
+		return errors.New("Invalid sign")
 	}
 	if sign == "<=" && *temp < *maxTemp {
 		*maxTemp = *temp
@@ -22,4 +22,5 @@ func ComputeTemp(sign string, temp *int, maxTemp *int, minTemp *int) {
 		fmt.Println(-1)
 		os.Exit(1)
 	}
+	return nil
 }
