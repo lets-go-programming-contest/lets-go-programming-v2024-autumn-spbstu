@@ -38,7 +38,7 @@ func TemperatureRequestHandler(constraints TemperatureConstraints, reader *bufio
 			return TemperatureTermFormatError{Actual: term}
 		}
 
-		if temperature < 15 || temperature > 30 {
+		if currentMin > constraints.Max || currentMax < constraints.Min {
 			writer.WriteString(fmt.Sprintln(-1))
 			writer.Flush()
 			return nil
