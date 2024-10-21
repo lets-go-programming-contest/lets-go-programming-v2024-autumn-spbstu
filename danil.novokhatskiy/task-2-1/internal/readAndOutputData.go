@@ -1,6 +1,19 @@
 package internal
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"strconv"
+)
+
+func WriteInt(num int, out io.Writer) {
+	writer := bufio.NewWriter(out)
+	defer writer.Flush()
+	val := strconv.Itoa(num)
+	writer.WriteString(val)
+	writer.WriteByte('\n')
+}
 
 func ReadData() (int, string, error) {
 	var str string

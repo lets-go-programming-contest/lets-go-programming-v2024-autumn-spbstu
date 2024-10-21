@@ -9,23 +9,6 @@ import (
 	"github.com/katagiriwhy/task-2-1/internal"
 )
 
-func processTemperature(k int) (err error) {
-	maxTemp := 30
-	minTemp := 15
-	for i := 0; i < k; i++ {
-		fmt.Print("Enter the temperature: ")
-		temp, sign, err := internal.ReadData()
-		if err != nil {
-			return err
-		}
-		err = internal.ComputeTemp(sign, &temp, &maxTemp, &minTemp)
-		if err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 func main() {
 	var countDepartments int
 	fmt.Print("Enter number of departments: ")
@@ -40,7 +23,7 @@ func main() {
 		if countWorkers <= 0 || countWorkers > 1000 || err != nil {
 			log.Fatal("Invalid number of workers")
 		}
-		err = processTemperature(countWorkers)
+		err = internal.GetTemp(countWorkers, os.Stdout)
 		if errors.Is(err, internal.ErrorTemp{}) {
 			fmt.Println("-1")
 			os.Exit(1)
