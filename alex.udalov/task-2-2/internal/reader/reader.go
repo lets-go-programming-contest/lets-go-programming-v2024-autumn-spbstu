@@ -20,7 +20,7 @@ func ReadNumber() int {
 
 func ReadToHeap(h *meatHeap.MeatHeap, n int) {
 	for range n {
-		currentDish := ReadNumber()
-		heap.Push(h, currentDish)
+		currentMeat := ReadNumber()
+		heap.Push(h, currentMeat)
 	}
 }

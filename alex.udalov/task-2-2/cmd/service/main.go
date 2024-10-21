@@ -9,18 +9,18 @@ import (
 
 func main() {
 	dishes := &meatHeap.MeatHeap{}
-	heap.Init(dishes)
+	heap.Init(dishes) //инициализация кучи
 	n := reader.ReadNumber()
 	reader.ReadToHeap(dishes, n)
 	var k int
 	for {
 		k = reader.ReadNumber()
 		if k > n {
-			fmt.Println("k cannot be bigger than n")
+			fmt.Println("k не может быть больше n")
 			continue
 		}
 		break
 	}
-	dish := meatHeap.FindDish(dishes, k)
+	dish := meatHeap.FindMeat(dishes, k)
 	fmt.Println(dish)
 }

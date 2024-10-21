@@ -30,7 +30,7 @@ func (h *MeatHeap) Pop() any {
 	return x
 }
 
-func FindDish(h *MeatHeap, k int) int {
+func FindMeat(h *MeatHeap, k int) int {
 	var result int
 	for range k {
 		result = heap.Pop(h).(int)
