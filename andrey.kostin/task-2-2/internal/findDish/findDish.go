@@ -6,10 +6,10 @@ import (
 	"github.com/IDevFrye/task-2-2/internal/dishHeap"
 )
 
-func FindDish(prefs *[]int, k int) int {
+func FindDish(prefs []int, k int) int {
 	dishes := &dishHeap.DishHeap{}
 	heap.Init(dishes)
-	for _, pref := range *prefs {
+	for _, pref := range prefs {
 		heap.Push(dishes, pref)
 	}
 	var result int

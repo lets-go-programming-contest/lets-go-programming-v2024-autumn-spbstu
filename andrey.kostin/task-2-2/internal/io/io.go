@@ -31,10 +31,10 @@ func GetHeapElements(prompt string, minVal int, maxVal int, count int) ([]int, e
 	for i := 0; i < count; i++ {
 		fmt.Print(prompt)
 		scanner.Scan()
-		input_i := scanner.Text()
-		if numb_i, err := strconv.Atoi(input_i); err == nil {
-			if numb_i <= maxVal && numb_i >= minVal {
-				prefs[i] = numb_i
+		inputAi := scanner.Text()
+		if numAi, err := strconv.Atoi(inputAi); err == nil {
+			if numAi <= maxVal && numAi >= minVal {
+				prefs[i] = numAi
 			} else {
 				return nil, errProc.ErrorIncorectHeapBounds
 			}
