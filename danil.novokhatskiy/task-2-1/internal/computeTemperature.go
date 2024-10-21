@@ -3,7 +3,6 @@ package internal
 import (
 	"errors"
 	"fmt"
-	"os"
 )
 
 func ComputeTemp(sign string, temp *int, maxTemp *int, minTemp *int) (err error) {
@@ -19,8 +18,7 @@ func ComputeTemp(sign string, temp *int, maxTemp *int, minTemp *int) (err error)
 	if *maxTemp >= *minTemp {
 		fmt.Println(*minTemp)
 	} else {
-		fmt.Println(-1)
-		os.Exit(1)
+		return ErrorTemp{}
 	}
 	return nil
 }

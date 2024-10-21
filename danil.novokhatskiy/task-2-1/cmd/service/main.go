@@ -1,8 +1,10 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/katagiriwhy/task-2-1/internal"
 )
@@ -39,6 +41,10 @@ func main() {
 			log.Fatal("Invalid number of workers")
 		}
 		err = processTemperature(countWorkers)
+		if errors.Is(err, internal.ErrorTemp{}) {
+			fmt.Println("-1")
+			os.Exit(1)
+		}
 		if err != nil {
 			log.Fatal(err)
 		}
