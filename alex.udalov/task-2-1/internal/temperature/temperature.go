@@ -12,7 +12,7 @@ func NewTracker() *Tracker {
 	}
 }
 
-func (t *Tracker) ProcTemperature(op string, value int) int {
+func (t *Tracker) ProgTemperature(op string, value int) int {
 
 	switch op {
 	case ">=":

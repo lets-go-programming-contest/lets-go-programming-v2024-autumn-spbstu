@@ -17,7 +17,7 @@ func main() {
 
 		for j := 0; j < k; j++ {
 			operation, value := analyzer.AnalyzeTemp()
-			result := tracker.ProcTemperature(operation, value)
+			result := tracker.ProgTemperature(operation, value)
 			fmt.Println(result)
 		}
 	}
