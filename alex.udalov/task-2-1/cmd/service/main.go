@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"task-2-1/internal/analyzer"
 	"task-2-1/internal/temperature"
 )
