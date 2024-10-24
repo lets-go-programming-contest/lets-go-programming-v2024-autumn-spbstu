@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -12,12 +13,16 @@ type Currencies struct {
 }
 
 type Currency struct {
-	NumCode  string  `xml:"NumCode"`
-	CharCode string  `xml:"CharCode"`
-	Value    float64 `xml:"Value"`
+	NumCode  string  `xml:"NumCode" json:"num_code"`
+	CharCode string  `xml:"CharCode" json:"char_code"`
+	Value    float64 `xml:"Value" json:"value"`
 }
 
 func Parse(c *Currencies, f string) error {
+	sort.Slice(c.Currencies, func(i, j int) bool {
+		return c.Currencies[i].Value > c.Currencies[j].Value
+	})
+
 	cContent, err := os.ReadFile(f)
 	if err != nil {
 		return fmt.Errorf("your input file is cooked: %w", err)

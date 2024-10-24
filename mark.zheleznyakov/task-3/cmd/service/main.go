@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/mrqiz/task-3/internal/config"
@@ -24,7 +23,8 @@ func main() {
 		log.Panicf("err: %v", err)
 	}
 
-	for _, v := range crcs.Currencies {
-		fmt.Println(v.NumCode, v.CharCode, v.Value)
+	err = currencies.Convert(&crcs, cfg.OutputFile)
+	if err != nil {
+		log.Panicf("err: %v", err)
 	}
 }
