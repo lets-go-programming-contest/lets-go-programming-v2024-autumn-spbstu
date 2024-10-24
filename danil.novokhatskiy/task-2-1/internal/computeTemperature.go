@@ -5,9 +5,7 @@ import (
 	"io"
 )
 
-func GetTemp(k int, out io.Writer) error {
-	maxTemp := 30
-	minTemp := 15
+func GetTemp(k int, out io.Writer, maxTemp *int, minTemp *int) error {
 	for i := 0; i < k; i++ {
 		temp, sign, err := ReadData()
 		if err != nil {
@@ -16,14 +14,14 @@ func GetTemp(k int, out io.Writer) error {
 		if sign != ">=" && sign != "<=" {
 			return errors.New("Invalid sign")
 		}
-		if sign == "<=" && temp < maxTemp {
-			maxTemp = temp
+		if sign == "<=" && temp < *maxTemp {
+			*maxTemp = temp
 		}
-		if sign == ">=" && temp > minTemp {
-			minTemp = temp
+		if sign == ">=" && temp > *minTemp {
+			*minTemp = temp
 		}
-		if maxTemp >= minTemp {
-			WriteInt(minTemp, out)
+		if *maxTemp >= *minTemp {
+			WriteInt(*minTemp, out)
 		} else {
 			return ErrorTemp{}
 		}
