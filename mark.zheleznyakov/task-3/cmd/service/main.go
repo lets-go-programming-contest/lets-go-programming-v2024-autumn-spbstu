@@ -7,16 +7,14 @@ import (
 	"github.com/mrqiz/task-3/internal/config"
 )
 
-var notRealConfigFileContents = `
-input-file: "/tmp/money_in.yaml"
-output-file: "/tmp/money_out.json"
-`
-
 func main() {
+	cLocation := config.ReadConfigFlag()
 	c := config.ConfigFile{}
-	err := config.ParseFromString(notRealConfigFileContents, &c)
+
+	err := config.Parse(&c, cLocation)
 	if err != nil {
-		log.Fatalf("err: your config is cooked: %v", err)
+		log.Panicf("err: %v", err)
 	}
+	
 	fmt.Println(c.InputFile, c.OutputFile)
 }
