@@ -1,8 +1,8 @@
 package config
 
 import (
-	"os"
 	"fmt"
+	"os"
 
 	"gopkg.in/yaml.v3"
 )
@@ -25,4 +25,3 @@ func Parse(c *ConfigFile, f string) error {
 
 	return nil
 }
-

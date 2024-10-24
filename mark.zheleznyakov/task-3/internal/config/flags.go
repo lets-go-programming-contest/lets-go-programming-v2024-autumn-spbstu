@@ -10,4 +10,3 @@ func ReadConfigFlag() string {
 	flag.Parse()
 	return string(cLocation)
 }
-
