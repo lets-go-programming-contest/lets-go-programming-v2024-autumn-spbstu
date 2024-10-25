@@ -6,9 +6,14 @@ type Tracker struct {
 }
 
 func NewTracker() *Tracker {
+	const (
+		defaultMinTemp = 15
+		defaultMaxTemp = 30
+	)
+
 	return &Tracker{
-		minTemp: 15,
-		maxTemp: 30,
+		minTemp: defaultMinTemp,
+		maxTemp: defaultMaxTemp,
 	}
 }
 
