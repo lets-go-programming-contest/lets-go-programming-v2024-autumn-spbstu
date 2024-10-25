@@ -15,8 +15,8 @@ func ReadFlag() string {
 }
 
 type Config struct {
-	InputFile string `yaml:"input_file"`
-	OutputDir string `yaml:"output_file"`
+	InputFile string `yaml:"input-file"`
+	OutputDir string `yaml:"output-file"`
 }
 
 func ReadAndParseConfig(cfg *Config, f string) error {
