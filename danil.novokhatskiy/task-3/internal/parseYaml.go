@@ -9,7 +9,7 @@ import (
 
 func ReadFlag() string {
 	loc := ""
-	flag.StringVar(&loc, "cfg", "", "Config to read")
+	flag.StringVar(&loc, "config", "", "Config to read")
 	flag.Parse()
 	return loc
 }

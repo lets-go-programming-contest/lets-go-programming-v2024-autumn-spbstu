@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
+
+	"github.com/katagiriwhy/task-3/internal"
 )
 
 func main() {
@@ -16,7 +17,16 @@ func main() {
 		fmt.Println("You need to use the flag -config to input yaml file")
 		os.Exit(1)
 	}
-	yamlFile, err := ioutil.ReadFile(os.Args[2])
+	yaml := internal.ReadFlag()
+
+	cfg := internal.Config{}
+	curr := internal.Currencies{}
+
+	err := internal.ReadAndParseConfig(&cfg, yaml)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = internal.ParseXml(&curr, cfg.InputFile)
 	if err != nil {
 		log.Fatal(err)
 	}
