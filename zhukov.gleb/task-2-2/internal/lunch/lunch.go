@@ -4,13 +4,15 @@ import (
 	"container/heap"
 	"fmt"
 	myHeap "task-2-2/internal/heap"
-	"task-2-2/internal/reader"
+	myReader "task-2-2/internal/reader"
 )
 
-type ConsoleLunch struct{}
+type ConsoleLunch struct {
+	reader myReader.ConsoleReader
+}
 
-func NewConsoleLunch() *ConsoleLunch {
-	return &ConsoleLunch{}
+func NewConsoleLunch(reader myReader.ConsoleReader) *ConsoleLunch {
+	return &ConsoleLunch{reader: reader}
 }
 
 func findKthElement(slice []int, k int) int {
@@ -28,36 +30,33 @@ func findKthElement(slice []int, k int) int {
 	return heap.Pop(data).(int)
 }
 
-func (c *ConsoleLunch) Run() {
+func (c *ConsoleLunch) Run() error {
 	fmt.Println("Поиск k-го наибольшего числа массива")
 	fmt.Println("'выход' - для завершения")
 
 	for {
-		sliceSize, exit, err := reader.ReadSliceSize()
+		sliceSize, exit, err := c.reader.ReadSliceSize()
 		if exit {
-			return
+			return nil
 		}
 		if err != nil {
-			fmt.Printf("%v\n", err)
-			continue
+			return fmt.Errorf("ошибка при чтении размера массива: %w", err)
 		}
 
-		slice, exit, err := reader.ReadSliceElements(sliceSize)
+		slice, exit, err := c.reader.ReadSliceElements(sliceSize)
 		if exit {
-			return
+			return nil
 		}
 		if err != nil {
-			fmt.Printf("%v\n", err)
-			continue
+			return fmt.Errorf("ошибка при чтении элементов массива: %w", err)
 		}
 
-		k, exit, err := reader.ReadKthElement(sliceSize)
+		k, exit, err := c.reader.ReadKthElement(sliceSize)
 		if exit {
-			return
+			return nil
 		}
 		if err != nil {
-			fmt.Printf("%v\n", err)
-			continue
+			return fmt.Errorf("ошибка при чтении индекса k: %w", err)
 		}
 
 		fmt.Printf("Результат: %d\n", findKthElement(slice, k))
