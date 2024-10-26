@@ -16,9 +16,15 @@ const (
 )
 
 var (
-	ErrInvalidNK   = errors.New("плохое значение NK")
-	ErrInvalidTemp = errors.New("плохое значение температуры")
+	ErrInvalidNK   = errors.New("Bad value NK")
+	ErrInvalidTemp = errors.New("Bad value temperature")
 )
+
+type ConsoleReader struct{}
+
+func NewConsoleReader() *ConsoleReader {
+	return &ConsoleReader{}
+}
 
 func readData(number *int) (bool, error) {
 	reader := bufio.NewReader(os.Stdin)
@@ -35,7 +41,7 @@ func readData(number *int) (bool, error) {
 	return false, err
 }
 
-func ReadNK() (int, bool, error) {
+func (c *ConsoleReader) ReadNK() (int, bool, error) {
 	var cntPlaces int
 	exit, err := readData(&cntPlaces)
 	if exit || err != nil {
@@ -47,7 +53,7 @@ func ReadNK() (int, bool, error) {
 	return cntPlaces, false, nil
 }
 
-func ReadCondition() (string, bool, error) {
+func (c *ConsoleReader) ReadCondition() (string, bool, error) {
 	reader := bufio.NewReader(os.Stdin)
 	input, err := reader.ReadString('\n')
 	if err != nil {
@@ -60,7 +66,7 @@ func ReadCondition() (string, bool, error) {
 	return input, false, nil
 }
 
-func ParseTemperature(input string) (int, error) {
+func (c *ConsoleReader) ParseTemperature(input string) (int, error) {
 	temp, err := strconv.Atoi(input)
 	if err != nil {
 		return 0, ErrInvalidTemp

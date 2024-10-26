@@ -3,44 +3,45 @@ package control
 import (
 	"errors"
 	"fmt"
-	"log"
 	"strings"
-	"task-2-1/internal/reader"
+	myReader "task-2-1/internal/reader"
 )
 
 var (
-	ErrInvalidTempString = errors.New("плохой запрос температуры")
+	ErrInvalidTempString = errors.New("bad temp request")
 )
 
-type ConsoleControl struct{}
-
-func NewConsoleControl() *ConsoleControl {
-	return &ConsoleControl{}
+type ConsoleControl struct {
+	reader myReader.ConsoleReader
 }
 
-func (c *ConsoleControl) Run() {
+func NewConsoleControl(reader myReader.ConsoleReader) *ConsoleControl {
+	return &ConsoleControl{reader: reader}
+}
+
+func (c *ConsoleControl) Run() error {
 	fmt.Println("Поиск оптимальной температуры для отдела")
 	fmt.Println("'выход' - для завершения")
 
 	fmt.Println("Введите количество отделов:")
 	fmt.Print("> ")
-	n, exit, err := reader.ReadNK()
+	n, exit, err := c.reader.ReadNK()
 	if exit {
-		return
+		return nil
 	}
 	if err != nil {
-		log.Fatalf("%v\n", err)
+		return fmt.Errorf("ошибка при чтении количества отделов: %v", err)
 	}
 
 	for i := 0; i < n; i++ {
 		fmt.Println("Введите количество сотрудников:")
 		fmt.Print("> ")
-		k, exit, err := reader.ReadNK()
+		k, exit, err := c.reader.ReadNK()
 		if exit {
-			return
+			return nil
 		}
 		if err != nil {
-			log.Fatalf("%v\n", err)
+			return fmt.Errorf("ошибка при чтении количество сотрудников: %v", err)
 		}
 
 		minTemp := 15
@@ -48,18 +49,17 @@ func (c *ConsoleControl) Run() {
 
 		for j := 0; j < k; j++ {
 			fmt.Print("> ")
-			condition, exit, err := reader.ReadCondition()
+			condition, exit, err := c.reader.ReadCondition()
 			if exit {
-				return
+				return nil
 			}
 			if err != nil {
-				log.Fatalf("%v\n", err)
+				return fmt.Errorf("ошибка при чтении температуры: %v", err)
 			}
 
-			minTemp, maxTemp, err = updateTemperatureBounds(minTemp, maxTemp, condition)
+			minTemp, maxTemp, err = updateTemperatureBounds(minTemp, maxTemp, condition, c)
 			if err != nil {
-				fmt.Println("-1")
-				continue
+				return fmt.Errorf("ошибка при работе с температурой: %v", err)
 			}
 
 			if minTemp <= maxTemp {
@@ -69,16 +69,17 @@ func (c *ConsoleControl) Run() {
 			}
 		}
 	}
+	return nil
 }
 
-func updateTemperatureBounds(minTemp, maxTemp int, condition string) (int, int, error) {
+func updateTemperatureBounds(minTemp, maxTemp int, condition string, c *ConsoleControl) (int, int, error) {
 	parts := strings.Split(condition, " ")
 	if len(parts) != 2 {
 		return minTemp, maxTemp, ErrInvalidTempString
 	}
 
 	operator := parts[0]
-	value, err := reader.ParseTemperature(parts[1])
+	value, err := c.reader.ParseTemperature(parts[1])
 	if err != nil {
 		return minTemp, maxTemp, err
 	}
