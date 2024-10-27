@@ -30,4 +30,5 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	err = internal.Convert(&curr, cfg.OutputDir)
 }
