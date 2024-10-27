@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+
+	strct "github.com/Mmmakskl/task-3/internal/structures"
 )
 
-func WriteJSON(outPath string, valCurs *ValCurs) error {
+func WriteJSON(outPath string, valCurs *strct.ValCurs) error {
 
 	SortValutes(valCurs)
 

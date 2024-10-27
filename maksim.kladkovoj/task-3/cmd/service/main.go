@@ -6,6 +6,7 @@ import (
 
 	"github.com/Mmmakskl/task-3/internal/config"
 	"github.com/Mmmakskl/task-3/internal/logic"
+	strct "github.com/Mmmakskl/task-3/internal/structures"
 )
 
 func main() {
@@ -15,14 +16,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	conf := config.Config{}
+	conf := strct.Config{}
 	if err = config.LoadConfig(configPath, &conf); err != nil {
 		log.Fatal(err)
 	}
 
 	fmt.Printf("Running with config %v\n", conf)
 
-	valutes := logic.ValCurs{}
+	valutes := strct.ValCurs{}
 	if err := logic.Parser(conf.InputFile, &valutes); err != nil {
 		log.Fatal(err)
 	}

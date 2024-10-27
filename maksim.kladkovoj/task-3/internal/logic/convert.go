@@ -5,19 +5,11 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	strct "github.com/Mmmakskl/task-3/internal/structures"
 )
 
-type ValCurs struct {
-	Valutes []Valute `xml:"Valute"`
-}
-
-type Valute struct {
-	NumCode  int     `xml:"NumCode" json:"num_code"`
-	CharCode string  `xml:"CharCode" json:"char_code"`
-	Value    float64 `xml:"Value" json:"value"`
-}
-
-func Parser(filePath string, conf *ValCurs) error {
+func Parser(filePath string, conf *strct.ValCurs) error {
 	file, err := os.ReadFile(filePath)
 	if err != nil {
 		return fmt.Errorf("Failure open file: %w", err)
