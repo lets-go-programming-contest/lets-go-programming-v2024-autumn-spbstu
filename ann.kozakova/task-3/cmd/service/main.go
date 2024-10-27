@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
+	"encoding/json"
 	"encoding/xml"
 	"flag"
 	"fmt"
@@ -10,6 +12,8 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"sort"
+	"strings"
 )
 
 var (
@@ -34,16 +38,20 @@ type ValCurs struct {
 }
 
 type Valute struct {
-	ID        string `xml:"ID,attr"`
-	NumCode   string `xml:"NumCode"`
-	CharCode  string `xml:"CharCode"`
-	Nominal   int    `xml:"Nominal"`
-	Name      string `xml:"Name"`
-	Value     string `xml:"Value"`
-	VunitRate string `xml:"VunitRate"`
+	ID        string  `xml:"ID,attr"`
+	NumCode   int     `xml:"NumCode"`
+	CharCode  string  `xml:"CharCode"`
+	Nominal   int     `xml:"Nominal"`
+	Name      string  `xml:"Name"`
+	Value     float64 `xml:"Value"`
+	VunitRate float64 `xml:"VunitRate"`
 }
 
-//float?????
+type ValuteInJSON struct {
+	NumCode  int     `json:"num-code"`
+	CharCode string  `json:"char-code"`
+	Value    float64 `json:"value"`
+}
 
 func main() {
 	initFlag()
@@ -102,6 +110,8 @@ func main() {
 		data = append(data, buf[:n]...)
 	}
 
+	data = []byte(strings.ReplaceAll(string(data), ",", "."))
+
 	//fmt.Println(string(data))
 
 	valCurs := new(ValCurs)
@@ -114,7 +124,49 @@ func main() {
 		return
 	}
 
-	fmt.Println(valCurs)
+	//err = xml.Unmarshal(data, &valCurs)
+	//if err != nil {
+	//	fmt.Printf("error: %v", err)
+	//	return
+	//}
+
+	//fmt.Println(valCurs)
+
+	sort.Slice(valCurs.Valute, func(i, j int) bool {
+		return valCurs.Valute[i].Value < valCurs.Valute[j].Value
+	})
+
+	//dataAfterSort, err := xml.Marshal(valCurs)
+	//if err != nil {
+	//	panic(err)
+	//}
+	var vij []ValuteInJSON
+
+	for _, valute := range valCurs.Valute {
+		jsonVal := ValuteInJSON{
+			NumCode:  valute.NumCode,
+			CharCode: valute.CharCode,
+			Value:    valute.Value,
+		}
+		vij = append(vij, jsonVal)
+	}
+
+	//err = json.Unmarshal(dataAfterSort, &vij)
+	//if err != nil {
+	//	panic(err)
+	//}
+	writer := bufio.NewWriter(outputFile)
+	defer writer.Flush()
+
+	encoder := json.NewEncoder(writer)
+	encoder.SetIndent("", " ")
+
+	//encoder := json.NewEncoder(outputFile)
+
+	if err := encoder.Encode(vij); err != nil {
+		panic(err)
+	}
+
 	//decoder := xml.NewDecoder(inputFile)
 	//decoder.CharsetReader = charset.NewReaderLabel
 	//
