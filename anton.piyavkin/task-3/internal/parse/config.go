@@ -1,4 +1,4 @@
-package config
+package parse
 
 import (
 	"github.com/Piyavva/task-3/internal/structures"
