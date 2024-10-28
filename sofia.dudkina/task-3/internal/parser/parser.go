@@ -2,7 +2,6 @@ package parser
 
 import (
 	"bytes"
-	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"os"
@@ -21,8 +20,6 @@ func ParseFile(path string) (*entities.CursData, error) {
 	extension := filepath.Ext(path)
 	cursData := &entities.CursData{}
 	switch extension {
-	case ".json":
-		cursData, err = ParseJSON(data)
 	case ".xml":
 		cursData, err = ParseXML(data)
 	default:
@@ -36,16 +33,6 @@ func ParseXML(data []byte) (*entities.CursData, error) {
 	decoder := xml.NewDecoder(bytes.NewReader(data))
 	decoder.CharsetReader = charset.NewReaderLabel
 	err := decoder.Decode(&cursData.ValCurs)
-	if err != nil {
-		return nil, err
-	}
-	return cursData, nil
-}
-
-func ParseJSON(data []byte) (*entities.CursData, error) {
-	cursData := new(entities.CursData)
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	err := decoder.Decode(cursData)
 	if err != nil {
 		return nil, err
 	}

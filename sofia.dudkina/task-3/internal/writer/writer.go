@@ -2,7 +2,6 @@ package writer
 
 import (
 	"encoding/json"
-	"encoding/xml"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -28,11 +27,6 @@ func WriteFile(path string, cursData *entities.CursData) error {
 	switch extension {
 	case ".json":
 		data, err = json.MarshalIndent(cursData.ValCurs.Valute, "", "  ")
-		if err != nil {
-			return err
-		}
-	case ".xml":
-		data, err = xml.MarshalIndent(cursData, "", "    ")
 		if err != nil {
 			return err
 		}

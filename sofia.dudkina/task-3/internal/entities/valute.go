@@ -6,11 +6,11 @@ type CursData struct {
 		Name   string `xml:"name,attr"`
 		Valute []struct {
 			ID        string  `xml:"ID,attr" json:"-"`
-			NumCode   int     `xml:"NumCode" json:"NumCode,omitempty"`
-			CharCode  string  `xml:"CharCode" json:"CharCode,omitempty"`
+			NumCode   int     `xml:"NumCode" json:"num_code,omitempty"`
+			CharCode  string  `xml:"CharCode" json:"char_code,omitempty"`
 			Nominal   int     `xml:"Nominal" json:"-"`
 			Name      string  `xml:"Name" json:"-"`
-			Value     float64 `xml:"Value" json:"Value,omitempty"`
+			Value     float64 `xml:"Value" json:"value,omitempty"`
 			VunitRate float64 `xml:"VunitRate" json:"-"`
 		} `xml:"Valute" json:"Valute,omitempty"`
 	} `xml:"ValCurs" json:"ValCurs,omitempty"`
