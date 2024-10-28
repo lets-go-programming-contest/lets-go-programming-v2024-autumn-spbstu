@@ -26,7 +26,7 @@ func ProcessNumInput(intro string) int {
 	input = strings.TrimSpace(input)
 
 	if err1 == nil {
-		result = checkIntInput(input)
+		result = checkIntInput(input, true)
 	}
 	return result
 }
@@ -42,10 +42,13 @@ func checkOperatorInput(input string) string {
 	return result
 }
 
-func checkIntInput(input string) int {
+func checkIntInput(input string, border bool) int {
 	var result int = 0
 	num, err2 := strconv.Atoi(input)
-	if err2 == nil && checkInputBorders(num, minInputBound, maxInputBound) {
+	if err2 == nil {
+		if border {
+			checkInputBorders(num, minInputBound, maxInputBound)
+		}
 		result = num
 	} else {
 		fmt.Println(errors.InvalidInput)
@@ -69,7 +72,7 @@ func ProcessFullInput() (string, int) {
 
 	if err == nil {
 		firstPart = checkOperatorInput(inputParts[0])
-		secondPart = checkIntInput(inputParts[1])
+		secondPart = checkIntInput(inputParts[1], false)
 	}
 	return firstPart, secondPart
 }
