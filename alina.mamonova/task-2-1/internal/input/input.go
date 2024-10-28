@@ -18,14 +18,13 @@ func checkInputBorders(num int, min, max int) bool {
 	return (num >= min) && (num <= max)
 }
 
-func ProcessNumInput(intro string) int {
+func ProcessNumInput(intro string, reader *bufio.Reader) int {
 	fmt.Print(intro)
 	var result int = 0
-	reader := bufio.NewReader(os.Stdin)
-	input, err1 := reader.ReadString('\n')
+	input, err := reader.ReadString('\n')
 	input = strings.TrimSpace(input)
 
-	if err1 == nil {
+	if err == nil {
 		result = checkIntInput(input, true)
 	}
 	return result
@@ -44,8 +43,8 @@ func checkOperatorInput(input string) string {
 
 func checkIntInput(input string, border bool) int {
 	var result int = 0
-	num, err2 := strconv.Atoi(input)
-	if err2 == nil {
+	num, err := strconv.Atoi(input)
+	if err == nil {
 		if border {
 			checkInputBorders(num, minInputBound, maxInputBound)
 		}
@@ -57,10 +56,9 @@ func checkIntInput(input string, border bool) int {
 	return result
 }
 
-func ProcessFullInput() (string, int) {
+func ProcessFullInput(reader *bufio.Reader) (string, int) {
 	var firstPart string = ""
 	var secondPart int = 0
-	reader := bufio.NewReader(os.Stdin)
 	input, err := reader.ReadString('\n')
 	input = strings.TrimSpace(input)
 	inputParts := strings.Fields(input)
