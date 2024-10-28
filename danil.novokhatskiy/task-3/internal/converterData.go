@@ -8,9 +8,9 @@ import (
 
 func Convert(curr *Currencies, file string) error {
 	SortCurrencies(curr.Currencies)
-	dirc := filepath.Dir(file)
-	if _, err := os.Stat(dirc); os.IsNotExist(err) {
-		err = os.MkdirAll(dirc, os.ModePerm)
+	dir := filepath.Dir(file)
+	if _, err := os.Stat(dir); os.IsNotExist(err) {
+		err = os.MkdirAll(dir, os.ModePerm)
 		if err != nil {
 			return err
 		}
