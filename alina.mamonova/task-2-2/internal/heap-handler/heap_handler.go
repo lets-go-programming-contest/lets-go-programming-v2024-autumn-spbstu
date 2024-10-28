@@ -1,6 +1,7 @@
 package heap_handler
 
 import (
+	"bufio"
 	"container/heap"
 	"github.com/hahapathetic/task-2-2/internal/input"
 	"github.com/hahapathetic/task-2-2/internal/table-heap"
@@ -11,9 +12,9 @@ const (
 	maxAIBound = 10000
 )
 
-func FillHeap(size int, table *table_heap.TableHeap) {
+func FillHeap(size int, table *table_heap.TableHeap, reader *bufio.Reader) {
 	heap.Init(table)
-	values := input.ProcessHeapInput(minAIBound, maxAIBound, size)
+	values := input.ProcessHeapInput(minAIBound, maxAIBound, size, reader)
 	for i := 0; i < size; i++ {
 		ai := values[i]
 		heap.Push(table, ai)

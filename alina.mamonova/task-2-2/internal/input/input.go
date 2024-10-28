@@ -13,21 +13,19 @@ func checkInputBorders(num int, min, max int) bool {
 	return (num >= min) && (num <= max)
 }
 
-func ProcessNumInput(intro string, min, max int) int {
+func ProcessNumInput(intro string, min, max int, reader *bufio.Reader) int {
 	fmt.Print(intro)
-	reader := bufio.NewReader(os.Stdin)
-	input, err1 := reader.ReadString('\n')
+	input, err := reader.ReadString('\n')
 	input = strings.TrimSpace(input)
 
 	var result int = 0
-	if err1 == nil {
+	if err == nil {
 		result = checkIntInput(input, min, max)
 	}
 	return result
 }
 
-func ProcessHeapInput(min, max int, size int) []int {
-	reader := bufio.NewReader(os.Stdin)
+func ProcessHeapInput(min, max int, size int, reader *bufio.Reader) []int {
 	input, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Println("Error reading input:", err)
@@ -56,8 +54,8 @@ func ProcessHeapInput(min, max int, size int) []int {
 
 func checkIntInput(input string, min, max int) int {
 	var result int = 0
-	num, err2 := strconv.Atoi(input)
-	if err2 == nil && checkInputBorders(num, min, max) {
+	num, err := strconv.Atoi(input)
+	if err == nil && checkInputBorders(num, min, max) {
 		result = num
 	} else {
 		fmt.Println(errors.InvalidInput)
