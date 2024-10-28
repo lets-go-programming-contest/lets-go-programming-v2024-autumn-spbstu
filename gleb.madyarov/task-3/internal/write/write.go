@@ -8,7 +8,7 @@ import (
 )
 
 func WriteResult(data []byte, config read.Config) {
-	file, err := os.OpenFile(config.Output, os.O_WRONLY, 0666)
+	file, err := os.OpenFile(config.Output, os.O_WRONLY|os.O_TRUNC, 0666)
 	if err != nil {
 		fmt.Println("the output file could not be found, the file will be created")
 		file, err = os.Create("output.json")
