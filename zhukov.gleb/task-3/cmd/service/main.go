@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	p := fileWorkers.NewParser()
+	p := fileWorkers.NewFileWorker()
 	control := controller.NewController(*p)
 
 	if err := control.Run(); err != nil {

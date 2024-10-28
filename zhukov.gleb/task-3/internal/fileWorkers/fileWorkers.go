@@ -22,7 +22,7 @@ func init() {
 
 type FilesWorker struct{}
 
-func NewParser() *FilesWorker {
+func NewFileWorker() *FilesWorker {
 	return &FilesWorker{}
 }
 
