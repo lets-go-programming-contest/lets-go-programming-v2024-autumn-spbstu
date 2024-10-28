@@ -3,8 +3,9 @@ package config
 import (
 	"errors"
 	"flag"
-	"gopkg.in/yaml.v3"
 	"os"
+
+	"gopkg.in/yaml.v3"
 )
 
 type Config struct {
@@ -12,7 +13,7 @@ type Config struct {
 	OutputFile string `yaml:"output-file"`
 }
 
-func NewConfig() *Config {
+func NewConfig() (*Config, error) {
 	cfg := &Config{}
 	var filePath string
 	flag.StringVar(&filePath, "config", "root", "path to configuration file")
@@ -20,17 +21,17 @@ func NewConfig() *Config {
 
 	data, err := os.ReadFile(filePath)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	err = yaml.Unmarshal(data, &cfg)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	if cfg.InputFile == "" || cfg.OutputFile == "" {
-		panic(errors.New("the configuration file does not match the project configuration structure"))
+		return nil, errors.New("the configuration file does not match the project configuration structure")
 	}
 	if _, err := os.Stat(cfg.InputFile); os.IsNotExist(err) {
-		panic(err)
+		return nil, err
 	}
-	return cfg
+	return cfg, nil
 }

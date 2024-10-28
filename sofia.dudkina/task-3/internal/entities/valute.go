@@ -1,27 +1,29 @@
 package entities
 
-type ValCurs struct {
-	Date   string `xml:"Date,attr" json:"Date,omitempty"`
-	Name   string `xml:"name,attr" json:"Name,omitempty"`
-	Valute []struct {
-		ID        string `xml:"ID,attr" json:"ID,omitempty"`
-		NumCode   string `xml:"NumCode" json:"NumCode,omitempty"`
-		CharCode  string `xml:"CharCode" json:"CharCode,omitempty"`
-		Nominal   string `xml:"Nominal" json:"Nominal,omitempty"`
-		Name      string `xml:"Name" json:"Name,omitempty"`
-		Value     string `xml:"Value" json:"Value,omitempty"`
-		VunitRate string `xml:"VunitRate" json:"VunitRate,omitempty"`
-	} `xml:"Valute" json:"Valute,omitempty"`
+type CursData struct {
+	ValCurs struct {
+		Date   string `xml:"Date,attr"`
+		Name   string `xml:"name,attr"`
+		Valute []struct {
+			ID        string  `xml:"ID,attr" json:"-"`
+			NumCode   int     `xml:"NumCode" json:"NumCode,omitempty"`
+			CharCode  string  `xml:"CharCode" json:"CharCode,omitempty"`
+			Nominal   int     `xml:"Nominal" json:"-"`
+			Name      string  `xml:"Name" json:"-"`
+			Value     float64 `xml:"Value" json:"Value,omitempty"`
+			VunitRate float64 `xml:"VunitRate" json:"-"`
+		} `xml:"Valute" json:"Valute,omitempty"`
+	} `xml:"ValCurs" json:"ValCurs,omitempty"`
 }
 
-func (valCurs ValCurs) Len() int {
-	return len(valCurs.Valute)
+func (cursData CursData) Len() int {
+	return len(cursData.ValCurs.Valute)
 }
 
-func (valCurs ValCurs) Less(i, j int) bool {
-	return valCurs.Valute[i].Value < valCurs.Valute[j].Value
+func (cursData CursData) Less(i, j int) bool {
+	return cursData.ValCurs.Valute[i].Value > cursData.ValCurs.Valute[j].Value
 }
 
-func (valCurs ValCurs) Swap(i, j int) {
-	valCurs.Valute[i], valCurs.Valute[j] = valCurs.Valute[j], valCurs.Valute[i]
+func (cursData CursData) Swap(i, j int) {
+	cursData.ValCurs.Valute[i], cursData.ValCurs.Valute[j] = cursData.ValCurs.Valute[j], cursData.ValCurs.Valute[i]
 }

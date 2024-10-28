@@ -1,17 +1,22 @@
 package app
 
 import (
-	"fmt"
+	"sort"
+
 	"github.com/sssidkn/task-3/config"
 	"github.com/sssidkn/task-3/internal/parser"
-	"sort"
+	"github.com/sssidkn/task-3/internal/writer"
 )
 
-func Run(config *config.Config) {
-	curs := parser.ParseFile(config.InputFile)
-	sort.Sort(curs)
-
-	for i := range curs.Valute {
-		fmt.Println(curs.Valute[i])
+func Run(config *config.Config) error {
+	curs, err := parser.ParseFile(config.InputFile)
+	if err != nil {
+		return err
 	}
+	sort.Sort(curs)
+	err = writer.WriteFile(config.OutputFile, curs)
+	if err != nil {
+		return err
+	}
+	return nil
 }

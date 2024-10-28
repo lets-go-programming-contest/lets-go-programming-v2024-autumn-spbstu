@@ -2,32 +2,52 @@ package parser
 
 import (
 	"bytes"
+	"encoding/json"
 	"encoding/xml"
+	"fmt"
+	"os"
+	"path/filepath"
+
 	"github.com/sssidkn/task-3/internal/entities"
 	"golang.org/x/net/html/charset"
-	"os"
 )
 
-func ParseFile(filePath string) *entities.ValCurs {
-	data, err := os.ReadFile(filePath)
+func ParseFile(path string) (*entities.CursData, error) {
+	data, err := os.ReadFile(path)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	valCurs := ParseXML(data)
-	return valCurs
+	data = bytes.ReplaceAll(data, []byte(","), []byte("."))
+	extension := filepath.Ext(path)
+	cursData := &entities.CursData{}
+	switch extension {
+	case ".json":
+		cursData, err = ParseJSON(data)
+	case ".xml":
+		cursData, err = ParseXML(data)
+	default:
+		return nil, fmt.Errorf("unsupported file extension: %s", extension)
+	}
+	return cursData, err
 }
 
-func ParseXML(data []byte) *entities.ValCurs {
-	valCurs := new(entities.ValCurs)
+func ParseXML(data []byte) (*entities.CursData, error) {
+	cursData := new(entities.CursData)
 	decoder := xml.NewDecoder(bytes.NewReader(data))
 	decoder.CharsetReader = charset.NewReaderLabel
-	err := decoder.Decode(&valCurs)
+	err := decoder.Decode(&cursData.ValCurs)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	return valCurs
+	return cursData, nil
 }
 
-func parseJSON() {
-
+func ParseJSON(data []byte) (*entities.CursData, error) {
+	cursData := new(entities.CursData)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	err := decoder.Decode(cursData)
+	if err != nil {
+		return nil, err
+	}
+	return cursData, nil
 }

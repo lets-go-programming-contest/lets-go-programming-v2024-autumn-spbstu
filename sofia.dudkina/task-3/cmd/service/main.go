@@ -6,6 +6,12 @@ import (
 )
 
 func main() {
-	cfg := config.NewConfig()
-	app.Run(cfg)
+	cfg, err := config.NewConfig()
+	if err != nil {
+		panic(err)
+	}
+	err = app.Run(cfg)
+	if err != nil {
+		panic(err)
+	}
 }
