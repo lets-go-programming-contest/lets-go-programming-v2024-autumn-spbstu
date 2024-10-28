@@ -19,7 +19,8 @@ func main() {
 	table := &table_heap.TableHeap{}
 
 	heap_handler.FillHeap(dishNum, table)
-	result := heap_handler.ProcessHeap(dishNum, table)
+	k := input.ProcessNumInput("Enter the k: ", 1, dishNum)
+	result := heap_handler.ProcessHeap(dishNum, table, k)
 
 	fmt.Println("Result dish:", result)
 }
