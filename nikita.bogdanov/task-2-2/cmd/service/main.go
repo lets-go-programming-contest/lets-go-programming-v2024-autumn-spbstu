@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	app "task-2-2/internal"
+
+	"task-2-2/internal/app"
 )
 
 func main() {

@@ -1,10 +1,11 @@
-package internal
+package app
 
 import (
 	"bufio"
 	"container/heap"
 	"io"
 	"strconv"
+
 	hp "task-2-2/internal/heap"
 	"task-2-2/internal/reader"
 )
