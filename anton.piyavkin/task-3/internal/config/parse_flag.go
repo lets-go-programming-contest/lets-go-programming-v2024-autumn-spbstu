@@ -7,6 +7,6 @@ import (
 var NameFile string
 
 func init() {
-	flag.StringVar(&NameFile, "config", "default.yaml", "Name file to read from")
+	flag.StringVar(&NameFile, "config", "", "Name file to read from")
 	flag.Parse()
 }
