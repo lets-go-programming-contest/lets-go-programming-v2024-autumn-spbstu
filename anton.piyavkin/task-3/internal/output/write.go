@@ -22,7 +22,7 @@ func Write(val structures.Сurrencies, cfg structures.Config) {
 	for _, valute := range val.Quotes {
 		valutes = append(valutes, structures.OutputVal{valute.NumCode, valute.CharCode, valute.Value})
 	}
-	data, err := json.Marshal(valutes)
+	data, err := json.MarshalIndent(valutes, "", "  ")
 	if err != nil {
 		panic(err)
 	}
