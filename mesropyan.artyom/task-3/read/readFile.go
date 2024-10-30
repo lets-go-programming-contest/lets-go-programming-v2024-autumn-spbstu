@@ -13,8 +13,8 @@ func ParseXML(inputFile string) structs.ValCurs {
 	if err != nil {
 		panic(err)
 	}
-
 	data = []byte(strings.ReplaceAll(string(data), ",", "."))
+
 	var currencies structs.ValCurs
 	err = xml.Unmarshal(data, &currencies)
 	if err != nil {

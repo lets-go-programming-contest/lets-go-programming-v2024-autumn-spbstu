@@ -7,5 +7,8 @@ import (
 
 func main() {
 	config := config.ReadConfig()
-	read.ParseXML(config.InputFile)
+	currencies := read.ParseXML(config.InputFile)
+
+	read.SortValutes(&currencies)
+
 }
