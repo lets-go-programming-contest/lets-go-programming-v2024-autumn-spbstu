@@ -13,7 +13,7 @@ func ReadConfig() structs.Config {
 		panic(err)
 	}
 	var config structs.Config
-	err = yaml.Unmarshal(data, config)
+	err = yaml.Unmarshal(data, &config)
 	if err != nil {
 		panic(err)
 	}
