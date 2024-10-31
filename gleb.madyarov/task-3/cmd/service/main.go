@@ -10,9 +10,22 @@ import (
 
 func main() {
 	data := xmltostruct.ValCurs{}
-	var config read.Config = read.ReadConfig()
-	xmltostruct.XMLtoStruct(&data, config)
+	var config read.Config
+	config, err := read.ReadConfig()
+	if err != nil {
+		panic(err)
+	}
+	data, err = xmltostruct.XMLtoStruct(&data, config)
+	if err != nil {
+		panic(err)
+	}
 	sort.Sorting(data.ValCurs)
-	datajson := structtojson.StructtoJSON(&data)
-	write.WriteResult(datajson, config)
+	datajson, err := structtojson.StructtoJSON(&data)
+	if err != nil {
+		panic(err)
+	}
+	err = write.WriteResult(datajson, config)
+	if err != nil {
+		panic(err)
+	}
 }

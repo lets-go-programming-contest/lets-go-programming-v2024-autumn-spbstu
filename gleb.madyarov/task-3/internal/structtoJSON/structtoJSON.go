@@ -2,14 +2,15 @@ package structtojson
 
 import (
 	"encoding/json"
+	"fmt"
 
 	xmltostruct "github.com/Madyarov-Gleb/task-3/internal/XMLtoStruct"
 )
 
-func StructtoJSON(data *xmltostruct.ValCurs) []byte {
+func StructtoJSON(data *xmltostruct.ValCurs) ([]byte, error) {
 	datajsn, err := json.MarshalIndent(data, "", " ")
 	if err != nil {
-		panic("couldn't convert the structure to JSON")
+		return datajsn, fmt.Errorf("couldn't convert the structure to JSON: %w", err)
 	}
-	return datajsn
+	return datajsn, nil
 }
