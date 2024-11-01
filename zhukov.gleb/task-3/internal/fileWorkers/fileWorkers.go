@@ -1,16 +1,18 @@
 package fileWorkers
 
 import (
+	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"flag"
-	"gopkg.in/yaml.v3"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
-
 	"task-3/internal/structs"
+
+	"golang.org/x/net/html/charset"
+	"gopkg.in/yaml.v3"
 )
 
 var cfgPath string
@@ -41,16 +43,21 @@ func (p *FilesWorker) CfgParse() (inOutFilePaths structs.Cfg, err error) {
 }
 
 func (p *FilesWorker) InputFileParse(inFilePath string) ([]structs.Currency, error) {
-	inputFile, err := os.ReadFile(inFilePath)
+	file, err := os.ReadFile(inFilePath)
 	if err != nil {
 		return nil, err
 	}
 
-	data := []byte(strings.ReplaceAll(string(inputFile), ", ", "."))
+	data := []byte(strings.ReplaceAll(string(file), ", ", "."))
 	data = []byte(strings.ReplaceAll(string(data), ",", "."))
 
+	fileReader := bytes.NewReader(data)
+	decoder := xml.NewDecoder(fileReader)
+	decoder.CharsetReader = charset.NewReaderLabel
+
 	var valCurs structs.ValCurs
-	if err = xml.Unmarshal(data, &valCurs); err != nil {
+	err = decoder.Decode(&valCurs)
+	if err != nil {
 		return nil, err
 	}
 
@@ -69,10 +76,10 @@ func (p *FilesWorker) OutputFileParse(outFilePath string, data []structs.Currenc
 	}
 
 	file, err := os.OpenFile(outFilePath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0644)
+	defer file.Close()
 	if err != nil {
 		return err
 	}
-	defer file.Close()
 
 	encoder := json.NewEncoder(file)
 	if err := encoder.Encode(data); err != nil {
