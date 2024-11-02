@@ -9,7 +9,7 @@ import (
 	"github.com/sssidkn/task-3/internal/entities"
 )
 
-func WriteFile(path string, outputData *entities.OutputData) error {
+func WriteFile(path string, outputData *entities.ValCurs) error {
 	_, err := os.Stat(path)
 	if err != nil {
 		err = os.MkdirAll(filepath.Dir(path), 0777)
