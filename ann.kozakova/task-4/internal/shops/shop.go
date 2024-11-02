@@ -12,6 +12,8 @@ type Shop struct {
 }
 
 func Add100Items(shop *Shop, product int) {
+	shop.mutex.Lock()
+	defer shop.mutex.Unlock()
 	for i := 0; i < 100; i++ {
 		shop.Items = append(shop.Items, "Product"+strconv.Itoa(product+i))
 		shop.All += 1
