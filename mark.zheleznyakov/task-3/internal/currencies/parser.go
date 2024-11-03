@@ -1,8 +1,11 @@
 package currencies
 
 import (
+	"bytes"
 	"encoding/xml"
 	"fmt"
+	"golang.org/x/text/encoding/charmap"
+	"io"
 	"os"
 	"sort"
 	"strings"
@@ -30,7 +33,15 @@ func Parse(c *Currencies, f string) error {
 
 	cContent = []byte(strings.ReplaceAll(string(cContent), ",", "."))
 
-	err = xml.Unmarshal(cContent, &c)
+	decoder := xml.NewDecoder(bytes.NewReader(cContent))
+	decoder.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
+		if charset == "windows-1251" {
+			return charmap.Windows1251.NewDecoder().Reader(input), nil
+		}
+		return nil, fmt.Errorf("unsupported charset: %s", charset)
+	}
+
+	err = decoder.Decode(&c)
 	if err != nil {
 		return fmt.Errorf("your input file contents are cooked: %w", err)
 	}
