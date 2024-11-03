@@ -29,5 +29,5 @@ func (e *Exhibit) SimulateVisitorUnsafe(visitorCount int) {
 
 func (e *Exhibit) ShowInfo() {
 	count := e.visitorCounter.GetCount()
-	fmt.Printf("%s: %d visitors\n", e.name, count)
+	fmt.Printf("%s: %d посетителей\n", e.name, count)
 }
