@@ -1,14 +1,15 @@
 package main
 
 import (
-    "fmt"
     "flag"
     "os"
     "strings"
+    "path/filepath"
 
     "github.com/zafod42/task-3/internal/currenciesJson"
     "github.com/zafod42/task-3/internal/currencies"
     "github.com/zafod42/task-3/internal/ioconfig"
+
 )
 
 func main() {
@@ -45,5 +46,18 @@ func main() {
     if err != nil {
         panic(err)
     }
-    fmt.Println(string(data))
+    directory := filepath.Dir(configuration.OutputFile)
+    err = os.MkdirAll(directory, os.ModePerm)
+    if err != nil {
+        panic(err)
+    }
+    file, err := os.OpenFile(configuration.OutputFile, os.O_CREATE|os.O_RDWR, os.ModePerm)
+    defer file.Close()
+    if err != nil {
+        panic(err)
+    }
+    os.WriteFile(file.Name(), data, os.ModePerm)
+    if err != nil {
+        panic(err)
+    }
 }
