@@ -8,12 +8,12 @@ import (
 type PostSocialNetSync struct {
 	ID          int
 	TextContent string
-	myMutex     sync.Mutex
+	myMutex     sync.RWMutex
 }
 
 func (post *PostSocialNetSync) GetTextContent() string {
-	post.myMutex.Lock()
-	defer post.myMutex.Unlock()
+	post.myMutex.RLock()
+	defer post.myMutex.RUnlock()
 	return post.TextContent
 }
 
