@@ -22,7 +22,7 @@ func ValidateConfigPath(path string) error {
 func ParseFlags() (string, error) {
 
 	var configPath string
-	flag.StringVar(&configPath, "config", "./data/config.yml", "path to config file")
+	flag.StringVar(&configPath, "config", "./configs/config.yml", "path to config file")
 
 	flag.Parse()
 
