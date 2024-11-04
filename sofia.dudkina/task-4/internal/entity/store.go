@@ -13,8 +13,8 @@ type Store struct {
 
 func (s *Store) AddProduct(name string, count int, wg *sync.WaitGroup) {
 	s.mutex.Lock()
-	defer s.mutex.Unlock()
 	defer wg.Done()
+	defer s.mutex.Unlock()
 	if _, ok := s.Products[name]; ok {
 		s.Products[name] += count
 	} else {
@@ -25,8 +25,8 @@ func (s *Store) AddProduct(name string, count int, wg *sync.WaitGroup) {
 
 func (s *Store) SellProduct(name string, sellCount int, wg *sync.WaitGroup) error {
 	s.mutex.Lock()
-	defer s.mutex.Unlock()
 	defer wg.Done()
+	defer s.mutex.Unlock()
 	productCount, ok := s.Products[name]
 	if !ok {
 		return errors.New("product not found")
