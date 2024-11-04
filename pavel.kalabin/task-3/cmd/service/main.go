@@ -51,7 +51,7 @@ func main() {
     if err != nil {
         panic(err)
     }
-    file, err := os.OpenFile(configuration.OutputFile, os.O_CREATE|os.O_RDWR, os.ModePerm)
+    file, err := os.OpenFile(configuration.OutputFile, os.O_CREATE|os.O_RDWR, 0644)
     defer file.Close()
     if err != nil {
         panic(err)
