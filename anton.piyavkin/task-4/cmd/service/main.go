@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/Piyavva/task-4/internal/turnstile"
 	"sync"
+
+	"github.com/Piyavva/task-4/internal/turnstile"
 )
 
 func main() {
 	tur := turnstile.Turnstile{}
 	var wg sync.WaitGroup
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 100000; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
@@ -19,7 +20,7 @@ func main() {
 	wg.Wait()
 	fmt.Printf("Mutex: %d\n", tur.GetValue())
 	utur := turnstile.UnsafeTurnstile{}
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 100000; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
