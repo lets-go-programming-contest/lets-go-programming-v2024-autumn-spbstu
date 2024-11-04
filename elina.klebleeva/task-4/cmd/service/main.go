@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	appVersion := parseFlag.ParseFlags()
-	app.Run(appVersion)
+	appVersion, logFile := parseFlag.ParseFlags()
+	app.Run(appVersion, logFile)
 }

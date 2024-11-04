@@ -11,7 +11,7 @@ import (
 	"github.com/EmptyInsid/task-4/internal/structs/postSocialNetUnsync"
 )
 
-func Run(flag string) {
+func Run(flag string, logFile string) {
 
 	post := chooseVersion(flag)
 	printDocumentContent(&post)
@@ -53,7 +53,7 @@ func Run(flag string) {
 	wg.Wait()
 	close(logChannel)
 
-	writeLogsToFile(logChannel)
+	writeLogsToFile(logChannel, logFile)
 
 	fmt.Println("\nFinal Document Content:")
 	printDocumentContent(&post)
@@ -81,8 +81,8 @@ func chooseVersion(flag string) postSocialNet.PostSocialNet {
 	return post
 }
 
-func writeLogsToFile(logChannel chan string) {
-	logFile, err := os.OpenFile("../../logs/operation_logs.txt", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+func writeLogsToFile(logChannel chan string, logFilePath string) {
+	logFile, err := os.OpenFile(logFilePath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		panic(fmt.Errorf("error opening log file: %w", err))
 	}
