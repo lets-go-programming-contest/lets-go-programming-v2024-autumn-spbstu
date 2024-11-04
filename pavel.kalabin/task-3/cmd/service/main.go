@@ -6,6 +6,7 @@ import (
     "os"
     "strings"
 
+    "github.com/zafod42/task-3/internal/currenciesJson"
     "github.com/zafod42/task-3/internal/currencies"
     "github.com/zafod42/task-3/internal/ioconfig"
 )
@@ -15,6 +16,7 @@ func main() {
         configPath string // what will be default
         configuration ioconfig.Config
         currenciesList currencies.Currencies 
+        filteredCurrencies currenciesJson.FilteredCurrencies
     )
 
     flag.StringVar(&configPath, "config", "", "Path to configuration file")
@@ -38,5 +40,10 @@ func main() {
         panic(err)
     }
     currenciesList.Sort()
-    fmt.Println(currenciesList)
+    filteredCurrencies.Filter(currenciesList)
+    data, err := filteredCurrencies.Dump()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(string(data))
 }

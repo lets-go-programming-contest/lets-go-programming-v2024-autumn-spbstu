@@ -35,3 +35,5 @@ func (c *Currencies) Sort() {
         return c.Entries[i].Value > c.Entries[j].Value
     })
 }
+
+
