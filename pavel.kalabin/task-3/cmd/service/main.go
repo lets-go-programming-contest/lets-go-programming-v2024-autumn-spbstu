@@ -37,5 +37,6 @@ func main() {
     if err != nil {
         panic(err)
     }
+    currenciesList.Sort()
     fmt.Println(currenciesList)
 }

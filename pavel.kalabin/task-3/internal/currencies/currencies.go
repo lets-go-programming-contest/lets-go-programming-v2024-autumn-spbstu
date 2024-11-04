@@ -4,6 +4,7 @@ import (
     "encoding/xml"
     "strings"
     "golang.org/x/net/html/charset"
+    "sort"
 )
 
 type Entrie struct {
@@ -19,7 +20,7 @@ type Currencies struct {
     XMLName xml.Name `xml:"ValCurs"`
     Date    string   `xml:"Date,attr"`
     Name    string   `xml:"name,attr"`
-    Entires []Entrie `xml:"Valute"`
+    Entries []Entrie `xml:"Valute"`
 }
 
 func (c *Currencies) Parse(contents []byte) error {
@@ -29,3 +30,8 @@ func (c *Currencies) Parse(contents []byte) error {
     return err
 }
 
+func (c *Currencies) Sort() {
+    sort.Slice(c.Entries, func(i, j int) bool {
+        return c.Entries[i].Value > c.Entries[j].Value
+    })
+}
