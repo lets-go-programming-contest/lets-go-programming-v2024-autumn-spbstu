@@ -8,13 +8,18 @@ import (
 	"os"
 	"strings"
 
+	errProc "github.com/IDevFrye/task-3/internal/errors"
 	"golang.org/x/text/encoding/charmap"
 )
 
 func FetchCurrencyData(filePath string) ([]Currency, error) {
 	content, err := os.ReadFile(filePath)
 	if err != nil {
-		return nil, fmt.Errorf("unable to read input file: %w", err)
+		return nil, fmt.Errorf("%w: %s", errProc.ErrInputFileNotFound, err.Error())
+	}
+
+	if len(content) == 0 {
+		return nil, errProc.ErrEmptyInputFile
 	}
 
 	content = []byte(strings.ReplaceAll(string(content), ",", "."))
@@ -24,7 +29,7 @@ func FetchCurrencyData(filePath string) ([]Currency, error) {
 		if charset == "windows-1251" {
 			return charmap.Windows1251.NewDecoder().Reader(input), nil
 		}
-		return nil, fmt.Errorf("unsupported charset: %s", charset)
+		return nil, fmt.Errorf("%w: %s", errProc.ErrUnsupportedCharset, charset)
 	}
 
 	var data struct {
@@ -32,7 +37,7 @@ func FetchCurrencyData(filePath string) ([]Currency, error) {
 	}
 
 	if err := decoder.Decode(&data); err != nil {
-		return nil, fmt.Errorf("failed to decode XML: %w", err)
+		return nil, fmt.Errorf("%w: %s", errProc.ErrInvalidXMLFormat, err.Error())
 	}
 
 	return data.Currencies, nil
