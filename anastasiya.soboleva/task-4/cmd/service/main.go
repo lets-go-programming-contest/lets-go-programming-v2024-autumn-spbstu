@@ -1,9 +1,10 @@
 package main
 
 import (
+	"log"
+
 	"anastasiya.soboleva/task-4/internal/exhibit"
 	"anastasiya.soboleva/task-4/internal/simulator"
-	"log"
 )
 
 func main() {
