@@ -15,8 +15,8 @@ func NewVisitorCounter() *VisitorCounter {
 
 func (vc *VisitorCounter) Increment() {
 	vc.mu.Lock()
+	defer vc.mu.Unlock()
 	vc.count++
-	vc.mu.Unlock()
 }
 
 func (vc *VisitorCounter) UnsafeIncrement() {
