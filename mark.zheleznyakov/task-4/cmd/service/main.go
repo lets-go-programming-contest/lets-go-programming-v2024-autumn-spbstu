@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sync"
 
 	"github.com/mrqiz/task-4/internal/parking"
@@ -9,8 +8,8 @@ import (
 )
 
 func main() {
-	park := parking.NewParking(5)
+	park := parking.NewParking()
 	var wg sync.WaitGroup
-	fmt.Printf("okay so there are %d slots in the parking\n", park.Capacity())
 	simulation.Simulate(park, &wg)
+	simulation.UnsafeSimulate(park, &wg)
 }

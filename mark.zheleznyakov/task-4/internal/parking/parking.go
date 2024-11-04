@@ -1,48 +1,51 @@
 package parking
 
 import (
-	"fmt"
 	"sync"
 )
 
 type Parking struct {
 	mu       sync.Mutex
-	reserved int
-	capacity int
+	in int
+	out int
 }
 
-func NewParking(capacity int) *Parking {
-	return &Parking{capacity: capacity}
+func NewParking() *Parking {
+	return &Parking{}
 }
 
-func (p *Parking) Capacity() int {
+func (p *Parking) Popped() int {
 	p.mu.Lock()
 	defer p.mu.Unlock()
-	return p.capacity
+	return p.out
 }
 
-func (p *Parking) Reserved() int {
+func (p *Parking) Pushed() int {
 	p.mu.Lock()
 	defer p.mu.Unlock()
-	return p.reserved
+	return p.in
 }
 
 func (p *Parking) PushCar() error {
 	p.mu.Lock()
 	defer p.mu.Unlock()
-	if p.reserved >= p.capacity {
-		return fmt.Errorf("cannot push car: parking is full")
-	}
-	p.reserved++
+	p.in++
 	return nil
 }
 
 func (p *Parking) PopCar() error {
 	p.mu.Lock()
 	defer p.mu.Unlock()
-	if p.reserved <= 0 {
-		return fmt.Errorf("cannot pop car: parking is empty")
-	}
-	p.reserved--
+	p.out++
+	return nil
+}
+
+func (p *Parking) UnsafePushCar() error {
+	p.in++
+	return nil
+}
+
+func (p *Parking) UnsafePopCar() error {
+	p.out++
 	return nil
 }
