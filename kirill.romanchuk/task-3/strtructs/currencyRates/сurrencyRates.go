@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 )
@@ -84,6 +85,11 @@ func (c *CurrencyRates) ExportSelectedCurrencyRatesToJSON(filename string, field
 	}
 
 	jsonData, err := json.MarshalIndent(output, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	err = os.MkdirAll(filepath.Dir(filename), os.ModePerm)
 	if err != nil {
 		return err
 	}
