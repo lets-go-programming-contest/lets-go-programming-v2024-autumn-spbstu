@@ -12,14 +12,17 @@ type Config struct {
 	OutputFile string `yaml:"output-file"`
 }
 
-func (c *Config) Parse() error {
+func (c *Config) Parse() {
 	configFileParse := flag.String("config", "cmd/service/config.yaml", "Path to the configuration file")
-
 	flag.Parse()
 
 	data, err := os.ReadFile(*configFileParse)
 	if err != nil {
-		return err
+		panic(err)
 	}
-	return yaml.Unmarshal(data, c)
+
+	err = yaml.Unmarshal(data, c)
+	if err != nil {
+		panic(err)
+	}
 }
