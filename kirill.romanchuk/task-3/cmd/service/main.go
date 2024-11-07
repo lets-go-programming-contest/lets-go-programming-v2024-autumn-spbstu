@@ -2,21 +2,34 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/kirill.romanchuk/task-3/strtructs/config"
 	"github.com/kirill.romanchuk/task-3/strtructs/currencyRates"
 )
 
 func main() {
-	config := config.Config{}
+	cfg := config.Config{}
 
-	err := config.Parse()
-
+	err := cfg.Parse()
 	if err != nil {
-		fmt.Print(err)
+		fmt.Fprintln(os.Stderr, "Error parsing config:", err)
+		os.Exit(1)
 	}
+
 	currencyRates := currencyRates.CurrencyRates{}
-	currencyRates.ParseXML(config.InputFile)
+
+	err = currencyRates.ParseXML(cfg.InputFile)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error parsing XML:", err)
+		os.Exit(1)
+	}
+
 	currencyRates.SortByValue(true)
-	currencyRates.ExportSelectedCurrencyRatesToJSON(config.OutputFile)
+
+	err = currencyRates.ExportSelectedCurrencyRatesToJSON(cfg.OutputFile)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error exporting to JSON:", err)
+		os.Exit(1)
+	}
 }
