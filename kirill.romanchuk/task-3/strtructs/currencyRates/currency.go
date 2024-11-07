@@ -1,4 +1,4 @@
-package strtructs
+package currencyRates
 
 type Currency struct {
 	NumCode   int64   `xml:"NumCode"`

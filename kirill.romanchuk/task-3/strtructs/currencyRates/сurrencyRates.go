@@ -1,4 +1,4 @@
-package strtructs
+package currencyRates
 
 import (
 	"encoding/json"

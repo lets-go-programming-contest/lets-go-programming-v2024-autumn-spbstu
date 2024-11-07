@@ -1,4 +1,4 @@
-package strtructs
+package config
 
 import (
 	"flag"
