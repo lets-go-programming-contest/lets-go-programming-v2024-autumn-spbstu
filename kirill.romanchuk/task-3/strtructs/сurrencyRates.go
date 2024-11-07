@@ -3,6 +3,7 @@ package strtructs
 import (
 	"encoding/xml"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -27,4 +28,16 @@ func (c *CurrencyRates) ParseXML(pathToXML string) error {
 	}
 
 	return nil
+}
+
+func (c *CurrencyRates) SortByValue(reverse bool) {
+	if reverse {
+		sort.Slice(c.Currencies, func(i, j int) bool {
+			return c.Currencies[i].Value > c.Currencies[j].Value
+		})
+	} else {
+		sort.Slice(c.Currencies, func(i, j int) bool {
+			return c.Currencies[i].Value < c.Currencies[j].Value
+		})
+	}
 }
