@@ -27,7 +27,7 @@ func main() {
 
 	currencyRates.SortByValue(true)
 
-	err = currencyRates.ExportSelectedCurrencyRatesToJSON(cfg.OutputFile)
+	err = currencyRates.ExportSelectedCurrencyRatesToJSON(cfg.OutputFile, "NumCode", "CharCode", "Value")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error exporting to JSON:", err)
 		os.Exit(1)

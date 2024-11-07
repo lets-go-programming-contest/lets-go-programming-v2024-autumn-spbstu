@@ -56,27 +56,27 @@ func (c *CurrencyRates) ExportSelectedCurrencyRatesToJSON(filename string, field
 		data := make(map[string]interface{})
 
 		if len(fields) == 0 {
-			data["NumCode"] = currency.NumCode
-			data["CharCode"] = currency.CharCode
-			data["Nominal"] = currency.Nominal
-			data["Name"] = currency.Name
-			data["Value"] = currency.Value
-			data["VunitRate"] = currency.VunitRate
+			data["num-сode"] = currency.NumCode
+			data["char-code"] = currency.CharCode
+			data["nominal"] = currency.Nominal
+			data["name"] = currency.Name
+			data["value"] = currency.Value
+			data["vunit-rate"] = currency.VunitRate
 		} else {
 			for _, field := range fields {
 				switch field {
 				case "NumCode":
-					data["NumCode"] = currency.NumCode
+					data["num-code"] = currency.NumCode
 				case "CharCode":
-					data["CharCode"] = currency.CharCode
+					data["char-code"] = currency.CharCode
 				case "Nominal":
-					data["Nominal"] = currency.Nominal
+					data["nominal"] = currency.Nominal
 				case "Name":
-					data["Name"] = currency.Name
+					data["name"] = currency.Name
 				case "Value":
-					data["Value"] = currency.Value
+					data["value"] = currency.Value
 				case "VunitRate":
-					data["VunitRate"] = currency.VunitRate
+					data["vunit-rate"] = currency.VunitRate
 				}
 			}
 		}
