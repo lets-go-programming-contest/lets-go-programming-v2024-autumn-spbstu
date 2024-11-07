@@ -9,10 +9,10 @@ import (
 )
 
 type CurrencyRates struct {
-	XMLName    xml.Name   `xml:"ValCurs"`   // Name of the root element
-	Date       string     `xml:"Date,attr"` // Date
+	XMLName    xml.Name   `xml:"ValCurs"` // Name of the root element
+	Date       string     `xml:"Date,attr"`
 	Name       string     `xml:"name,attr"` // Name of the currency market
-	Currencies []Currency `xml:"Valute"`    // Array of currencies
+	Currencies []Currency `xml:"Valute"`
 }
 
 func (c *CurrencyRates) ParseXML(pathToXML string) error {
@@ -31,6 +31,8 @@ func (c *CurrencyRates) ParseXML(pathToXML string) error {
 	return nil
 }
 
+// If reverse is false, the currencies are sorted in ascending order by default.
+// If reverse is true, the currencies are sorted in descending order.
 func (c *CurrencyRates) SortByValue(reverse bool) {
 	if reverse {
 		sort.Slice(c.Currencies, func(i, j int) bool {
@@ -43,6 +45,9 @@ func (c *CurrencyRates) SortByValue(reverse bool) {
 	}
 }
 
+// ExportSelectedCurrencyRatesToJSON exports the selected currency rates to a JSON file.
+// If only the filename is provided (without any field names),
+// all fields of the CurrencyRates structure will be exported.
 func (c *CurrencyRates) ExportSelectedCurrencyRatesToJSON(filename string, fields ...string) error {
 	var output []map[string]interface{}
 
