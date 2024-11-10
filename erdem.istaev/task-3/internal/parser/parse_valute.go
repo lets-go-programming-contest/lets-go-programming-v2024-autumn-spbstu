@@ -1,11 +1,12 @@
 package parser
 
 import (
-	"encoding/xml"
-	"golang.org/x/net/html/charset"
 	"io"
 	"os"
 	"strings"
+
+	"encoding/xml"
+	"golang.org/x/net/html/charset"
 )
 
 type Valute struct {
@@ -21,18 +22,21 @@ type ValCurs struct {
 func LoadValutes(inputFile string) ([]Valute, error) {
 	file, err := os.Open(inputFile)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	defer file.Close()
 
 	data, err := io.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
 	data = []byte(strings.ReplaceAll(string(data), ",", "."))
 
 	decoder := xml.NewDecoder(strings.NewReader(string(data)))
 	decoder.CharsetReader = charset.NewReaderLabel
 	var valCurs ValCurs
-	if err := decoder.Decode(&valCurs); err != nil {
-		panic(err)
+	if err = decoder.Decode(&valCurs); err != nil {
+		return nil, err
 	}
 
 	return valCurs.Valutes, nil
