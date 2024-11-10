@@ -12,6 +12,6 @@ jobs:
         with:
           go-version: '1.23.1'
       - name: Test db with Go
-        run: go test ./ann.kozakova/task-6/internal/db -json
+        run: go test ./ann.kozakova/task-6/internal/db
       - name: Test wifi with Go
-        run: go test ./ann.kozakova/task-6/internal/wifi -json
+        run: go test ./ann.kozakova/task-6/internal/wifi
