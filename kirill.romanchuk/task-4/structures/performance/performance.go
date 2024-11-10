@@ -1,20 +1,23 @@
 package performance
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Performance struct {
-	Seats [][]bool
+	Seats          [][]int
+	availableSeats int
 }
 
 func CreatePerformance(rows, cols int) Performance {
-	seats := make([][]bool, rows)
+	seats := make([][]int, rows)
 	for i := range seats {
-		seats[i] = make([]bool, cols)
+		seats[i] = make([]int, cols)
 		for j := range seats[i] {
-			seats[i][j] = true
+			seats[i][j] = 0
 		}
 	}
-	return Performance{Seats: seats}
+	return Performance{Seats: seats, availableSeats: rows * cols}
 }
 
 func (p Performance) DisplaySeats() {
