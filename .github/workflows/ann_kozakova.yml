@@ -1,7 +1,7 @@
 name: ann_kozakova
 on:
   push:
-    branches: [ "task-6" ]
+    branches: [ "ann.kozakova/task-6" ]
 jobs:
   test:
     runs-on: ubuntu-latest
