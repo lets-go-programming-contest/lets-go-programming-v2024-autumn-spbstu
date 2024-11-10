@@ -1,0 +1,5 @@
+name: ann_kozakova
+on:
+  push:
+    branches: [ "task-6" ]
+jobs:
