@@ -5,10 +5,19 @@ import (
 	"anastasiya.soboleva/task-3/internal/utils"
 )
 
-func ParseRates(filePath string) []models.Currency {
-	file := utils.OpenFile(filePath)
+func ParseRates(filePath string) ([]models.Currency, error) {
+	file, err := utils.OpenFile(filePath)
+	if err != nil {
+		return nil, err
+	}
 	defer utils.CloseFile(file)
-	valCurs := parseXML(file)
-	currencies := ConvertToModels(valCurs)
-	return currencies
+	valCurs, err := parseXML(file)
+	if err != nil {
+		return nil, err
+	}
+	currencies, err := ConvertToModels(valCurs)
+	if err != nil {
+		return nil, err
+	}
+	return currencies, nil
 }

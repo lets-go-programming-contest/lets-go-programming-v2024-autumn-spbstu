@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 
 	"anastasiya.soboleva/task-3/internal/parser"
@@ -10,11 +11,25 @@ import (
 )
 
 func main() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Printf("Произошла ошибка: %v\n", r)
+		}
+	}()
 	configPath := flag.String("config", "config.yaml", "Path to the config file")
 	flag.Parse()
-	cfg := parser.ParseConfig(*configPath)
-	rates := parser.ParseRates(cfg.InputFile)
+	cfg, err := parser.ParseConfig(*configPath)
+	if err != nil {
+		panic(err)
+	}
+	rates, err := parser.ParseRates(cfg.InputFile)
+	if err != nil {
+		panic(err)
+	}
 	sort.RatesSort(rates)
-	utils.SaveRates(rates, cfg.OutputFile)
+	err = utils.SaveRates(rates, cfg.OutputFile)
+	if err != nil {
+		panic(err)
+	}
 	log.Println("Данные обработаны и сохранены успешно.")
 }

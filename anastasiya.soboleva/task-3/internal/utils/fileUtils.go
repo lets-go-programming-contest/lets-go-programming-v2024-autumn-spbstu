@@ -1,19 +1,20 @@
 package utils
 
 import (
+	"fmt"
 	"os"
 )
 
-func OpenFile(filePath string) *os.File {
+func OpenFile(filePath string) (*os.File, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	return file
+	return file, nil
 }
 
 func CloseFile(file *os.File) {
 	if err := file.Close(); err != nil {
-		panic(err)
+		fmt.Printf("%v\n", err)
 	}
 }
