@@ -36,7 +36,8 @@ func TestGetAddresses(t *testing.T) {
 			row.errExpected)
 		actualAddrs, err := wifiService.GetAddresses()
 		if row.errExpected != nil {
-			require.ErrorIs(t, err, row.errExpected, "row: %d, expected error: %w, actual error: %w", i,
+			require.ErrorIs(t, err, row.errExpected, "row: %d, expected error: %w, "+
+				"actual error: %w", i,
 				row.errExpected, err)
 			continue
 		}
@@ -90,7 +91,8 @@ func TestGetNames(t *testing.T) {
 			row.errExpected)
 		actualNames, err := wifiService.GetNames()
 		if row.errExpected != nil {
-			require.ErrorIs(t, err, row.errExpected, "row: %d, expected error: %w, actual error: %w", i,
+			require.ErrorIs(t, err, row.errExpected, "row: %d, expected error: %w, "+
+				"actual error: %w", i,
 				row.errExpected, err)
 			continue
 		}
