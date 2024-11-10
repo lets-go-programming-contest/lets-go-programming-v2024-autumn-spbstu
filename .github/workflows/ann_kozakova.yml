@@ -11,10 +11,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: '1.23.1'
-      - name: Test with Go
-        run: go test -json > TestResults.json
-      - name: Upload Go test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: Go-results
-          path: TestResults.json
+      - name: Test db with Go
+        run: go test ./ann.kozakova/task-6/internal/db -json
+      - name: Test wifi with Go
+        run: go test ./ann.kozakova/task-6/internal/wifi -json
