@@ -12,6 +12,6 @@ jobs:
         with:
           go-version: '1.23.1'
       - name: Test db with Go
-        run: go test ./lets-go-programming-v2024-autumn-spbstu/ann.kozakova/task-7/internal/db
+        run: go test /home/runner/work/lets-go-programming-v2024-autumn-spbstu/lets-go-programming-v2024-autumn-spbstu/ann.kozakova/task-7/internal/db
       - name: Test wifi with Go
-        run: go test ./lets-go-programming-v2024-autumn-spbstu/ann.kozakova/task-7/internal/wifi
+        run: go test /home/runner/work/lets-go-programming-v2024-autumn-spbstu/lets-go-programming-v2024-autumn-spbstu/ann.kozakova/task-7/internal/wifi
