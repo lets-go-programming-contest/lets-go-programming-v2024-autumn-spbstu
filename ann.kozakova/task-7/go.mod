@@ -1,4 +1,4 @@
-module lets-go-programming-v2024-autumn-spbstu
+module github.com/nutochk/task-7
 
 go 1.23.1
 
