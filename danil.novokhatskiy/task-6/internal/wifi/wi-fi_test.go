@@ -18,7 +18,7 @@ type testWifi struct {
 
 var testTable = []testWifi{
 	{
-		addrs:       []string{"192.168.0.1", "8800.0000.8800"},
+		addrs:       []string{"1111:2222:3333:4444", "8800.0000.8800:9999"},
 		errExpected: nil,
 	},
 	{
@@ -62,7 +62,7 @@ func parseMACs(str []string) []net.HardwareAddr {
 
 func TestGetAddresses(t *testing.T) {
 	mockWifi := NewWiFi(t)
-	wifiService := myWiFi.WiFiService{WiFi: mockWifi}
+	wifiService := myWiFi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs), row.errExpected)
@@ -78,7 +78,7 @@ func TestGetAddresses(t *testing.T) {
 
 func TestGetNames(t *testing.T) {
 	mockWifi := NewWiFi(t)
-	wifiService := myWiFi.WiFiService{WiFi: mockWifi}
+	wifiService := myWiFi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs), row.errExpected)
