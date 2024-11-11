@@ -56,7 +56,7 @@ func mockDbRows(names []string) *sqlmock.Rows {
 	return rows
 }
 
-func TestSetUniqueValues(t *testing.T) {
+func TestSelectUniqueValues(t *testing.T) {
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("an error '%s' was not expected when marshaling expected json data", err)
@@ -73,8 +73,7 @@ func TestSetUniqueValues(t *testing.T) {
 			continue
 		}
 		require.NoError(t, err, "row: %d, error must be nil", i)
-		require.Equal(t, row.names, uniqueNames, "row: %d, expected names: %s, actual names: %s", i,
-			row.names, uniqueNames)
+		require.Equal(t, row.names, uniqueNames, "row: %d, expected names: %s, actual names: %s", i)
 	}
 }
 
