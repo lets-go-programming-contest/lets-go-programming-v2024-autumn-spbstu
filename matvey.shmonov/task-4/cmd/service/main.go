@@ -11,11 +11,11 @@ func main() {
 	numPeople := 100
 	turnstileCollection := metro.NewTurnstileCollection(numTurnstiles)
 
-	fmt.Println("Запускаем горутины для симуляции с синхронизацией")
+	fmt.Println("Running goroutines for synchronized simulation")
 	metro.SimulateWithSync(turnstileCollection, numPeople)
 
 	turnstileCollection.ResetCounts()
 
-	fmt.Println("Запускаем горутины для симуляции без синхронизации")
+	fmt.Println("Running goroutines for simulation without synchronization")
 	metro.SimulateWithoutSync(turnstileCollection, numPeople)
 }
