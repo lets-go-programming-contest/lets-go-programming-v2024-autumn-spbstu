@@ -18,7 +18,7 @@ func main() {
 
 	configFile, err := os.ReadFile(*configFilePath)
 	if err != nil {
-		panic(fmt.Errorf("open config file failed"))
+		panic(fmt.Errorf("open config file failed: %w", err))
 	}
 
 	config, err := (&config.Config{}).GetConfig(configFile)
@@ -28,7 +28,7 @@ func main() {
 
 	source, err := os.ReadFile(config.InputFile)
 	if err != nil {
-		panic(fmt.Errorf("open source file failed"))
+		panic(fmt.Errorf("open source file failed: %w", err))
 	}
 
 	source = bytes.ReplaceAll(source, []byte(","), []byte("."))
