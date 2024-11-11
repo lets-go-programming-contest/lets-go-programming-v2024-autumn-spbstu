@@ -59,6 +59,8 @@ func TestNew(t *testing.T) {
 }
 
 func TestGetName(t *testing.T) {
+	t.Parallel()
+
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("an error '%s' was not expected when marshalling expected json data", err)
@@ -84,6 +86,8 @@ func TestGetName(t *testing.T) {
 }
 
 func TestSelectUniqueValues(t *testing.T) {
+	t.Parallel()
+
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("unexpected error when opening mock database connection: %v", err)
@@ -120,6 +124,8 @@ func TestSelectUniqueValues(t *testing.T) {
 }
 
 func TestScanError(t *testing.T) {
+	t.Parallel()
+
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("unexpected error when opening mock database connection: %v", err)
