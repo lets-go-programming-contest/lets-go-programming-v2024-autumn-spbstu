@@ -47,7 +47,7 @@ func TestGetAddresses(t *testing.T) {
 	t.Parallel()
 
 	mockWifi := NewWiFi(t)
-	wifiService := myWifi.WiFiService{WiFi: mockWifi}
+	wifiService := myWifi.Service{WiFi: mockWifi}
 
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
@@ -67,7 +67,7 @@ func TestGetAddresses(t *testing.T) {
 func TestGetNames(t *testing.T) {
 	t.Parallel()
 	mockWifi := NewWiFi(t)
-	wifiService := myWifi.WiFiService{WiFi: mockWifi}
+	wifiService := myWifi.Service{WiFi: mockWifi}
 
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()

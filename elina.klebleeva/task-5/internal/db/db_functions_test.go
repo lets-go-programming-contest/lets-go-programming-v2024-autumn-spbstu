@@ -34,6 +34,11 @@ var testTable = []rowTestDb{
 		uniqeExpect: []string{"Ivan", "Gens228"},
 		errExpected: nil,
 	},
+	{
+		names:       []string{},
+		uniqeExpect: []string{},
+		errExpected: nil,
+	},
 }
 
 type MockDatabase struct{}
@@ -43,6 +48,7 @@ func (m *MockDatabase) Query(query string, args ...interface{}) (*sql.Rows, erro
 }
 
 func TestNew(t *testing.T) {
+	t.Parallel()
 
 	mockDB := &MockDatabase{}
 
@@ -53,12 +59,11 @@ func TestNew(t *testing.T) {
 }
 
 func TestGetName(t *testing.T) {
-
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("an error '%s' was not expected when marshalling expected json data", err)
 	}
-	dbService := db.DBService{DB: mockDB}
+	dbService := db.Service{DB: mockDB}
 
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT name FROM users").
@@ -74,19 +79,18 @@ func TestGetName(t *testing.T) {
 		}
 
 		require.NoError(t, err, "row: %d, error must be nil", i)
-		require.Equal(t, row.names, names, "row: %d, expected names: %s, actual names: %s", i, row.names, names)
+		require.Equal(t, row.names, ensureNotNil(names), "row: %d, expected names: %s, actual names: %s", i, row.names, names)
 	}
 }
 
 func TestSelectUniqueValues(t *testing.T) {
-
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("unexpected error when opening mock database connection: %v", err)
 	}
 	defer mockDB.Close()
 
-	dbService := db.DBService{DB: mockDB}
+	dbService := db.Service{DB: mockDB}
 
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT DISTINCT name FROM users").
@@ -116,14 +120,13 @@ func TestSelectUniqueValues(t *testing.T) {
 }
 
 func TestScanError(t *testing.T) {
-
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("unexpected error when opening mock database connection: %v", err)
 	}
 	defer mockDB.Close()
 
-	dbService := db.DBService{DB: mockDB}
+	dbService := db.Service{DB: mockDB}
 
 	// ---------- Тестирование SelectUniqueValues ----------
 
@@ -167,4 +170,11 @@ func mockDbRowsDistinct(names []string) *sqlmock.Rows {
 		}
 	}
 	return rows
+}
+
+func ensureNotNil(s []string) []string {
+	if s == nil {
+		return []string{}
+	}
+	return s
 }
