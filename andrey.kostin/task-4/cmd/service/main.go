@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 
@@ -25,7 +24,5 @@ func main() {
 		test.SafeTest()
 	} else if choice == 2 {
 		test.UnsafeTest()
-	} else {
-		fmt.Println("Некорректный выбор. Введите число 1 или 2.")
 	}
 }
