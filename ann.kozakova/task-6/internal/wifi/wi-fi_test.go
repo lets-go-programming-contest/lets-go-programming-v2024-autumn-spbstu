@@ -29,7 +29,7 @@ var testTable = []rowTestSysInfo{
 
 func TestGetAddresses(t *testing.T) {
 	mockWifi := NewWiFi(t)
-	wifiService := myWifi.WiFiService{WiFi: mockWifi}
+	wifiService := myWifi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs),
@@ -83,7 +83,7 @@ func parseMAC(macStr string) net.HardwareAddr {
 
 func TestGetNames(t *testing.T) {
 	mockWifi := NewWiFi(t)
-	wifiService := myWifi.WiFiService{WiFi: mockWifi}
+	wifiService := myWifi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs),

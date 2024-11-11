@@ -26,18 +26,17 @@ linters-settings:
     sections:
       - standard
       - default
-      - prefix(github.com/nutochk/task-5)
+      - prefix(github.com/nutochk/task-6)
     skip-generated: false
     custom-order: true
   depguard:
     rules:
       main:
-        files:
-          - !$test
         allow:
           - $gostd
+          - "github.com/mdlayher/wifi"
 
 output:
   formats:
     - format: checkstyle
-      path: ./report_before.xml
+      path: .reports/report_after.xml
