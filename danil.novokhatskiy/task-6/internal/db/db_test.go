@@ -36,12 +36,12 @@ func mockDbRows(names []string) *sqlmock.Rows {
 	return rows
 }
 
-func TestDBService_GetNames(t *testing.T) {
+func TestDBServiceGetNames(t *testing.T) {
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
 	}
-	dbService := DBService{DB: mockDB}
+	dbService := Service{DB: mockDB}
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT name FROM users").WillReturnRows(mockDbRows(row.names)).WillReturnError(row.errExpected)
 		names, err := dbService.GetNames()
@@ -67,11 +67,12 @@ func mockUniqueRows(names []string) *sqlmock.Rows {
 }
 
 func TestSelectUniqueValues(t *testing.T) {
+	t.Parallel()
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
 	}
-	dbService := DBService{DB: mockDB}
+	dbService := Service{DB: mockDB}
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT DISTINCT name FROM users").WillReturnRows(mockUniqueRows(row.names)).WillReturnError(row.errExpected)
 		names, err := dbService.SelectUniqueValues("name", "users")

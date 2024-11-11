@@ -61,6 +61,8 @@ func parseMACs(str []string) []net.HardwareAddr {
 }
 
 func TestGetAddresses(t *testing.T) {
+	t.Parallel()
+
 	mockWifi := NewWiFi(t)
 	wifiService := myWiFi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
@@ -77,6 +79,8 @@ func TestGetAddresses(t *testing.T) {
 }
 
 func TestGetNames(t *testing.T) {
+	t.Parallel()
+
 	mockWifi := NewWiFi(t)
 	wifiService := myWiFi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
