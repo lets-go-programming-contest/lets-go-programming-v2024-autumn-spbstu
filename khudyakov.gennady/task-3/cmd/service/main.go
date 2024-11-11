@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"flag"
+	"fmt"
 	"os"
 	"sort"
 
@@ -17,7 +18,7 @@ func main() {
 
 	configFile, err := os.ReadFile(*configFilePath)
 	if err != nil {
-		panic(err)
+		panic(fmt.Errorf("open config file failed"))
 	}
 
 	config, err := (&config.Config{}).GetConfig(configFile)
@@ -27,7 +28,7 @@ func main() {
 
 	source, err := os.ReadFile(config.InputFile)
 	if err != nil {
-		panic(err)
+		panic(fmt.Errorf("open source file failed"))
 	}
 
 	source = bytes.ReplaceAll(source, []byte(","), []byte("."))

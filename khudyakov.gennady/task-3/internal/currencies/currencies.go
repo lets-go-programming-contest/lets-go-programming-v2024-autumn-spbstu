@@ -12,7 +12,7 @@ import (
 
 type Currency struct {
 	NumCode  string  `json:"num_code" xml:"NumCode"`
-	CharCode string  ` json:"char_code" xml:"CharCode"`
+	CharCode string  `json:"char_code" xml:"CharCode"`
 	Value    float64 `json:"value" xml:"Value"`
 }
 
