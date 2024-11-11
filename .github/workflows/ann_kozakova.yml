@@ -15,7 +15,6 @@ jobs:
         run: cd ./ann.kozakova/task-7
       - name: Install dependencies
         run: go mod tidy
-        working-directory: task-7
       - name: Test db with Go
         run: go test ./internal/db
       - name: Test wifi with Go
