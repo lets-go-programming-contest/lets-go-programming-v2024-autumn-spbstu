@@ -8,7 +8,6 @@ import (
 	"github.com/EmptyInsid/task-5/internal/db"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -21,7 +20,7 @@ type rowTestDb struct {
 var testTable = []rowTestDb{
 	{
 		names:       []string{"Ivan", "Gens228"},
-		uniqeExpect: nil,
+		uniqeExpect: []string{"Ivan", "Gens228"},
 		errExpected: nil,
 	},
 	{
@@ -54,8 +53,8 @@ func TestNew(t *testing.T) {
 
 	service := db.New(mockDB)
 
-	assert.NotNil(t, service)
-	assert.Equal(t, mockDB, service.DB, "DB field in DBService should be set to the mockDB instance")
+	require.NotNil(t, service)
+	require.Equal(t, mockDB, service.DB, "DB field in DBService should be set to the mockDB instance")
 }
 
 func TestGetName(t *testing.T) {
@@ -109,13 +108,8 @@ func TestSelectUniqueValues(t *testing.T) {
 			continue
 		}
 
-		if row.uniqeExpect != nil {
-			require.NoError(t, err, "row: %d, error should be nil", i)
-			require.ElementsMatch(t, row.uniqeExpect, names, "expected unique values: %v, got: %v", row.uniqeExpect, names)
-		} else {
-			require.NoError(t, err, "row: %d, error should be nil", i)
-			require.ElementsMatch(t, row.names, names, "expected unique values: %v, got: %v", row.names, names)
-		}
+		require.NoError(t, err, "row: %d, error should be nil", i)
+		require.ElementsMatch(t, row.uniqeExpect, names, "expected unique values: %v, got: %v", row.uniqeExpect, names)
 	}
 
 	if err := mock.ExpectationsWereMet(); err != nil {
@@ -137,14 +131,14 @@ func TestScanError(t *testing.T) {
 	// ---------- Тестирование SelectUniqueValues ----------
 
 	queryUnique := "SELECT DISTINCT name FROM users"
-	rows := sqlmock.NewRows([]string{"name"}).AddRow(nil) // `nil` вместо строки вызовет ошибку
+	rows := sqlmock.NewRows([]string{"name"}).AddRow(nil) // `nil` create error for scan
 
 	mock.ExpectQuery(queryUnique).WillReturnRows(rows)
 
 	values, err := dbService.SelectUniqueValues("name", "users")
-	assert.Error(t, err, "expected an error from rows.Scan in SelectUniqueValues")
-	assert.Contains(t, err.Error(), "rows.Scan failed", "unexpected error message for SelectUniqueValues")
-	assert.Nil(t, values, "expected values to be nil due to scan error in SelectUniqueValues")
+	require.Error(t, err, "expected an error from rows.Scan in SelectUniqueValues")
+	require.Contains(t, err.Error(), "rows.Scan failed", "unexpected error message for SelectUniqueValues")
+	require.Nil(t, values, "expected values to be nil due to scan error in SelectUniqueValues")
 
 	// ---------- Тестирование GetName ----------
 
@@ -152,9 +146,9 @@ func TestScanError(t *testing.T) {
 	mock.ExpectQuery(queryGetName).WithArgs().WillReturnRows(sqlmock.NewRows([]string{"name"}).AddRow(nil))
 
 	name, err := dbService.GetNames()
-	assert.Error(t, err, "expected an error from row.Scan in GetName")
-	assert.Contains(t, err.Error(), "rows.Scan failed", "unexpected error message for GetName")
-	assert.Equal(t, []string([]string(nil)), name, "expected name to be empty due to scan error in GetName")
+	require.Error(t, err, "expected an error from row.Scan in GetName")
+	require.Contains(t, err.Error(), "rows.Scan failed", "unexpected error message for GetName")
+	require.Equal(t, []string([]string(nil)), name, "expected name to be empty due to scan error in GetName")
 }
 
 func mockDbRows(names []string) *sqlmock.Rows {

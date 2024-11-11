@@ -19,10 +19,13 @@ type rowTestSysInfo struct {
 
 var testTable = []rowTestSysInfo{
 	{
-		addrs:     []string{"00:11:22:33:44:55", "aa:bb:cc:dd:ee:ff"},
-		name_list: []string{"Ivan", "Gens228"},
+		addrs:       []string{"00:11:22:33:44:55", "aa:bb:cc:dd:ee:ff"},
+		name_list:   []string{"Ivan", "Gens228"},
+		errExpected: nil,
 	},
 	{
+		addrs:       nil,
+		name_list:   nil,
 		errExpected: errors.New("expectedError"),
 	},
 }
@@ -66,6 +69,7 @@ func TestGetAddresses(t *testing.T) {
 
 func TestGetNames(t *testing.T) {
 	t.Parallel()
+
 	mockWifi := NewWiFi(t)
 	wifiService := myWifi.Service{WiFi: mockWifi}
 
@@ -89,13 +93,13 @@ func mockIfaces(namesOrAddrs []string) []*wifi.Interface {
 
 	for i, val := range namesOrAddrs {
 		hwAddr := parseMAC(val)
-		if hwAddr == nil && val != "" { // Если это не MAC-адрес, считаем, что это имя
+		if hwAddr == nil && val != "" {
 			hwAddr = net.HardwareAddr{}
 		}
 
 		iface := &wifi.Interface{
 			Index:        i + 1,
-			Name:         val, // Используем val как имя интерфейса
+			Name:         val,
 			HardwareAddr: hwAddr,
 			PHY:          1,
 			Device:       1,
