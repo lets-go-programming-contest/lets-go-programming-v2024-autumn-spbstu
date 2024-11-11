@@ -2,6 +2,7 @@ package writer
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -10,12 +11,12 @@ import (
 
 func SaveResults(valutes []parser.Valute, outputFile string) error {
 	if err := os.MkdirAll(filepath.Dir(outputFile), os.ModePerm); err != nil {
-		return err
+		return fmt.Errorf("failed to create directory: %w", err)
 	}
 
 	file, err := os.Create(outputFile)
 	if err != nil {
-		return err
+		return fmt.Errorf("error creating file: %w", err)
 	}
 	defer file.Close()
 

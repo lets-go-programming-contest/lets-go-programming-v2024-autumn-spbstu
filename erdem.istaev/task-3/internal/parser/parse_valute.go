@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"strings"
@@ -22,13 +23,13 @@ type ValCurs struct {
 func LoadValutes(inputFile string) ([]Valute, error) {
 	file, err := os.Open(inputFile)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error opening file: %w", err)
 	}
 	defer file.Close()
 
 	data, err := io.ReadAll(file)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error reading file: %w", err)
 	}
 	data = []byte(strings.ReplaceAll(string(data), ",", "."))
 
@@ -36,7 +37,7 @@ func LoadValutes(inputFile string) ([]Valute, error) {
 	decoder.CharsetReader = charset.NewReaderLabel
 	var valCurs ValCurs
 	if err = decoder.Decode(&valCurs); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error decoding XML: %w", err)
 	}
 
 	return valCurs.Valutes, nil
