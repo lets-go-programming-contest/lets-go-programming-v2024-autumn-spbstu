@@ -1,138 +1,19 @@
 [
-  {
-    "num-code": 980,
-    "char-code": "UAH",
-    "nominal": 0,
-    "name": "",
-    "value": 58.109,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 826,
-    "char-code": "GBP",
-    "nominal": 0,
-    "name": "",
-    "value": 43.8254,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 960,
-    "char-code": "XDR",
-    "nominal": 0,
-    "name": "",
-    "value": 38.4205,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 208,
-    "char-code": "DKK",
-    "nominal": 0,
-    "name": "",
-    "value": 36.101,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 578,
-    "char-code": "NOK",
-    "nominal": 0,
-    "name": "",
-    "value": 34.7853,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 840,
-    "char-code": "USD",
-    "nominal": 0,
-    "name": "",
-    "value": 30.9436,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 352,
-    "char-code": "ISK",
-    "nominal": 0,
-    "name": "",
-    "value": 30.7958,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 752,
-    "char-code": "SEK",
-    "nominal": 0,
-    "name": "",
-    "value": 29.5924,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 978,
-    "char-code": "EUR",
-    "nominal": 0,
-    "name": "",
-    "value": 26.8343,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 392,
-    "char-code": "JPY",
-    "nominal": 0,
-    "name": "",
-    "value": 23.1527,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 792,
-    "char-code": "TRL",
-    "nominal": 0,
-    "name": "",
-    "value": 22.2616,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 398,
-    "char-code": "KZT",
-    "nominal": 0,
-    "name": "",
-    "value": 20.3393,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 124,
-    "char-code": "CAD",
-    "nominal": 0,
-    "name": "",
-    "value": 19.324,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 974,
-    "char-code": "BYR",
-    "nominal": 0,
-    "name": "",
-    "value": 18.429,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 756,
-    "char-code": "CHF",
-    "nominal": 0,
-    "name": "",
-    "value": 18.1861,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 702,
-    "char-code": "SGD",
-    "nominal": 0,
-    "name": "",
-    "value": 16.8878,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 36,
-    "char-code": "AUD",
-    "nominal": 0,
-    "name": "",
-    "value": 16.0102,
-    "vunit-rate": 0
-  }
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {}
 ]

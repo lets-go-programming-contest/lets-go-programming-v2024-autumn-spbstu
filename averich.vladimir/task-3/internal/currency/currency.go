@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"os"
-	"path/filepath"
 	"sort"
 	"strings"
 	"golang.org/x/net/html/charset"
 	"bytes"
+	"reflect"
 )
 
 type Currency struct {
