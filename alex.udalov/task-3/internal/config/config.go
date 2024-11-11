@@ -28,5 +28,5 @@ func ReadFilePath() string {
 	path := ""
 	flag.StringVar(&path, "config", "", "the config file")
 	flag.Parse()
-	return string(path)
+	return path
 }

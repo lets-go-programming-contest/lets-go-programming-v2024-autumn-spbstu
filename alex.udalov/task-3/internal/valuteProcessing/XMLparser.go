@@ -17,11 +17,14 @@ func ParseFromXML(valuteRates *valuteStrukts.ValuteRate, filePath string) error 
 	sort.Slice(valuteRates.ValuteRate, func(i, j int) bool {
 		return valuteRates.ValuteRate[i].Value > valuteRates.ValuteRate[j].Value
 	})
+
 	configFile, err := os.ReadFile(filePath)
 	if err != nil {
 		return fmt.Errorf("failed to read file: %w", err)
 	}
+
 	configFile = []byte(strings.ReplaceAll(string(configFile), ",", "."))
+
 	decoder := xml.NewDecoder(bytes.NewReader(configFile))
 	decoder.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
 		if charset == "windows-1251" {
@@ -29,6 +32,7 @@ func ParseFromXML(valuteRates *valuteStrukts.ValuteRate, filePath string) error 
 		}
 		return nil, fmt.Errorf("unsupported charset: %s", charset)
 	}
+
 	err = decoder.Decode(&valuteRates)
 	if err != nil {
 		return fmt.Errorf("failed to decode: %w", err)
