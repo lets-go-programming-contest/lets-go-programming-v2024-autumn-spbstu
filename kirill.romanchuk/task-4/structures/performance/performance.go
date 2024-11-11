@@ -29,7 +29,7 @@ func (p Performance) DisplaySeats() {
 	}
 }
 
-func (p *Performance) ReserveSeat(row, col int, mutex *sync.Mutex, result chan bool) {
+func (p *Performance) ReserveSeat(row, col int, mutex *sync.Mutex, result chan<- bool) {
 	//mutex.Lock()
 	if p.seats[row][col] == 0 {
 		time.Sleep(1 * time.Second) // Simulation of payment
