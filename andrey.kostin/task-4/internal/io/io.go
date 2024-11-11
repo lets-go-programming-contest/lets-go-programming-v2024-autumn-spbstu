@@ -4,20 +4,19 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
-	"os"
 	"strconv"
+	"strings"
 )
 
 var (
-	ErrorIncorectIntBounds = errors.New("> Некорректное значение запускаемого теста. Пожалуйста, введите целочисленное значение!")
-	ErrorIncorectInt       = errors.New("> Некорректное количество. Значение должно быть равным либо 1, либо 2!")
+	ErrorIncorectInt       = errors.New("> Некорректное значение запускаемого теста. Пожалуйста, введите целочисленное значение!")
+	ErrorIncorectIntBounds = errors.New("> Некорректное количество. Значение должно быть равным либо 1, либо 2!")
 )
 
-func GetNumber(prompt string, minVal int, maxVal int) (int, error) {
-	scanner := bufio.NewScanner(os.Stdin)
+func GetNumber(prompt string, minVal int, maxVal int, reader *bufio.Reader) (int, error) {
 	fmt.Print(prompt)
-	scanner.Scan()
-	input := scanner.Text()
+	input, _ := reader.ReadString('\n')
+	input = strings.TrimSpace(input)
 	if numb, err := strconv.Atoi(input); err == nil {
 		if numb <= maxVal && numb >= minVal {
 			return numb, nil

@@ -1,10 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
+	"os"
 
-	reader "github.com/IDevFrye/task-4/internal/io"
+	"github.com/IDevFrye/task-4/internal/io"
+	"github.com/IDevFrye/task-4/internal/test"
 )
 
 var (
@@ -13,14 +16,15 @@ var (
 )
 
 func main() {
-	choice, err := reader.GetNumber("Выберите режим работы (1 — потокобезопасный, 2 — небезопасный): ", firstTest, lastTest)
+	reader := bufio.NewReader(os.Stdin)
+	choice, err := io.GetNumber("Выберите режим работы (1 — потокобезопасный, 2 — небезопасный): ", firstTest, lastTest, reader)
 	if err != nil {
 		log.Fatal(err)
 	}
 	if choice == 1 {
-
+		test.SafeTest()
 	} else if choice == 2 {
-
+		test.UnsafeTest()
 	} else {
 		fmt.Println("Некорректный выбор. Введите число 1 или 2.")
 	}
