@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 
 	"github.com/Koshsky/task-3/internal/configutil"
@@ -8,7 +9,9 @@ import (
 )
 
 func main() {
-	cfg, err := configutil.ReadConfig()
+	pathConfig := flag.String("config", "", "path to config file")
+	flag.Parse()
+	cfg, err := configutil.ReadConfig(pathConfig)
 	if err != nil {
 		log.Panicf("err: %v", err)
 	}

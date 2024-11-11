@@ -1,7 +1,6 @@
 package configutil
 
 import (
-	"flag"
 	"fmt"
 	"os"
 
@@ -13,10 +12,7 @@ type Config struct {
 	OutFilename string `yaml:"output-file"`
 }
 
-func ReadConfig() (Config, error) {
-	pathConfig := flag.String("config", "", "path to config file")
-	flag.Parse()
-
+func ReadConfig(pathConfig *string) (Config, error) {
 	var config Config
 	yamlFile, err := os.ReadFile(*pathConfig)
 	if err != nil {
