@@ -1,7 +1,7 @@
 name: ann_kozakova
 on:
   push:
-    branches: [ "ann.kozakova/task-6" ]
+    branches: [ "ann.kozakova/task-7" ]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,4 +12,4 @@ jobs:
         with:
           go-version: '1.23.1'
       - name: Test db with Go
-        run: go test ./ann.kozakova/task-6/internal/db
+        run: go test ./ann.kozakova/task-7/internal/db
