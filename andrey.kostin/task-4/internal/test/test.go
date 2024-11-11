@@ -3,7 +3,6 @@ package test
 import (
 	"fmt"
 	"sync"
-	"time"
 
 	"github.com/IDevFrye/task-4/internal/warehouse"
 )
@@ -17,13 +16,13 @@ func SafeTest() {
 		go func(step int) {
 			defer wg.Done()
 			wh.AddItem("itemA", 1)
-			fmt.Printf("Шаг %d: Добавили 1, текущее количество itemA (безопасно): %d\n", step, wh.GetQuantity("itemA"))
+			fmt.Printf("Горутина добавления %d: Добавили 1, текущее количество itemA (безопасно): %d\n", step, wh.GetQuantity("itemA"))
 		}(i)
 
 		go func(step int) {
 			defer wg.Done()
 			wh.RemoveItem("itemA", 1)
-			fmt.Printf("Шаг %d: Убрали 1, текущее количество itemA (безопасно): %d\n", step, wh.GetQuantity("itemA"))
+			fmt.Printf("Горутина удаления %d: Убрали 1, текущее количество itemA (безопасно): %d\n", step, wh.GetQuantity("itemA"))
 		}(i)
 	}
 
@@ -40,16 +39,14 @@ func UnsafeTest() {
 		go func(step int) {
 			defer wg.Done()
 			wh.AddItemUnsafe("itemA", 1)
-			fmt.Printf("Шаг %d: Добавили 1, текущее количество itemA (небезопасно): %d\n", step, wh.GetQuantityUnsafe("itemA"))
+			fmt.Printf("Горутина добавления %d: Добавили 1, текущее количество itemA (небезопасно): %d\n", step, wh.GetQuantityUnsafe("itemA"))
 		}(i)
 
 		go func(step int) {
 			defer wg.Done()
 			wh.RemoveItemUnsafe("itemA", 1)
-			fmt.Printf("Шаг %d: Убрали 1, текущее количество itemA (небезопасно): %d\n", step, wh.GetQuantityUnsafe("itemA"))
+			fmt.Printf("Горутина удаления %d: Убрали 1, текущее количество itemA (небезопасно): %d\n", step, wh.GetQuantityUnsafe("itemA"))
 		}(i)
-
-		time.Sleep(10 * time.Millisecond)
 	}
 
 	wg.Wait()
