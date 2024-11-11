@@ -1,7 +1,7 @@
 name: ann_kozakova
 on:
   push:
-    branches: [ "ann.kozakova/task-6" ]
+    branches: [ "ann.kozakova/task-7" ]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -11,10 +11,9 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: '1.23.1'
-      - name: Test with Go
-        run: go test -json > TestResults.json
-      - name: Upload Go test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: Go-results
-          path: TestResults.json
+      - name: cd into dir
+        run: cd ann.kozakova/task-7
+      - name: Test db with Go
+        run: go test ./internal/db
+      - name: Test wifi with Go
+        run: go test ./internal/wifi
