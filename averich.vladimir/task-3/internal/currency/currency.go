@@ -6,18 +6,18 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"path/filepath"
 	"golang.org/x/net/html/charset"
 	"bytes"
-	"reflect"
 )
 
 type Currency struct {
-	NumCode   int64   `xml:"NumCode"`
-	CharCode  string  `xml:"CharCode"`
-	Nominal   int64   `xml:"Nominal"`
-	Name      string  `xml:"Name"`
-	Value     float64 `xml:"Value"`
-	VunitRate float64 `xml:"VunitRate"`
+	NumCode   int64   `xml:"NumCode" json:"num-code"`
+	CharCode  string  `xml:"CharCode" json:"char-code"`
+	Nominal   int64   `xml:"Nominal" json:"nominal"`
+	Name      string  `xml:"Name" json:"name"`
+	Value     float64 `xml:"Value" json:"value"`
+	VunitRate float64 `xml:"VunitRate" json:"vunit-rate"`
 }
 
 type Currencies struct {
@@ -67,42 +67,54 @@ func (currencies *Currencies) SortByValue(reverse bool) {
 }
 
 func (currencies *Currencies) WriteCurrenciesToJSON(filename string, fields ...string) {
-	var currenciesJSON []map[string]interface{}
+	var output []CurrencyJSON
+
 	for _, currency := range currencies.Currencies {
-		currencyMap := make(map[string]interface{})
-		v := reflect.ValueOf(currency)
-		t := v.Type()
-
-		for i := 0; i < v.NumField(); i++ {
-			field := t.Field(i)
-			jsonTag := field.Tag.Get("json")
-			if jsonTag == "" {
-				continue
-			}
-			if len(fields) == 0 || contains(fields, jsonTag) {
-				currencyMap[jsonTag] = v.Field(i).Interface()
-			}
+		jsonCurrency := CurrencyJSON{
+			NumCode:   currency.NumCode,
+			CharCode:  currency.CharCode,
+			Nominal:   currency.Nominal,
+			Name:      currency.Name,
+			Value:     currency.Value,
+			VunitRate: currency.VunitRate,
 		}
 
-		currenciesJSON = append(currenciesJSON, currencyMap)
+		if len(fields) > 0 {
+			filteredCurrency := CurrencyJSON{}
+			for _, field := range fields {
+				switch field {
+				case "NumCode":
+					filteredCurrency.NumCode = jsonCurrency.NumCode
+				case "CharCode":
+					filteredCurrency.CharCode = jsonCurrency.CharCode
+				case "Nominal":
+					filteredCurrency.Nominal = jsonCurrency.Nominal
+				case "Name":
+					filteredCurrency.Name = jsonCurrency.Name
+				case "Value":
+					filteredCurrency.Value = jsonCurrency.Value
+				case "VunitRate":
+					filteredCurrency.VunitRate = jsonCurrency.VunitRate
+				}
+			}
+			output = append(output, filteredCurrency)
+		} else {
+			output = append(output, jsonCurrency)
+		}
 	}
 
-	data, err := json.MarshalIndent(currenciesJSON, "", "  ")
+	jsonData, err := json.MarshalIndent(output, "", "  ")
 	if err != nil {
 		panic(err)
 	}
 
-	err = os.WriteFile(filename, data, 0644)
+	err = os.MkdirAll(filepath.Dir(filename), os.ModePerm)
 	if err != nil {
 		panic(err)
 	}
-}
 
-func contains(slice []string, item string) bool {
-	for _, s := range slice {
-		if s == item {
-			return true
-		}
+	err = os.WriteFile(filename, jsonData, os.ModePerm)
+	if err != nil {
+		panic(err)
 	}
-	return false
 }
