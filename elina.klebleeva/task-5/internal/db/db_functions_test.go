@@ -128,7 +128,7 @@ func TestScanError(t *testing.T) {
 
 	dbService := db.Service{DB: mockDB}
 
-	// ---------- Тестирование SelectUniqueValues ----------
+	// ---------- Test SelectUniqueValues ----------
 
 	queryUnique := "SELECT DISTINCT name FROM users"
 	rows := sqlmock.NewRows([]string{"name"}).AddRow(nil) // `nil` create error for scan
@@ -140,7 +140,7 @@ func TestScanError(t *testing.T) {
 	require.Contains(t, err.Error(), "rows.Scan failed", "unexpected error message for SelectUniqueValues")
 	require.Nil(t, values, "expected values to be nil due to scan error in SelectUniqueValues")
 
-	// ---------- Тестирование GetName ----------
+	// ---------- Test GetName ----------
 
 	queryGetName := "SELECT name FROM users"
 	mock.ExpectQuery(queryGetName).WithArgs().WillReturnRows(sqlmock.NewRows([]string{"name"}).AddRow(nil))

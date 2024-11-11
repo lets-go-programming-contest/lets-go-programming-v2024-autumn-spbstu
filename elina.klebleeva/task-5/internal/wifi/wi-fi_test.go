@@ -24,6 +24,26 @@ var testTable = []rowTestSysInfo{
 		errExpected: nil,
 	},
 	{
+		addrs:       []string{"00:11:22:33:44:55", "aa:bb:cc:dd:ee:ff"},
+		name_list:   nil,
+		errExpected: errors.New("expectedError"),
+	},
+	{
+		addrs:       nil,
+		name_list:   []string{"Ivan", "Gens228"},
+		errExpected: errors.New("expectedError"),
+	},
+	{
+		addrs:       []string{"00:11:22:33:44:55", "aa:bb:cc:dd:ee:ff"},
+		name_list:   []string{},
+		errExpected: errors.New("expectedError"),
+	},
+	{
+		addrs:       []string{},
+		name_list:   []string{"Ivan", "Gens228"},
+		errExpected: errors.New("expectedError"),
+	},
+	{
 		addrs:       nil,
 		name_list:   nil,
 		errExpected: errors.New("expectedError"),
