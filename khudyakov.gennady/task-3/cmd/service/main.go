@@ -43,5 +43,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	io.WriteFile(data, config.OutputFile)
+	err = io.WriteFile(data, config.OutputFile)
+	if err != nil {
+		panic(err)
+	}
 }
