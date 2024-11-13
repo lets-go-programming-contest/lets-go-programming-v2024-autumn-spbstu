@@ -7,23 +7,16 @@ import (
 	"io"
 	"os"
 	"sort"
-	"strings"
 	"task-3/internal/valuteStrukts"
 
 	"golang.org/x/text/encoding/charmap"
 )
 
 func ParseFromXML(valuteRates *valuteStrukts.ValuteRate, filePath string) error {
-	sort.Slice(valuteRates.ValuteRate, func(i, j int) bool {
-		return valuteRates.ValuteRate[i].Value > valuteRates.ValuteRate[j].Value
-	})
-
 	configFile, err := os.ReadFile(filePath)
 	if err != nil {
 		return fmt.Errorf("failed to read file: %w", err)
 	}
-
-	configFile = []byte(strings.ReplaceAll(string(configFile), ",", "."))
 
 	decoder := xml.NewDecoder(bytes.NewReader(configFile))
 	decoder.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
@@ -37,5 +30,10 @@ func ParseFromXML(valuteRates *valuteStrukts.ValuteRate, filePath string) error 
 	if err != nil {
 		return fmt.Errorf("failed to decode: %w", err)
 	}
+
+	sort.Slice(valuteRates.ValuteRate, func(i, j int) bool {
+		return valuteRates.ValuteRate[i].Value > valuteRates.ValuteRate[j].Value
+	})
+
 	return nil
 }
