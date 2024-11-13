@@ -33,6 +33,7 @@ func (service Service) GetNames() ([]string, error) {
 		if err := rows.Scan(&name); err != nil {
 			return nil, fmt.Errorf("error scanning users: %w", err)
 		}
+
 		names = append(names, name)
 	}
 
@@ -40,7 +41,7 @@ func (service Service) GetNames() ([]string, error) {
 		return nil, fmt.Errorf("error: %w", err)
 	}
 
-	return names, err
+	return names, fmt.Errorf("error: %w", err)
 }
 
 func (service Service) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
@@ -60,6 +61,7 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 		if err := rows.Scan(&value); err != nil {
 			return nil, fmt.Errorf("error scanning users: %w", err)
 		}
+
 		values = append(values, value)
 	}
 
@@ -67,5 +69,5 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 		return nil, fmt.Errorf("error: %w", err)
 	}
 
-	return values, err
+	return values, fmt.Errorf("error: %w", err)
 }
