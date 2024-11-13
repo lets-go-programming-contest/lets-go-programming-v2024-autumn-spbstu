@@ -9,7 +9,7 @@ import (
 func ParseToJSON(data *valuteStrukts.ValuteRate) ([]byte, error) {
 	dataJSON, err := json.MarshalIndent(data, "", " ")
 	if err != nil {
-		return dataJSON, fmt.Errorf("failed to convert to JSON: %w", err)
+		return nil, fmt.Errorf("failed to convert to JSON: %w", err)
 	}
 	return dataJSON, nil
 }
