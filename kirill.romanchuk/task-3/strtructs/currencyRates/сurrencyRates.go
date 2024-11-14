@@ -1,12 +1,17 @@
 package currencyRates
 
 import (
+	"bytes"
 	"encoding/json"
 	"encoding/xml"
+	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"golang.org/x/text/encoding/charmap"
 )
 
 type CurrencyRates struct {
@@ -22,8 +27,23 @@ func (c *CurrencyRates) ParseXML(pathToXML string) {
 		panic(err)
 	}
 
-	modifiedContent := strings.ReplaceAll(string(file), ",", ".")
-	err = xml.Unmarshal([]byte(modifiedContent), c)
+	if filepath.Ext(pathToXML) != ".xml" {
+		panic(fmt.Errorf("файл по пути '%s' не является .xml", pathToXML))
+	}
+
+	modifiedContent := []byte(strings.ReplaceAll(string(file), ",", "."))
+
+	dec := xml.NewDecoder(bytes.NewReader(modifiedContent))
+	dec.CharsetReader = func(encoding string, input io.Reader) (io.Reader, error) {
+		switch encoding {
+		case "windows-1251":
+			return charmap.Windows1251.NewDecoder().Reader(input), nil
+		default:
+			return nil, fmt.Errorf("неподдерживаемая кодировка: %s", encoding)
+		}
+	}
+
+	err = dec.Decode(&c)
 	if err != nil {
 		panic(err)
 	}
