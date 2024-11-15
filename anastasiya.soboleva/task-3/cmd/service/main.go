@@ -13,7 +13,7 @@ import (
 func main() {
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Printf("Произошла ошибка: %v\n", r)
+			fmt.Printf("Error: %v\n", r)
 		}
 	}()
 	configPath := flag.String("config", "config.yaml", "Path to the config file")
@@ -31,5 +31,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Данные обработаны и сохранены успешно.")
+	log.Println("Data processed and saved successfully.")
 }

@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"gopkg.in/yaml.v3"
 
 	"anastasiya.soboleva/task-3/internal/models"
@@ -16,7 +17,7 @@ func ParseConfig(path string) (*models.Configs, error) {
 	var cfg models.Configs
 	decoder := yaml.NewDecoder(file)
 	if err := decoder.Decode(&cfg); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error decoding YAML in config file %s: %w", path, err)
 	}
 	return &cfg, nil
 }

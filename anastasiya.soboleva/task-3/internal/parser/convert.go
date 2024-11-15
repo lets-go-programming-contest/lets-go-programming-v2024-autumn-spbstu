@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -12,11 +13,11 @@ func ConvertToModels(valCurs models.ValCurs) ([]models.Currency, error) {
 	for _, v := range valCurs.Valutes {
 		numCode, err := strconv.Atoi(v.NumCode)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("error converting NumCode %s to integer: %w", v.NumCode, err)
 		}
 		value, err := strconv.ParseFloat(strings.ReplaceAll(v.Value, ",", "."), 32)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("error converting Value %s to float: %w", v.Value, err)
 		}
 		currencies = append(currencies, models.Currency{
 			NumCode:  numCode,
