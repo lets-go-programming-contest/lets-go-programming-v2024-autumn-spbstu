@@ -9,8 +9,6 @@ output:
 
 linters:
   enable-all: true
-  enable:
-    - copyloopvar
   disable:
    # - exhaustivestruct
    # - ifshort
