@@ -1,6 +1,7 @@
 package db
 
 import (
+	"errors"
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
@@ -18,8 +19,8 @@ var testTable = []TestDB{
 		errExpected: nil,
 	},
 	{
-		names:       []string{"Danil", "Dima"},
-		errExpected: nil,
+		names:       []string{"Dasha", "Dima"},
+		errExpected: errors.New("test error"),
 	},
 	/*{
 		names:       nil,
@@ -44,7 +45,7 @@ func TestDBServiceGetNames(t *testing.T) {
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT name FROM users").WillReturnRows(mockDbRows(row.names)).WillReturnError(row.errExpected)
 		names, err := dbService.GetNames()
-		if err != row.errExpected {
+		if !errors.Is(err, row.errExpected) {
 			t.Errorf("Test %d: Expected error '%s', got '%s'", i, row.errExpected, err)
 		}
 		if len(names) != len(row.names) {
@@ -75,7 +76,7 @@ func TestSelectUniqueValues(t *testing.T) {
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT DISTINCT name FROM users").WillReturnRows(mockUniqueRows(row.names)).WillReturnError(row.errExpected)
 		names, err := dbService.SelectUniqueValues("name", "users")
-		if err != row.errExpected {
+		if !errors.Is(err, row.errExpected) {
 			t.Errorf("Test %d: Expected error '%s', got '%s'", i, row.errExpected, err)
 		}
 		if len(names) != len(row.names) {
