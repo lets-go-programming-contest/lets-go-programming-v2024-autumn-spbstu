@@ -9,17 +9,19 @@ output:
 
 linters:
   enable-all: true
+  enable:
+    - copyloopvar
   disable:
-    - exhaustivestruct
-    - ifshort
-    - maligned
-    - interfacer
-    - deadcode
-    - golint
-    - varcheck
-    - structcheck
-    - nosnakecase
-    - scopelint
+   # - exhaustivestruct
+   # - ifshort
+   # - maligned
+   # - interfacer
+   # - deadcode
+   # - golint
+   # - varcheck
+   # - structcheck
+   # - nosnakecase
+   # - scopelint
     - varnamelen
     - forbidigo
     - goimports
