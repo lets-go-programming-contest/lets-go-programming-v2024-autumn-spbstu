@@ -6,6 +6,7 @@ import (
 
 	"github.com/DATA-DOG/go-sqlmock"
 	mapset "github.com/deckarep/golang-set/v2"
+	"github.com/stretchr/testify/require"
 )
 
 type TestDB struct {
@@ -15,11 +16,9 @@ type TestDB struct {
 
 var testTable = []TestDB{
 	{
-		names:       []string{"Masha", "Danil", "Pasha"},
-		errExpected: nil,
+		names: []string{"Masha", "Danil", "Pasha"},
 	},
 	{
-		names:       []string{"Dasha", "Dima"},
 		errExpected: errors.New("test error"),
 	},
 	/*{
@@ -45,12 +44,13 @@ func TestDBServiceGetNames(t *testing.T) {
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT name FROM users").WillReturnRows(mockDbRows(row.names)).WillReturnError(row.errExpected)
 		names, err := dbService.GetNames()
-		if !errors.Is(err, row.errExpected) {
-			t.Errorf("Test %d: Expected error '%s', got '%s'", i, row.errExpected, err)
+		if row.errExpected == nil {
+			require.ErrorIs(t, err, row.errExpected, "row %d: expected error: %w, current error: %w", i, row.errExpected, err)
+			require.Nil(t, names, "row %d: expected names to be nil", i)
+			continue
 		}
-		if len(names) != len(row.names) {
-			t.Errorf("Test %d: Expected %d names, got %d", i, len(row.names), len(names))
-		}
+		require.NoError(t, err, "row %d: expected error to be nil", i)
+		require.Equal(t, row.names, names, "row %d: expected names to be equal", i)
 	}
 }
 
@@ -76,12 +76,13 @@ func TestSelectUniqueValues(t *testing.T) {
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT DISTINCT name FROM users").WillReturnRows(mockUniqueRows(row.names)).WillReturnError(row.errExpected)
 		names, err := dbService.SelectUniqueValues("name", "users")
-		if !errors.Is(err, row.errExpected) {
-			t.Errorf("Test %d: Expected error '%s', got '%s'", i, row.errExpected, err)
+		if row.errExpected == nil {
+			require.ErrorIs(t, err, row.errExpected, "row %d: expected error: %w, current error: %w", i, row.errExpected, err)
+			require.Nil(t, names, "row %d: expected names to be nil", i)
+			continue
 		}
-		if len(names) != len(row.names) {
-			t.Errorf("Test %d: Expected %d names, got %d", i, len(row.names), len(names))
-		}
+		require.NoError(t, err, "row %d: expected error to be nil", i)
+		require.Equal(t, row.names, names, "row %d: expected names to be equal", i)
 	}
 }
 
