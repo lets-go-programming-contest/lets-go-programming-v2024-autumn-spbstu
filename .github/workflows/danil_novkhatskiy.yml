@@ -3,7 +3,7 @@ on:
   push:
     branches: ["danil.novokhatskiy/task-7"]
 jobs:
-  My tests of task-7:
+  My tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
