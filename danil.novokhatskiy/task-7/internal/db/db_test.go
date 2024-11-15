@@ -16,10 +16,10 @@ type TestDB struct {
 
 var testTable = []TestDB{
 	{
-		names: []string{"Masha", "Danil", "Pasha"},
+		[]string{"Masha", "Danil", "Pasha"}, nil,
 	},
 	{
-		errExpected: errors.New("test error"),
+		nil, errors.New("test error"),
 	},
 	/*{
 		names:       nil,
