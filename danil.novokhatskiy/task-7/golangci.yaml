@@ -8,7 +8,7 @@ output:
       path: ./mistakes.xml
 
 linters:
-  enable-all: true
+  #enable-all: true
   disable:
    # - exhaustivestruct
    # - ifshort
@@ -27,8 +27,6 @@ linters:
   fast: false
 
 linters-settings:
-  copyloopvar:
-    check-alias: true
   gci:
     sections:
       - standard
