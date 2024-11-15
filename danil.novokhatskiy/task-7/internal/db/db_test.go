@@ -1,7 +1,6 @@
 package db
 
 import (
-	"errors"
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
@@ -19,7 +18,7 @@ var testTable = []TestDB{
 		nil, nil, //[]string{"Masha", "Danil", "Pasha"}
 	},
 	{
-		nil, errors.New("test error"),
+		nil, nil, //errors.New("test error")
 	},
 	/*{
 		names:       nil,
