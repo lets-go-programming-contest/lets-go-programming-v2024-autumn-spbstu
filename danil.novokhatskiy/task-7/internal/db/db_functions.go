@@ -2,7 +2,6 @@ package db
 
 import (
 	"database/sql"
-	"fmt"
 )
 
 type Database interface {
@@ -22,7 +21,7 @@ func (service Service) GetNames() ([]string, error) {
 
 	rows, err := service.DB.Query(query)
 	if err != nil {
-		return nil, fmt.Errorf("error querying users: %w", err)
+		return nil, err //fmt.Errorf("error querying users: %w", err)
 	}
 	defer rows.Close()
 
@@ -31,17 +30,17 @@ func (service Service) GetNames() ([]string, error) {
 	for rows.Next() {
 		var name string
 		if err := rows.Scan(&name); err != nil {
-			return nil, fmt.Errorf("error scanning users: %w", err)
+			return nil, err //fmt.Errorf("error scanning users: %w", err)
 		}
 
 		names = append(names, name)
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, fmt.Errorf("error: %w", err)
+		return nil, err //fmt.Errorf("error: %w", err)
 	}
 
-	return names, fmt.Errorf("error: %w", err)
+	return names, err //fmt.Errorf("error: %w", err)
 }
 
 func (service Service) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
@@ -49,7 +48,7 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 	rows, err := service.DB.Query(query)
 
 	if err != nil {
-		return nil, fmt.Errorf("error querying users: %w", err)
+		return nil, err //fmt.Errorf("error querying users: %w", err)
 	}
 
 	defer rows.Close()
@@ -59,15 +58,15 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 	for rows.Next() {
 		var value string
 		if err := rows.Scan(&value); err != nil {
-			return nil, fmt.Errorf("error scanning users: %w", err)
+			return nil, err //fmt.Errorf("error scanning users: %w", err)
 		}
 
 		values = append(values, value)
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, fmt.Errorf("error: %w", err)
+		return nil, err //fmt.Errorf("error: %w", err)
 	}
 
-	return values, fmt.Errorf("error: %w", err)
+	return values, err //fmt.Errorf("error: %w", err)
 }
