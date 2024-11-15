@@ -1,6 +1,6 @@
 module github.com/katagiriwhy/task-7
 
-go 1.19
+go 1.23.1
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2

@@ -39,4 +39,4 @@ linters-settings:
       main:
         allow:
           - $gostd
-          - "github.com/task-7/internal/wifi"
+          - github.com/spbpu_go_course/lab_5
