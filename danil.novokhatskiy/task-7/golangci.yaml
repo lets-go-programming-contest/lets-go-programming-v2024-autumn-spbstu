@@ -8,7 +8,7 @@ output:
       path: ./mistakes.xml
 
 linters:
-  #enable-all: true
+  enable-all: true
   disable:
    # - exhaustivestruct
    # - ifshort
@@ -23,6 +23,7 @@ linters:
     - varnamelen
     - forbidigo
     - goimports
+    - exportloopref
 
   fast: false
 
