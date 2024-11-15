@@ -27,6 +27,8 @@ linters:
   fast: false
 
 linters-settings:
+  copyloopvar:
+    check-alias: true
   gci:
     sections:
       - standard
