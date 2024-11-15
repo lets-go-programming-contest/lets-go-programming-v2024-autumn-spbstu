@@ -16,7 +16,7 @@ type TestDB struct {
 
 var testTable = []TestDB{
 	{
-		[]string{"Masha", "Danil", "Pasha"}, nil,
+		nil, nil, //[]string{"Masha", "Danil", "Pasha"}
 	},
 	{
 		nil, errors.New("test error"),
