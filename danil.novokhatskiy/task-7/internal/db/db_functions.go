@@ -37,7 +37,7 @@ func (service Service) GetNames() ([]string, error) {
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, err //fmt.Errorf("error: %w", err)
+		return nil, err //fmt.Errorf("error: %w", err)123
 	}
 
 	return names, err //fmt.Errorf("error: %w", err)
