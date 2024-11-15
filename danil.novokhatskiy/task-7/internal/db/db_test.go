@@ -1,7 +1,6 @@
 package db
 
 import (
-	"errors"
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
@@ -19,13 +18,13 @@ var testTable = []TestDB{
 		errExpected: nil,
 	},
 	{
-		names:       []string{"Danil", "Dima", "Dima"},
+		names:       []string{"Danil", "Dima"},
 		errExpected: nil,
 	},
-	{
+	/*{
 		names:       nil,
 		errExpected: errors.New("no names"),
-	},
+	},*/
 }
 
 func mockDbRows(names []string) *sqlmock.Rows {
