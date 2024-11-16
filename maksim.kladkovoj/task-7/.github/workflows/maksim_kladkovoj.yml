@@ -1,0 +1,7 @@
+name: maksim_kladkovoj
+
+on:
+  push:
+    branches: ["task-7"]
+
+jobs:
