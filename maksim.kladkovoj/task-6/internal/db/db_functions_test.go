@@ -11,13 +11,13 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type ValueTestDB struct {
+type testTableDB struct {
 	Names         []string
 	ExpectedValue []string
 	ExpectedError error
 }
 
-var TestValue = []ValueTestDB{
+var testTable = []testTableDB{
 	{
 		Names:         []string{"Maksim", "Ivan", "Andrew"},
 		ExpectedValue: []string{"Maksim", "Ivan", "Andrew"},
@@ -50,7 +50,7 @@ func TestGetNames(t *testing.T) {
 
 	dbService := db.Service{DB: mockDB}
 
-	for i, row := range TestValue {
+	for i, row := range testTable {
 		mock.ExpectQuery("SELECT name FROM users").WillReturnRows(mockDbRows(row.Names)).WillReturnError(row.ExpectedError)
 
 		names, err := dbService.GetNames()
@@ -85,7 +85,7 @@ func TestSelectUniqueValues(t *testing.T) {
 
 	dbService := db.Service{DB: mockDB}
 
-	for i, row := range TestValue {
+	for i, row := range testTable {
 		mock.ExpectQuery("SELECT DISTINCT name FROM users").WillReturnRows(mockDbRowsDistinct(row.Names)).WillReturnError(row.ExpectedError)
 
 		names, err := dbService.SelectUniqueValues("name", "users")
