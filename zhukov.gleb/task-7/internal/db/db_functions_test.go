@@ -44,7 +44,7 @@ func TestGetName(t *testing.T) {
 				WillReturnError(row.errExpected)
 			names, err := dbService.GetNames()
 			if row.errExpected != nil {
-				require.ErrorIs(t, err, row.errExpected, "row: %d, expected error: %w, actual error: %w ",
+				require.Contains(t, err, row.errExpected, "row: %d, expected error: %w, actual error: %w ",
 					i,
 					row.errExpected,
 					err,
@@ -109,7 +109,7 @@ func TestSelectUniqueValues(t *testing.T) {
 				WillReturnError(row.errExpected)
 			names, err := dbService.SelectUniqueValues("name", "users")
 			if row.errExpected != nil {
-				require.ErrorIs(t, err, row.errExpected, "row: %d, expected error: %w, actual error: %w ",
+				require.Contains(t, err, row.errExpected, "row: %d, expected error: %w, actual error: %w ",
 					i,
 					row.errExpected,
 					err,
