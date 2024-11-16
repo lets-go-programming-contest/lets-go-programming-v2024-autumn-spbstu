@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	"time"
+
 	"sync"
 	syncfibonacci "task-4/internal/sync_fibonacci"
 	unsyncfibonacci "task-4/internal/unsync_fibonacci"
-	"time"
 )
 
 func main() {
@@ -22,7 +23,7 @@ func main() {
 		wg.Add(1)
 		go func(row int) {
 			defer wg.Done()
-			syncfibonacci.WriteToMatrix(row, resultChan)
+			syncfibonacci.WriteToMatrix(row, resultChan) // Теперь передаем канал в функцию
 		}(i)
 	}
 
@@ -48,7 +49,7 @@ func main() {
 			if row%2 == 0 {                    // Условие для имитации дедлока (попытка записи в одну и ту же строку)
 				time.Sleep(200 * time.Millisecond)
 			}
-			unsyncfibonacci.WriteToMatrix(row) // Может вызвать дедлок или некорректные значения!
+			unsyncfibonacci.WriteToMatrix(row) // Здесь произойдет дедлок или зависание!
 		}(i)
 	}
 
