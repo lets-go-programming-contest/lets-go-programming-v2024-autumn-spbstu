@@ -1,0 +1,30 @@
+run:
+  timeout: 5m
+  tests: false
+
+linters:
+  enable-all: true
+  disable:
+    - exportloopref
+    - varnamelen
+    - forbidigo
+    - goimports
+
+  fast: false
+
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(task-7)
+    skip-generated: false
+    custom-order: true
+  depguard:
+    rules:
+      main:
+        files:
+          - !$test
+        allow:
+          - $gostd
+          - github.com/spbpu_go_course/lab_5
