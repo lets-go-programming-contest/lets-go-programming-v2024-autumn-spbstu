@@ -17,11 +17,11 @@ jobs:
 
     - name: test_database
       working-directory: elina.klebleeva/task-7
-      run: go test -v internal/db -json > actions_reports/db_report.json
+      run: go test -v internal/db
       
     - name: test_wifi
       working-directory: elina.klebleeva/task-7
-      run: go test -v internal/wifi -json > actions_reports/wifi_report.json
+      run: go test -v internal/wifi
 
     - name: install_golangci_lint
       run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.62.0
