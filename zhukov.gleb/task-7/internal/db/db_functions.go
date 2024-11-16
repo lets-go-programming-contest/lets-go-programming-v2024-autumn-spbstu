@@ -26,12 +26,14 @@ func (service Service) GetNames() ([]string, error) {
 	}
 	defer rows.Close()
 
-	names := make([]string, 0)
+	var names []string
+
 	for rows.Next() {
 		var name string
 		if err = rows.Scan(&name); err != nil {
 			return nil, fmt.Errorf("rows.Scan err: %w", err)
 		}
+
 		names = append(names, name)
 	}
 
@@ -44,19 +46,24 @@ func (service Service) GetNames() ([]string, error) {
 
 func (service Service) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
 	query := "SELECT DISTINCT " + columnName + " FROM " + tableName
+
 	var err error
+
 	rows, err := service.DB.Query(query)
 	if err != nil {
 		return nil, fmt.Errorf("query DB err: %w", err)
 	}
+
 	defer rows.Close()
 
-	values := make([]string, 0)
+	var values []string
+
 	for rows.Next() {
 		var value string
 		if err = rows.Scan(&value); err != nil {
 			return nil, fmt.Errorf("rows.Scan err: %w", err)
 		}
+
 		values = append(values, value)
 	}
 
