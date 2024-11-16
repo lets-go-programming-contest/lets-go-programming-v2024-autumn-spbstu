@@ -12,6 +12,7 @@ func main() {
 	wifiClient, err := wifi.New()
 	if err != nil {
 		fmt.Printf("Ошибка при создании wifiClient: %s\n", err.Error())
+
 		return
 	}
 

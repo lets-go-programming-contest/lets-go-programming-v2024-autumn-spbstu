@@ -32,7 +32,7 @@ func TestGetAddresses(t *testing.T) {
 
 	t.Run("whole GetAddresses test", func(t *testing.T) {
 		mockWifi := NewWiFi(t)
-		wifiService := myWifi.WiFiService{WiFi: mockWifi}
+		wifiService := myWifi.Service{WiFi: mockWifi}
 		for i, row := range testTable {
 			mockWifi.On("Interfaces").
 				Unset()
