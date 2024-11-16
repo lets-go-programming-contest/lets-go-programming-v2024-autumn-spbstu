@@ -28,7 +28,7 @@ jobs:
 
       - name: Install golangci-lint
         working-directory: zhukov.gleb/task-7
-        run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
       - name: Run golangci-lint
         working-directory: zhukov.gleb/task-7

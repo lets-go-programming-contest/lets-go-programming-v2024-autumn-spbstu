@@ -5,22 +5,10 @@ run:
 linters:
   enable-all: true
   disable:
-    - exhaustivestruct
-    - ifshort
-    - maligned
-    - interfacer
-    - deadcode
-    - golint
-    - varcheck
-    - structcheck
-    - nosnakecase
-    - scopelint
+    - exportloopref
     - varnamelen
     - forbidigo
     - goimports
-  gocritic:
-    GOROOT:
-      -C:/Users/glebz/go/cmd/mod/golang.org/toolchain@v0.0.1-go1.23.2.windows-amd64
 
   fast: false
 
@@ -29,7 +17,7 @@ linters-settings:
     sections:
       - standard
       - default
-      - prefix(task-5)
+      - prefix(task-7)
     skip-generated: false
     custom-order: true
   depguard:
