@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 
 	"golang.org/x/text/encoding/charmap"
@@ -31,9 +32,7 @@ func (c *CurrencyRates) ParseXML(pathToXML string) {
 		panic(fmt.Errorf("файл по пути '%s' не является .xml", pathToXML))
 	}
 
-	modifiedContent := []byte(strings.ReplaceAll(string(file), ",", "."))
-
-	dec := xml.NewDecoder(bytes.NewReader(modifiedContent))
+	dec := xml.NewDecoder(bytes.NewReader(file))
 	dec.CharsetReader = func(encoding string, input io.Reader) (io.Reader, error) {
 		switch encoding {
 		case "windows-1251":
@@ -43,10 +42,15 @@ func (c *CurrencyRates) ParseXML(pathToXML string) {
 		}
 	}
 
-	err = dec.Decode(&c)
+	tempRates := tempCurrencyRates{}
+	err = dec.Decode(&tempRates)
+
 	if err != nil {
 		panic(err)
 	}
+
+	convertToCurrencyRates(c, tempRates)
+
 }
 
 // If reverse is false, the currencies are sorted in ascending order.
@@ -113,5 +117,41 @@ func (c *CurrencyRates) ExportSelectedCurrencyRatesToJSON(filename string, field
 	err = os.WriteFile(filename, jsonData, os.ModePerm)
 	if err != nil {
 		panic(err)
+	}
+}
+
+type tempCurrency struct {
+	NumCode   int64  `xml:"NumCode"`
+	CharCode  string `xml:"CharCode"`
+	Nominal   int64  `xml:"Nominal"`
+	Name      string `xml:"Name"`
+	Value     string `xml:"Value"`
+	VunitRate string `xml:"VunitRate"`
+}
+
+type tempCurrencyRates struct {
+	XMLName    xml.Name       `xml:"ValCurs"`
+	Date       string         `xml:"Date,attr"`
+	Name       string         `xml:"name,attr"` // Name of the currency market from XML.
+	Currencies []tempCurrency `xml:"Valute"`
+}
+
+func convertToCurrencyRates(currRates *CurrencyRates, tempRates tempCurrencyRates) {
+	currRates.XMLName = tempRates.XMLName
+	currRates.Date = tempRates.Date
+	currRates.Name = tempRates.Name
+
+	for _, tempCurr := range tempRates.Currencies {
+		value, _ := strconv.ParseFloat(strings.ReplaceAll(tempCurr.Value, ",", "."), 64)
+		vunitRate, _ := strconv.ParseFloat(strings.ReplaceAll(tempCurr.VunitRate, ",", "."), 64)
+		convertedCurrency := Currency{
+			NumCode:   tempCurr.NumCode,
+			CharCode:  tempCurr.CharCode,
+			Nominal:   tempCurr.Nominal,
+			Name:      tempCurr.Name,
+			Value:     value,
+			VunitRate: vunitRate,
+		}
+		currRates.Currencies = append(currRates.Currencies, convertedCurrency)
 	}
 }
