@@ -19,8 +19,8 @@ type rowTestDb struct {
 
 var testTable = []rowTestDb{
 	{
-		names:       []string{"Ivan", "Gens228"},
-		uniqeExpect: []string{"Ivan", "Gens228"},
+		names:       []string{"Enola", "Gens228"},
+		uniqeExpect: []string{"Enola", "Gens228"},
 		errExpected: nil,
 	},
 	{
