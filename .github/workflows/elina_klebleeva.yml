@@ -3,8 +3,6 @@ name: Go
 on:
   push:
     branches: [ "elina-klebleeva-task-7" ]
-  pull_request:
-    branches: [ "elina-klebleeva-task-7" ]
 
 jobs:
   Go-Tests:
@@ -18,9 +16,9 @@ jobs:
         go-version: '1.23.2'
 
     - name: database
-      working-directory: .elina.klebleeva/task-7/internal/db
+      working-directory: elina.klebleeva/task-7/internal/db
       run: go test -v ./...
       
     - name: wifi
-      working-directory: .elina.klebleeva/task-7/internal/wifi
+      working-directory: elina.klebleeva/task-7/internal/wifi
       run: go test -v ./...
