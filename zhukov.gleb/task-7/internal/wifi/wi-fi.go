@@ -23,6 +23,7 @@ func (service WiFiService) GetAddresses() ([]net.HardwareAddr, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	var addrs []net.HardwareAddr
 
 	for _, iface := range interfaces {
