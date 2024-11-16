@@ -22,7 +22,7 @@ func New(wifi WiFi) Service {
 func (service Service) GetAddresses() ([]net.HardwareAddr, error) {
 	interfaces, err := service.WiFi.Interfaces()
 	if err != nil {
-		return nil, fmt.Errorf("GetAddresses interfaces err: %v", err)
+		return nil, fmt.Errorf("GetAddresses interfaces err: %w", err)
 	}
 
 	addrs := make([]net.HardwareAddr, 0)
@@ -36,13 +36,13 @@ func (service Service) GetAddresses() ([]net.HardwareAddr, error) {
 func (service Service) GetNames() ([]string, error) {
 	interfaces, err := service.WiFi.Interfaces()
 	if err != nil {
-		return nil, fmt.Errorf("GetNames interfaces err: %v", err)
+		return nil, fmt.Errorf("GetNames interfaces err: %w", err)
 	}
 
-	name_list := make([]string, 0)
+	nameList := make([]string, 0)
 	for _, iface := range interfaces {
-		name_list = append(name_list, iface.Name)
+		nameList = append(nameList, iface.Name)
 	}
 
-	return name_list, nil
+	return nameList, nil
 }
