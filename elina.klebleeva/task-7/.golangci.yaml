@@ -26,7 +26,7 @@ linters-settings:
     sections:
       - standard
       - default
-      - prefix(github.com/EmptyInsid/task-5)
+      - prefix(github.com/EmptyInsid/task-7)
     skip-generated: false
     custom-order: true
   depguard:
@@ -36,9 +36,9 @@ linters-settings:
           - !$test
         allow:
           - $gostd
-          - github.com/spbpu_go_course/lab_5
+          - github.com/spbpu_go_course/lab_7
 
 output:
   formats:
     - format: checkstyle
-      path: ./cilint_reports/report_after.xml
+      path: ./actions_reports/lint_report.xml
