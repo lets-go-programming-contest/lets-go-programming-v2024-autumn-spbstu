@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"task-5/internal/db"
+	"task-7/internal/db"
 
 	sqlmock "github.com/DATA-DOG/go-sqlmock"
 	"github.com/stretchr/testify/require"

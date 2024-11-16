@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	dbPack "task-5/internal/db"
+	dbPack "task-7/internal/db"
 
 	_ "github.com/lib/pq"
 )
