@@ -5,6 +5,16 @@ run:
 linters:
   enable-all: true
   disable:
+    - exhaustivestruct
+    - ifshort
+    - maligned
+    - interfacer
+    - deadcode
+    - golint
+    - varcheck
+    - structcheck
+    - nosnakecase
+    - scopelint
     - varnamelen
     - forbidigo
     - goimports
