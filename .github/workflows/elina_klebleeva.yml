@@ -18,9 +18,9 @@ jobs:
         go-version: '1.23.2'
 
     - name: database
-      working-directory: ./internal/db
+      working-directory: .elina.klebleeva/task-7/internal/db
       run: go test -v ./...
       
     - name: wifi
-      working-directory: ./internal/wifi
+      working-directory: .elina.klebleeva/task-7/internal/wifi
       run: go test -v ./...
