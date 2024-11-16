@@ -32,4 +32,4 @@ jobs:
 
       - name: Run golangci-lint
         working-directory: zhukov.gleb/task-7
-        run: golangci-lint run ../.
+        run: golangci-lint run
