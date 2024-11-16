@@ -3,6 +3,8 @@ name: Go
 on:
   push:
     branches: [ "elina-klebleeva-task-7" ]
+  pull_request:
+    branches: [ "elina-klebleeva-task-7" ]
 
 jobs:
   Go-Tests:
