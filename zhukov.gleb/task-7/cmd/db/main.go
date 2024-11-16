@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"log"
 
-	dbPack "task-7/internal/db"
-
 	_ "github.com/lib/pq"
+
+	dbPack "task-7/internal/db"
 )
 
 func main() {
