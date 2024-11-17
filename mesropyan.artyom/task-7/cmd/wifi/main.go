@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	myWifi "github.com/artem6554/task-6/internal/wifi"
+	myWifi "github.com/artem6554/task-7/internal/wifi"
 	"github.com/mdlayher/wifi"
 )
 

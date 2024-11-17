@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	dbPack "github.com/artem6554/task-6/internal/db"
+	dbPack "github.com/artem6554/task-7/internal/db"
 )
 
 func main() {
