@@ -59,10 +59,10 @@ func main() {
         panic(err)
     }
     file, err := os.OpenFile(configuration.OutputFile, os.O_CREATE|os.O_RDWR, 0644)
-    defer file.Close()
     if err != nil {
         panic(err)
     }
+    defer file.Close()
     os.WriteFile(file.Name(), data, os.ModePerm)
     if err != nil {
         panic(err)
