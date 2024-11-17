@@ -113,4 +113,3 @@ func TestGetNamesError(t *testing.T) {
 		t.Fatalf("expected nil names, got %v", names)
 	}
 }
-
