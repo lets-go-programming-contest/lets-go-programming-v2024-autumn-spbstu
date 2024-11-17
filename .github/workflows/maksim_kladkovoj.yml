@@ -29,4 +29,4 @@ jobs:
 
     - name: Linting on golangci-lint
       working-directory: ./maksim.kladkovoj/task-7
-      run: golangci-lint run --config=./.golangci.yml
+      run: golangci-lint run --config=./.golangci.yaml
