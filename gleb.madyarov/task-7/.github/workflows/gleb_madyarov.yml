@@ -2,7 +2,7 @@ name: gleb_madyarov
 
 on:
   push:
-    branches: ["task-7"]
+    branches: ["gleb.madyarov/task-7"]
 
 jobs:
   build:
