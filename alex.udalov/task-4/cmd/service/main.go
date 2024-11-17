@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-
 	"sync"
+
 	syncfibonacci "task-4/internal/sync_fibonacci"
 	unsyncfibonacci "task-4/internal/unsync_fibonacci"
 )
@@ -16,13 +16,13 @@ func main() {
 	}
 
 	mode := os.Args[1]
-	const rows = 10
+	const rows = 100
 
 	if mode == "sync" {
 		fmt.Println("Запуск синхронизированного режима:")
-		syncfibonacci.InitMatrix(rows)
 
-		resultChan := make(chan int, rows)
+		var matrix syncfibonacci.Matrix
+		matrix.Init(rows)
 
 		var wg sync.WaitGroup
 
@@ -30,38 +30,37 @@ func main() {
 			wg.Add(1)
 			go func(row int) {
 				defer wg.Done()
-				syncfibonacci.WriteToMatrix(row, resultChan)
+				matrix.FillRandom()
 			}(i)
 		}
 
 		wg.Wait()
-		close(resultChan)
 
 		fmt.Println("Результат матрицы (синхронизировано):")
-		for result := range resultChan {
-			fmt.Println(result)
+		for _, row := range matrix.GetMatrix() {
+			fmt.Println(row)
 		}
 
 	} else if mode == "unsync" {
 		fmt.Println("Запуск несинхронизированного режима:")
-		unsyncfibonacci.InitMatrix(rows)
 
-		var wgUnsync sync.WaitGroup
+		var matrix unsyncfibonacci.Matrix
+		matrix.Init(rows)
 
 		ch := make(chan int)
 
-		for i := 0; i < rows; i++ {
-			wgUnsync.Add(1)
-			go func(row int) {
-				defer wgUnsync.Done()
-				unsyncfibonacci.WriteToMatrix(row, ch)
-			}(i)
-		}
+		var wg sync.WaitGroup
 
-		wgUnsync.Wait()
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			matrix.FillRandom(ch)
+		}()
+
+		wg.Wait()
 
 		fmt.Println("Результат матрицы (без синхронизации):")
-		for _, row := range unsyncfibonacci.GetMatrix() {
+		for _, row := range matrix.GetMatrix() {
 			fmt.Println(row)
 		}
 	} else {
