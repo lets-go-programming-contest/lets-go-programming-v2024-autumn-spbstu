@@ -6,14 +6,17 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
+	"strconv"
 
 	"golang.org/x/text/encoding/charmap"
 )
 
+type CurrencyValue float64
+
 type Currency struct {
-	NumCode  string  `json:"num_code" xml:"NumCode"`
-	CharCode string  `json:"char_code" xml:"CharCode"`
-	Value    float64 `json:"value" xml:"Value"`
+	NumCode  string        `json:"num_code" xml:"NumCode"`
+	CharCode string        `json:"char_code" xml:"CharCode"`
+	Value    CurrencyValue `json:"value" xml:"Value"`
 }
 
 type Currencies struct {
@@ -32,7 +35,7 @@ func (c *Currencies) Swap(i, j int) {
 	c.Valute[i], c.Valute[j] = c.Valute[j], c.Valute[i]
 }
 
-func (c *Currencies) ParseXML(data []byte) (Currencies, error) {
+func (c *Currencies) ParseXML(data []byte) (*Currencies, error) {
 	decoder := xml.NewDecoder(bytes.NewReader(data))
 	decoder.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
 		switch charset {
@@ -45,10 +48,10 @@ func (c *Currencies) ParseXML(data []byte) (Currencies, error) {
 
 	err := decoder.Decode(&c)
 	if err != nil {
-		return *c, err
+		return nil, err
 	}
 
-	return *c, nil
+	return c, nil
 }
 
 func (c Currencies) ConvertToJSON() ([]byte, error) {
@@ -58,4 +61,22 @@ func (c Currencies) ConvertToJSON() ([]byte, error) {
 	}
 
 	return data, nil
+}
+
+func (currencyValue *CurrencyValue) UnmarshalXML(decoder *xml.Decoder, start xml.StartElement) error {
+	var data []byte
+	err := decoder.DecodeElement(&data, &start)
+	if err != nil {
+		return err
+	}
+
+	data = bytes.ReplaceAll(data, []byte(","), []byte("."))
+
+	result, err := strconv.ParseFloat(string(data), 64)
+	if err != nil {
+		return err
+	}
+
+	*currencyValue = CurrencyValue(result)
+	return nil
 }

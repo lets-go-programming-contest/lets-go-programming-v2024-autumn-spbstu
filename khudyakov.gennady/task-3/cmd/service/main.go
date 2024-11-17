@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"flag"
 	"fmt"
 	"os"
@@ -31,14 +30,12 @@ func main() {
 		panic(fmt.Errorf("open source file failed: %w", err))
 	}
 
-	source = bytes.ReplaceAll(source, []byte(","), []byte("."))
-
 	currencies, err := (&currencies.Currencies{}).ParseXML(source)
 	if err != nil {
 		panic(err)
 	}
 
-	sort.Sort(&currencies)
+	sort.Sort(currencies)
 	data, err := currencies.ConvertToJSON()
 	if err != nil {
 		panic(err)
