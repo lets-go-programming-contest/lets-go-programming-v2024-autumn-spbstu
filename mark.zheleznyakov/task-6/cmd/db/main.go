@@ -3,8 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	_ "github.com/lib/pq"
 	"log"
-  _ "github.com/lib/pq"
 
 	dbPack "github.com/mrqiz/task-6/internal/db"
 )
