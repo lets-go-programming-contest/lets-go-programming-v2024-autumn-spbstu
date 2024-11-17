@@ -1,0 +1,32 @@
+name: gleb_madyarov
+
+on:
+  push:
+    branches: ["task-7"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22.2'
+
+    - name: Test DB
+      working-directory: ./gleb_madyarov/task-7
+      run: go test -v ./internal/db/...
+
+    - name: Test WiFi
+      working-directory: ./gleb_madyarov/task-7
+      run: go test -v ./internal/wifi/...
+
+    - name: Install golangci-lint
+      run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.62.0
+
+    - name: Run golangci-lint
+      working-directory: ./gleb_madyarov/task-7
+      run: golangci-lint run --config=.golangci.yml
