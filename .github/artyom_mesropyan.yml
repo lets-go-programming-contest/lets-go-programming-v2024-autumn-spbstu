@@ -18,11 +18,11 @@ jobs:
 
     - name: Test db
       working-directory: ./mesropyan.artyom/task-7
-      run: go test -v go test -v ./internal/db/...
+      run: go test -v ./internal/db/...
 
     - name: Test WiFi
       working-directory: ./mesropyan.artyom/task-7
-      run: go test -v go test -v ./internal/wifi/...
+      run: go test -v ./internal/wifi/...
 
     - name: Install golangci-lint
       run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.60.3
