@@ -1,4 +1,4 @@
-module example_mock
+module task-6
 
 go 1.19
 

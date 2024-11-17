@@ -2,9 +2,9 @@ package main
 
 import (
 	"database/sql"
-	dbPack "example_mock/internal/db"
 	"fmt"
 	"log"
+	dbPack "task-6/internal/db"
 )
 
 func main() {

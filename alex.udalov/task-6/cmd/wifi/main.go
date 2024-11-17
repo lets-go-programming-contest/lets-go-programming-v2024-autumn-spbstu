@@ -1,8 +1,9 @@
 package main
 
 import (
-	myWifi "example_mock/internal/wifi"
 	"fmt"
+	myWifi "task-6/internal/wifi"
+
 	"github.com/mdlayher/wifi"
 )
 
