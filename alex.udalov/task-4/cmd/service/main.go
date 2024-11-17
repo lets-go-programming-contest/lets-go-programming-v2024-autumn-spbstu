@@ -16,7 +16,7 @@ func main() {
 	}
 
 	mode := os.Args[1]
-	const rows = 100
+	const rows = 10
 
 	if mode == "sync" {
 		fmt.Println("Запуск синхронизированного режима:")
