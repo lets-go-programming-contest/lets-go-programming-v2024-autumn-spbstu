@@ -23,7 +23,7 @@ func (service Service) GetNames() ([]string, error) {
 
 	rows, err := service.DB.Query(query)
 	if err != nil {
-		return nil, fmt.Errorf("error:%w", err)
+		return nil, fmt.Errorf("%w", err)
 	}
 
 	defer rows.Close()
@@ -41,10 +41,10 @@ func (service Service) GetNames() ([]string, error) {
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, fmt.Errorf("error:%w", err)
+		return nil, fmt.Errorf("%w", err)
 	}
 
-	return names, fmt.Errorf("error:%w", err)
+	return names, nil
 }
 
 func (service Service) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
@@ -52,7 +52,7 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 
 	rows, err := service.DB.Query(query)
 	if err != nil {
-		return nil, fmt.Errorf("error:%w", err)
+		return nil, fmt.Errorf("%w", err)
 	}
 
 	defer rows.Close()
@@ -70,8 +70,8 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, fmt.Errorf("error:%w", err)
+		return nil, fmt.Errorf("%w", err)
 	}
 
-	return values, fmt.Errorf("error:%w", err)
+	return values, nil
 }

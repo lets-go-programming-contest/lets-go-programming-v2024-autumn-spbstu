@@ -27,7 +27,6 @@ var testTable = []rowTestDb{
 	{
 		names:       []string{"Ivan, Gena228"},
 		uniqueNames: []string{"Ivan, Gena228"},
-		errExpected: nil,
 	},
 	{
 		names:       nil,
@@ -37,7 +36,6 @@ var testTable = []rowTestDb{
 	{
 		names:       []string{"Ivan, Gena228, Gena228"},
 		uniqueNames: []string{"Ivan, Gena228"},
-		errExpected: nil,
 	},
 }
 
