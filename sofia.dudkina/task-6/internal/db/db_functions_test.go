@@ -59,7 +59,7 @@ func TestGetNames(t *testing.T) {
 	if err != nil {
 		t.Fatalf("an error '%s' was not expected when marshaling expected json data", err)
 	}
-	dbService := db.DBService{DB: mockDB}
+	dbService := db.Service{DB: mockDB}
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT name FROM users").WillReturnRows(mockDbRows(row.names)).
 			WillReturnError(row.errExpected)
@@ -79,7 +79,7 @@ func TestSelectUniqueValues(t *testing.T) {
 	if err != nil {
 		t.Fatalf("an error '%s' was not expected when marshaling expected json data", err)
 	}
-	dbService := db.DBService{DB: mockDB}
+	dbService := db.Service{DB: mockDB}
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT DISTINCT name FROM users").WillReturnRows(mockDbRows(row.uniqueNames)).
 			WillReturnError(row.errExpected)

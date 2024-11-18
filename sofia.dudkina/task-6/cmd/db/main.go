@@ -5,8 +5,6 @@ import (
 	dbPack "example_mock/internal/db"
 	"fmt"
 	"log"
-
-	_ ""
 )
 
 func main() {

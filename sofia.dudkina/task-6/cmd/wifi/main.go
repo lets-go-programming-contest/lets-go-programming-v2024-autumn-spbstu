@@ -3,6 +3,7 @@ package main
 import (
 	myWifi "example_mock/internal/wifi"
 	"fmt"
+
 	"github.com/mdlayher/wifi"
 )
 

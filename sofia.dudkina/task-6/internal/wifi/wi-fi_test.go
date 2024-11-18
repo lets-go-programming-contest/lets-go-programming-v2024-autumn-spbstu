@@ -39,7 +39,7 @@ func TestNew(t *testing.T) {
 
 func TestGetAdresses(t *testing.T) {
 	mockWifi := NewWiFi(t)
-	service := myWiFi.WiFiService{WiFi: mockWifi}
+	service := myWiFi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs),
@@ -59,7 +59,7 @@ func TestGetAdresses(t *testing.T) {
 
 func TestGetNames(t *testing.T) {
 	mockWifi := NewWiFi(t)
-	wifiService := myWiFi.WiFiService{WiFi: mockWifi}
+	wifiService := myWiFi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs),
