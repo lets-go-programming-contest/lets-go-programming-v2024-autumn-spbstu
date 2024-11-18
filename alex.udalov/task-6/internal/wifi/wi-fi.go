@@ -48,3 +48,5 @@ func (service Service) GetNames() ([]string, error) {
 
 	return nameList, nil
 }
+
+//go:generate mockery --all --testonly --quiet --outpkg wifi_test --output wifi
