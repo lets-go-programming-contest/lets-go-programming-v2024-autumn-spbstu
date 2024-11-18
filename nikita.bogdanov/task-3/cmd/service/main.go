@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/solomonalfred/task-3/internal/app"
+	"github.com/solomonalfred/task-3/internal/application"
 )
 
 func main() {
-	app.App()
+	application.App()
 }

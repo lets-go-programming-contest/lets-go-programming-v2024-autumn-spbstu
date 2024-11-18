@@ -1,5 +1,4 @@
-package shemas
-
+package schemas
 
 type ConfigStruct struct {
 	Input  string `yaml:"input-file"`

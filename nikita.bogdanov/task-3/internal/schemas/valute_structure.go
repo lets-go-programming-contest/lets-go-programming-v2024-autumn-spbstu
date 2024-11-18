@@ -1,7 +1,6 @@
-package shemas
+package schemas
 
-
-type Valute struct {
+type ValuteStructure struct {
 	ID        string  `xml:"ID,attr"`
 	NumCode   int     `xml:"NumCode"`
 	CharCode  string  `xml:"CharCode"`
