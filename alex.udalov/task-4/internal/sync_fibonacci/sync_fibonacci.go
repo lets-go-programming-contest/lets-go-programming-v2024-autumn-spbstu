@@ -9,16 +9,27 @@ import (
 type Matrix struct {
 	data [][]int
 	lock sync.Mutex
-	once sync.Once
 }
 
 func (m *Matrix) Init(rows int) {
-	m.once.Do(func() {
-		m.data = make([][]int, rows)
-		for i := range m.data {
-			m.data[i] = make([]int, 0)
-		}
-	})
+	m.data = make([][]int, rows)
+	for i := range m.data {
+		m.data[i] = make([]int, 0)
+	}
+}
+
+func fibonacci(n int) int {
+	if n <= 0 {
+		return 0
+	} else if n == 1 {
+		return 1
+	}
+
+	a, b := 0, 1
+	for i := 2; i <= n; i++ {
+		a, b = b, a+b
+	}
+	return b
 }
 
 func (m *Matrix) FillRandom() {
@@ -28,12 +39,16 @@ func (m *Matrix) FillRandom() {
 		wg.Add(1)
 		go func(row int) {
 			defer wg.Done()
-			for j := 0; j < 10; j++ {
-				m.lock.Lock()
-				n := rand.Intn(100)
-				m.data[row] = append(m.data[row], n)
-				m.lock.Unlock()
+
+			rowData := make([]int, 5)
+			for j := 0; j < 5; j++ {
+				n := rand.Intn(20)
+				rowData[j] = fibonacci(n)
 			}
+
+			m.lock.Lock()
+			m.data[row] = rowData
+			m.lock.Unlock()
 		}(i)
 	}
 

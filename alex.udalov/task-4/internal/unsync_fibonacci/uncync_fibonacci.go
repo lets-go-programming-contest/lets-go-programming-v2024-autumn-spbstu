@@ -1,4 +1,4 @@
-package unsyncfibonacci
+package syncfibonacci
 
 import (
 	"fmt"
@@ -16,15 +16,34 @@ func (m *Matrix) Init(rows int) {
 	}
 }
 
-func (m *Matrix) FillRandom() {
-	for i := range m.data {
-		n := rand.Intn(100)
-		m.data[i] = append(m.data[i], n)
-
-		if i == 2 {
-			select {}
-		}
+func fibonacci(n int) int {
+	if n <= 0 {
+		return 0
+	} else if n == 1 {
+		return 1
 	}
+
+	a, b := 0, 1
+	for i := 2; i <= n; i++ {
+		a, b = b, a+b
+	}
+	return b
+}
+
+func (m *Matrix) FillRandom() {
+
+	for i := range m.data {
+		go func(row int) {
+			rowData := make([]int, 10000000)
+			for j := 0; j < 10000000; j++ {
+				n := rand.Intn(20)
+				rowData[j] = fibonacci(n)
+			}
+
+			m.data[row] = rowData
+		}(i)
+	}
+
 }
 
 func (m *Matrix) GetMatrix() [][]int {
@@ -37,8 +56,16 @@ func RunUnsyncFibonacci(rows int) {
 
 	matrix.FillRandom()
 
-	fmt.Println("Результат матрицы (без синхронизации):")
+	success := true
 	for _, row := range matrix.GetMatrix() {
-		fmt.Println(row)
+		if len(row) != 10000 {
+			success = false
+			break
+		}
+	}
+	if success {
+		fmt.Println("Результат матрицы (без синхронизации): true")
+	} else {
+		fmt.Println("Результат матрицы (без синхронизации): false")
 	}
 }
