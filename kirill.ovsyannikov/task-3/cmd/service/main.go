@@ -7,9 +7,21 @@ import (
 )
 
 func main() {
-	config := config.ReadConfig()
-	currencies := read.ParseXML(config.InputFile)
-	read.SortValutes(&currencies)
-	write.WriteToJson(currencies, config.OutputFile)
 
+	config, err := config.ReadConfig()
+	if err != nil {
+		panic(err)
+	}
+
+	currencies, err := read.ParseXML(config.InputFile)
+	if err != nil {
+		panic(err)
+	}
+
+	read.SortValutes(&currencies)
+
+	err = write.WriteToJson(currencies, config.OutputFile)
+	if err != nil {
+		panic(err)
+	}
 }

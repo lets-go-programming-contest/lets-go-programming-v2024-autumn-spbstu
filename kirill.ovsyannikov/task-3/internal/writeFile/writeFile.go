@@ -5,24 +5,36 @@ import (
 	"os"
 	"path/filepath"
 
-	structs "task-3/internal/structs"
+	errors "task-3/internal/errorsExt"
+	structs "task-3/internal/readFile"
 )
 
-func WriteToJson(currencies structs.ValCurs, outFile string) {
+func WriteToJson(currencies structs.ValCurs, outFile string) error {
 	dir := filepath.Dir(outFile)
-	os.MkdirAll(dir, os.ModePerm)
-	file, err := os.Create(outFile)
+	err := os.MkdirAll(dir, os.ModePerm) // обработка ошибки
 	if err != nil {
-		panic(err)
+		return errors.ErrorLocate(err)
 	}
 
-	defer file.Close()
+	file, err := os.Create(outFile)
+	if err != nil {
+		return errors.ErrorLocate(err)
+	}
+
 	data, err := json.MarshalIndent(currencies.Valutes, "", "\t")
 	if err != nil {
-		panic(err)
+		return errors.ErrorLocate(err)
 	}
+
 	_, err = file.Write(data)
 	if err != nil {
-		panic(err)
+		return errors.ErrorLocate(err)
 	}
+
+	err = file.Close()
+	if err != nil {
+		return errors.ErrorLocate(err)
+	}
+
+	return nil
 }
