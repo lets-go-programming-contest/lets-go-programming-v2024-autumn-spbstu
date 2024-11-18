@@ -21,7 +21,7 @@ type rowTestSysInfo struct {
 func TestGetAddresses(t *testing.T) {
 	t.Parallel()
 
-	var testTable = []rowTestSysInfo{
+	testTable := []rowTestSysInfo{
 		{
 			addrs: []string{"00:11:22:33:44:55", "aa:bb:cc:dd:ee:ff"},
 		},
@@ -60,7 +60,7 @@ func TestGetAddresses(t *testing.T) {
 func TestGetNamess(t *testing.T) {
 	t.Parallel()
 
-	var testTable = []rowTestSysInfo{
+	testTable := []rowTestSysInfo{
 		{
 			names: []string{"name"},
 		},
