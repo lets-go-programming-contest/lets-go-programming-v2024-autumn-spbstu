@@ -1,4 +1,4 @@
-module example_mock
+module github.com/sssidkn/example_mock
 
 go 1.23
 

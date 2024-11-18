@@ -5,21 +5,12 @@ run:
 linters:
   enable-all: true
   disable:
-    - execinquery
     - exportloopref
-    - exhaustivestruct
-    - ifshort
     - maligned
-    - interfacer
-    - deadcode
-    - golint
-    - varcheck
-    - structcheck
-    - nosnakecase
-    - scopelint
     - varnamelen
     - forbidigo
     - goimports
+    - gocritic
 
   fast: false
 
@@ -37,3 +28,5 @@ linters-settings:
         allow:
           - $gostd
           - 'github.com/mdlayher/wifi'
+          - 'github.com/sssidkn/example_mock/internal/wifi'
+          - 'github.com/sssidkn/example_mock/internal/db'

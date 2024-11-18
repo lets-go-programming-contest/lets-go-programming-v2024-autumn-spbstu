@@ -6,10 +6,11 @@ import (
 	"github.com/mdlayher/wifi"
 	"github.com/stretchr/testify/require"
 
-	myWiFi "example_mock/internal/wifi"
 	"fmt"
 	"net"
 	"testing"
+
+	myWiFi "github.com/sssidkn/example_mock/internal/wifi"
 )
 
 //go:generate mockery --all --testonly --quiet --outpkg wifi_test --output .
