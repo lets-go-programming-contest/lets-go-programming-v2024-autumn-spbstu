@@ -6,6 +6,7 @@ import (
 
 	"github.com/DATA-DOG/go-sqlmock"
 	mapset "github.com/deckarep/golang-set/v2"
+	"github.com/stretchr/testify/require"
 )
 
 type TestDB struct {
@@ -15,11 +16,7 @@ type TestDB struct {
 
 var testTable = []TestDB{
 	{
-		names:       []string{"Masha", "Danil", "Pasha"},
-		errExpected: nil,
-	},
-	{
-		names:       []string{"Danil", "Dima", "Dima"},
+		names:       []string{"Pasha", "Masha", "Danil"},
 		errExpected: nil,
 	},
 	{
@@ -45,12 +42,13 @@ func TestDBServiceGetNames(t *testing.T) {
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT name FROM users").WillReturnRows(mockDbRows(row.names)).WillReturnError(row.errExpected)
 		names, err := dbService.GetNames()
-		if err != row.errExpected {
-			t.Errorf("Test %d: Expected error '%s', got '%s'", i, row.errExpected, err)
+		if row.errExpected != nil {
+			require.ErrorIs(t, err, row.errExpected, "row: %d, expected error:%w, actual error: %w", i, row.errExpected, err)
+			require.Nil(t, names, "row: %d, names must be nil", i)
+			continue
 		}
-		if len(names) != len(row.names) {
-			t.Errorf("Test %d: Expected %d names, got %d", i, len(row.names), len(names))
-		}
+		require.NoError(t, err, "row: %d, error must be nil", i)
+		require.Equal(t, row.names, names, "row: %d, expected names: %s, actual names: %s", i, row.names, names)
 	}
 }
 
@@ -68,6 +66,7 @@ func mockUniqueRows(names []string) *sqlmock.Rows {
 
 func TestSelectUniqueValues(t *testing.T) {
 	t.Parallel()
+
 	mockDB, mock, err := sqlmock.New()
 	if err != nil {
 		t.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
@@ -76,14 +75,12 @@ func TestSelectUniqueValues(t *testing.T) {
 	for i, row := range testTable {
 		mock.ExpectQuery("SELECT DISTINCT name FROM users").WillReturnRows(mockUniqueRows(row.names)).WillReturnError(row.errExpected)
 		names, err := dbService.SelectUniqueValues("name", "users")
-		if err != row.errExpected {
-			t.Errorf("Test %d: Expected error '%s', got '%s'", i, row.errExpected, err)
+		if row.errExpected != nil {
+			require.ErrorIs(t, err, row.errExpected, "row: %d, expected error:%w, actual error: %w", i, row.errExpected, err)
+			require.Nil(t, names, "row: %d, names must be nil", i)
+			continue
 		}
-		if len(names) != len(row.names) {
-			t.Errorf("Test %d: Expected %d names, got %d", i, len(row.names), len(names))
-		}
+		require.NoError(t, err, "row: %d, error must be nil", i)
+		require.Equal(t, row.names, names, "row: %d, expected names: %s, actual names: %s", i, row.names, names)
 	}
 }
-
-// go test -coverprofile=profile
-// go tool cover -html=profile

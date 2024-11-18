@@ -41,7 +41,7 @@ func (service Service) GetNames() ([]string, error) {
 		return nil, fmt.Errorf("error: %w", err)
 	}
 
-	return names, fmt.Errorf("error: %w", err)
+	return names, nil
 }
 
 func (service Service) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
@@ -69,5 +69,5 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 		return nil, fmt.Errorf("error: %w", err)
 	}
 
-	return values, fmt.Errorf("error: %w", err)
+	return values, nil
 }

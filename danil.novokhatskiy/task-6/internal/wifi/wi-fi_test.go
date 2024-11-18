@@ -18,11 +18,9 @@ type testWifi struct {
 
 var testTable = []testWifi{
 	{
-		addrs:       []string{"1111:2222:3333:4444", "8800.0000.8800:9999"},
-		errExpected: nil,
+		addrs: []string{"1111:2222:3333:4444", "8800:0000:8800:9999"},
 	},
 	{
-		addrs:       nil,
 		errExpected: errors.New("no addresses provided"),
 	},
 }
@@ -30,34 +28,22 @@ var testTable = []testWifi{
 func mockIfaces(addrs []string) []*wifi.Interface {
 	var ifaces []*wifi.Interface
 	for i, addr := range addrs {
-		hardwareAddr, err := net.ParseMAC(addr)
-		if err != nil {
+		hardwareAddr := parseMAC(addr)
+		if hardwareAddr == nil {
 			continue
 		}
 		intrface := &wifi.Interface{
-			Index:        i,
-			Name:         fmt.Sprintf("eth%d", i),
+			Index:        i + 1,
+			Name:         fmt.Sprintf("eth%d", i+1),
 			HardwareAddr: hardwareAddr,
-			PHY:          i,
-			Device:       i,
+			PHY:          1,
+			Device:       1,
 			Type:         wifi.InterfaceTypeAPVLAN,
 			Frequency:    0,
 		}
 		ifaces = append(ifaces, intrface)
 	}
 	return ifaces
-}
-
-func parseMACs(str []string) []net.HardwareAddr {
-	var addrs []net.HardwareAddr
-	for _, address := range str {
-		tmp, err := net.ParseMAC(address)
-		if err != nil {
-			return nil
-		}
-		addrs = append(addrs, tmp)
-	}
-	return addrs
 }
 
 func TestGetAddresses(t *testing.T) {
@@ -69,7 +55,7 @@ func TestGetAddresses(t *testing.T) {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs), row.errExpected)
 		ourAddrs, err := wifiService.GetAddresses()
-		if row.errExpected == nil {
+		if row.errExpected != nil {
 			require.ErrorIs(t, err, row.errExpected, "row %d, expected error: %w, actual error: %w", i, row.errExpected, err)
 			continue
 		}
@@ -87,11 +73,27 @@ func TestGetNames(t *testing.T) {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs), row.errExpected)
 		ourNames, err := wifiService.GetNames()
-		if row.errExpected == nil {
+		if row.errExpected != nil {
 			require.ErrorIs(t, err, row.errExpected, "row %d, expected error: %w, actual error: %w", i, row.errExpected, err)
 			continue
 		}
 		require.NoError(t, err, "row %d, error must be nil", i)
-		require.Equal(t, []string{"eth0", "eth1"}, ourNames, "row: %d, expected names: %s, actual names: %s", i, row.addrs, ourNames)
+		require.Equal(t, []string{"eth1", "eth2"}, ourNames, "row: %d, expected names: %s, actual names: %s", i)
 	}
+}
+
+func parseMACs(macStr []string) []net.HardwareAddr {
+	var addrs []net.HardwareAddr
+	for _, addr := range macStr {
+		addrs = append(addrs, parseMAC(addr))
+	}
+	return addrs
+}
+
+func parseMAC(macStr string) net.HardwareAddr {
+	hwAddr, err := net.ParseMAC(macStr)
+	if err != nil {
+		return nil
+	}
+	return hwAddr
 }
