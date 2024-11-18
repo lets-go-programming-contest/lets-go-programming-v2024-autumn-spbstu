@@ -7,12 +7,12 @@ import (
 )
 
 type DuplicateRemover struct {
-	Emails map[string]user.User
-	Mu     sync.Mutex
+	emails map[string]user.User
+	mu     sync.Mutex
 }
 
 func NewDuplicateRemover() *DuplicateRemover {
-	return &DuplicateRemover{Emails: map[string]user.User{}, Mu: sync.Mutex{}}
+	return &DuplicateRemover{emails: map[string]user.User{}, mu: sync.Mutex{}}
 }
 
 func (dr *DuplicateRemover) GetUnique(in chan user.User) []user.User {
@@ -38,10 +38,10 @@ func (dr *DuplicateRemover) GetUniqueSafe(in chan user.User) []user.User {
 		wg.Add(1)
 		go func() {
 			defer func() {
-				dr.Mu.Unlock()
+				dr.mu.Unlock()
 				wg.Done()
 			}()
-			dr.Mu.Lock()
+			dr.mu.Lock()
 			dr.makeUnique(user, &result)
 		}()
 	}
@@ -50,9 +50,9 @@ func (dr *DuplicateRemover) GetUniqueSafe(in chan user.User) []user.User {
 }
 
 func (dr *DuplicateRemover) makeUnique(user user.User, result *[]user.User) {
-	_, contain := dr.Emails[user.Email]
+	_, contain := dr.emails[user.Email]
 	if !contain {
 		*result = append(*result, user)
-		dr.Emails[user.Email] = user
+		dr.emails[user.Email] = user
 	}
 }
