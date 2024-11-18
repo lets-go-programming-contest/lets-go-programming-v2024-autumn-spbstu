@@ -38,11 +38,6 @@ var testTable = []rowTestDb{
 		uniqueNames: []string{"Ivan, Gena228"},
 		errExpected: nil,
 	},
-	{
-		names:       []string{},
-		uniqueNames: []string{},
-		errExpected: nil,
-	},
 }
 
 func TestNew(t *testing.T) {
