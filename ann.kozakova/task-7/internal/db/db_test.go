@@ -23,7 +23,7 @@ var testTable = []rowTestDb{
 		errExpected: errors.New("ExpectedError"),
 	},
 	{
-		names: []string{"Ivan, Gena228", "Ivan"},
+		names: []string{"Ivan, Gena228, Ivan"},
 	},
 }
 
