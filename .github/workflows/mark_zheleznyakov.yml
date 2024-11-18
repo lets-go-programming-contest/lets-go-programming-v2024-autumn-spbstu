@@ -1,0 +1,40 @@
+name: mark_zheleznyakov
+on:
+  push:
+    branches: 
+      - mark.zheleznyakov/task-7
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.3'
+
+      - name: Test Wi-Fi
+        run: go test ./internal/wifi
+        working-directory: mark.zheleznyakov/task-7
+
+      - name: Test Database
+        run: go test ./internal/db
+        working-directory: mark.zheleznyakov/task-7
+
+  golangci:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.3'
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.62.0
+          working-directory: mark.zheleznyakov/task-7
+

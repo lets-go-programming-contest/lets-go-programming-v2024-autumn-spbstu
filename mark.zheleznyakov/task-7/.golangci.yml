@@ -1,0 +1,32 @@
+run:
+  timeout: 5m
+  tests: false
+
+linters:
+  enable-all: true
+  disable:
+    - exportloopref
+    - varnamelen
+    - forbidigo
+    - goimports
+    - copyloopvar
+    - intrange
+
+  fast: false
+
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/mrqiz/task-6)
+    skip-generated: false
+    custom-order: true
+  depguard:
+    rules:
+      main:
+        files:
+          - !$test
+        allow:
+          - $gostd
+          - github.com/mrqiz/task-6
