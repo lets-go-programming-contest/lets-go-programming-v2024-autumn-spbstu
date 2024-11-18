@@ -1,0 +1,30 @@
+name: anton_piyavkin
+on:
+  push:
+    branches: [ "anton.piyavkin/task-7" ]
+
+jobs:
+  Go-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.23.2'
+
+      - name: Test DataBase
+        working-directory: anton.piyavkin/task-7
+        run: go test ./internal/db
+
+      - name: Test Wifi
+        working-directory: anton.piyavkin/task-7
+        run: go test ./internal/wifi
+
+      - name: Install golangci-lint
+        run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.62.0
+
+      - name: Check linter
+        working-directory: anton.piyavkin/task-7
+        run: golangci-lint run --config=./config/.golangci.yaml
