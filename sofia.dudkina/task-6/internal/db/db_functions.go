@@ -3,7 +3,6 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	"log"
 )
 
 type Database interface {
@@ -34,7 +33,7 @@ func (service Service) GetNames() ([]string, error) {
 		var name string
 
 		if err := rows.Scan(&name); err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("%w", err)
 		}
 
 		names = append(names, name)
@@ -63,7 +62,7 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 		var value string
 
 		if err := rows.Scan(&value); err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("%w", err)
 		}
 
 		values = append(values, value)

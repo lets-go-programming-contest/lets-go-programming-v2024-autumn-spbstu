@@ -10,8 +10,6 @@ linters:
     - varnamelen
     - forbidigo
     - goimports
-    - gocritic
-
   fast: false
 
 linters-settings:
