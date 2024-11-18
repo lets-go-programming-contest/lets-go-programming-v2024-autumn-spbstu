@@ -2,7 +2,7 @@ package db
 
 import (
 	"database/sql"
-	"log"
+	"fmt"
 )
 
 type Database interface {
@@ -14,21 +14,15 @@ type Service struct {
 }
 
 func New(db Database) Service {
-
 	return Service{DB: db}
-
 }
 
 func (service Service) GetNames() ([]string, error) {
-
 	query := "SELECT name FROM users"
 
 	rows, err := service.DB.Query(query)
-
 	if err != nil {
-
-		return nil, err
-
+		return nil, fmt.Errorf("%w", err)
 	}
 
 	defer rows.Close()
@@ -36,39 +30,28 @@ func (service Service) GetNames() ([]string, error) {
 	var names []string
 
 	for rows.Next() {
-
 		var name string
 
 		if err := rows.Scan(&name); err != nil {
-
-			log.Fatal(err)
-
+			return nil, fmt.Errorf("%w", err)
 		}
 
 		names = append(names, name)
-
 	}
 
 	if err := rows.Err(); err != nil {
-
-		return nil, err
-
+		return nil, fmt.Errorf("%w", err)
 	}
 
-	return names, err
-
+	return names, nil
 }
 
 func (service Service) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
-
 	query := "SELECT DISTINCT " + columnName + " FROM " + tableName
 
 	rows, err := service.DB.Query(query)
-
 	if err != nil {
-
-		return nil, err
-
+		return nil, fmt.Errorf("%w", err)
 	}
 
 	defer rows.Close()
@@ -76,25 +59,18 @@ func (service Service) SelectUniqueValues(columnName string, tableName string) (
 	var values []string
 
 	for rows.Next() {
-
 		var value string
 
 		if err := rows.Scan(&value); err != nil {
-
-			log.Fatal(err)
-
+			return nil, fmt.Errorf("%w", err)
 		}
 
 		values = append(values, value)
-
 	}
 
 	if err := rows.Err(); err != nil {
-
-		return nil, err
-
+		return nil, fmt.Errorf("%w", err)
 	}
 
-	return values, err
-
+	return values, nil
 }
