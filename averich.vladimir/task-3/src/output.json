@@ -1,138 +1,138 @@
 [
   {
-    "num-code": 980,
-    "char-code": "UAH",
-    "nominal": 0,
-    "name": "",
-    "value": 58.109,
-    "vunit-rate": 0
+    "num-code": 36,
+    "char-code": "AUD",
+    "nominal": 1,
+    "name": "Австралийский доллар",
+    "value": 16.0102,
+    "vunit-rate": 16.0102
   },
   {
     "num-code": 826,
     "char-code": "GBP",
-    "nominal": 0,
-    "name": "",
+    "nominal": 1,
+    "name": "Фунт стерлингов Соединенного королевства",
     "value": 43.8254,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 960,
-    "char-code": "XDR",
-    "nominal": 0,
-    "name": "",
-    "value": 38.4205,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 208,
-    "char-code": "DKK",
-    "nominal": 0,
-    "name": "",
-    "value": 36.101,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 578,
-    "char-code": "NOK",
-    "nominal": 0,
-    "name": "",
-    "value": 34.7853,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 840,
-    "char-code": "USD",
-    "nominal": 0,
-    "name": "",
-    "value": 30.9436,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 352,
-    "char-code": "ISK",
-    "nominal": 0,
-    "name": "",
-    "value": 30.7958,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 752,
-    "char-code": "SEK",
-    "nominal": 0,
-    "name": "",
-    "value": 29.5924,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 978,
-    "char-code": "EUR",
-    "nominal": 0,
-    "name": "",
-    "value": 26.8343,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 392,
-    "char-code": "JPY",
-    "nominal": 0,
-    "name": "",
-    "value": 23.1527,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 792,
-    "char-code": "TRL",
-    "nominal": 0,
-    "name": "",
-    "value": 22.2616,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 398,
-    "char-code": "KZT",
-    "nominal": 0,
-    "name": "",
-    "value": 20.3393,
-    "vunit-rate": 0
-  },
-  {
-    "num-code": 124,
-    "char-code": "CAD",
-    "nominal": 0,
-    "name": "",
-    "value": 19.324,
-    "vunit-rate": 0
+    "vunit-rate": 43.8254
   },
   {
     "num-code": 974,
     "char-code": "BYR",
-    "nominal": 0,
-    "name": "",
+    "nominal": 1000,
+    "name": "Белорусских рублей",
     "value": 18.429,
-    "vunit-rate": 0
+    "vunit-rate": 0.018429
   },
   {
-    "num-code": 756,
-    "char-code": "CHF",
-    "nominal": 0,
-    "name": "",
-    "value": 18.1861,
-    "vunit-rate": 0
+    "num-code": 208,
+    "char-code": "DKK",
+    "nominal": 10,
+    "name": "Датских крон",
+    "value": 36.101,
+    "vunit-rate": 3.6101
+  },
+  {
+    "num-code": 840,
+    "char-code": "USD",
+    "nominal": 1,
+    "name": "Доллар США",
+    "value": 30.9436,
+    "vunit-rate": 30.9436
+  },
+  {
+    "num-code": 978,
+    "char-code": "EUR",
+    "nominal": 1,
+    "name": "Евро",
+    "value": 26.8343,
+    "vunit-rate": 26.8343
+  },
+  {
+    "num-code": 352,
+    "char-code": "ISK",
+    "nominal": 100,
+    "name": "Исландских крон",
+    "value": 30.7958,
+    "vunit-rate": 0.307958
+  },
+  {
+    "num-code": 398,
+    "char-code": "KZT",
+    "nominal": 100,
+    "name": "Казахстанских тенге",
+    "value": 20.3393,
+    "vunit-rate": 0.203393
+  },
+  {
+    "num-code": 124,
+    "char-code": "CAD",
+    "nominal": 1,
+    "name": "Канадский доллар",
+    "value": 19.324,
+    "vunit-rate": 19.324
+  },
+  {
+    "num-code": 578,
+    "char-code": "NOK",
+    "nominal": 10,
+    "name": "Норвежских крон",
+    "value": 34.7853,
+    "vunit-rate": 3.47853
+  },
+  {
+    "num-code": 960,
+    "char-code": "XDR",
+    "nominal": 1,
+    "name": "СДР (специальные права заимствования)",
+    "value": 38.4205,
+    "vunit-rate": 38.4205
   },
   {
     "num-code": 702,
     "char-code": "SGD",
-    "nominal": 0,
-    "name": "",
+    "nominal": 1,
+    "name": "Сингапурский доллар",
     "value": 16.8878,
-    "vunit-rate": 0
+    "vunit-rate": 16.8878
   },
   {
-    "num-code": 36,
-    "char-code": "AUD",
-    "nominal": 0,
-    "name": "",
-    "value": 16.0102,
-    "vunit-rate": 0
+    "num-code": 792,
+    "char-code": "TRL",
+    "nominal": 1000000,
+    "name": "Турецких лир",
+    "value": 22.2616,
+    "vunit-rate": 0.0000222616
+  },
+  {
+    "num-code": 980,
+    "char-code": "UAH",
+    "nominal": 10,
+    "name": "Украинских гривен",
+    "value": 58.109,
+    "vunit-rate": 5.8109
+  },
+  {
+    "num-code": 752,
+    "char-code": "SEK",
+    "nominal": 10,
+    "name": "Шведских крон",
+    "value": 29.5924,
+    "vunit-rate": 2.95924
+  },
+  {
+    "num-code": 756,
+    "char-code": "CHF",
+    "nominal": 1,
+    "name": "Швейцарский франк",
+    "value": 18.1861,
+    "vunit-rate": 18.1861
+  },
+  {
+    "num-code": 392,
+    "char-code": "JPY",
+    "nominal": 100,
+    "name": "Японских иен",
+    "value": 23.1527,
+    "vunit-rate": 0.231527
   }
 ]

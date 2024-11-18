@@ -5,19 +5,20 @@ import (
 	"encoding/xml"
 	"os"
 	"sort"
+	"strconv"
 	"strings"
+
 	"golang.org/x/net/html/charset"
 	"bytes"
-	// "errors"
 )
 
 type Currency struct {
-	NumCode   int64   `xml:"NumCode" json:"num-code"`
-	CharCode  string  `xml:"CharCode" json:"char-code"`
-	Nominal   int64   `xml:"Nominal" json:"nominal"`
-	Name      string  `xml:"Name" json:"name"`
-	Value     float64 `xml:"Value" json:"value"`
-	VunitRate float64 `xml:"VunitRate" json:"vunit-rate"`
+	NumCode   int64       `xml:"NumCode" json:"num-code"`
+	CharCode  string      `xml:"CharCode" json:"char-code"`
+	Nominal   int64       `xml:"Nominal" json:"nominal"`
+	Name      string      `xml:"Name" json:"name"`
+	Value     CustomFloat `xml:"Value" json:"value"`
+	VunitRate CustomFloat `xml:"VunitRate" json:"vunit-rate"`
 }
 
 type Currencies struct {
@@ -28,27 +29,37 @@ type Currencies struct {
 }
 
 type CurrencyJSON struct {
-	NumCode   int64   `json:"num-code"`
-	CharCode  string  `json:"char-code"`
-	Nominal   int64   `json:"nominal"`
-	Name      string  `json:"name"`
-	Value     float64 `json:"value"`
-	VunitRate float64 `json:"vunit-rate"`
+	NumCode   int64       `json:"num-code"`
+	CharCode  string      `json:"char-code"`
+	Nominal   int64       `json:"nominal"`
+	Name      string      `json:"name"`
+	Value     CustomFloat `json:"value"`
+	VunitRate CustomFloat `json:"vunit-rate"`
+}
+
+type CustomFloat float64
+
+func (cf *CustomFloat) UnmarshalText(text []byte) error {
+	s := strings.ReplaceAll(string(text), ",", ".")
+
+	value, err := strconv.ParseFloat(s, 64)
+	if err != nil {
+		return err
+	}
+
+	*cf = CustomFloat(value)
+	return nil
 }
 
 func ParseXML(pathToXML string) (*Currencies, error) {
 	data, err := os.ReadFile(pathToXML)
-
 	if err != nil {
 		return nil, err
 	}
 
-	data = []byte(strings.ReplaceAll(string(data), ",", "."))
-
 	decoder := xml.NewDecoder(bytes.NewReader(data))
 	decoder.CharsetReader = charset.NewReaderLabel
 	var currencies Currencies
-
 	err = decoder.Decode(&currencies)
 	if err != nil {
 		return nil, err
@@ -57,8 +68,8 @@ func ParseXML(pathToXML string) (*Currencies, error) {
 	return &currencies, nil
 }
 
-func WriteCurrenciesToJSON(filename string, fields []string) error {
-	currencies, err := ParseXML("path/to/your/xmlfile.xml")
+func WriteCurrenciesToJSON(filename string, fields []string, pathToXML string) error {
+	currencies, err := ParseXML(pathToXML)
 	if err != nil {
 		return err
 	}
