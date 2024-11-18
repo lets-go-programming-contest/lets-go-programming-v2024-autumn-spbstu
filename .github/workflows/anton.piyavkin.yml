@@ -3,7 +3,7 @@ on:
   push:
     branches: [ "anton.piyavkin/task-7" ]
 
-job:
+jobs:
   Go-Tests:
     runs-on: ubuntu:latest
     steps:
