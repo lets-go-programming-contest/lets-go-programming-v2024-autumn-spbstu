@@ -6,9 +6,9 @@ import (
 	"os"
 	"sort"
 	"strings"
-	"path/filepath"
 	"golang.org/x/net/html/charset"
 	"bytes"
+	// "errors"
 )
 
 type Currency struct {
@@ -36,85 +36,88 @@ type CurrencyJSON struct {
 	VunitRate float64 `json:"vunit-rate"`
 }
 
-func (currencies *Currencies) ParseXML(pathToXML string) {
+func ParseXML(pathToXML string) (*Currencies, error) {
 	data, err := os.ReadFile(pathToXML)
 
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	data = []byte(strings.ReplaceAll(string(data), ",", "."))
 
 	decoder := xml.NewDecoder(bytes.NewReader(data))
 	decoder.CharsetReader = charset.NewReaderLabel
+	var currencies Currencies
+
 	err = decoder.Decode(&currencies)
-
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
+
+	return &currencies, nil
 }
 
-func (currencies *Currencies) SortByValue(reverse bool) {
-	if reverse {
-		sort.Slice(currencies.Currencies, func(i, j int) bool {
-			return currencies.Currencies[i].Value > currencies.Currencies[j].Value
-		})
-	} else {
-		sort.Slice(currencies.Currencies, func(i, j int) bool {
-			return currencies.Currencies[i].Value < currencies.Currencies[j].Value
-		})
+func WriteCurrenciesToJSON(filename string, fields []string) error {
+	currencies, err := ParseXML("path/to/your/xmlfile.xml")
+	if err != nil {
+		return err
 	}
-}
 
-func (currencies *Currencies) WriteCurrenciesToJSON(filename string, fields ...string) {
-	var output []CurrencyJSON
-
+	var currenciesJSON []CurrencyJSON
 	for _, currency := range currencies.Currencies {
-		jsonCurrency := CurrencyJSON{
+		currenciesJSON = append(currenciesJSON, CurrencyJSON{
 			NumCode:   currency.NumCode,
 			CharCode:  currency.CharCode,
 			Nominal:   currency.Nominal,
 			Name:      currency.Name,
 			Value:     currency.Value,
 			VunitRate: currency.VunitRate,
-		}
+		})
+	}
 
-		if len(fields) > 0 {
-			filteredCurrency := CurrencyJSON{}
+	if len(fields) > 0 {
+		sort.Slice(currenciesJSON, func(i, j int) bool {
 			for _, field := range fields {
 				switch field {
-				case "NumCode":
-					filteredCurrency.NumCode = jsonCurrency.NumCode
-				case "CharCode":
-					filteredCurrency.CharCode = jsonCurrency.CharCode
-				case "Nominal":
-					filteredCurrency.Nominal = jsonCurrency.Nominal
-				case "Name":
-					filteredCurrency.Name = jsonCurrency.Name
-				case "Value":
-					filteredCurrency.Value = jsonCurrency.Value
-				case "VunitRate":
-					filteredCurrency.VunitRate = jsonCurrency.VunitRate
+				case "num-code":
+					if currenciesJSON[i].NumCode != currenciesJSON[j].NumCode {
+						return currenciesJSON[i].NumCode < currenciesJSON[j].NumCode
+					}
+				case "char-code":
+					if currenciesJSON[i].CharCode != currenciesJSON[j].CharCode {
+						return currenciesJSON[i].CharCode < currenciesJSON[j].CharCode
+					}
+				case "nominal":
+					if currenciesJSON[i].Nominal != currenciesJSON[j].Nominal {
+						return currenciesJSON[i].Nominal < currenciesJSON[j].Nominal
+					}
+				case "name":
+					if currenciesJSON[i].Name != currenciesJSON[j].Name {
+						return currenciesJSON[i].Name < currenciesJSON[j].Name
+					}
+				case "value":
+					if currenciesJSON[i].Value != currenciesJSON[j].Value {
+						return currenciesJSON[i].Value < currenciesJSON[j].Value
+					}
+				case "vunit-rate":
+					if currenciesJSON[i].VunitRate != currenciesJSON[j].VunitRate {
+						return currenciesJSON[i].VunitRate < currenciesJSON[j].VunitRate
+					}
 				}
 			}
-			output = append(output, filteredCurrency)
-		} else {
-			output = append(output, jsonCurrency)
-		}
+			return false
+		})
 	}
 
-	jsonData, err := json.MarshalIndent(output, "", "  ")
+	jsonData, err := json.MarshalIndent(currenciesJSON, "", "  ")
 	if err != nil {
-		panic(err)
+		return err
 	}
 
-	err = os.MkdirAll(filepath.Dir(filename), os.ModePerm)
+	err = os.WriteFile(filename, jsonData, 0644)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
-	err = os.WriteFile(filename, jsonData, os.ModePerm)
-	if err != nil {
-		panic(err)
-	}
+	return nil
 }
