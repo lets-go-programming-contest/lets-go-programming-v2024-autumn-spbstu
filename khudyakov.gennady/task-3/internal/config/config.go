@@ -9,10 +9,10 @@ type Config struct {
 	OutputFile string `yaml:"output-file"`
 }
 
-func (config *Config) GetConfig(data []byte) (Config, error) {
+func (config *Config) GetConfig(data []byte) (*Config, error) {
 	err := yaml.Unmarshal(data, config)
 	if err != nil {
-		return *config, err
+		return nil, err
 	}
-	return *config, nil
+	return config, nil
 }
