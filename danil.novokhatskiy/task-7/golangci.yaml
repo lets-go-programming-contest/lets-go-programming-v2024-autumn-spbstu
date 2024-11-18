@@ -2,28 +2,13 @@ run:
   timeout: 5m
   tests: false
 
-output:
-  formats:
-    - format: checkstyle
-      path: ./mistakes.xml
-
 linters:
   enable-all: true
   disable:
-   # - exhaustivestruct
-   # - ifshort
-   # - maligned
-   # - interfacer
-   # - deadcode
-   # - golint
-   # - varcheck
-   # - structcheck
-   # - nosnakecase
-   # - scopelint
+    - exportloopref
     - varnamelen
     - forbidigo
     - goimports
-    - exportloopref
 
   fast: false
 
@@ -32,12 +17,14 @@ linters-settings:
     sections:
       - standard
       - default
-      - prefix(github.com/katagiri/task-7)
+      - prefix(task-7)
     skip-generated: false
     custom-order: true
   depguard:
     rules:
       main:
+        files:
+          - !$test
         allow:
           - $gostd
           - github.com/spbpu_go_course/lab_5
