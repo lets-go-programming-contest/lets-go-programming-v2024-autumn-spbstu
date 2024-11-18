@@ -1,4 +1,4 @@
-name: sofiadudkina
+name: sofia_dudkina
 on:
   push:
     branches: [ "sofia.dudkina/task-7" ]
