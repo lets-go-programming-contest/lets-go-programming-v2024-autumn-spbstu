@@ -23,7 +23,7 @@ func TestNew(t *testing.T) {
 	})
 }
 
-func TestGetNames_Success(t *testing.T) {
+func TestGetNamesSuccess(t *testing.T) {
 	t.Run("Retrieve multiple names successfully", func(t *testing.T) {
 		mockDB, mock, err := sqlmock.New()
 		require.NoError(t, err)
@@ -39,7 +39,7 @@ func TestGetNames_Success(t *testing.T) {
 	})
 }
 
-func TestGetNames_QueryError(t *testing.T) {
+func TestGetNamesQueryError(t *testing.T) {
 	t.Run("Query error occurs", func(t *testing.T) {
 		mockDB, mock, err := sqlmock.New()
 		require.NoError(t, err)
@@ -56,7 +56,7 @@ func TestGetNames_QueryError(t *testing.T) {
 	})
 }
 
-func TestGetNames_ScanError(t *testing.T) {
+func TestGetNamesScanError(t *testing.T) {
 	t.Run("Scan error", func(t *testing.T) {
 		mockDB, mock, err := sqlmock.New()
 		require.NoError(t, err)
@@ -73,7 +73,7 @@ func TestGetNames_ScanError(t *testing.T) {
 	})
 }
 
-func TestGetNames_IterationError(t *testing.T) {
+func TestGetNamesIterationError(t *testing.T) {
 	t.Run("Iteration error", func(t *testing.T) {
 		mockDB, mock, err := sqlmock.New()
 		require.NoError(t, err)
@@ -90,7 +90,7 @@ func TestGetNames_IterationError(t *testing.T) {
 	})
 }
 
-func TestSelectUniqueValues_Success(t *testing.T) {
+func TestSelectUniqueValuesSuccess(t *testing.T) {
 	t.Run("Select unique values", func(t *testing.T) {
 		mockDB, mock, err := sqlmock.New()
 		require.NoError(t, err)
@@ -107,7 +107,7 @@ func TestSelectUniqueValues_Success(t *testing.T) {
 	})
 }
 
-func TestSelectUniqueValues_QueryError(t *testing.T) {
+func TestSelectUniqueValuesQueryError(t *testing.T) {
 	t.Run("Query error on unique values", func(t *testing.T) {
 		mockDB, mock, err := sqlmock.New()
 		require.NoError(t, err)
@@ -125,7 +125,7 @@ func TestSelectUniqueValues_QueryError(t *testing.T) {
 	})
 }
 
-func TestSelectUniqueValues_ScanError(t *testing.T) {
+func TestSelectUniqueValuesScanError(t *testing.T) {
 	t.Run("Scan error on unique values", func(t *testing.T) {
 		mockDB, mock, err := sqlmock.New()
 		require.NoError(t, err)
@@ -143,7 +143,7 @@ func TestSelectUniqueValues_ScanError(t *testing.T) {
 	})
 }
 
-func TestSelectUniqueValues_IterationError(t *testing.T) {
+func TestSelectUniqueValuesIterationError(t *testing.T) {
 	t.Run("Iteration error on unique values", func(t *testing.T) {
 		mockDB, mock, err := sqlmock.New()
 		require.NoError(t, err)
