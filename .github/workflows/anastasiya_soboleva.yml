@@ -21,7 +21,7 @@ jobs:
 
       - name: Run golangci-lint
         working-directory: ./anastasiya.soboleva/task-7
-        run: golangci-lint run --config=../config/golangci.yml
+        run: golangci-lint run --config=./.golangci.yaml
 
       - name: Run db tests
         working-directory: ./anastasiya.soboleva/task-7
