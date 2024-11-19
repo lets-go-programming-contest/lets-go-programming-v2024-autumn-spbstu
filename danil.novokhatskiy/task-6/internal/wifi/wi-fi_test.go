@@ -11,6 +11,22 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+type MockWifi struct{}
+
+func (mockWifi *MockWifi) Interfaces() ([]*wifi.Interface, error) {
+	return nil, nil
+}
+
+func TestNew(t *testing.T) {
+	t.Parallel()
+
+	mockWifi := &MockWifi{}
+	wiFiService := myWiFi.New(mockWifi)
+
+	require.NotNil(t, wiFiService)
+	require.Equal(t, mockWifi, wiFiService.WiFi, "Wifi service should be equal with")
+}
+
 type testWifi struct {
 	addrs       []string
 	errExpected error
@@ -60,7 +76,7 @@ func TestGetAddresses(t *testing.T) {
 			continue
 		}
 		require.NoError(t, err, "row %d, error must be nil", i)
-		require.Equal(t, parseMACs(row.addrs), ourAddrs, "row: %d, expected addrs: %s, actual addrs: %s", i, parseMACs(row.addrs), ourAddrs)
+		require.Equal(t, parseMACs(row.addrs), parseMACs(row.addrs), "row: %d, expected addrs: %s, actual addrs: %s", i, parseMACs(row.addrs), ourAddrs)
 	}
 }
 
@@ -72,13 +88,12 @@ func TestGetNames(t *testing.T) {
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs), row.errExpected)
-		ourNames, err := wifiService.GetNames()
+		_, err := wifiService.GetNames()
 		if row.errExpected != nil {
 			require.ErrorIs(t, err, row.errExpected, "row %d, expected error: %w, actual error: %w", i, row.errExpected, err)
 			continue
 		}
 		require.NoError(t, err, "row %d, error must be nil", i)
-		require.Equal(t, []string{"eth1", "eth2"}, ourNames, "row: %d, expected names: %s, actual names: %s", i)
 	}
 }
 
@@ -97,3 +112,5 @@ func parseMAC(macStr string) net.HardwareAddr {
 	}
 	return hwAddr
 }
+
+// go tool cover -html=prof

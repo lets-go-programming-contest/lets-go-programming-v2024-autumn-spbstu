@@ -10,21 +10,13 @@ output:
 linters:
   enable-all: true
   disable:
-    - exhaustivestruct
-    - ifshort
-    - maligned
-    - interfacer
-    - deadcode
-    - golint
-    - varcheck
-    - structcheck
-    - nosnakecase
-    - scopelint
-    - varnamelen
-    - forbidigo
-    - goimports
+    disable:
+      - exportloopref
+      - varnamelen
+      - forbidigo
+      - goimports
 
-  fast: false
+    fast: false
 
 linters-settings:
   gci:
