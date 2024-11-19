@@ -1,6 +1,6 @@
 module github.com/nayzzerr/task-6
 
-go 1.22
+go 1.23.2
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2
