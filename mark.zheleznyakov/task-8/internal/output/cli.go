@@ -1,3 +1,4 @@
+//go:generate go vet ./...
 package output
 
 import (
@@ -24,7 +25,7 @@ func CliTooFewArgs() {
 }
 
 func cliUsage() {
-	fmt.Println("usage: EnterpriseCalc [opearation] [...operands]\n")
+	fmt.Printf("usage: EnterpriseCalc [opearation] [...operands]\n\n")
 }
 
 func CliOpNotFound() {
