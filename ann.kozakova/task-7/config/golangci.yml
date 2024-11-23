@@ -1,0 +1,42 @@
+run:
+  timeout: 5m
+  tests: false
+
+linters:
+  enable-all: true
+  disable:
+    - exhaustivestruct
+    - ifshort
+    - maligned
+    - interfacer
+    - deadcode
+    - golint
+    - varcheck
+    - structcheck
+    - nosnakecase
+    - scopelint
+    - varnamelen
+    - forbidigo
+    - goimports
+
+  fast: false
+
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/nutochk/task-6)
+    skip-generated: false
+    custom-order: true
+  depguard:
+    rules:
+      main:
+        allow:
+          - $gostd
+          - "github.com/mdlayher/wifi"
+
+output:
+  formats:
+    - format: checkstyle
+      path: .reports/report_after.xml
