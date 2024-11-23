@@ -1,0 +1,24 @@
+name: ann_kozakova
+on:
+  push:
+    branches: [ "ann.kozakova/task-7" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.23.1'
+      - name: Test db with Go
+        run: go test ./internal/db
+        working-directory: ann.kozakova/task-7
+      - name: Test wifi with Go
+        run: go test ./internal/wifi
+        working-directory: ann.kozakova/task-7
+      - name: Install golangci-lint
+        run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.62.0
+      - name: Linter db
+        run: golangci-lint run --config=../config/golangci.yml
+        working-directory: ann.kozakova/task-7/internal
