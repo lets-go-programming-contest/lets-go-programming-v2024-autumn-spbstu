@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle version="5.0">
+  <file name="cmd\wifi\main.go">
+    <error column="0" line="6" message="File is not `gci`-ed with -s standard -s default -s prefix(github.com/IDevFrye/task-6) --custom-order" severity="error" source="gci"></error>
+    <error column="0" line="7" message="File is not `gci`-ed with -s standard -s default -s prefix(github.com/IDevFrye/task-6) --custom-order" severity="error" source="gci"></error>
+    <error column="3" line="14" message="return with no blank line before" severity="error" source="nlreturn"></error>
+    <error column="3" line="22" message="return with no blank line before" severity="error" source="nlreturn"></error>
+  </file>
+</checkstyle>

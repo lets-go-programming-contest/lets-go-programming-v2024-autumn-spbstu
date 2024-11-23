@@ -6,10 +6,11 @@ linters:
   enable-all: true
   disable:
     - exportloopref
-    - maligned
     - varnamelen
     - forbidigo
     - goimports
+    - gomnd
+    - execinquery
   fast: false
 
 linters-settings:
@@ -28,4 +29,10 @@ linters-settings:
         allow:
           - $gostd
           - 'github.com/mdlayher/wifi'
-          
+
+output:
+  formats:
+    - format: checkstyle
+      path: ./cilint_reports/report_after.xml
+
+

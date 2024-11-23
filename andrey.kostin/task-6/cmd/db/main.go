@@ -13,13 +13,17 @@ func main() {
 
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
-		log.Fatal(err)
+		log.Panic(err)
 	}
+
 	defer db.Close()
 
 	dbService := dbPack.New(db)
 
 	names, err := dbService.GetNames()
+	if err != nil {
+		log.Panic(err)
+	}
 
 	for _, name := range names {
 		fmt.Println(name)
