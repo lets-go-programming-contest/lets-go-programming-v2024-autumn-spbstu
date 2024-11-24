@@ -3,7 +3,7 @@ name: Run Tests
 on:
   push:
     branches:
-      - TASK-7  
+      - task-7  
 
 jobs:
   Go-Tests:
