@@ -3,7 +3,7 @@ run:
   tests: false
 
 linters:
-  enable-all: true
+  enable-all: true 
   disable:
     - exhaustivestruct
     - ifshort

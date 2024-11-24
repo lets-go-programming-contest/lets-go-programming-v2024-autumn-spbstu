@@ -19,9 +19,9 @@ func main() {
 
 	dbService := dbPack.New(db)
 
-	names, err := dbService.GetNames()
-
-	for _, name := range names {
-		fmt.Println(name)
+	if names, err := dbService.GetNames(); err == nil {
+		for _, name := range names {
+			fmt.Println(name)
+		}
 	}
 }

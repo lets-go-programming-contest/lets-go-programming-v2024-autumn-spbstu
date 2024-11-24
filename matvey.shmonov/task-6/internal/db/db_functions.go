@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 )
 
@@ -9,45 +10,49 @@ type Database interface {
 	Query(query string, args ...any) (*sql.Rows, error)
 }
 
-type DBService struct {
+type Service struct {
 	DB Database
 }
 
-func New(db Database) DBService {
-	return DBService{DB: db}
+func New(db Database) Service {
+	return Service{DB: db}
 }
 
-func (service DBService) GetNames() ([]string, error) {
+func (service Service) GetNames() ([]string, error) {
 	query := "SELECT name FROM users"
 
 	rows, err := service.DB.Query(query)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error: %w", err)
 	}
 	defer rows.Close()
 
 	var names []string
 
 	for rows.Next() {
-		var name string
+		name := ""
 		if err := rows.Scan(&name); err != nil {
-			log.Fatal(err)
+			log.Println(err)
+
+			continue
 		}
+
 		names = append(names, name)
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error: %w", err)
 	}
 
-	return names, err
+	return names, nil
 }
 
-func (service DBService) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
+func (service Service) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
 	query := "SELECT DISTINCT " + columnName + " FROM " + tableName
+
 	rows, err := service.DB.Query(query)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error: %w", err)
 	}
 	defer rows.Close()
 
@@ -55,15 +60,16 @@ func (service DBService) SelectUniqueValues(columnName string, tableName string)
 
 	for rows.Next() {
 		var value string
-		if err := rows.Scan(&value); err != nil {
-			log.Fatal(err)
+		if err = rows.Scan(&value); err != nil {
+			return nil, fmt.Errorf("rows.Scan err: %w", err)
 		}
+
 		values = append(values, value)
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error: %w", err)
 	}
 
-	return values, err
+	return values, nil
 }
