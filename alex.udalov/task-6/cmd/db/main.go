@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+
 	dbPack "task-6/internal/db"
 )
 
@@ -18,7 +19,7 @@ func main() {
 
 	dbService := dbPack.New(db)
 
-	names, err := dbService.GetNames()
+	names, _ := dbService.GetNames()
 
 	for _, name := range names {
 		fmt.Println(name)
