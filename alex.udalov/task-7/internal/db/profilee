@@ -1,0 +1,20 @@
+mode: set
+task-6/internal/db/db_functions.go:16.31,18.2 1 1
+task-6/internal/db/db_functions.go:20.53,24.16 3 1
+task-6/internal/db/db_functions.go:24.16,26.3 1 1
+task-6/internal/db/db_functions.go:27.2,31.18 3 1
+task-6/internal/db/db_functions.go:31.18,33.42 2 1
+task-6/internal/db/db_functions.go:33.42,35.4 1 0
+task-6/internal/db/db_functions.go:37.3,37.30 1 1
+task-6/internal/db/db_functions.go:40.2,40.35 1 1
+task-6/internal/db/db_functions.go:40.35,42.3 1 0
+task-6/internal/db/db_functions.go:44.2,44.19 1 1
+task-6/internal/db/db_functions.go:47.98,51.16 3 1
+task-6/internal/db/db_functions.go:51.16,53.3 1 1
+task-6/internal/db/db_functions.go:54.2,58.18 3 1
+task-6/internal/db/db_functions.go:58.18,60.43 2 1
+task-6/internal/db/db_functions.go:60.43,62.4 1 0
+task-6/internal/db/db_functions.go:64.3,64.33 1 1
+task-6/internal/db/db_functions.go:67.2,67.35 1 1
+task-6/internal/db/db_functions.go:67.35,69.3 1 0
+task-6/internal/db/db_functions.go:71.2,71.20 1 1
