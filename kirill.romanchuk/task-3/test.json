@@ -1,0 +1,87 @@
+[
+  {
+    "char-code": "UAH",
+    "num-code": 980,
+    "value": 58.109
+  },
+  {
+    "char-code": "GBP",
+    "num-code": 826,
+    "value": 43.8254
+  },
+  {
+    "char-code": "XDR",
+    "num-code": 960,
+    "value": 38.4205
+  },
+  {
+    "char-code": "DKK",
+    "num-code": 208,
+    "value": 36.101
+  },
+  {
+    "char-code": "NOK",
+    "num-code": 578,
+    "value": 34.7853
+  },
+  {
+    "char-code": "USD",
+    "num-code": 840,
+    "value": 30.9436
+  },
+  {
+    "char-code": "ISK",
+    "num-code": 352,
+    "value": 30.7958
+  },
+  {
+    "char-code": "SEK",
+    "num-code": 752,
+    "value": 29.5924
+  },
+  {
+    "char-code": "EUR",
+    "num-code": 978,
+    "value": 26.8343
+  },
+  {
+    "char-code": "JPY",
+    "num-code": 392,
+    "value": 23.1527
+  },
+  {
+    "char-code": "TRL",
+    "num-code": 792,
+    "value": 22.2616
+  },
+  {
+    "char-code": "KZT",
+    "num-code": 398,
+    "value": 20.3393
+  },
+  {
+    "char-code": "CAD",
+    "num-code": 124,
+    "value": 19.324
+  },
+  {
+    "char-code": "BYR",
+    "num-code": 974,
+    "value": 18.429
+  },
+  {
+    "char-code": "CHF",
+    "num-code": 756,
+    "value": 18.1861
+  },
+  {
+    "char-code": "SGD",
+    "num-code": 702,
+    "value": 16.8878
+  },
+  {
+    "char-code": "AUD",
+    "num-code": 36,
+    "value": 16.0102
+  }
+]
