@@ -87,3 +87,14 @@ func mockURows(names []string) *sqlmock.Rows {
 	}
 	return rows
 }
+
+func TestNewService(t *testing.T) {
+	mockDB, _, err := sqlmock.New()
+	if err != nil {
+		t.Fatalf("an error '%s' was not expected when creating mock DB", err)
+	}
+
+	dbService := db.New(mockDB)
+
+	require.Equal(t, mockDB, dbService.DB, "Expected the DB field to be the same as the mock")
+}

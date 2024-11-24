@@ -25,6 +25,12 @@ var testTable = []rowTestSysInfo{
 	},
 }
 
+func TestNewService(t *testing.T) {
+	mockWifi := NewWiFi(t)
+	service := myWifi.New(mockWifi)
+	require.Equal(t, mockWifi, service.WiFi, "Expected the WiFi field to be the same as the mock")
+}
+
 func TestGetNames(t *testing.T) {
 
 	mockWifi := NewWiFi(t)
@@ -41,9 +47,8 @@ func TestGetNames(t *testing.T) {
 		}
 
 		require.NoError(t, err, "row: %d, error must be nil", i)
-		require.Equal(t, row.addrs, actualNames,
-			"row: %d, expected names: %s, actual names: %s", i,
-			row.addrs, actualNames)
+		require.Equal(t, []string{"eth1", "eth2"}, actualNames,
+			"row: %d, expected names: %s, actual names: %s", i)
 	}
 }
 
