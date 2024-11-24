@@ -25,6 +25,7 @@ jobs:
           go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
       - name: Run golangci-lint
+        working-directory: ./matvey.shmonov/task-7
         run: |
           golangci-lint run ./...
 
@@ -43,5 +44,6 @@ jobs:
           go-version: '1.23.1' # Укажите нужную версию Go
 
       - name: Run Tests
+        working-directory: ./matvey.shmonov/task-7
         run: |
-          go test ./... -v
+          go test ./... -v -cover
