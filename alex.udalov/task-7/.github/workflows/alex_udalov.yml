@@ -2,7 +2,8 @@ name: Run Tests
 
 on:
   push:
-    branches: ["TASK-7"]  
+    branches: 
+      - TASK-7  
 
 jobs:
   test:
