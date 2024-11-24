@@ -2,7 +2,7 @@ name: ErdemIstaev
 
 on:
   push:
-    branches: [ "task-7" ]
+    branches: [ "dev/isterd/task-7" ]
   workflow_dispatch:
 
 jobs:
