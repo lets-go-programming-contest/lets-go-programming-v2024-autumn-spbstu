@@ -1,26 +1,32 @@
-name: Run Tests
+name: udalov_alex
 
 on:
   push:
-    branches:
-      - TASK-7  
+    branches: [ "TASK-7" ]
 
 jobs:
-  Go-Tests:
+  task-7:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
-        go-version: '1.19'  
+        go-version: 1.19
 
-    - name: Install dependencies
-      run: go mod tidy
+    - name: Test db
+      working-directory: ./alex.udalov/task-7
+      run: go test -v ./internal/db/...
 
-    - name: Run tests in specific packages
-      run: |
-        go test ./task-7/internal/wifi ./task-7/internal/bd  
+    - name: Test WiFi
+      working-directory: ./alex.udalov/task-7
+      run: go test -v ./internal/wifi/...
+
+    - name: Install golangci-lint
+      run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.62.0
+
+    - name: Linting on golangci-lint
+      working-directory: ./alex.udalov/task-7
+      run: golangci-lint run --config=./.golangci.yaml
