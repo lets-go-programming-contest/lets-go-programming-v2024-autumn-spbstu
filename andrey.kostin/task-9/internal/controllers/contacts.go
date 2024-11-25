@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"regexp"
 	"strconv"
 
 	"github.com/gorilla/mux"
@@ -29,6 +30,11 @@ func InitDB(database *sql.DB) {
 	db = database
 }
 
+func isValidPhoneNumber(phone string) bool {
+	re := regexp.MustCompile(`^\+(\d{1,3})\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$`)
+	return re.MatchString(phone)
+}
+
 func GetContacts(w http.ResponseWriter, r *http.Request) {
 	rows, err := db.Query("SELECT id, name, phone, created_at, updated_at FROM contacts")
 	if err != nil {
@@ -48,7 +54,11 @@ func GetContacts(w http.ResponseWriter, r *http.Request) {
 		contacts = append(contacts, contact)
 	}
 
-	json.NewEncoder(w).Encode(contacts)
+	err = json.NewEncoder(w).Encode(contacts)
+	if err != nil {
+		http.Error(w, "Failed to encode contact", http.StatusInternalServerError)
+		return
+	}
 }
 
 func CreateContact(w http.ResponseWriter, r *http.Request) {
@@ -64,6 +74,21 @@ func CreateContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if !isValidPhoneNumber(contact.Phone) {
+		http.Error(w, "Invalid phone number format. Example: +7 (123) 456-78-90", http.StatusBadRequest)
+		return
+	}
+
+	var existingContactID int
+	err = db.QueryRow(`SELECT id FROM contacts WHERE phone = $1`, contact.Phone).Scan(&existingContactID)
+	if err == nil {
+		http.Error(w, "Phone number already exists", http.StatusConflict)
+		return
+	} else if err != sql.ErrNoRows {
+		http.Error(w, "Failed to check phone number uniqueness", http.StatusInternalServerError)
+		return
+	}
+
 	var newID int
 	err = db.QueryRow(`INSERT INTO contacts (name, phone) 
                         VALUES ($1, $2) RETURNING id`, contact.Name, contact.Phone).
@@ -75,7 +100,11 @@ func CreateContact(w http.ResponseWriter, r *http.Request) {
 
 	contact.ID = newID
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(contact)
+	err = json.NewEncoder(w).Encode(contact)
+	if err != nil {
+		http.Error(w, "Failed to encode contact", http.StatusInternalServerError)
+		return
+	}
 }
 
 func UpdateContact(w http.ResponseWriter, r *http.Request) {
@@ -98,6 +127,21 @@ func UpdateContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if !isValidPhoneNumber(contact.Phone) {
+		http.Error(w, "Invalid phone number format. Example: +7 (123) 456-78-90", http.StatusBadRequest)
+		return
+	}
+
+	var existingContactID int
+	err = db.QueryRow(`SELECT id FROM contacts WHERE phone = $1`, contact.Phone).Scan(&existingContactID)
+	if err == nil {
+		http.Error(w, "Phone number already exists", http.StatusConflict)
+		return
+	} else if err != sql.ErrNoRows {
+		http.Error(w, "Failed to check phone number uniqueness", http.StatusInternalServerError)
+		return
+	}
+
 	result, err := db.Exec(`UPDATE contacts SET name = $1, phone = $2, updated_at = CURRENT_TIMESTAMP 
                             WHERE id = $3`, contact.Name, contact.Phone, contactID)
 	if err != nil {
@@ -112,7 +156,11 @@ func UpdateContact(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Contact updated successfully"})
+	err = json.NewEncoder(w).Encode(map[string]string{"message": "Contact updated successfully"})
+	if err != nil {
+		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
+		return
+	}
 }
 
 func DeleteContact(w http.ResponseWriter, r *http.Request) {
@@ -136,7 +184,11 @@ func DeleteContact(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Contact deleted successfully"})
+	err = json.NewEncoder(w).Encode(map[string]string{"message": "Contact deleted successfully"})
+	if err != nil {
+		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
+		return
+	}
 }
 
 func GetTagsForContact(w http.ResponseWriter, r *http.Request) {
@@ -171,7 +223,11 @@ func GetTagsForContact(w http.ResponseWriter, r *http.Request) {
 		tags = []Tag{}
 	}
 
-	json.NewEncoder(w).Encode(tags)
+	err = json.NewEncoder(w).Encode(tags)
+	if err != nil {
+		http.Error(w, "Failed to encode tags", http.StatusInternalServerError)
+		return
+	}
 }
 
 func AddTagsToContact(w http.ResponseWriter, r *http.Request) {
@@ -191,7 +247,18 @@ func AddTagsToContact(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, tagID := range tagIDs {
-		_, err := db.Exec(`INSERT INTO contact_tags (contact_id, tag_id) VALUES ($1, $2) ON CONFLICT DO NOTHING`, contactID, tagID)
+		var exists bool
+		err := db.QueryRow(`SELECT EXISTS(SELECT 1 FROM contact_tags WHERE contact_id = $1 AND tag_id = $2)`, contactID, tagID).Scan(&exists)
+		if err != nil {
+			http.Error(w, "Failed to check if tag is already associated", http.StatusInternalServerError)
+			return
+		}
+		if exists {
+			http.Error(w, "Tag is already associated with this contact", http.StatusConflict)
+			return
+		}
+
+		_, err = db.Exec(`INSERT INTO contact_tags (contact_id, tag_id) VALUES ($1, $2)`, contactID, tagID)
 		if err != nil {
 			http.Error(w, "Failed to associate tag", http.StatusInternalServerError)
 			return
@@ -239,7 +306,11 @@ func GetTags(w http.ResponseWriter, r *http.Request) {
 		tags = append(tags, tag)
 	}
 
-	json.NewEncoder(w).Encode(tags)
+	err = json.NewEncoder(w).Encode(tags)
+	if err != nil {
+		http.Error(w, "Failed to encode contact", http.StatusInternalServerError)
+		return
+	}
 }
 
 func GetContactsByTag(w http.ResponseWriter, r *http.Request) {
@@ -277,5 +348,9 @@ func GetContactsByTag(w http.ResponseWriter, r *http.Request) {
 		contacts = []Contact{}
 	}
 
-	json.NewEncoder(w).Encode(contacts)
+	err = json.NewEncoder(w).Encode(contacts)
+	if err != nil {
+		http.Error(w, "Failed to encode contacts", http.StatusInternalServerError)
+		return
+	}
 }
