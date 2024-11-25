@@ -2,7 +2,7 @@ name: andrey_kostin
 
 on:
   push:
-    branches: [ "task-7" ]
+    branches: [ "andrey_kostin/task-7" ]
 
 jobs:
   task-7:
