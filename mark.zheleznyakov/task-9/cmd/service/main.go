@@ -9,4 +9,6 @@ func main() {
   database.Connect()
   database.DB.AutoMigrate(&models.Contact{})
   database.DB.Create(&models.Contact{ Name: "Octo8", Phone: "8 (888) 888-88-88" })
+	db, _ := database.DB.DB()
+	defer db.Close()
 }
