@@ -31,6 +31,7 @@ func (s Service) GetNames() ([]string, error) {
 
 	for rows.Next() {
 		var name string
+
 		if err := rows.Scan(&name); err != nil {
 			return nil, fmt.Errorf("failed to scan row: %w", err)
 		}
@@ -59,6 +60,7 @@ func (s Service) SelectUniqueValues(columnName string, tableName string) ([]stri
 
 	for rows.Next() {
 		var value string
+
 		if err := rows.Scan(&value); err != nil {
 			return nil, fmt.Errorf("failed to scan row: %w", err)
 		}
