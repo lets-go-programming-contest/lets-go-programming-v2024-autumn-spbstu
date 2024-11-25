@@ -1,6 +1,6 @@
 module github.com/kirill.romanchuk/task-6
 
-go 1.19
+go 1.23.1
 
 require github.com/mdlayher/wifi v0.1.0
 

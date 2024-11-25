@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/mdlayher/wifi"
-
 	myWifi "github.com/kirill.romanchuk/task-6/internal/wifi"
+	"github.com/mdlayher/wifi"
 )
 
 func main() {
