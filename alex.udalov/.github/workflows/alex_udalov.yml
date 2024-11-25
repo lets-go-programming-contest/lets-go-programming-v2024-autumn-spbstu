@@ -23,4 +23,4 @@ jobs:
 
     - name: Run tests in specific packages
       run: |
-        go test ./path/to/package1 ./path/to/package2  # Укажите пути к вашим пакетам
+        go test ./task-7/internal/wifi ./task-7/internal/bd  
