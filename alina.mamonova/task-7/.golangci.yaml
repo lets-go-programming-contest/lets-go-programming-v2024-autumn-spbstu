@@ -1,0 +1,34 @@
+run:
+  timeout: 5m
+  tests: false
+
+linters:
+  enable-all: true
+  disable:
+    - varnamelen
+    - forbidigo
+    - goimports
+    - exportloopref
+
+  fast: false
+
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(example_mock)
+    skip-generated: false
+    custom-order: true
+  depguard:
+    rules:
+      main:
+        files:
+          - !$test
+        allow:
+          - $gostd
+          - github.com/spbpu_go_course/lab_5
+#output:
+#  formats:
+#    - format: checkstyle
+#      path: ../golang_ci/ci_report.xml
