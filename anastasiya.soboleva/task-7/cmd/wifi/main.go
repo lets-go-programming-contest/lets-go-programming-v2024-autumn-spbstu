@@ -5,7 +5,7 @@ import (
 
 	"github.com/mdlayher/wifi"
 
-	myWifi "github.com/nayzzerr/task-6/internal/wifi"
+	myWifi "github.com/nayzzerr/task-7/internal/wifi"
 )
 
 func main() {

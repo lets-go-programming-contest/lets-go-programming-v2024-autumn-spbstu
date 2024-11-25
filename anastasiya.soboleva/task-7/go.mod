@@ -1,4 +1,4 @@
-module github.com/nayzzerr/task-6
+module github.com/nayzzerr/task-7
 
 go 1.23.2
 
