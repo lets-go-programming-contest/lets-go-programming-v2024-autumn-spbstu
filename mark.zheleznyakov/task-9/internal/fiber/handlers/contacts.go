@@ -45,13 +45,13 @@ func PostContacts(c *fiber.Ctx) error {
 	validate := validator.New()
 	if err := validate.Struct(contact); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "name and phone are required",
+			"error": "name and valid phone are required",
 		})
 	}
 
 	if err := database.DB.Create(&contact).Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": "Failed to create contact",
+			"error": "failed to create contact",
 		})
 	}
 
@@ -77,7 +77,7 @@ func PutContact(c *fiber.Ctx) error {
 	validate := validator.New()
 	if err := validate.Struct(contact); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "name and phone are required",
+			"error": "name and valid phone are required",
 		})
 	}
 
