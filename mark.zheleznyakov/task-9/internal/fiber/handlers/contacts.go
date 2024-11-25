@@ -121,5 +121,5 @@ func DeleteContact(c *fiber.Ctx) error {
 		})
 	}
 
-  return c.Status(fiber.StatusNoContent).Send([]byte{})
+	return c.Status(fiber.StatusNoContent).Send([]byte{})
 }
