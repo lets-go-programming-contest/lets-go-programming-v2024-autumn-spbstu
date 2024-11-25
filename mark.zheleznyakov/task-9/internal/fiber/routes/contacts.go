@@ -9,4 +9,5 @@ import (
 func ContactsRouter(app fiber.Router) {
 	app.Get("/", fiberhandlers.GetContacts)
 	app.Get("/:id", fiberhandlers.GetContact)
+	app.Post("/", fiberhandlers.PostContacts)
 }
