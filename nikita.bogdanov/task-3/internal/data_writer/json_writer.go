@@ -9,23 +9,28 @@ import (
 	"github.com/solomonalfred/task-3/internal/schemas"
 )
 
-func prepareOutput(config schemas.ConfigStruct) *os.File {
+func prepareOutput(config schemas.ConfigStruct) (*os.File, error) {
 	dir := filepath.Dir(config.Output)
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		err = os.Mkdir(dir, 0755)
+		err = os.MkdirAll(dir, 0755)
 		if err != nil {
-			panic(err)
+			return nil, err
 		}
 	}
 	fileData, err := os.OpenFile(config.Output, os.O_CREATE|os.O_RDWR, 0777)
 	if err != nil && !os.IsExist(err) {
-		panic(err)
+		if err != nil {
+			return nil, err
+		}
 	}
-	return fileData
+	return fileData, nil
 }
 
-func GetJSONReport(config schemas.ConfigStruct, curses *schemas.ValuteCurseStructure) {
-	reportData := prepareOutput(config)
+func GetJSONReport(config schemas.ConfigStruct, curses *schemas.ValuteCurseStructure) error {
+	reportData, err := prepareOutput(config)
+	if err != nil {
+		return err
+	}
 	defer reportData.Close()
 
 	var allValuteJSON []schemas.ValuteJSONStructure
@@ -43,6 +48,7 @@ func GetJSONReport(config schemas.ConfigStruct, curses *schemas.ValuteCurseStruc
 	encd := json.NewEncoder(w)
 	encd.SetIndent("", "  ")
 	if err := encd.Encode(allValuteJSON); err != nil {
-		panic(err)
+		return err
 	}
+	return nil
 }
