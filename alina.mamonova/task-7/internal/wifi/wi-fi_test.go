@@ -6,10 +6,9 @@ import (
 	"net"
 	"testing"
 
-	myWifi "github.com/hahapathetic/task-7/internal/wifi"
-
 	"github.com/mdlayher/wifi"
 	"github.com/stretchr/testify/require"
+	myWifi "github.com/hahapathetic/task-6/internal/wifi"
 )
 
 //go:generate mockery --all --testonly --quiet --outpkg wifi_test --output .
@@ -46,7 +45,7 @@ func TestNew(t *testing.T) {
 
 func TestGetName(t *testing.T) {
 	mockWifi := NewWiFi(t)
-	Service := myWifi.WiFiService{WiFi: mockWifi}
+	Service := myWifi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.names),
@@ -67,7 +66,7 @@ func TestGetName(t *testing.T) {
 
 func TestGetAddresses(t *testing.T) {
 	mockWifi := NewWiFi(t)
-	Service := myWifi.WiFiService{WiFi: mockWifi}
+	Service := myWifi.Service{WiFi: mockWifi}
 	for i, row := range testTable {
 		mockWifi.On("Interfaces").Unset()
 		mockWifi.On("Interfaces").Return(mockIfaces(row.addrs),
