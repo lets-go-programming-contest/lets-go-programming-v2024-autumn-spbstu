@@ -40,7 +40,6 @@ var testTable = []rowTestSysInfo{
 }
 
 func TestGetAddresses(t *testing.T) {
-	t.Parallel()
 	mockWiFi := NewWiFi(t)
 	wifiService := myWifi.New(mockWiFi)
 
@@ -60,7 +59,6 @@ func TestGetAddresses(t *testing.T) {
 }
 
 func TestGetNames(t *testing.T) {
-	t.Parallel()
 	mockWiFi := NewWiFi(t)
 	wifiService := myWifi.New(mockWiFi)
 
