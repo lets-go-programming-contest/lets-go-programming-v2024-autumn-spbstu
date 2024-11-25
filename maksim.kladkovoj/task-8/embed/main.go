@@ -14,8 +14,8 @@ var textFile string
 var jsonData []byte
 
 type User struct {
-	Name string
-	Age  int
+	Name string `json:"name"`
+	Age  int    `json:"age"`
 }
 
 func main() {
