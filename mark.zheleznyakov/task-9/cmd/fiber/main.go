@@ -10,8 +10,13 @@ import (
 )
 
 func init() {
-	database.Connect()
-	database.DB.AutoMigrate(&models.Contact{})
+	if err := database.Connect(); err != nil {
+		log.Fatalf("failed to connect to db: %v", err)
+	}
+
+	if err := database.DB.AutoMigrate(&models.Contact{}); err != nil {
+		log.Fatalf("migration failed: %v", err)
+	}
 }
 
 func main() {
@@ -20,6 +25,9 @@ func main() {
 	fiberroutes.ContactsRouter(contacts)
 	log.Fatal(app.Listen(":3000"))
 
-	db, _ := database.DB.DB()
-	defer db.Close()
+	if db, err := database.DB.DB(); err == nil {
+		defer db.Close()
+	} else {
+		log.Printf("failed to close connection: %v", err)
+	}
 }
