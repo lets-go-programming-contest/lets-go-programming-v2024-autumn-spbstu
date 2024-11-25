@@ -12,6 +12,35 @@ const (
 	selectUniqueValuesQuery = "SELECT DISTINCT %s FROM %s"
 )
 
+type rowTestDb struct {
+	names         []string
+	namesDistinct []string
+	errExpected   error
+}
+
+var testTable = []rowTestDb{
+	{
+		names:         []string{"Alice", "Bob", "Charlie", "Charlie"},
+		namesDistinct: []string{"Alice", "Bob", "Charlie"},
+		errExpected:   nil,
+	},
+	{
+		names:         nil,
+		namesDistinct: nil,
+		errExpected:   fmt.Errorf("query execution error"),
+	},
+	{
+		names:         nil,
+		namesDistinct: nil,
+		errExpected:   fmt.Errorf("failed to scan row"),
+	},
+	{
+		names:         nil,
+		namesDistinct: nil,
+		errExpected:   fmt.Errorf("row iteration error"),
+	},
+}
+
 func TestNew(t *testing.T) {
 	t.Run("Create Service instance", func(t *testing.T) {
 		mockDB, _, err := sqlmock.New()
@@ -23,142 +52,101 @@ func TestNew(t *testing.T) {
 	})
 }
 
-func TestGetNamesSuccess(t *testing.T) {
-	t.Run("Retrieve multiple names successfully", func(t *testing.T) {
-		mockDB, mock, err := sqlmock.New()
-		require.NoError(t, err)
+func TestGetNames(t *testing.T) {
+	for _, testCase := range testTable {
+		t.Run(fmt.Sprintf("Test for names: %v", testCase.names), func(t *testing.T) {
+			mockDB, mock, err := sqlmock.New()
+			require.NoError(t, err)
 
-		service := Service{DB: mockDB}
-		mock.ExpectQuery(selectNamesQuery).
-			WillReturnRows(mockDbRows([]string{"Alice", "Bob", "Charlie"}))
+			service := Service{DB: mockDB}
 
-		names, err := service.GetNames()
+			if testCase.errExpected == nil {
+				mock.ExpectQuery(selectNamesQuery).
+					WillReturnRows(mockDbRows(testCase.names))
 
-		require.NoError(t, err)
-		require.ElementsMatch(t, []string{"Alice", "Bob", "Charlie"}, names)
-	})
+				names, err := service.GetNames()
+
+				require.NoError(t, err)
+				require.ElementsMatch(t, testCase.names, names)
+			} else if testCase.errExpected.Error() == "query execution error" {
+				mock.ExpectQuery(selectNamesQuery).
+					WillReturnError(testCase.errExpected)
+
+				names, err := service.GetNames()
+
+				require.Error(t, err)
+				require.Nil(t, names)
+				require.Contains(t, err.Error(), "query execution error")
+			} else if testCase.errExpected.Error() == "failed to scan row" {
+				mock.ExpectQuery(selectNamesQuery).
+					WillReturnRows(mockDbRowsWithScanError())
+
+				names, err := service.GetNames()
+
+				require.Error(t, err)
+				require.Nil(t, names)
+				require.Contains(t, err.Error(), "failed to scan row")
+			} else if testCase.errExpected.Error() == "row iteration error" {
+				mock.ExpectQuery(selectNamesQuery).
+					WillReturnRows(mockDbRowsWithIterationError())
+
+				names, err := service.GetNames()
+
+				require.Error(t, err)
+				require.Nil(t, names)
+				require.Contains(t, err.Error(), "row iteration error")
+			}
+		})
+	}
 }
 
-func TestGetNamesQueryError(t *testing.T) {
-	t.Run("Query error occurs", func(t *testing.T) {
-		mockDB, mock, err := sqlmock.New()
-		require.NoError(t, err)
+func TestSelectUniqueValues(t *testing.T) {
+	for _, testCase := range testTable {
+		t.Run(fmt.Sprintf("Test for distinct values: %v", testCase.namesDistinct), func(t *testing.T) {
+			mockDB, mock, err := sqlmock.New()
+			require.NoError(t, err)
 
-		service := Service{DB: mockDB}
-		mock.ExpectQuery(selectNamesQuery).
-			WillReturnError(fmt.Errorf("query execution error"))
+			service := Service{DB: mockDB}
+			query := fmt.Sprintf(selectUniqueValuesQuery, "name", "users")
 
-		names, err := service.GetNames()
+			if testCase.errExpected == nil {
+				mock.ExpectQuery(query).
+					WillReturnRows(mockDbRows(testCase.namesDistinct))
 
-		require.Error(t, err)
-		require.Nil(t, names)
-		require.Contains(t, err.Error(), "query execution error")
-	})
-}
+				uniqueNames, err := service.SelectUniqueValues("name", "users")
 
-func TestGetNamesScanError(t *testing.T) {
-	t.Run("Scan error", func(t *testing.T) {
-		mockDB, mock, err := sqlmock.New()
-		require.NoError(t, err)
+				require.NoError(t, err)
+				require.ElementsMatch(t, testCase.namesDistinct, uniqueNames)
+			} else if testCase.errExpected.Error() == "query execution error" {
+				mock.ExpectQuery(query).
+					WillReturnError(testCase.errExpected)
 
-		service := Service{DB: mockDB}
-		mock.ExpectQuery(selectNamesQuery).
-			WillReturnRows(mockDbRowsWithScanError())
+				uniqueNames, err := service.SelectUniqueValues("name", "users")
 
-		names, err := service.GetNames()
+				require.Error(t, err)
+				require.Nil(t, uniqueNames)
+				require.Contains(t, err.Error(), "query execution error")
+			} else if testCase.errExpected.Error() == "failed to scan row" {
+				mock.ExpectQuery(query).
+					WillReturnRows(mockDbRowsWithScanError())
 
-		require.Error(t, err)
-		require.Nil(t, names)
-		require.Contains(t, err.Error(), "failed to scan row")
-	})
-}
+				uniqueNames, err := service.SelectUniqueValues("name", "users")
 
-func TestGetNamesIterationError(t *testing.T) {
-	t.Run("Iteration error", func(t *testing.T) {
-		mockDB, mock, err := sqlmock.New()
-		require.NoError(t, err)
+				require.Error(t, err)
+				require.Nil(t, uniqueNames)
+				require.Contains(t, err.Error(), "failed to scan row")
+			} else if testCase.errExpected.Error() == "row iteration error" {
+				mock.ExpectQuery(query).
+					WillReturnRows(mockDbRowsWithIterationError())
 
-		service := Service{DB: mockDB}
-		mock.ExpectQuery(selectNamesQuery).
-			WillReturnRows(mockDbRowsWithIterationError())
+				uniqueNames, err := service.SelectUniqueValues("name", "users")
 
-		names, err := service.GetNames()
-
-		require.Error(t, err)
-		require.Nil(t, names)
-		require.Contains(t, err.Error(), "row iteration error")
-	})
-}
-
-func TestSelectUniqueValuesSuccess(t *testing.T) {
-	t.Run("Select unique values", func(t *testing.T) {
-		mockDB, mock, err := sqlmock.New()
-		require.NoError(t, err)
-
-		service := Service{DB: mockDB}
-		query := fmt.Sprintf(selectUniqueValuesQuery, "name", "users")
-		mock.ExpectQuery(query).
-			WillReturnRows(mockDbRows([]string{"Bob", "Charlie"}))
-
-		uniqueNames, err := service.SelectUniqueValues("name", "users")
-
-		require.NoError(t, err)
-		require.ElementsMatch(t, []string{"Bob", "Charlie"}, uniqueNames)
-	})
-}
-
-func TestSelectUniqueValuesQueryError(t *testing.T) {
-	t.Run("Query error on unique values", func(t *testing.T) {
-		mockDB, mock, err := sqlmock.New()
-		require.NoError(t, err)
-
-		service := Service{DB: mockDB}
-		query := fmt.Sprintf(selectUniqueValuesQuery, "name", "users")
-		mock.ExpectQuery(query).
-			WillReturnError(fmt.Errorf("query execution error"))
-
-		uniqueNames, err := service.SelectUniqueValues("name", "users")
-
-		require.Error(t, err)
-		require.Nil(t, uniqueNames)
-		require.Contains(t, err.Error(), "query execution error")
-	})
-}
-
-func TestSelectUniqueValuesScanError(t *testing.T) {
-	t.Run("Scan error on unique values", func(t *testing.T) {
-		mockDB, mock, err := sqlmock.New()
-		require.NoError(t, err)
-
-		service := Service{DB: mockDB}
-		query := fmt.Sprintf(selectUniqueValuesQuery, "name", "users")
-		mock.ExpectQuery(query).
-			WillReturnRows(mockDbRowsWithScanError())
-
-		uniqueNames, err := service.SelectUniqueValues("name", "users")
-
-		require.Error(t, err)
-		require.Nil(t, uniqueNames)
-		require.Contains(t, err.Error(), "failed to scan row")
-	})
-}
-
-func TestSelectUniqueValuesIterationError(t *testing.T) {
-	t.Run("Iteration error on unique values", func(t *testing.T) {
-		mockDB, mock, err := sqlmock.New()
-		require.NoError(t, err)
-
-		service := Service{DB: mockDB}
-		query := fmt.Sprintf(selectUniqueValuesQuery, "name", "users")
-		mock.ExpectQuery(query).
-			WillReturnRows(mockDbRowsWithIterationError())
-
-		uniqueNames, err := service.SelectUniqueValues("name", "users")
-
-		require.Error(t, err)
-		require.Nil(t, uniqueNames)
-		require.Contains(t, err.Error(), "row iteration error")
-	})
+				require.Error(t, err)
+				require.Nil(t, uniqueNames)
+				require.Contains(t, err.Error(), "row iteration error")
+			}
+		})
+	}
 }
 
 func mockDbRows(names []string) *sqlmock.Rows {
