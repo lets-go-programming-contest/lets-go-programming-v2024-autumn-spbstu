@@ -24,15 +24,17 @@ type Tag struct {
 	Name string `json:"name"`
 }
 
+var phoneRegex *regexp.Regexp
+
 var db *sql.DB
 
 func InitDB(database *sql.DB) {
 	db = database
+	phoneRegex = regexp.MustCompile(`^\+(\d{1,3})\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$`)
 }
 
 func isValidPhoneNumber(phone string) bool {
-	re := regexp.MustCompile(`^\+(\d{1,3})\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$`)
-	return re.MatchString(phone)
+	return phoneRegex.MatchString(phone)
 }
 
 func GetContacts(w http.ResponseWriter, r *http.Request) {

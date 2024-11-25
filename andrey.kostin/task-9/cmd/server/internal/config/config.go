@@ -14,6 +14,9 @@ type Config struct {
 		Password string `yaml:"password"`
 		Name     string `yaml:"name"`
 	} `yaml:"database"`
+	Server struct {
+		Port string `yaml:"port"`
+	} `yaml:"server"`
 }
 
 func LoadConfig(configPath string) (*Config, error) {

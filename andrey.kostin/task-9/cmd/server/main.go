@@ -34,7 +34,8 @@ func main() {
 	origins := handlers.AllowedOrigins([]string{"http://localhost:3000"})
 	loggedRouter := handlers.CORS(headers, methods, origins)(router)
 
-	port := "8080"
+	port := cfg.Server.Port
+
 	log.Printf("Server is running on port %s", port)
 	log.Fatal(http.ListenAndServe(":"+port, loggedRouter))
 }
