@@ -93,7 +93,6 @@ func UpdateContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Проверяем, что имя и телефон не пустые
 	if contact.Name == "" || contact.Phone == "" {
 		http.Error(w, "Name and phone are required", http.StatusBadRequest)
 		return
