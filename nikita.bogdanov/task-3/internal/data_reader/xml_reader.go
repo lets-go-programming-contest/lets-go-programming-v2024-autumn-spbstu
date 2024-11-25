@@ -8,30 +8,28 @@ import (
 	"sort"
 	"strings"
 
-	"golang.org/x/net/html/charset"
-
 	"github.com/solomonalfred/task-3/internal/schemas"
+	"golang.org/x/text/encoding/charmap"
+	"golang.org/x/text/transform"
 )
 
 func GetValuteCurse(config schemas.ConfigStruct) (*schemas.ValuteCurseStructure, error) {
-	curseData, err := os.OpenFile(config.Input, os.O_RDONLY, 0777)
+	file, err := os.Open(config.Input)
 	if err != nil {
 		return nil, err
 	}
-	defer curseData.Close()
-	buf := make([]byte, 1024)
-	var data []byte
-	for {
-		n, state := curseData.Read(buf)
-		if state == io.EOF {
-			break
-		}
-		if state != nil {
-			return nil, state
-		}
-		data = append(data, buf[:n]...)
+	defer file.Close()
+	decoder := charmap.Windows1251.NewDecoder()
+	reader := transform.NewReader(file, decoder)
+	data, err := io.ReadAll(reader)
+	if err != nil {
+		return nil, err
 	}
-	valCurs, err := convertToStructure(data)
+	// data = []byte(data)
+	data = []byte(strings.ReplaceAll(string(data), ",", "."))
+	data = fixXMLPrologEncoding(data)
+	valCurs := new(schemas.ValuteCurseStructure)
+	err = xml.Unmarshal(data, valCurs)
 	if err != nil {
 		return nil, err
 	}
@@ -41,15 +39,9 @@ func GetValuteCurse(config schemas.ConfigStruct) (*schemas.ValuteCurseStructure,
 	return valCurs, nil
 }
 
-func convertToStructure(data []byte) (*schemas.ValuteCurseStructure, error) {
-	stream := []byte(strings.ReplaceAll(string(data), ",", ".")) //Todo: Unmarshal
-	valCurs := new(schemas.ValuteCurseStructure)
-	reader := bytes.NewReader(stream)
-	decoder := xml.NewDecoder(reader)
-	decoder.CharsetReader = charset.NewReaderLabel
-	err := decoder.Decode(&valCurs)
-	if err != nil {
-		return nil, err
-	}
-	return valCurs, nil
+func fixXMLPrologEncoding(data []byte) []byte {
+	oldEncoding := []byte(`encoding="windows-1251"`)
+	newEncoding := []byte(`encoding="UTF-8"`)
+	data = bytes.Replace(data, oldEncoding, newEncoding, 1)
+	return data
 }
