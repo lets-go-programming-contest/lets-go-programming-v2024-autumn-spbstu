@@ -1,0 +1,38 @@
+run:
+  timeout: 5m
+  tests: false
+
+linters:
+  enable-all: true
+  disable:
+    - exportloopref
+    - varnamelen
+    - forbidigo
+    - goimports
+    - gomnd
+    - execinquery
+  fast: false
+
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/IDevFrye/task-7)
+    skip-generated: false
+    custom-order: true
+  depguard:
+    rules:
+      main:
+        files:
+          - !$test
+        allow:
+          - $gostd
+          - 'github.com/mdlayher/wifi'
+
+output:
+  formats:
+    - format: checkstyle
+      path: ./cilint_reports/report_after.xml
+
+
