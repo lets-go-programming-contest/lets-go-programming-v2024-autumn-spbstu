@@ -7,8 +7,8 @@ type Contact struct {
 
 type ContactInface interface {
 	GetAll() ([]Contact, error)
-	GetByID(id uint32) (Contact, error)
+	GetByID(id int) (Contact, error)
 	Add(contact Contact) error
-	Update(id uint32, contact Contact) error
-	Delete(id uint32) error
+	Update(id int, contact Contact) error
+	Delete(id int) error
 }

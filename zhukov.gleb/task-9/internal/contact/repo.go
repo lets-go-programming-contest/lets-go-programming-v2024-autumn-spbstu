@@ -1,36 +1,34 @@
 package contact
 
-type ContactRepository interface {
-	GetContact() (id string, password []byte, err error)
-	AddContact() error
+type ContactDB interface {
+	AddContact(contact Contact) error
+	GetContact(id int) error
 }
 
-type ContactMemoryRepository struct {
-	Repo ContactRepository
+type ContactRepository struct {
+	ContactDB
 }
 
-func NewContactRepo(repo ContactRepository) *ContactMemoryRepository {
-	return &ContactMemoryRepository{
-		Repo: repo,
-	}
+func NewContactRepo(repo ContactDB) *ContactRepository {
+	return &ContactRepository{repo}
 }
 
-func (r *ContactMemoryRepository) GetAll() ([]Contact, error) {
-
-}
-
-func (r *ContactMemoryRepository) GetByID(id uint32) (Contact, error) {
+func (r *ContactRepository) GetAll() ([]Contact, error) {
 
 }
 
-func (r *ContactMemoryRepository) Add(contact Contact) error {
+func (r *ContactRepository) GetByID(id int) (Contact, error) {
 
 }
 
-func (r *ContactMemoryRepository) Update(id uint32, contact Contact) error {
+func (r *ContactRepository) Add(contact Contact) error {
 
 }
 
-func (r *ContactMemoryRepository) Delete(id uint32) error {
+func (r *ContactRepository) Update(id int, contact Contact) error {
+
+}
+
+func (r *ContactRepository) Delete(id int) error {
 
 }
