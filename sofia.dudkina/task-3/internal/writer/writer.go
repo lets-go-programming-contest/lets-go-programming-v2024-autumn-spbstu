@@ -9,7 +9,7 @@ import (
 	"github.com/sssidkn/task-3/internal/entities"
 )
 
-func WriteFile(path string, cursData *entities.CursData) error {
+func WriteFile(path string, outputData *entities.ValCurs) error {
 	_, err := os.Stat(path)
 	if err != nil {
 		err = os.MkdirAll(filepath.Dir(path), 0777)
@@ -26,7 +26,7 @@ func WriteFile(path string, cursData *entities.CursData) error {
 	var data []byte
 	switch extension {
 	case ".json":
-		data, err = json.MarshalIndent(cursData.ValCurs.Valute, "", "  ")
+		data, err = json.MarshalIndent(outputData.Valute, "", "  ")
 		if err != nil {
 			return err
 		}
