@@ -11,4 +11,5 @@ func ContactsRouter(app fiber.Router) {
 	app.Get("/:id", fiberhandlers.GetContact)
 	app.Post("/", fiberhandlers.PostContacts)
 	app.Put("/:id", fiberhandlers.PutContact)
+  app.Delete("/:id", fiberhandlers.DeleteContact)
 }

@@ -93,9 +93,33 @@ func PutContact(c *fiber.Ctx) error {
 
 	if err := database.DB.Save(&existingContact).Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": "Failed to update contact",
+			"error": "failed to update contact",
 		})
 	}
 
 	return c.Status(fiber.StatusCreated).JSON(contact)
+}
+
+func DeleteContact(c *fiber.Ctx) error {
+	id := c.Params("id")
+	if _, err := strconv.Atoi(id); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "id is nan",
+		})
+	}
+
+	var existingContact models.Contact
+	if database.DB.First(&existingContact, id).Error != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "contact not found",
+		})
+	}
+
+	if err := database.DB.Delete(&existingContact).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "failed to delete contact",
+		})
+	}
+
+  return c.Status(fiber.StatusNoContent).Send([]byte{})
 }
