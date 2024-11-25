@@ -57,3 +57,45 @@ func PostContacts(c *fiber.Ctx) error {
 
 	return c.Status(fiber.StatusCreated).JSON(contact)
 }
+
+func PutContact(c *fiber.Ctx) error {
+	id := c.Params("id")
+	if _, err := strconv.Atoi(id); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "id is nan",
+		})
+	}
+
+	var contact models.Contact
+
+	if err := c.BodyParser(&contact); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "malformed body",
+		})
+	}
+
+	validate := validator.New()
+	if err := validate.Struct(contact); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "name and phone are required",
+		})
+	}
+
+	var existingContact models.Contact
+	if database.DB.First(&existingContact, id).Error != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "contact not found",
+		})
+	}
+
+	existingContact.Name = contact.Name
+	existingContact.Phone = contact.Phone
+
+	if err := database.DB.Save(&existingContact).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Failed to update contact",
+		})
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(contact)
+}
