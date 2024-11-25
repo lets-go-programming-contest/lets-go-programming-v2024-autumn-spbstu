@@ -53,8 +53,10 @@ func TestNew(t *testing.T) {
 }
 
 func TestGetNames(t *testing.T) {
+	t.Parallel()
 	for _, testCase := range testTable {
 		t.Run(fmt.Sprintf("Test for names: %v", testCase.names), func(t *testing.T) {
+			t.Parallel()
 			mockDB, mock, err := sqlmock.New()
 			require.NoError(t, err)
 
@@ -101,8 +103,10 @@ func TestGetNames(t *testing.T) {
 }
 
 func TestSelectUniqueValues(t *testing.T) {
+	t.Parallel()
 	for _, testCase := range testTable {
 		t.Run(fmt.Sprintf("Test for distinct values: %v", testCase.namesDistinct), func(t *testing.T) {
+			t.Parallel()
 			mockDB, mock, err := sqlmock.New()
 			require.NoError(t, err)
 
