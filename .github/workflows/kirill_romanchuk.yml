@@ -2,7 +2,7 @@ name: kirill_romanchuk
 
 on:
   push:
-    branches: [ "task-7" ]
+    branches: [ "kirill_romanchuk/task-7" ]
 
 jobs:
   Go-Tests:
