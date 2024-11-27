@@ -2,6 +2,7 @@ package contacts
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/artem6554/task-9/internal/db"
@@ -20,14 +21,14 @@ func GetContact(name string) ([]byte, error) {
 		return nil, err
 	}
 	defer db.Close()
-	queryString := fmt.Sprintf("select id, name, number from numbers where name = '%v'", name)
+	queryString := fmt.Sprintf("select name, number from numbers where name = '%v'", name)
 	rows, err := db.Query(queryString)
 	if err != nil {
 		return nil, err
 	}
 	for rows.Next() {
 		var contact Contact
-		rows.Scan(&contact.Id, &contact.Name, &contact.Number)
+		rows.Scan(&contact.Name, &contact.Number)
 		сontacts = append(сontacts, contact)
 	}
 	result, err := json.Marshal(сontacts)
@@ -65,7 +66,7 @@ func EditNumber(name string, number string) error {
 	return nil
 }
 
-func DeleteContact(name string, number string) error {
+func DeleteContact(name string) error {
 	db, err := db.ConnectDB()
 	if err != nil {
 		return err
@@ -77,4 +78,22 @@ func DeleteContact(name string, number string) error {
 		return err
 	}
 	return nil
+}
+
+func Exists(name string) error {
+	db, err := db.ConnectDB()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+	queryString := fmt.Sprintf("select id, name, number from numbers where name = '%v'", name)
+	rows, err := db.Query(queryString)
+	if err != nil {
+		return err
+	}
+	if rows.Next() {
+		return errors.New("file already exists")
+	}
+	return nil
+
 }
