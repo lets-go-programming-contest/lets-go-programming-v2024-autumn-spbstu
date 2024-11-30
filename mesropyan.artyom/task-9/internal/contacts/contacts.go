@@ -5,18 +5,24 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/artem6554/task-9/internal/config"
 	"github.com/artem6554/task-9/internal/db"
 )
 
+var dbConfig config.DbData
+
+func init() {
+	dbConfig = config.ReadDbConfig()
+}
+
 type Contact struct {
-	Id     int    `json:"id"`
 	Name   string `json:"name"`
 	Number string `json:"number"`
 }
 
 func GetContact(name string) ([]byte, error) {
 	var сontacts []Contact
-	db, err := db.ConnectDB()
+	db, err := db.ConnectDB(dbConfig)
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +45,7 @@ func GetContact(name string) ([]byte, error) {
 }
 
 func AddContact(name string, number string) error {
-	db, err := db.ConnectDB()
+	db, err := db.ConnectDB(dbConfig)
 	if err != nil {
 		return err
 	}
@@ -53,7 +59,7 @@ func AddContact(name string, number string) error {
 }
 
 func EditNumber(name string, number string) error {
-	db, err := db.ConnectDB()
+	db, err := db.ConnectDB(dbConfig)
 	if err != nil {
 		return err
 	}
@@ -67,7 +73,7 @@ func EditNumber(name string, number string) error {
 }
 
 func DeleteContact(name string) error {
-	db, err := db.ConnectDB()
+	db, err := db.ConnectDB(dbConfig)
 	if err != nil {
 		return err
 	}
@@ -81,7 +87,7 @@ func DeleteContact(name string) error {
 }
 
 func Exists(name string) error {
-	db, err := db.ConnectDB()
+	db, err := db.ConnectDB(dbConfig)
 	if err != nil {
 		return err
 	}
@@ -95,5 +101,4 @@ func Exists(name string) error {
 		return errors.New("file already exists")
 	}
 	return nil
-
 }
