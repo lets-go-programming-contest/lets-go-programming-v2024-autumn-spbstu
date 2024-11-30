@@ -25,7 +25,7 @@ func NewHandler(s service, r *mux.Router) *mux.Router {
 	r.HandleFunc("/upload", h.upload).Methods(http.MethodOptions, http.MethodPost)
 	r.HandleFunc("/delete", h.delete).Methods(http.MethodOptions, http.MethodDelete)
 	r.HandleFunc("/update", h.update).Methods(http.MethodOptions, http.MethodPatch)
-	r.HandleFunc("/get/{name}", h.get).Methods(http.MethodOptions, http.MethodGet)
+	r.HandleFunc("/get", h.get).Methods(http.MethodOptions, http.MethodGet)
 
 	return r
 }
