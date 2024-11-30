@@ -1,4 +1,4 @@
-package handlers
+package service
 
 import (
 	"errors"
@@ -9,7 +9,7 @@ import (
 type Service struct {
 }
 
-func (s *Service) Upload(name string, number string) error {
+func (s Service) Upload(name string, number string) error {
 	err := contacts.Exists(name)
 	if err != nil {
 		return err // TODO: wrap error nicely
@@ -23,10 +23,10 @@ func (s *Service) Upload(name string, number string) error {
 	return nil
 }
 
-func (s *Service) Delete(name string) error {
+func (s Service) Delete(name string) error {
 	err := contacts.Exists(name)
 	if err == nil {
-		err = errors.New("file does not exist")
+		err = errors.New("contact does not exist")
 		return err // TODO: wrap error nicely
 	}
 
@@ -38,10 +38,10 @@ func (s *Service) Delete(name string) error {
 
 }
 
-func Get(name string) ([]byte, error) {
+func (s Service) Get(name string) ([]byte, error) {
 	err := contacts.Exists(name)
 	if err == nil {
-		err = errors.New("file does not exist")
+		err = errors.New("contact does not exist")
 		return nil, err // TODO: wrap error nicely
 	}
 
@@ -52,10 +52,10 @@ func Get(name string) ([]byte, error) {
 	return data, nil
 }
 
-func Update(name string, number string) error {
+func (s Service) Update(name string, number string) error {
 	err := contacts.Exists(name)
 	if err == nil {
-		err = errors.New("file does not exist")
+		err = errors.New("contact does not exist")
 		return err // TODO: wrap error nicely
 	}
 
