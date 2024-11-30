@@ -2,6 +2,8 @@ package service
 
 import (
 	"errors"
+
+	"github.com/artem6554/task-9/internal/contacts"
 )
 
 type Service struct {
