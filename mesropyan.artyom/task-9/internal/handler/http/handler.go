@@ -59,5 +59,11 @@ func (h *handler) get(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *handler) update(w http.ResponseWriter, r *http.Request) {
+	name := r.FormValue("name")
+	number := r.FormValue("number")
 
+	if err := h.service.Update(name, number); err != nil {
+		http.Error(w, fmt.Errorf("error while uploading contact: %w", err).Error(), http.StatusInternalServerError)
+		return
+	}
 }

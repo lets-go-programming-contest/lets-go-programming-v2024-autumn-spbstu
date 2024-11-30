@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"regexp"
 
 	"github.com/artem6554/task-9/internal/config"
 	"github.com/artem6554/task-9/internal/db"
@@ -64,7 +65,7 @@ func EditNumber(name string, number string) error {
 		return err
 	}
 	defer db.Close()
-	queryString := fmt.Sprintf("UPDATE table_name SET number = '%v' WHERE name = '%v'", number, name)
+	queryString := fmt.Sprintf("UPDATE numbers SET number = '%v' WHERE name = '%v'", number, name)
 	_, err = db.Query(queryString)
 	if err != nil {
 		return err
@@ -101,4 +102,12 @@ func Exists(name string) error {
 		return errors.New("file already exists")
 	}
 	return nil
+}
+
+func CorrectNumber(number string) error {
+	numberRegExp := regexp.MustCompile(`^(?:\+7|7|8)?\s*\(?(\d{3})\)?\s*(\d{3})\s*(\d{2})\s*(\d{2})$`)
+	if numberRegExp.MatchString(number) {
+		return nil
+	}
+	return errors.New("incorrect number")
 }

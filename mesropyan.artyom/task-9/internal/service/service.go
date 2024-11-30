@@ -14,7 +14,10 @@ func (s Service) Upload(name string, number string) error {
 	if err != nil {
 		return err // TODO: wrap error nicely
 	}
-
+	err = contacts.CorrectNumber(number)
+	if err != nil {
+		return err // TODO: wrap error nicely
+	}
 	err = contacts.AddContact(name, number)
 	if err != nil {
 		return err // TODO: wrap error nicely
@@ -56,6 +59,11 @@ func (s Service) Update(name string, number string) error {
 	err := contacts.Exists(name)
 	if err == nil {
 		err = errors.New("contact does not exist")
+		return err // TODO: wrap error nicely
+	}
+
+	err = contacts.CorrectNumber(number)
+	if err != nil {
 		return err // TODO: wrap error nicely
 	}
 
