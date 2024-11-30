@@ -5,8 +5,21 @@ import (
 	"errors"
 	"fmt"
 
-	_ "github.com/lib/pq"
 	"task-9/internal/contact"
+
+	"github.com/golang-migrate/migrate/v4"
+	"github.com/golang-migrate/migrate/v4/database/pgx/v5"
+	_ "github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
+	_ "github.com/jackc/pgx/v5"
+	_ "github.com/lib/pq"
+)
+
+var (
+	ErrOpenDB    = errors.New("error open")
+	ErrPingDB    = errors.New("error ping")
+	ErrInsertDB  = errors.New("error insert")
+	ErrNoContact = errors.New("contact not found")
 )
 
 type PgSQLRepository struct {
@@ -25,18 +38,18 @@ func NewPgSQLController(uName, uPass, host, dbName string, port int) (PgSQLRepos
 		return *repo, fmt.Errorf("%w + pgsql; %w", ErrOpenDB, err)
 	}
 
-	err = repo.Ping()
+	err = repo.DB.Ping()
 	if err != nil {
-		err_ := repo.Close()
+		err_ := repo.DB.Close()
 		if err_ != nil {
 			return PgSQLRepository{}, errors.Join(err, err_)
 		}
 		return *repo, fmt.Errorf("%w + pgsql; %w", ErrPingDB, err)
 	}
 
-	err = repo.PrepareDBContent()
+	err = repo.newPostgresStorage()
 	if err != nil {
-		err_ := repo.Close()
+		err_ := repo.DB.Close()
 		if err_ != nil {
 			return PgSQLRepository{}, errors.Join(err, err_)
 		}
@@ -46,38 +59,111 @@ func NewPgSQLController(uName, uPass, host, dbName string, port int) (PgSQLRepos
 	return *repo, nil
 }
 
-func (m PgSQLRepository) Ping() error {
-	return m.DB.Ping()
-}
-
-func (m PgSQLRepository) Close() error {
-	return m.DB.Close()
-}
-
-func (m PgSQLRepository) PrepareDBContent() error {
-	qs := []string{
-		`DROP TABLE IF EXISTS contacts;`,
-
-		`CREATE TABLE contacts (
-    		ID SERIAL PRIMARY KEY,
-    		Name VARCHAR(255) PRIMARY KEY,
-    		Phone VARCHAR(255) NOT NULL,
-		);`,
+func (m *PgSQLRepository) newPostgresStorage() error {
+	driver, err := pgx.WithInstance(m.DB, &pgx.Config{})
+	if err != nil {
+		return err
 	}
 
-	for _, q := range qs {
-		_, err := m.DB.Exec(q)
-		if err != nil {
-			return ErrInsertDB
-		}
+	migr, err := migrate.NewWithDatabaseInstance("file://db/migrations", "postgres", driver)
+	if err != nil {
+		return err
+	}
+
+	if err = migr.Up(); err != nil && !errors.Is(err, migrate.ErrNoChange) {
+		return err
 	}
 	return nil
 }
 
-func (m PgSQLRepository) AddContact(contact contact.Contact) error {
-	panic("implement")
+func (m *PgSQLRepository) AddContact(name, phone string) (contact.Contact, error) {
+	q := "INSERT INTO contacts (Name, Phone) VALUES($1, $2) RETURNING id, name, phone"
+
+	var newContact contact.Contact
+
+	err := m.DB.QueryRow(q, name, phone).Scan(&newContact.ID, &newContact.Name, &newContact.Phone)
+	if err != nil {
+		return contact.Contact{}, fmt.Errorf("%w add user: %w", ErrInsertDB, err)
+	}
+
+	return newContact, nil
 }
 
-func (m PgSQLRepository) GetContact(id int) error {
-	panic("implement")
+func (m *PgSQLRepository) GetContact(id int) (contact.Contact, error) {
+	q := "SELECT ID, Name, Phone FROM contacts WHERE ID = $1"
+
+	var newContact contact.Contact
+
+	err := m.DB.QueryRow(q, id).Scan(&newContact.ID, &newContact.Name, &newContact.Phone)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return contact.Contact{}, fmt.Errorf("%w getContact DB: %w", ErrNoContact, err)
+		}
+		return contact.Contact{}, fmt.Errorf("getContact DB: %w", err)
+	}
+
+	return newContact, nil
+}
+
+func (m *PgSQLRepository) GetAllContacts() ([]contact.Contact, error) {
+	q := "SELECT ID, Name, Phone FROM contacts"
+
+	rows, err := m.DB.Query(q)
+	if err != nil {
+		return nil, fmt.Errorf("GetAllContacts DB: %w", err)
+	}
+	defer rows.Close()
+
+	contacts := make([]contact.Contact, 0)
+
+	for rows.Next() {
+		var newContact contact.Contact
+		err = rows.Scan(&newContact.ID, &newContact.Name, &newContact.Phone)
+		if err != nil {
+			return nil, fmt.Errorf("GetAllContacts DB: %w", err)
+		}
+		contacts = append(contacts, newContact)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, fmt.Errorf("GetAllContacts DB: %w", err)
+	}
+
+	return contacts, nil
+}
+
+func (m *PgSQLRepository) UpdateContact(id int, name, phone string) (contact.Contact, error) {
+	q := "UPDATE contacts SET Name = $1, Phone = $2 WHERE ID = $3 RETURNING ID, Name, Phone"
+
+	var updatedContact contact.Contact
+
+	err := m.DB.QueryRow(q, name, phone, id).Scan(&updatedContact.ID, &updatedContact.Name, &updatedContact.Phone)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return contact.Contact{}, fmt.Errorf("%w UpdateContact DB: %d", ErrNoContact, id)
+		}
+		return contact.Contact{}, fmt.Errorf("UpdateContact DB err: %w", err)
+	}
+
+	return updatedContact, nil
+}
+
+func (m *PgSQLRepository) DeleteContact(id int) error {
+	q := "DELETE FROM contacts WHERE ID = $1"
+
+	result, err := m.DB.Exec(q, id)
+	if err != nil {
+		return fmt.Errorf("RowsAffected DB failed to execute query: %w", err)
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return fmt.Errorf("RowsAffected DB err: %w", err)
+	}
+
+	if rowsAffected == 0 {
+		return fmt.Errorf("%w getContact: %d", ErrNoContact, id)
+	}
+
+	return nil
 }

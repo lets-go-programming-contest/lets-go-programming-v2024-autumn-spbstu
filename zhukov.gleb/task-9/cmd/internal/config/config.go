@@ -1,24 +1,28 @@
-package db
+package config
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"strconv"
 
 	"github.com/joho/godotenv"
 )
 
+var (
+	ErrEnv = errors.New("LoadConfig error")
+)
+
 const (
 	envPath = ".env"
 )
 
-var (
-	ErrOpenDB   = errors.New("error open")
-	ErrPingDB   = errors.New("error ping")
-	ErrInsertDB = errors.New("error insert")
-)
+type AppCfg struct {
+	Host string
+	DBCfg
+}
 
-type DBcfg struct {
+type DBCfg struct {
 	UDBName     string
 	UDBPass     string
 	PgSQLHost   string
@@ -26,13 +30,15 @@ type DBcfg struct {
 	PortPgSQL   int
 }
 
-func LoadConfig() (DBcfg, error) {
+func LoadConfig() (AppCfg, error) {
 	err := godotenv.Load(envPath)
 	if err != nil {
-		return DBcfg{}, err
+		return AppCfg{}, fmt.Errorf("%w: %w", ErrEnv, err)
 	}
 
-	dbConfigs := DBcfg{
+	appConfigs := AppCfg{Host: os.Getenv("APP_PORT")}
+
+	dbConfigs := DBCfg{
 		UDBPass:     os.Getenv("USER_PGSQL_PASS"),
 		DBPgSQLName: os.Getenv("DB_PGSQL_NAME"),
 		UDBName:     os.Getenv("USER_PGSQL_NAME"),
@@ -41,8 +47,10 @@ func LoadConfig() (DBcfg, error) {
 
 	dbConfigs.PortPgSQL, err = strconv.Atoi(os.Getenv("PORT_PGSQL"))
 	if err != nil {
-		return DBcfg{}, err
+		return AppCfg{}, fmt.Errorf("%w: %w", ErrEnv, err)
 	}
 
-	return dbConfigs, nil
+	appConfigs.DBCfg = dbConfigs
+
+	return appConfigs, nil
 }
