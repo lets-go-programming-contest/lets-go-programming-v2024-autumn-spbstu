@@ -31,7 +31,7 @@ func (s Service) Upload(name string, number string) error {
 func (s Service) Delete(name string) error {
 	err := contacts.Exists(name)
 	if err == nil {
-		err = errors.New("contact already exists")
+		err = errors.New("contact does not exist")
 		return fmt.Errorf("%w: %s", err, name)
 	}
 
@@ -59,7 +59,7 @@ func (s Service) Get(name string) ([]byte, error) {
 func (s Service) Update(name string, number string) error {
 	err := contacts.Exists(name)
 	if err == nil {
-		err = errors.New("contact already exists")
+		err = errors.New("contact does not exist")
 		return fmt.Errorf("%w: %s", err, name)
 	}
 
