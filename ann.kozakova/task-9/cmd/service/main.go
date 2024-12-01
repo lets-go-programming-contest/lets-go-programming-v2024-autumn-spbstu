@@ -17,13 +17,14 @@ func main() {
 		panic(err)
 	}
 	db, err := database.NewDB(config)
+	defer db.DB.Close()
 	controllers.InitDataBase(db)
 	router := mux.NewRouter()
 	controllers.CreateRoutes(router)
 
 	headers := handlers.AllowedHeaders([]string{"Content-Type"})
 	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
-	origins := handlers.AllowedOrigins([]string{"http://localhost:3000"})
+	origins := handlers.AllowedOrigins([]string{"http://localhost:8080"})
 	loggedRouter := handlers.CORS(headers, methods, origins)(router)
 
 	port := config.Server.Port
