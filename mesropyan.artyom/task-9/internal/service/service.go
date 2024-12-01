@@ -46,6 +46,7 @@ func (s Service) Delete(name string) error {
 func (s Service) Get(name string) ([]byte, error) {
 	err := contacts.Exists(name)
 	if err == nil {
+		err = errors.New("contact does not exist")
 		return nil, fmt.Errorf("%w: %s", err, name)
 	}
 
