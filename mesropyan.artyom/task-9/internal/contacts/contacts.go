@@ -99,7 +99,7 @@ func Exists(name string) error {
 		return err
 	}
 	if rows.Next() {
-		return errors.New("file already exists")
+		return errors.New("number already exists")
 	}
 	return nil
 }
