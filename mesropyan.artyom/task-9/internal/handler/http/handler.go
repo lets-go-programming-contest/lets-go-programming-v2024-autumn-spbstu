@@ -44,7 +44,8 @@ func (h *handler) delete(w http.ResponseWriter, r *http.Request) {
 	name := r.FormValue("name")
 
 	if err := h.service.Delete(name); err != nil {
-		http.Error(w, fmt.Errorf("contact does not exist: %w", err).Error(), http.StatusNotFound)
+		http.Error(w, fmt.Errorf("error while deleting contact: %w", err).Error(), http.StatusNotFound)
+		return
 	}
 }
 
@@ -53,7 +54,8 @@ func (h *handler) get(w http.ResponseWriter, r *http.Request) {
 
 	data, err := h.service.Get(name)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
+		http.Error(w, fmt.Errorf("error while getting contact: %w", err).Error(), http.StatusNotFound)
+		return
 	}
 	w.Write(data)
 }
@@ -63,7 +65,7 @@ func (h *handler) update(w http.ResponseWriter, r *http.Request) {
 	number := r.FormValue("number")
 
 	if err := h.service.Update(name, number); err != nil {
-		http.Error(w, fmt.Errorf("error while uploading contact: %w", err).Error(), http.StatusInternalServerError)
+		http.Error(w, fmt.Errorf("error while updating contact: %w", err).Error(), http.StatusInternalServerError)
 		return
 	}
 }
