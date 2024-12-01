@@ -1,0 +1,9 @@
+{
+    "username": "john_doe",
+    "age": 30,
+    "email": "john.doe@example.com",
+    "preferences": {
+        "notifications": true,
+        "language": "en"
+    }
+}
