@@ -2,7 +2,9 @@ package app
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"task-9/cmd/internal/config"
@@ -48,7 +50,9 @@ func (a *App) Run() error {
 	r.HandleFunc("/contacts/{id}", contactHandler.UpdateContact).Methods("PUT")
 	r.HandleFunc("/contacts/{id}", contactHandler.DeleteContact).Methods("DELETE")
 
-	h := middleware.PanicHandler(r)
+	logger := log.New(os.Stdout, "LOG:", log.LUTC)
+	h := middleware.LoggingMiddleware(logger, r)
+	h = middleware.PanicHandler(logger, h)
 
 	addr := strings.Builder{}
 	addr.WriteString(":")
