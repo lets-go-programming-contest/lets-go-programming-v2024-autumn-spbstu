@@ -21,7 +21,9 @@ func main() {
 
 	names, err := dbService.GetNames()
 	if err != nil {
-		fmt.Errorf("Get name error %e", err)
+		fmt.Println(err)
+
+		return
 	}
 
 	for _, name := range names {
