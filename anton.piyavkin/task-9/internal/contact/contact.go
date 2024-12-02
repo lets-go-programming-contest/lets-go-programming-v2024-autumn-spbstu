@@ -2,7 +2,6 @@ package contact
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -51,7 +50,6 @@ func isValidPhoneNumber(phone string) bool {
 
 	thirdPart := strings.Split(parts[2], "-")
 	if len(thirdPart) != 3 || len(parts[1]) != 3 || len(thirdPart[0]) != 3 || !isNum(parts[1]) || !isNum(thirdPart[0]) {
-		fmt.Println(4)
 		return false
 	}
 	if len(thirdPart[1]) != 2 || !isNum(thirdPart[1]) || !isNum(thirdPart[2]) {
