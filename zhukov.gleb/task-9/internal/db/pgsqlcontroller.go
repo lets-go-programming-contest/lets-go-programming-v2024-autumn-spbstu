@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"time"
 
 	"task-9/internal/contact"
 
@@ -76,12 +77,12 @@ func (m *PgSQLRepository) newPostgresStorage() error {
 	return nil
 }
 
-func (m *PgSQLRepository) AddContact(name, phone string) (contact.Contact, error) {
-	q := "INSERT INTO contacts (Name, Phone) VALUES($1, $2) RETURNING id, name, phone"
+func (m *PgSQLRepository) AddContact(name, phone string, time time.Time) (contact.Contact, error) {
+	q := "INSERT INTO contacts (Name, Phone, CreatedAt, UpdatedAt) VALUES($1, $2, $3, $4) RETURNING ID, Name, Phone, CreatedAt, UpdatedAt"
 
 	var newContact contact.Contact
 
-	err := m.DB.QueryRow(q, name, phone).Scan(&newContact.ID, &newContact.Name, &newContact.Phone)
+	err := m.DB.QueryRow(q, name, phone, time, time).Scan(&newContact.ID, &newContact.Name, &newContact.Phone, &newContact.CreatedAt, &newContact.UpdatedAt)
 	if err != nil {
 		return contact.Contact{}, fmt.Errorf("%w add user: %w", ErrInsertDB, err)
 	}
@@ -90,11 +91,17 @@ func (m *PgSQLRepository) AddContact(name, phone string) (contact.Contact, error
 }
 
 func (m *PgSQLRepository) GetContact(id int) (contact.Contact, error) {
-	q := "SELECT ID, Name, Phone FROM contacts WHERE ID = $1"
+	q := "SELECT ID, Name, Phone, CreatedAt, UpdatedAt FROM contacts WHERE ID = $1"
 
 	var newContact contact.Contact
 
-	err := m.DB.QueryRow(q, id).Scan(&newContact.ID, &newContact.Name, &newContact.Phone)
+	err := m.DB.QueryRow(q, id).Scan(
+		&newContact.ID,
+		&newContact.Name,
+		&newContact.Phone,
+		&newContact.CreatedAt,
+		&newContact.UpdatedAt,
+	)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return contact.Contact{}, fmt.Errorf("%w getContact DB: %w", ErrNoContact, err)
@@ -106,7 +113,7 @@ func (m *PgSQLRepository) GetContact(id int) (contact.Contact, error) {
 }
 
 func (m *PgSQLRepository) GetAllContacts() ([]contact.Contact, error) {
-	q := "SELECT ID, Name, Phone FROM contacts"
+	q := "SELECT ID, Name, Phone, CreatedAt, UpdatedAt FROM contacts"
 
 	rows, err := m.DB.Query(q)
 	if err != nil {
@@ -118,7 +125,13 @@ func (m *PgSQLRepository) GetAllContacts() ([]contact.Contact, error) {
 
 	for rows.Next() {
 		var newContact contact.Contact
-		err = rows.Scan(&newContact.ID, &newContact.Name, &newContact.Phone)
+		err = rows.Scan(
+			&newContact.ID,
+			&newContact.Name,
+			&newContact.Phone,
+			&newContact.CreatedAt,
+			&newContact.UpdatedAt,
+		)
 		if err != nil {
 			return nil, fmt.Errorf("GetAllContacts DB: %w", err)
 		}
@@ -132,12 +145,18 @@ func (m *PgSQLRepository) GetAllContacts() ([]contact.Contact, error) {
 	return contacts, nil
 }
 
-func (m *PgSQLRepository) UpdateContact(id int, name, phone string) (contact.Contact, error) {
-	q := "UPDATE contacts SET Name = $1, Phone = $2 WHERE ID = $3 RETURNING ID, Name, Phone"
+func (m *PgSQLRepository) UpdateContact(id int, name, phone string, time time.Time) (contact.Contact, error) {
+	q := "UPDATE contacts SET Name = $1, Phone = $2, UpdatedAt = $3 WHERE ID = $4 RETURNING ID, Name, Phone, CreatedAt, UpdatedAt"
 
 	var updatedContact contact.Contact
 
-	err := m.DB.QueryRow(q, name, phone, id).Scan(&updatedContact.ID, &updatedContact.Name, &updatedContact.Phone)
+	err := m.DB.QueryRow(q, name, phone, time, id).Scan(
+		&updatedContact.ID,
+		&updatedContact.Name,
+		&updatedContact.Phone,
+		&updatedContact.CreatedAt,
+		&updatedContact.UpdatedAt,
+	)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return contact.Contact{}, fmt.Errorf("%w UpdateContact DB: %d", ErrNoContact, id)

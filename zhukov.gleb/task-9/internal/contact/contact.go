@@ -1,15 +1,20 @@
 package contact
 
-import "errors"
+import (
+	"errors"
+	"time"
+)
 
 type Contact struct {
-	ID    int
-	Name  string
-	Phone string
+	ID        int
+	Name      string
+	Phone     string
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 type ContactInface interface {
-	GetAll() ([]Contact, error)
+	GetAll(orderBy string) ([]Contact, error)
 	GetByID(id int) (Contact, error)
 	Add(name, phone string) (Contact, error)
 	Update(id int, name, phone string) (Contact, error)

@@ -8,7 +8,8 @@ import (
 	"task-9/cmd/internal/config"
 	"task-9/internal/contact"
 	"task-9/internal/db"
-	"task-9/internal/handler"
+	"task-9/internal/http/handler"
+	"task-9/internal/http/middleware"
 
 	"github.com/gorilla/mux"
 )
@@ -47,9 +48,11 @@ func (a *App) Run() error {
 	r.HandleFunc("/contacts/{id}", contactHandler.UpdateContact).Methods("PUT")
 	r.HandleFunc("/contacts/{id}", contactHandler.DeleteContact).Methods("DELETE")
 
+	h := middleware.PanicHandler(r)
+
 	addr := strings.Builder{}
 	addr.WriteString(":")
 	addr.WriteString(a.Cfg.Host)
 
-	return http.ListenAndServe(addr.String(), r)
+	return http.ListenAndServe(addr.String(), h)
 }

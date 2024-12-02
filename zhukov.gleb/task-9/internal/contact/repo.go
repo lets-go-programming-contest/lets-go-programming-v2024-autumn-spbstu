@@ -3,30 +3,57 @@ package contact
 import (
 	"fmt"
 	"regexp"
+	"sort"
+	"time"
 )
 
-type ContactDB interface {
-	AddContact(name string, phone string) (Contact, error)
+type ContactDBInface interface {
+	AddContact(name, phone string, time time.Time) (Contact, error)
 	GetContact(id int) (Contact, error)
 	DeleteContact(id int) error
 	GetAllContacts() ([]Contact, error)
-	UpdateContact(id int, name, phone string) (Contact, error)
+	UpdateContact(id int, name, phone string, time time.Time) (Contact, error)
 }
 
 type ContactRepository struct {
-	ContactDB
+	ContactDBInface
 }
 
-func NewContactRepo(repo ContactDB) *ContactRepository {
+func NewContactRepo(repo ContactDBInface) *ContactRepository {
 	return &ContactRepository{repo}
 }
 
-func (r *ContactRepository) GetAll() ([]Contact, error) {
-	return r.ContactDB.GetAllContacts()
+func (r *ContactRepository) GetAll(orderBy string) ([]Contact, error) {
+	contacts, err := r.ContactDBInface.GetAllContacts()
+	if err != nil {
+		return contacts, err
+	}
+
+	switch orderBy {
+	case "id":
+		sort.Slice(contacts, func(i, j int) bool {
+			return contacts[i].ID < contacts[j].ID
+		})
+	case "phone":
+		sort.Slice(contacts, func(i, j int) bool {
+			return contacts[i].Phone < contacts[j].Phone
+		})
+	case "created_at":
+		sort.Slice(contacts, func(i, j int) bool {
+			return contacts[i].CreatedAt.Before(contacts[j].CreatedAt)
+		})
+	case "updated_at":
+		sort.Slice(contacts, func(i, j int) bool {
+			return contacts[i].UpdatedAt.Before(contacts[j].UpdatedAt)
+		})
+	default:
+	}
+
+	return contacts, nil
 }
 
 func (r *ContactRepository) GetByID(id int) (Contact, error) {
-	return r.ContactDB.GetContact(id)
+	return r.ContactDBInface.GetContact(id)
 }
 
 var re = regexp.MustCompile("^(\\+7|8)?[\\s\\-]?\\(?[489][0-9]{2}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}$")
@@ -36,17 +63,25 @@ func validatePhone(phone string) bool {
 }
 
 func (r *ContactRepository) Add(name, phone string) (Contact, error) {
+	currentTime := time.Now()
+
 	if !validatePhone(phone) {
 		return Contact{}, fmt.Errorf("add: %w", ErrIncorrectPhone)
 	}
 
-	return r.ContactDB.AddContact(name, phone)
+	return r.ContactDBInface.AddContact(name, phone, currentTime)
 }
 
 func (r *ContactRepository) Update(id int, name, phone string) (Contact, error) {
-	return r.ContactDB.UpdateContact(id, name, phone)
+	currentTime := time.Now()
+
+	if !validatePhone(phone) {
+		return Contact{}, fmt.Errorf("add: %w", ErrIncorrectPhone)
+	}
+	
+	return r.ContactDBInface.UpdateContact(id, name, phone, currentTime)
 }
 
 func (r *ContactRepository) Delete(id int) error {
-	return r.ContactDB.DeleteContact(id)
+	return r.ContactDBInface.DeleteContact(id)
 }
