@@ -1,0 +1,592 @@
+"".main STEXT size=1227 args=0x0 locals=0x110 funcid=0x0 align=0x0
+	0x0000 00000 (main.go:8)	TEXT	"".main(SB), ABIInternal, $272-0
+	0x0000 00000 (main.go:8)	LEAQ	-144(SP), R12
+	0x0008 00008 (main.go:8)	CMPQ	R12, 16(R14)
+	0x000c 00012 (main.go:8)	PCDATA	$0, $-2
+	0x000c 00012 (main.go:8)	JLS	1217
+	0x0012 00018 (main.go:8)	PCDATA	$0, $-1
+	0x0012 00018 (main.go:8)	SUBQ	$272, SP
+	0x0019 00025 (main.go:8)	MOVQ	BP, 264(SP)
+	0x0021 00033 (main.go:8)	LEAQ	264(SP), BP
+	0x0029 00041 (main.go:8)	FUNCDATA	$0, gclocals·f14a5bc6d08bc46424827f54d2e3f8ed(SB)
+	0x0029 00041 (main.go:8)	FUNCDATA	$1, gclocals·cf068f933efcaaa6a7a420b6b283d8f6(SB)
+	0x0029 00041 (main.go:8)	FUNCDATA	$2, "".main.stkobj(SB)
+	0x0029 00041 (main.go:9)	LEAQ	type.float64(SB), AX
+	0x0030 00048 (main.go:9)	PCDATA	$1, $0
+	0x0030 00048 (main.go:9)	CALL	runtime.newobject(SB)
+	0x0035 00053 (main.go:9)	MOVQ	AX, "".&op1+64(SP)
+	0x003a 00058 (main.go:10)	LEAQ	type.float64(SB), AX
+	0x0041 00065 (main.go:10)	PCDATA	$1, $1
+	0x0041 00065 (main.go:10)	CALL	runtime.newobject(SB)
+	0x0046 00070 (main.go:10)	MOVQ	AX, "".&op2+56(SP)
+	0x004b 00075 (main.go:11)	MOVUPS	X15, ""..autotmp_61+200(SP)
+	0x0054 00084 (main.go:11)	LEAQ	type.string(SB), CX
+	0x005b 00091 (main.go:11)	MOVQ	CX, ""..autotmp_61+200(SP)
+	0x0063 00099 (main.go:11)	LEAQ	""..stmp_0(SB), DX
+	0x006a 00106 (main.go:11)	MOVQ	DX, ""..autotmp_61+208(SP)
+	0x0072 00114 (<unknown line number>)	NOP
+	0x0072 00114 ($GOROOT/src/fmt/print.go:274)	MOVQ	os.Stdout(SB), BX
+	0x0079 00121 ($GOROOT/src/fmt/print.go:274)	MOVL	$1, DI
+	0x007e 00126 ($GOROOT/src/fmt/print.go:274)	MOVQ	DI, SI
+	0x0081 00129 ($GOROOT/src/fmt/print.go:274)	LEAQ	go.itab.*os.File,io.Writer(SB), AX
+	0x0088 00136 ($GOROOT/src/fmt/print.go:274)	LEAQ	""..autotmp_61+200(SP), CX
+	0x0090 00144 ($GOROOT/src/fmt/print.go:274)	PCDATA	$1, $2
+	0x0090 00144 ($GOROOT/src/fmt/print.go:274)	CALL	fmt.Fprintln(SB)
+	0x0095 00149 (main.go:12)	MOVUPS	X15, ""..autotmp_63+184(SP)
+	0x009e 00158 (main.go:12)	LEAQ	type.*float64(SB), CX
+	0x00a5 00165 (main.go:12)	MOVQ	CX, ""..autotmp_63+184(SP)
+	0x00ad 00173 (main.go:12)	MOVQ	"".&op1+64(SP), DX
+	0x00b2 00178 (main.go:12)	MOVQ	DX, ""..autotmp_63+192(SP)
+	0x00ba 00186 (<unknown line number>)	NOP
+	0x00ba 00186 ($GOROOT/src/fmt/scan.go:70)	MOVQ	os.Stdin(SB), BX
+	0x00c1 00193 ($GOROOT/src/fmt/scan.go:70)	LEAQ	go.itab.*os.File,io.Reader(SB), AX
+	0x00c8 00200 ($GOROOT/src/fmt/scan.go:70)	MOVL	$1, DI
+	0x00cd 00205 ($GOROOT/src/fmt/scan.go:70)	MOVQ	DI, SI
+	0x00d0 00208 ($GOROOT/src/fmt/scan.go:70)	LEAQ	""..autotmp_63+184(SP), CX
+	0x00d8 00216 ($GOROOT/src/fmt/scan.go:70)	CALL	fmt.Fscanln(SB)
+	0x00dd 00221 ($GOROOT/src/fmt/scan.go:70)	NOP
+	0x00e0 00224 (main.go:13)	TESTQ	BX, BX
+	0x00e3 00227 (main.go:13)	JNE	1126
+	0x00e9 00233 (main.go:17)	LEAQ	type.string(SB), AX
+	0x00f0 00240 (main.go:17)	CALL	runtime.newobject(SB)
+	0x00f5 00245 (main.go:17)	MOVQ	AX, "".&operation+48(SP)
+	0x00fa 00250 (main.go:17)	MOVQ	$0, (AX)
+	0x0101 00257 (main.go:18)	MOVUPS	X15, ""..autotmp_67+152(SP)
+	0x010a 00266 (main.go:18)	LEAQ	type.string(SB), CX
+	0x0111 00273 (main.go:18)	MOVQ	CX, ""..autotmp_67+152(SP)
+	0x0119 00281 (main.go:18)	LEAQ	""..stmp_2(SB), DX
+	0x0120 00288 (main.go:18)	MOVQ	DX, ""..autotmp_67+160(SP)
+	0x0128 00296 (<unknown line number>)	NOP
+	0x0128 00296 ($GOROOT/src/fmt/print.go:274)	MOVQ	os.Stdout(SB), BX
+	0x012f 00303 ($GOROOT/src/fmt/print.go:274)	MOVL	$1, DI
+	0x0134 00308 ($GOROOT/src/fmt/print.go:274)	MOVQ	DI, SI
+	0x0137 00311 ($GOROOT/src/fmt/print.go:274)	LEAQ	go.itab.*os.File,io.Writer(SB), AX
+	0x013e 00318 ($GOROOT/src/fmt/print.go:274)	LEAQ	""..autotmp_67+152(SP), CX
+	0x0146 00326 ($GOROOT/src/fmt/print.go:274)	PCDATA	$1, $3
+	0x0146 00326 ($GOROOT/src/fmt/print.go:274)	CALL	fmt.Fprintln(SB)
+	0x014b 00331 (main.go:19)	MOVUPS	X15, ""..autotmp_69+136(SP)
+	0x0154 00340 (main.go:19)	LEAQ	type.*string(SB), CX
+	0x015b 00347 (main.go:19)	MOVQ	CX, ""..autotmp_69+136(SP)
+	0x0163 00355 (main.go:19)	MOVQ	"".&operation+48(SP), CX
+	0x0168 00360 (main.go:19)	MOVQ	CX, ""..autotmp_69+144(SP)
+	0x0170 00368 (<unknown line number>)	NOP
+	0x0170 00368 ($GOROOT/src/fmt/scan.go:70)	MOVQ	os.Stdin(SB), BX
+	0x0177 00375 ($GOROOT/src/fmt/scan.go:70)	LEAQ	go.itab.*os.File,io.Reader(SB), AX
+	0x017e 00382 ($GOROOT/src/fmt/scan.go:70)	MOVL	$1, DI
+	0x0183 00387 ($GOROOT/src/fmt/scan.go:70)	MOVQ	DI, SI
+	0x0186 00390 ($GOROOT/src/fmt/scan.go:70)	LEAQ	""..autotmp_69+136(SP), CX
+	0x018e 00398 ($GOROOT/src/fmt/scan.go:70)	CALL	fmt.Fscanln(SB)
+	0x0193 00403 (main.go:20)	TESTQ	BX, BX
+	0x0196 00406 (main.go:20)	JEQ	460
+	0x0198 00408 (main.go:21)	MOVUPS	X15, ""..autotmp_59+216(SP)
+	0x01a1 00417 (main.go:21)	JEQ	423
+	0x01a3 00419 (main.go:21)	MOVQ	8(BX), BX
+	0x01a7 00423 (main.go:21)	MOVQ	BX, ""..autotmp_59+216(SP)
+	0x01af 00431 (main.go:21)	MOVQ	CX, ""..autotmp_59+224(SP)
+	0x01b7 00439 (main.go:21)	LEAQ	""..autotmp_59+216(SP), AX
+	0x01bf 00447 (main.go:21)	MOVL	$1, BX
+	0x01c4 00452 (main.go:21)	MOVQ	BX, CX
+	0x01c7 00455 (main.go:21)	CALL	log.Fatal(SB)
+	0x01cc 00460 (main.go:23)	MOVUPS	X15, ""..autotmp_75+120(SP)
+	0x01d2 00466 (main.go:23)	LEAQ	type.string(SB), DX
+	0x01d9 00473 (main.go:23)	MOVQ	DX, ""..autotmp_75+120(SP)
+	0x01de 00478 (main.go:23)	LEAQ	""..stmp_3(SB), R8
+	0x01e5 00485 (main.go:23)	MOVQ	R8, ""..autotmp_75+128(SP)
+	0x01ed 00493 (<unknown line number>)	NOP
+	0x01ed 00493 ($GOROOT/src/fmt/print.go:274)	MOVQ	os.Stdout(SB), BX
+	0x01f4 00500 ($GOROOT/src/fmt/print.go:274)	LEAQ	go.itab.*os.File,io.Writer(SB), AX
+	0x01fb 00507 ($GOROOT/src/fmt/print.go:274)	LEAQ	""..autotmp_75+120(SP), CX
+	0x0200 00512 ($GOROOT/src/fmt/print.go:274)	MOVL	$1, DI
+	0x0205 00517 ($GOROOT/src/fmt/print.go:274)	MOVQ	DI, SI
+	0x0208 00520 ($GOROOT/src/fmt/print.go:274)	CALL	fmt.Fprintln(SB)
+	0x020d 00525 (main.go:24)	MOVUPS	X15, ""..autotmp_77+104(SP)
+	0x0213 00531 (main.go:24)	LEAQ	type.*float64(SB), DX
+	0x021a 00538 (main.go:24)	MOVQ	DX, ""..autotmp_77+104(SP)
+	0x021f 00543 (main.go:24)	MOVQ	"".&op2+56(SP), DX
+	0x0224 00548 (main.go:24)	MOVQ	DX, ""..autotmp_77+112(SP)
+	0x0229 00553 (<unknown line number>)	NOP
+	0x0229 00553 ($GOROOT/src/fmt/scan.go:64)	MOVQ	os.Stdin(SB), BX
+	0x0230 00560 ($GOROOT/src/fmt/scan.go:64)	LEAQ	go.itab.*os.File,io.Reader(SB), AX
+	0x0237 00567 ($GOROOT/src/fmt/scan.go:64)	LEAQ	""..autotmp_77+104(SP), CX
+	0x023c 00572 ($GOROOT/src/fmt/scan.go:64)	MOVL	$1, DI
+	0x0241 00577 ($GOROOT/src/fmt/scan.go:64)	MOVQ	DI, SI
+	0x0244 00580 ($GOROOT/src/fmt/scan.go:64)	CALL	fmt.Fscan(SB)
+	0x0249 00585 (main.go:25)	TESTQ	BX, BX
+	0x024c 00588 (main.go:25)	JEQ	645
+	0x024e 00590 (main.go:26)	MOVUPS	X15, ""..autotmp_59+216(SP)
+	0x0257 00599 (main.go:26)	JEQ	605
+	0x0259 00601 (main.go:26)	MOVQ	8(BX), BX
+	0x025d 00605 (main.go:26)	MOVQ	BX, ""..autotmp_59+216(SP)
+	0x0265 00613 (main.go:26)	MOVQ	CX, ""..autotmp_59+224(SP)
+	0x026d 00621 (main.go:26)	LEAQ	""..autotmp_59+216(SP), AX
+	0x0275 00629 (main.go:26)	MOVL	$1, BX
+	0x027a 00634 (main.go:26)	MOVQ	BX, CX
+	0x027d 00637 (main.go:26)	NOP
+	0x0280 00640 (main.go:26)	CALL	log.Fatal(SB)
+	0x0285 00645 (main.go:29)	MOVQ	"".&operation+48(SP), DX
+	0x028a 00650 (main.go:29)	MOVQ	(DX), AX
+	0x028d 00653 (main.go:29)	MOVQ	8(DX), BX
+	0x0291 00657 (main.go:29)	CMPQ	BX, $1
+	0x0295 00661 (main.go:29)	JNE	1048
+	0x029b 00667 (main.go:29)	MOVQ	AX, ""..autotmp_167+40(SP)
+	0x02a0 00672 (main.go:29)	LEAQ	go.string."+"(SB), CX
+	0x02a7 00679 (main.go:29)	MOVL	$1, DI
+	0x02ac 00684 (main.go:29)	PCDATA	$1, $4
+	0x02ac 00684 (main.go:29)	CALL	runtime.cmpstring(SB)
+	0x02b1 00689 (main.go:29)	TESTQ	AX, AX
+	0x02b4 00692 (main.go:29)	JGT	773
+	0x02b6 00694 (main.go:34)	MOVQ	""..autotmp_167+40(SP), DX
+	0x02bb 00699 (main.go:34)	CMPB	(DX), $42
+	0x02be 00702 (main.go:34)	NOP
+	0x02c0 00704 (main.go:34)	JNE	732
+	0x02c2 00706 (main.go:35)	MOVQ	"".&op1+64(SP), CX
+	0x02c7 00711 (main.go:35)	MOVSD	(CX), X0
+	0x02cb 00715 (main.go:35)	MOVQ	"".&op2+56(SP), CX
+	0x02d0 00720 (main.go:35)	MULSD	(CX), X0
+	0x02d4 00724 (main.go:46)	MOVUPS	X0, X1
+	0x02d7 00727 (main.go:35)	JMP	916
+	0x02dc 00732 (main.go:30)	CMPB	(DX), $43
+	0x02df 00735 (main.go:30)	NOP
+	0x02e0 00736 (main.go:30)	JNE	1048
+	0x02e6 00742 (main.go:31)	MOVQ	"".&op1+64(SP), CX
+	0x02eb 00747 (main.go:31)	MOVSD	(CX), X0
+	0x02ef 00751 (main.go:31)	MOVQ	"".&op2+56(SP), CX
+	0x02f4 00756 (main.go:31)	ADDSD	(CX), X0
+	0x02f8 00760 (main.go:46)	MOVUPS	X0, X1
+	0x02fb 00763 (main.go:46)	NOP
+	0x0300 00768 (main.go:31)	JMP	916
+	0x0305 00773 (main.go:32)	MOVQ	""..autotmp_167+40(SP), DX
+	0x030a 00778 (main.go:32)	CMPB	(DX), $45
+	0x030d 00781 (main.go:32)	JNE	806
+	0x030f 00783 (main.go:33)	MOVQ	"".&op1+64(SP), CX
+	0x0314 00788 (main.go:33)	MOVSD	(CX), X0
+	0x0318 00792 (main.go:33)	MOVQ	"".&op2+56(SP), CX
+	0x031d 00797 (main.go:33)	SUBSD	(CX), X0
+	0x0321 00801 (main.go:46)	MOVUPS	X0, X1
+	0x0324 00804 (main.go:33)	JMP	916
+	0x0326 00806 (main.go:36)	CMPB	(DX), $47
+	0x0329 00809 (main.go:36)	JNE	1048
+	0x032f 00815 (main.go:37)	MOVQ	"".&op2+56(SP), DX
+	0x0334 00820 (main.go:37)	MOVSD	(DX), X0
+	0x0338 00824 (main.go:37)	XORPS	X1, X1
+	0x033b 00827 (main.go:37)	UCOMISD	X1, X0
+	0x033f 00831 (main.go:37)	NOP
+	0x0340 00832 (main.go:37)	JNE	836
+	0x0342 00834 (main.go:37)	JPC	851
+	0x0344 00836 (main.go:40)	MOVQ	"".&op1+64(SP), CX
+	0x0349 00841 (main.go:40)	MOVSD	(CX), X1
+	0x034d 00845 (main.go:40)	DIVSD	X0, X1
+	0x0351 00849 (main.go:40)	JMP	916
+	0x0353 00851 (main.go:38)	MOVUPS	X15, ""..autotmp_84+88(SP)
+	0x0359 00857 (main.go:38)	LEAQ	type.string(SB), DX
+	0x0360 00864 (main.go:38)	MOVQ	DX, ""..autotmp_84+88(SP)
+	0x0365 00869 (main.go:38)	LEAQ	""..stmp_4(SB), R8
+	0x036c 00876 (main.go:38)	MOVQ	R8, ""..autotmp_84+96(SP)
+	0x0371 00881 (<unknown line number>)	NOP
+	0x0371 00881 ($GOROOT/src/fmt/print.go:274)	MOVQ	os.Stdout(SB), BX
+	0x0378 00888 ($GOROOT/src/fmt/print.go:274)	LEAQ	go.itab.*os.File,io.Writer(SB), AX
+	0x037f 00895 ($GOROOT/src/fmt/print.go:274)	LEAQ	""..autotmp_84+88(SP), CX
+	0x0384 00900 ($GOROOT/src/fmt/print.go:274)	MOVL	$1, DI
+	0x0389 00905 ($GOROOT/src/fmt/print.go:274)	MOVQ	DI, SI
+	0x038c 00908 ($GOROOT/src/fmt/print.go:274)	PCDATA	$1, $0
+	0x038c 00908 ($GOROOT/src/fmt/print.go:274)	CALL	fmt.Fprintln(SB)
+	0x0391 00913 ($GOROOT/src/fmt/print.go:274)	XORPS	X1, X1
+	0x0394 00916 (main.go:46)	MOVUPS	X15, ""..autotmp_88+232(SP)
+	0x039d 00925 (main.go:46)	MOVUPS	X15, ""..autotmp_88+248(SP)
+	0x03a6 00934 (main.go:46)	LEAQ	type.string(SB), CX
+	0x03ad 00941 (main.go:46)	MOVQ	CX, ""..autotmp_88+232(SP)
+	0x03b5 00949 (main.go:46)	LEAQ	""..stmp_6(SB), CX
+	0x03bc 00956 (main.go:46)	MOVQ	CX, ""..autotmp_88+240(SP)
+	0x03c4 00964 (main.go:46)	MOVQ	X1, AX
+	0x03c9 00969 (main.go:46)	PCDATA	$1, $5
+	0x03c9 00969 (main.go:46)	CALL	runtime.convT64(SB)
+	0x03ce 00974 (main.go:46)	LEAQ	type.float64(SB), CX
+	0x03d5 00981 (main.go:46)	MOVQ	CX, ""..autotmp_88+248(SP)
+	0x03dd 00989 (main.go:46)	MOVQ	AX, ""..autotmp_88+256(SP)
+	0x03e5 00997 (<unknown line number>)	NOP
+	0x03e5 00997 ($GOROOT/src/fmt/print.go:274)	MOVQ	os.Stdout(SB), BX
+	0x03ec 01004 ($GOROOT/src/fmt/print.go:274)	LEAQ	go.itab.*os.File,io.Writer(SB), AX
+	0x03f3 01011 ($GOROOT/src/fmt/print.go:274)	LEAQ	""..autotmp_88+232(SP), CX
+	0x03fb 01019 ($GOROOT/src/fmt/print.go:274)	MOVL	$2, DI
+	0x0400 01024 ($GOROOT/src/fmt/print.go:274)	MOVQ	DI, SI
+	0x0403 01027 ($GOROOT/src/fmt/print.go:274)	PCDATA	$1, $0
+	0x0403 01027 ($GOROOT/src/fmt/print.go:274)	CALL	fmt.Fprintln(SB)
+	0x0408 01032 (main.go:47)	MOVQ	264(SP), BP
+	0x0410 01040 (main.go:47)	ADDQ	$272, SP
+	0x0417 01047 (main.go:47)	RET
+	0x0418 01048 (main.go:43)	MOVUPS	X15, ""..autotmp_86+72(SP)
+	0x041e 01054 (main.go:43)	LEAQ	type.string(SB), DX
+	0x0425 01061 (main.go:43)	MOVQ	DX, ""..autotmp_86+72(SP)
+	0x042a 01066 (main.go:43)	LEAQ	""..stmp_5(SB), DX
+	0x0431 01073 (main.go:43)	MOVQ	DX, ""..autotmp_86+80(SP)
+	0x0436 01078 (<unknown line number>)	NOP
+	0x0436 01078 ($GOROOT/src/fmt/print.go:274)	MOVQ	os.Stdout(SB), BX
+	0x043d 01085 ($GOROOT/src/fmt/print.go:274)	LEAQ	go.itab.*os.File,io.Writer(SB), AX
+	0x0444 01092 ($GOROOT/src/fmt/print.go:274)	LEAQ	""..autotmp_86+72(SP), CX
+	0x0449 01097 ($GOROOT/src/fmt/print.go:274)	MOVL	$1, DI
+	0x044e 01102 ($GOROOT/src/fmt/print.go:274)	MOVQ	DI, SI
+	0x0451 01105 ($GOROOT/src/fmt/print.go:274)	CALL	fmt.Fprintln(SB)
+	0x0456 01110 (main.go:44)	MOVQ	264(SP), BP
+	0x045e 01118 (main.go:44)	ADDQ	$272, SP
+	0x0465 01125 (main.go:44)	RET
+	0x0466 01126 (main.go:14)	MOVUPS	X15, ""..autotmp_65+168(SP)
+	0x046f 01135 (main.go:14)	LEAQ	type.string(SB), DX
+	0x0476 01142 (main.go:14)	MOVQ	DX, ""..autotmp_65+168(SP)
+	0x047e 01150 (main.go:14)	LEAQ	""..stmp_1(SB), DX
+	0x0485 01157 (main.go:14)	MOVQ	DX, ""..autotmp_65+176(SP)
+	0x048d 01165 (<unknown line number>)	NOP
+	0x048d 01165 ($GOROOT/src/fmt/print.go:274)	MOVQ	os.Stdout(SB), BX
+	0x0494 01172 ($GOROOT/src/fmt/print.go:274)	LEAQ	go.itab.*os.File,io.Writer(SB), AX
+	0x049b 01179 ($GOROOT/src/fmt/print.go:274)	LEAQ	""..autotmp_65+168(SP), CX
+	0x04a3 01187 ($GOROOT/src/fmt/print.go:274)	MOVL	$1, DI
+	0x04a8 01192 ($GOROOT/src/fmt/print.go:274)	MOVQ	DI, SI
+	0x04ab 01195 ($GOROOT/src/fmt/print.go:274)	CALL	fmt.Fprintln(SB)
+	0x04b0 01200 (main.go:15)	MOVQ	264(SP), BP
+	0x04b8 01208 (main.go:15)	ADDQ	$272, SP
+	0x04bf 01215 (main.go:15)	NOP
+	0x04c0 01216 (main.go:15)	RET
+	0x04c1 01217 (main.go:15)	NOP
+	0x04c1 01217 (main.go:8)	PCDATA	$1, $-1
+	0x04c1 01217 (main.go:8)	PCDATA	$0, $-2
+	0x04c1 01217 (main.go:8)	CALL	runtime.morestack_noctxt(SB)
+	0x04c6 01222 (main.go:8)	PCDATA	$0, $-1
+	0x04c6 01222 (main.go:8)	JMP	0
+	0x0000 4c 8d a4 24 70 ff ff ff 4d 3b 66 10 0f 86 af 04  L..$p...M;f.....
+	0x0010 00 00 48 81 ec 10 01 00 00 48 89 ac 24 08 01 00  ..H......H..$...
+	0x0020 00 48 8d ac 24 08 01 00 00 48 8d 05 00 00 00 00  .H..$....H......
+	0x0030 e8 00 00 00 00 48 89 44 24 40 48 8d 05 00 00 00  .....H.D$@H.....
+	0x0040 00 e8 00 00 00 00 48 89 44 24 38 44 0f 11 bc 24  ......H.D$8D...$
+	0x0050 c8 00 00 00 48 8d 0d 00 00 00 00 48 89 8c 24 c8  ....H......H..$.
+	0x0060 00 00 00 48 8d 15 00 00 00 00 48 89 94 24 d0 00  ...H......H..$..
+	0x0070 00 00 48 8b 1d 00 00 00 00 bf 01 00 00 00 48 89  ..H...........H.
+	0x0080 fe 48 8d 05 00 00 00 00 48 8d 8c 24 c8 00 00 00  .H......H..$....
+	0x0090 e8 00 00 00 00 44 0f 11 bc 24 b8 00 00 00 48 8d  .....D...$....H.
+	0x00a0 0d 00 00 00 00 48 89 8c 24 b8 00 00 00 48 8b 54  .....H..$....H.T
+	0x00b0 24 40 48 89 94 24 c0 00 00 00 48 8b 1d 00 00 00  $@H..$....H.....
+	0x00c0 00 48 8d 05 00 00 00 00 bf 01 00 00 00 48 89 fe  .H...........H..
+	0x00d0 48 8d 8c 24 b8 00 00 00 e8 00 00 00 00 0f 1f 00  H..$............
+	0x00e0 48 85 db 0f 85 7d 03 00 00 48 8d 05 00 00 00 00  H....}...H......
+	0x00f0 e8 00 00 00 00 48 89 44 24 30 48 c7 00 00 00 00  .....H.D$0H.....
+	0x0100 00 44 0f 11 bc 24 98 00 00 00 48 8d 0d 00 00 00  .D...$....H.....
+	0x0110 00 48 89 8c 24 98 00 00 00 48 8d 15 00 00 00 00  .H..$....H......
+	0x0120 48 89 94 24 a0 00 00 00 48 8b 1d 00 00 00 00 bf  H..$....H.......
+	0x0130 01 00 00 00 48 89 fe 48 8d 05 00 00 00 00 48 8d  ....H..H......H.
+	0x0140 8c 24 98 00 00 00 e8 00 00 00 00 44 0f 11 bc 24  .$.........D...$
+	0x0150 88 00 00 00 48 8d 0d 00 00 00 00 48 89 8c 24 88  ....H......H..$.
+	0x0160 00 00 00 48 8b 4c 24 30 48 89 8c 24 90 00 00 00  ...H.L$0H..$....
+	0x0170 48 8b 1d 00 00 00 00 48 8d 05 00 00 00 00 bf 01  H......H........
+	0x0180 00 00 00 48 89 fe 48 8d 8c 24 88 00 00 00 e8 00  ...H..H..$......
+	0x0190 00 00 00 48 85 db 74 34 44 0f 11 bc 24 d8 00 00  ...H..t4D...$...
+	0x01a0 00 74 04 48 8b 5b 08 48 89 9c 24 d8 00 00 00 48  .t.H.[.H..$....H
+	0x01b0 89 8c 24 e0 00 00 00 48 8d 84 24 d8 00 00 00 bb  ..$....H..$.....
+	0x01c0 01 00 00 00 48 89 d9 e8 00 00 00 00 44 0f 11 7c  ....H.......D..|
+	0x01d0 24 78 48 8d 15 00 00 00 00 48 89 54 24 78 4c 8d  $xH......H.T$xL.
+	0x01e0 05 00 00 00 00 4c 89 84 24 80 00 00 00 48 8b 1d  .....L..$....H..
+	0x01f0 00 00 00 00 48 8d 05 00 00 00 00 48 8d 4c 24 78  ....H......H.L$x
+	0x0200 bf 01 00 00 00 48 89 fe e8 00 00 00 00 44 0f 11  .....H.......D..
+	0x0210 7c 24 68 48 8d 15 00 00 00 00 48 89 54 24 68 48  |$hH......H.T$hH
+	0x0220 8b 54 24 38 48 89 54 24 70 48 8b 1d 00 00 00 00  .T$8H.T$pH......
+	0x0230 48 8d 05 00 00 00 00 48 8d 4c 24 68 bf 01 00 00  H......H.L$h....
+	0x0240 00 48 89 fe e8 00 00 00 00 48 85 db 74 37 44 0f  .H.......H..t7D.
+	0x0250 11 bc 24 d8 00 00 00 74 04 48 8b 5b 08 48 89 9c  ..$....t.H.[.H..
+	0x0260 24 d8 00 00 00 48 89 8c 24 e0 00 00 00 48 8d 84  $....H..$....H..
+	0x0270 24 d8 00 00 00 bb 01 00 00 00 48 89 d9 0f 1f 00  $.........H.....
+	0x0280 e8 00 00 00 00 48 8b 54 24 30 48 8b 02 48 8b 5a  .....H.T$0H..H.Z
+	0x0290 08 48 83 fb 01 0f 85 7d 01 00 00 48 89 44 24 28  .H.....}...H.D$(
+	0x02a0 48 8d 0d 00 00 00 00 bf 01 00 00 00 e8 00 00 00  H...............
+	0x02b0 00 48 85 c0 7f 4f 48 8b 54 24 28 80 3a 2a 66 90  .H...OH.T$(.:*f.
+	0x02c0 75 1a 48 8b 4c 24 40 f2 0f 10 01 48 8b 4c 24 38  u.H.L$@....H.L$8
+	0x02d0 f2 0f 59 01 0f 10 c8 e9 b8 00 00 00 80 3a 2b 90  ..Y..........:+.
+	0x02e0 0f 85 32 01 00 00 48 8b 4c 24 40 f2 0f 10 01 48  ..2...H.L$@....H
+	0x02f0 8b 4c 24 38 f2 0f 58 01 0f 10 c8 0f 1f 44 00 00  .L$8..X......D..
+	0x0300 e9 8f 00 00 00 48 8b 54 24 28 80 3a 2d 75 17 48  .....H.T$(.:-u.H
+	0x0310 8b 4c 24 40 f2 0f 10 01 48 8b 4c 24 38 f2 0f 5c  .L$@....H.L$8..\
+	0x0320 01 0f 10 c8 eb 6e 80 3a 2f 0f 85 e9 00 00 00 48  .....n.:/......H
+	0x0330 8b 54 24 38 f2 0f 10 02 0f 57 c9 66 0f 2e c1 90  .T$8.....W.f....
+	0x0340 75 02 7b 0f 48 8b 4c 24 40 f2 0f 10 09 f2 0f 5e  u.{.H.L$@......^
+	0x0350 c8 eb 41 44 0f 11 7c 24 58 48 8d 15 00 00 00 00  ..AD..|$XH......
+	0x0360 48 89 54 24 58 4c 8d 05 00 00 00 00 4c 89 44 24  H.T$XL......L.D$
+	0x0370 60 48 8b 1d 00 00 00 00 48 8d 05 00 00 00 00 48  `H......H......H
+	0x0380 8d 4c 24 58 bf 01 00 00 00 48 89 fe e8 00 00 00  .L$X.....H......
+	0x0390 00 0f 57 c9 44 0f 11 bc 24 e8 00 00 00 44 0f 11  ..W.D...$....D..
+	0x03a0 bc 24 f8 00 00 00 48 8d 0d 00 00 00 00 48 89 8c  .$....H......H..
+	0x03b0 24 e8 00 00 00 48 8d 0d 00 00 00 00 48 89 8c 24  $....H......H..$
+	0x03c0 f0 00 00 00 66 48 0f 7e c8 e8 00 00 00 00 48 8d  ....fH.~......H.
+	0x03d0 0d 00 00 00 00 48 89 8c 24 f8 00 00 00 48 89 84  .....H..$....H..
+	0x03e0 24 00 01 00 00 48 8b 1d 00 00 00 00 48 8d 05 00  $....H......H...
+	0x03f0 00 00 00 48 8d 8c 24 e8 00 00 00 bf 02 00 00 00  ...H..$.........
+	0x0400 48 89 fe e8 00 00 00 00 48 8b ac 24 08 01 00 00  H.......H..$....
+	0x0410 48 81 c4 10 01 00 00 c3 44 0f 11 7c 24 48 48 8d  H.......D..|$HH.
+	0x0420 15 00 00 00 00 48 89 54 24 48 48 8d 15 00 00 00  .....H.T$HH.....
+	0x0430 00 48 89 54 24 50 48 8b 1d 00 00 00 00 48 8d 05  .H.T$PH......H..
+	0x0440 00 00 00 00 48 8d 4c 24 48 bf 01 00 00 00 48 89  ....H.L$H.....H.
+	0x0450 fe e8 00 00 00 00 48 8b ac 24 08 01 00 00 48 81  ......H..$....H.
+	0x0460 c4 10 01 00 00 c3 44 0f 11 bc 24 a8 00 00 00 48  ......D...$....H
+	0x0470 8d 15 00 00 00 00 48 89 94 24 a8 00 00 00 48 8d  ......H..$....H.
+	0x0480 15 00 00 00 00 48 89 94 24 b0 00 00 00 48 8b 1d  .....H..$....H..
+	0x0490 00 00 00 00 48 8d 05 00 00 00 00 48 8d 8c 24 a8  ....H......H..$.
+	0x04a0 00 00 00 bf 01 00 00 00 48 89 fe e8 00 00 00 00  ........H.......
+	0x04b0 48 8b ac 24 08 01 00 00 48 81 c4 10 01 00 00 90  H..$....H.......
+	0x04c0 c3 e8 00 00 00 00 e9 35 fb ff ff                 .......5...
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.*float64+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.string+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.string+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.*string+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.string+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.*float64+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.string+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.string+0
+	rel 3+0 t=23 type.*os.File+0
+	rel 3+0 t=23 type.string+0
+	rel 3+0 t=23 type.float64+0
+	rel 3+0 t=23 type.string+0
+	rel 44+4 t=14 type.float64+0
+	rel 49+4 t=7 runtime.newobject+0
+	rel 61+4 t=14 type.float64+0
+	rel 66+4 t=7 runtime.newobject+0
+	rel 87+4 t=14 type.string+0
+	rel 102+4 t=14 ""..stmp_0+0
+	rel 117+4 t=14 os.Stdout+0
+	rel 132+4 t=14 go.itab.*os.File,io.Writer+0
+	rel 145+4 t=7 fmt.Fprintln+0
+	rel 161+4 t=14 type.*float64+0
+	rel 189+4 t=14 os.Stdin+0
+	rel 196+4 t=14 go.itab.*os.File,io.Reader+0
+	rel 217+4 t=7 fmt.Fscanln+0
+	rel 236+4 t=14 type.string+0
+	rel 241+4 t=7 runtime.newobject+0
+	rel 269+4 t=14 type.string+0
+	rel 284+4 t=14 ""..stmp_2+0
+	rel 299+4 t=14 os.Stdout+0
+	rel 314+4 t=14 go.itab.*os.File,io.Writer+0
+	rel 327+4 t=7 fmt.Fprintln+0
+	rel 343+4 t=14 type.*string+0
+	rel 371+4 t=14 os.Stdin+0
+	rel 378+4 t=14 go.itab.*os.File,io.Reader+0
+	rel 399+4 t=7 fmt.Fscanln+0
+	rel 456+4 t=7 log.Fatal+0
+	rel 469+4 t=14 type.string+0
+	rel 481+4 t=14 ""..stmp_3+0
+	rel 496+4 t=14 os.Stdout+0
+	rel 503+4 t=14 go.itab.*os.File,io.Writer+0
+	rel 521+4 t=7 fmt.Fprintln+0
+	rel 534+4 t=14 type.*float64+0
+	rel 556+4 t=14 os.Stdin+0
+	rel 563+4 t=14 go.itab.*os.File,io.Reader+0
+	rel 581+4 t=7 fmt.Fscan+0
+	rel 641+4 t=7 log.Fatal+0
+	rel 675+4 t=14 go.string."+"+0
+	rel 685+4 t=7 runtime.cmpstring+0
+	rel 860+4 t=14 type.string+0
+	rel 872+4 t=14 ""..stmp_4+0
+	rel 884+4 t=14 os.Stdout+0
+	rel 891+4 t=14 go.itab.*os.File,io.Writer+0
+	rel 909+4 t=7 fmt.Fprintln+0
+	rel 937+4 t=14 type.string+0
+	rel 952+4 t=14 ""..stmp_6+0
+	rel 970+4 t=7 runtime.convT64+0
+	rel 977+4 t=14 type.float64+0
+	rel 1000+4 t=14 os.Stdout+0
+	rel 1007+4 t=14 go.itab.*os.File,io.Writer+0
+	rel 1028+4 t=7 fmt.Fprintln+0
+	rel 1057+4 t=14 type.string+0
+	rel 1069+4 t=14 ""..stmp_5+0
+	rel 1081+4 t=14 os.Stdout+0
+	rel 1088+4 t=14 go.itab.*os.File,io.Writer+0
+	rel 1106+4 t=7 fmt.Fprintln+0
+	rel 1138+4 t=14 type.string+0
+	rel 1153+4 t=14 ""..stmp_1+0
+	rel 1168+4 t=14 os.Stdout+0
+	rel 1175+4 t=14 go.itab.*os.File,io.Writer+0
+	rel 1196+4 t=7 fmt.Fprintln+0
+	rel 1218+4 t=7 runtime.morestack_noctxt+0
+go.cuinfo.packagename. SDWARFCUINFO dupok size=0
+	0x0000 6d 61 69 6e                                      main
+go.info.fmt.Println$abstract SDWARFABSFCN dupok size=42
+	0x0000 05 66 6d 74 2e 50 72 69 6e 74 6c 6e 00 01 01 13  .fmt.Println....
+	0x0010 61 00 00 00 00 00 00 13 6e 00 01 00 00 00 00 13  a.......n.......
+	0x0020 65 72 72 00 01 00 00 00 00 00                    err.......
+	rel 0+0 t=22 type.[]interface {}+0
+	rel 0+0 t=22 type.error+0
+	rel 0+0 t=22 type.int+0
+	rel 19+4 t=31 go.info.[]interface {}+0
+	rel 27+4 t=31 go.info.int+0
+	rel 37+4 t=31 go.info.error+0
+go.info.fmt.Scanln$abstract SDWARFABSFCN dupok size=41
+	0x0000 05 66 6d 74 2e 53 63 61 6e 6c 6e 00 01 01 13 61  .fmt.Scanln....a
+	0x0010 00 00 00 00 00 00 13 6e 00 01 00 00 00 00 13 65  .......n.......e
+	0x0020 72 72 00 01 00 00 00 00 00                       rr.......
+	rel 0+0 t=22 type.[]interface {}+0
+	rel 0+0 t=22 type.error+0
+	rel 0+0 t=22 type.int+0
+	rel 18+4 t=31 go.info.[]interface {}+0
+	rel 26+4 t=31 go.info.int+0
+	rel 36+4 t=31 go.info.error+0
+go.info.fmt.Scan$abstract SDWARFABSFCN dupok size=39
+	0x0000 05 66 6d 74 2e 53 63 61 6e 00 01 01 13 61 00 00  .fmt.Scan....a..
+	0x0010 00 00 00 00 13 6e 00 01 00 00 00 00 13 65 72 72  .....n.......err
+	0x0020 00 01 00 00 00 00 00                             .......
+	rel 0+0 t=22 type.[]interface {}+0
+	rel 0+0 t=22 type.error+0
+	rel 0+0 t=22 type.int+0
+	rel 16+4 t=31 go.info.[]interface {}+0
+	rel 24+4 t=31 go.info.int+0
+	rel 34+4 t=31 go.info.error+0
+""..inittask SNOPTRDATA size=40
+	0x0000 00 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00  ................
+	0x0010 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0020 00 00 00 00 00 00 00 00                          ........
+	rel 24+8 t=1 fmt..inittask+0
+	rel 32+8 t=1 log..inittask+0
+go.string."Enter the first operand: " SRODATA dupok size=25
+	0x0000 45 6e 74 65 72 20 74 68 65 20 66 69 72 73 74 20  Enter the first 
+	0x0010 6f 70 65 72 61 6e 64 3a 20                       operand: 
+go.string."Invalid input" SRODATA dupok size=13
+	0x0000 49 6e 76 61 6c 69 64 20 69 6e 70 75 74           Invalid input
+go.string."Enter the operation: " SRODATA dupok size=21
+	0x0000 45 6e 74 65 72 20 74 68 65 20 6f 70 65 72 61 74  Enter the operat
+	0x0010 69 6f 6e 3a 20                                   ion: 
+go.string."Enter the second operand: " SRODATA dupok size=26
+	0x0000 45 6e 74 65 72 20 74 68 65 20 73 65 63 6f 6e 64  Enter the second
+	0x0010 20 6f 70 65 72 61 6e 64 3a 20                     operand: 
+go.string."You can't divide by 0" SRODATA dupok size=21
+	0x0000 59 6f 75 20 63 61 6e 27 74 20 64 69 76 69 64 65  You can't divide
+	0x0010 20 62 79 20 30                                    by 0
+go.string."Invalid operation" SRODATA dupok size=17
+	0x0000 49 6e 76 61 6c 69 64 20 6f 70 65 72 61 74 69 6f  Invalid operatio
+	0x0010 6e                                               n
+go.string."Результат:" SRODATA dupok size=19
+	0x0000 d0 a0 d0 b5 d0 b7 d1 83 d0 bb d1 8c d1 82 d0 b0  ................
+	0x0010 d1 82 3a                                         ..:
+go.itab.*os.File,io.Writer SRODATA dupok size=32
+	0x0000 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0010 44 b5 f3 33 00 00 00 00 00 00 00 00 00 00 00 00  D..3............
+	rel 0+8 t=1 type.io.Writer+0
+	rel 8+8 t=1 type.*os.File+0
+	rel 24+8 t=-32767 os.(*File).Write+0
+go.itab.*os.File,io.Reader SRODATA dupok size=32
+	0x0000 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0010 44 b5 f3 33 00 00 00 00 00 00 00 00 00 00 00 00  D..3............
+	rel 0+8 t=1 type.io.Reader+0
+	rel 8+8 t=1 type.*os.File+0
+	rel 24+8 t=-32767 os.(*File).Read+0
+go.string."+" SRODATA dupok size=1
+	0x0000 2b                                               +
+""..stmp_0 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 19 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 go.string."Enter the first operand: "+0
+""..stmp_1 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 0d 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 go.string."Invalid input"+0
+""..stmp_2 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 15 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 go.string."Enter the operation: "+0
+""..stmp_3 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 1a 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 go.string."Enter the second operand: "+0
+""..stmp_4 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 15 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 go.string."You can't divide by 0"+0
+""..stmp_5 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 11 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 go.string."Invalid operation"+0
+""..stmp_6 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 13 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 go.string."Результат:"+0
+runtime.nilinterequal·f SRODATA dupok size=8
+	0x0000 00 00 00 00 00 00 00 00                          ........
+	rel 0+8 t=1 runtime.nilinterequal+0
+runtime.memequal64·f SRODATA dupok size=8
+	0x0000 00 00 00 00 00 00 00 00                          ........
+	rel 0+8 t=1 runtime.memequal64+0
+runtime.gcbits.01 SRODATA dupok size=1
+	0x0000 01                                               .
+type..namedata.*interface {}- SRODATA dupok size=15
+	0x0000 00 0d 2a 69 6e 74 65 72 66 61 63 65 20 7b 7d     ..*interface {}
+type.*interface {} SRODATA dupok size=56
+	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
+	0x0010 4f 0f 96 9d 08 08 08 36 00 00 00 00 00 00 00 00  O......6........
+	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0030 00 00 00 00 00 00 00 00                          ........
+	rel 24+8 t=1 runtime.memequal64·f+0
+	rel 32+8 t=1 runtime.gcbits.01+0
+	rel 40+4 t=5 type..namedata.*interface {}-+0
+	rel 48+8 t=1 type.interface {}+0
+runtime.gcbits.02 SRODATA dupok size=1
+	0x0000 02                                               .
+type.interface {} SRODATA dupok size=80
+	0x0000 10 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
+	0x0010 e7 57 a0 18 02 08 08 14 00 00 00 00 00 00 00 00  .W..............
+	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0040 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	rel 24+8 t=1 runtime.nilinterequal·f+0
+	rel 32+8 t=1 runtime.gcbits.02+0
+	rel 40+4 t=5 type..namedata.*interface {}-+0
+	rel 44+4 t=-32763 type.*interface {}+0
+	rel 56+8 t=1 type.interface {}+80
+type..namedata.*[]interface {}- SRODATA dupok size=17
+	0x0000 00 0f 2a 5b 5d 69 6e 74 65 72 66 61 63 65 20 7b  ..*[]interface {
+	0x0010 7d                                               }
+type.*[]interface {} SRODATA dupok size=56
+	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
+	0x0010 f3 04 9a e7 08 08 08 36 00 00 00 00 00 00 00 00  .......6........
+	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0030 00 00 00 00 00 00 00 00                          ........
+	rel 24+8 t=1 runtime.memequal64·f+0
+	rel 32+8 t=1 runtime.gcbits.01+0
+	rel 40+4 t=5 type..namedata.*[]interface {}-+0
+	rel 48+8 t=1 type.[]interface {}+0
+type.[]interface {} SRODATA dupok size=56
+	0x0000 18 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
+	0x0010 70 93 ea 2f 02 08 08 17 00 00 00 00 00 00 00 00  p../............
+	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0030 00 00 00 00 00 00 00 00                          ........
+	rel 32+8 t=1 runtime.gcbits.01+0
+	rel 40+4 t=5 type..namedata.*[]interface {}-+0
+	rel 44+4 t=-32763 type.*[]interface {}+0
+	rel 48+8 t=1 type.interface {}+0
+runtime.gcbits.0a SRODATA dupok size=1
+	0x0000 0a                                               .
+type..importpath.fmt. SRODATA dupok size=5
+	0x0000 00 03 66 6d 74                                   ..fmt
+type..importpath.log. SRODATA dupok size=5
+	0x0000 00 03 6c 6f 67                                   ..log
+gclocals·f14a5bc6d08bc46424827f54d2e3f8ed SRODATA dupok size=8
+	0x0000 06 00 00 00 00 00 00 00                          ........
+gclocals·cf068f933efcaaa6a7a420b6b283d8f6 SRODATA dupok size=32
+	0x0000 06 00 00 00 1c 00 00 00 00 00 00 00 08 00 00 00  ................
+	0x0010 0c 00 00 00 0e 00 00 00 0d 00 00 00 00 00 00 0a  ................
+"".main.stkobj SRODATA static size=184
+	0x0000 0b 00 00 00 00 00 00 00 40 ff ff ff 10 00 00 00  ........@.......
+	0x0010 10 00 00 00 00 00 00 00 50 ff ff ff 10 00 00 00  ........P.......
+	0x0020 10 00 00 00 00 00 00 00 60 ff ff ff 10 00 00 00  ........`.......
+	0x0030 10 00 00 00 00 00 00 00 70 ff ff ff 10 00 00 00  ........p.......
+	0x0040 10 00 00 00 00 00 00 00 80 ff ff ff 10 00 00 00  ................
+	0x0050 10 00 00 00 00 00 00 00 90 ff ff ff 10 00 00 00  ................
+	0x0060 10 00 00 00 00 00 00 00 a0 ff ff ff 10 00 00 00  ................
+	0x0070 10 00 00 00 00 00 00 00 b0 ff ff ff 10 00 00 00  ................
+	0x0080 10 00 00 00 00 00 00 00 c0 ff ff ff 10 00 00 00  ................
+	0x0090 10 00 00 00 00 00 00 00 d0 ff ff ff 10 00 00 00  ................
+	0x00a0 10 00 00 00 00 00 00 00 e0 ff ff ff 20 00 00 00  ............ ...
+	0x00b0 20 00 00 00 00 00 00 00                           .......
+	rel 20+4 t=5 runtime.gcbits.02+0
+	rel 36+4 t=5 runtime.gcbits.02+0
+	rel 52+4 t=5 runtime.gcbits.02+0
+	rel 68+4 t=5 runtime.gcbits.02+0
+	rel 84+4 t=5 runtime.gcbits.02+0
+	rel 100+4 t=5 runtime.gcbits.02+0
+	rel 116+4 t=5 runtime.gcbits.02+0
+	rel 132+4 t=5 runtime.gcbits.02+0
+	rel 148+4 t=5 runtime.gcbits.02+0
+	rel 164+4 t=5 runtime.gcbits.02+0
+	rel 180+4 t=5 runtime.gcbits.0a+0

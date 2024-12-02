@@ -1,0 +1,59 @@
+    2624 D ""..inittask
+    264c r ""..stmp_0<1>
+    265c r ""..stmp_1<1>
+    266c r ""..stmp_2<1>
+    267c r ""..stmp_3<1>
+    268c r ""..stmp_4<1>
+    269c r ""..stmp_5<1>
+    26ac r ""..stmp_6<1>
+    2159 T "".main
+    26bc r "".main.stkobj<1>
+         U fmt..inittask
+         U fmt.Fprintln
+         U fmt.Fscan
+         U fmt.Fscanln
+    2a4c R gclocals·cf068f933efcaaa6a7a420b6b283d8f6
+    2a44 R gclocals·f14a5bc6d08bc46424827f54d2e3f8ed
+    2a6c ? go.cuinfo.packagename.
+         U go.info.[]interface {}
+         U go.info.error
+    2a70 ? go.info.fmt.Println$abstract
+    2ac3 ? go.info.fmt.Scan$abstract
+    2a9a ? go.info.fmt.Scanln$abstract
+         U go.info.int
+    2b0a R go.itab.*os.File,io.Reader
+    2aea R go.itab.*os.File,io.Writer
+    2884 R go.string."+"
+    298c R go.string."Enter the first operand: "
+    29b2 R go.string."Enter the operation: "
+    29c7 R go.string."Enter the second operand: "
+    29a5 R go.string."Invalid input"
+    29f6 R go.string."Invalid operation"
+    29e1 R go.string."You can't divide by 0"
+    2a07 R go.string."Результат:"
+         U gofile..$GOROOT/src/fmt/print.go
+         U gofile..$GOROOT/src/fmt/scan.go
+         U gofile../home/danil/lets-go-programming-v2024-autumn-spbstu/danil.novokhatskiy/task-8/cmd/service/main.go
+         U log..inittask
+         U log.Fatal
+         U os.(*File).Read
+         U os.(*File).Write
+         U os.Stdin
+         U os.Stdout
+    2885 R runtime.gcbits.01
+    2886 R runtime.gcbits.02
+    2887 R runtime.gcbits.0a
+    2b32 R runtime.memequal64·f
+    2b2a R runtime.nilinterequal·f
+    2bc2 R type.*[]interface {}
+    2b3a R type.*interface {}
+         U type.*os.File
+    2a3a R type..importpath.fmt.
+    2a3f R type..importpath.log.
+    2a29 R type..namedata.*[]interface {}-
+    2a1a R type..namedata.*interface {}-
+    2bfa R type.[]interface {}
+         U type.int
+    2b72 R type.interface {}
+         U type.io.Reader
+         U type.io.Writer
