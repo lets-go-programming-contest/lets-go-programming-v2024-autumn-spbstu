@@ -6,8 +6,6 @@ import (
 	database "github.com/Mmmakskl/task-9/internal/database/file"
 )
 
-//go:generate go run github.com/golang/mock/mockgen -source=service.go -destination=Service_mock_test.go -package=service_test
-
 type contactReadDB interface {
 	Exists(string) error
 	Get(string) ([]database.Contact, error)
@@ -31,16 +29,15 @@ func NewService(read contactReadDB, write contactWriteDB) service {
 	}
 }
 
-func (s *service) Post(id int, name string, phone string) error {
+func (s *service) Post(name string, phone string) error {
 	contact := database.Contact{
-		ID:    id,
 		Name:  name,
 		Phone: phone,
 	}
 
-	query := fmt.Sprintf("SELECT * FROM contacts WHERE id = %d", id)
+	query := fmt.Sprintf("SELECT EXISTS(SELECT * FROM contacts WHERE name = '%s' AND phone = '%s')", name, phone)
 	if existsErr := s.readDB.Exists(query); existsErr == nil {
-		return fmt.Errorf("%w: %w: id:%d", ErrAlreadyExists, existsErr, id)
+		return fmt.Errorf("%w: %w", ErrAlreadyExists, existsErr)
 	}
 
 	postErr := s.writeDB.Post(contact)
@@ -52,7 +49,7 @@ func (s *service) Post(id int, name string, phone string) error {
 }
 
 func (s *service) Put(id int, name string, phone string) error {
-	query := fmt.Sprintf("SELECT * FROM contacts WHERE id = %d", id)
+	query := fmt.Sprintf("SELECT EXISTS(SELECT * FROM contacts WHERE id = %d)", id)
 	if existsErr := s.readDB.Exists(query); existsErr != nil {
 		return fmt.Errorf("%w: %w: id:%d", ErrNotExists, existsErr, id)
 	}

@@ -12,7 +12,7 @@ import (
 )
 
 type service interface {
-	Post(int, string, string) error
+	Post(string, string) error
 	Put(int, string, string) error
 	Delete(int) error
 	GetAll() ([]database.Contact, error)
@@ -66,13 +66,13 @@ func (h *handlers) getID(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *handlers) getAll(w http.ResponseWriter, r *http.Request) {
-	contacts, err := h.service.GetAll()
-	if err != nil {
+	contacts, errGet := h.service.GetAll()
+	if errGet != nil {
 		switch {
-		case errors.Is(err, database.ErrContactNotExists):
-			http.Error(w, err.Error(), http.StatusNotFound)
+		case errors.Is(errGet, database.ErrContactNotExists):
+			w.WriteHeader(http.StatusNoContent)
 		default:
-			http.Error(w, fmt.Errorf("error while get contacts: %w", err).Error(), http.StatusInternalServerError)
+			http.Error(w, fmt.Errorf("error while get contacts: %w", errGet).Error(), http.StatusInternalServerError)
 		}
 		return
 	}
@@ -93,7 +93,7 @@ func (h *handlers) post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := h.service.Post(contact.ID, contact.Name, contact.Phone); err != nil {
+	if err := h.service.Post(contact.Name, contact.Phone); err != nil {
 		http.Error(w, fmt.Errorf("failed contact created: %w", err).Error(), http.StatusInternalServerError)
 		return
 	}
@@ -101,6 +101,7 @@ func (h *handlers) post(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
+// todo исправить входные данные, должно быть name и телефон
 func (h *handlers) put(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
@@ -116,7 +117,7 @@ func (h *handlers) put(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := h.service.Put(contact.ID, contact.Name, contact.Phone); err != nil {
+	if err := h.service.Put(id, contact.Name, contact.Phone); err != nil {
 		switch {
 		case errors.Is(err, database.ErrContactNotExists):
 			http.Error(w, err.Error(), http.StatusNotFound)

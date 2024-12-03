@@ -1,0 +1,8 @@
+database:
+  host: localhost
+  port: "5432"
+  user: mmmakskl
+  password: ".maks.im05."
+  dbname: task-9
+server:
+  host: :8080

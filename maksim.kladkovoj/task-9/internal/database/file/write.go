@@ -1,8 +1,8 @@
 package database
 
 import (
+	"database/sql"
 	"fmt"
-	"log"
 	"regexp"
 )
 
@@ -10,7 +10,7 @@ type WriteDB struct {
 	DataBase
 }
 
-var regexpPhone *regexp.Regexp
+var regexpPhone = regexp.MustCompile(`^(\+7|8)[-\s]?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$`)
 
 func NewDatabaseWriter(cfg DBstruct) (*WriteDB, error) {
 	db, err := ConnectDB(cfg)
@@ -26,8 +26,6 @@ func NewDatabaseWriter(cfg DBstruct) (*WriteDB, error) {
 }
 
 func isValidNumber(phone string) error {
-	regexpPhone = regexp.MustCompile(`^(\+7|8)[-\s]?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$`)
-
 	if !regexpPhone.MatchString(phone) {
 		return ErrPhoneInvalid
 	}
@@ -39,14 +37,15 @@ func (w *WriteDB) Post(contact Contact) error {
 		return err
 	}
 
-	log.Println(contact)
+	var id sql.NullInt64
+	w.DB.QueryRow("SELECT MAX(id) AS oldest_id FROM contacts").Scan(&id)
 
-	if err := w.DB.Ping(); err != nil {
-		return fmt.Errorf("failed to connect db: %w", err)
+	if !id.Valid {
+		id.Int64 = 0
 	}
 
-	if _, err := w.DB.Query("INSERT INTO contacts (id, name, phone) values ($1, $2, $3)",
-		contact.ID, contact.Name, contact.Phone); err != nil {
+	if _, err := w.DB.Exec("INSERT INTO contacts (id, name, phone) values ($1, $2, $3)",
+		id.Int64+1, contact.Name, contact.Phone); err != nil {
 		return fmt.Errorf("%w: %w", ErrDatabaseQuery, err)
 	}
 
