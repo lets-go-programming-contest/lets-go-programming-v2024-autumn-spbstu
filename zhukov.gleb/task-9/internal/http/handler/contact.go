@@ -4,15 +4,12 @@ import (
 	"errors"
 	"net/http"
 	"strconv"
-	"strings"
 
 	"task-9/internal/contact"
 	"task-9/internal/db"
-)
+	"task-9/internal/http/encode"
 
-var (
-	ErrDecodingJSON = errors.New("error decoding JSON")
-	ErrNoDataJSON   = errors.New("error no data JSON")
+	"github.com/gorilla/mux"
 )
 
 type ContactHandler struct {
@@ -31,135 +28,174 @@ var (
 func (h *ContactHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	orderBy := r.URL.Query().Get("order_by")
 	if _, ok := orderFields[orderBy]; !ok {
-		WriteJSONServer(w, map[string]string{"message": "Bad request: invalid order_by value"}, http.StatusBadRequest)
+		encode.WriteJSONServer(w, map[string]string{"message": "invalid order_by value"}, http.StatusBadRequest)
 		return
 	}
 
 	data, err := h.ContactRepo.GetAll(orderBy)
 	if err != nil {
-		WriteJSONServer(w, map[string]string{"message": "Internal error: " + err.Error()}, http.StatusInternalServerError)
+		encode.WriteJSONServer(w, []interface{}{}, http.StatusInternalServerError)
 		return
 	}
 
-	WriteJSONServer(w, data, http.StatusOK)
+	encode.WriteJSONServer(w, data, http.StatusOK)
 }
 
 func (h *ContactHandler) GetByID(w http.ResponseWriter, r *http.Request) {
-	// http://127.0.0.1:8080/contacts/{id} - id
-	idString := strings.Split(r.URL.Path, "/")[2]
+	//TODO mux vars
+	vars := mux.Vars(r)
+	idString := vars["id"]
 	id, err := strconv.Atoi(idString)
 	if err != nil {
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
+		encode.WriteJSONServer(w, map[string]string{"message": "bad integer arg"}, http.StatusBadRequest)
 		return
 	}
 
 	data, err := h.ContactRepo.GetByID(id)
+	reqArgs := map[string]interface{}{
+		"reqArgs": map[string]interface{}{
+			"id": id,
+		},
+	}
+	//TODO id name добавить в сообщение
+
 	switch {
+	case err == nil:
 	case errors.Is(err, db.ErrNoContact):
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
-		return
-	case err != nil:
-		WriteJSONServer(w, map[string]string{"message": "internal server error: " + err.Error()}, http.StatusInternalServerError)
+		reqArgs["message"] = db.ErrNoContact.Error()
+		encode.WriteJSONServer(w, reqArgs, http.StatusUnprocessableEntity)
 		return
 	default:
+		encode.WriteJSONServer(w, reqArgs, http.StatusInternalServerError)
+		return
 	}
 
-	WriteJSONServer(w, data, http.StatusOK)
+	encode.WriteJSONServer(w, data, http.StatusOK)
 }
 
 func (h *ContactHandler) AddContact(w http.ResponseWriter, r *http.Request) {
-	value, err := GetJSONFieldsServer(r, "name", "phone")
+	value, err := encode.GetJSONFieldsServer(r, "name", "phone")
 	switch {
-	case errors.Is(err, ErrNoDataJSON):
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
-		return
-	case err != nil:
-		WriteJSONServer(w, map[string]string{"message": "internal server error: " + err.Error()}, http.StatusInternalServerError)
+	case err == nil:
+	case errors.Is(err, encode.ErrNoDataJSON):
+		encode.WriteJSONServer(w, map[string]string{"message": encode.ErrNoDataJSON.Error()}, http.StatusBadRequest)
 		return
 	default:
+		encode.WriteJSONServer(w, []interface{}{}, http.StatusInternalServerError)
+		return
 	}
 
 	nameReq, nameOk := value["name"].(string)
 	phoneReq, phoneOk := value["phone"].(string)
 	if !nameOk || !phoneOk {
-		WriteJSONServer(w, map[string]string{"message": "Bad request params"}, http.StatusBadRequest)
+		encode.WriteJSONServer(w, map[string]string{"message": "Bad request params"}, http.StatusBadRequest)
 		return
 	}
 
+	//TODO 422 статус добавить
 	data, err := h.ContactRepo.Add(nameReq, phoneReq)
+	reqArgs := map[string]interface{}{
+		"reqArgs": map[string]interface{}{
+			"name":  nameReq,
+			"phone": phoneReq,
+		},
+	}
+
 	switch {
+	case err == nil:
 	case errors.Is(err, contact.ErrIncorrectPhone):
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
-		return
-	case err != nil:
-		WriteJSONServer(w, map[string]string{"message": "Internal error: " + err.Error()}, http.StatusInternalServerError)
+		reqArgs["message"] = contact.ErrIncorrectPhone.Error()
+		encode.WriteJSONServer(w, reqArgs, http.StatusBadRequest)
 		return
 	default:
+		encode.WriteJSONServer(w, reqArgs, http.StatusInternalServerError)
+		return
 	}
 
-	WriteJSONServer(w, data, http.StatusOK)
+	encode.WriteJSONServer(w, data, http.StatusOK)
 }
 
 func (h *ContactHandler) UpdateContact(w http.ResponseWriter, r *http.Request) {
-	// http://127.0.0.1:8080/contacts/{id} - id
-	idString := strings.Split(r.URL.Path, "/")[2]
+	vars := mux.Vars(r)
+	idString := vars["id"]
 	id, err := strconv.Atoi(idString)
 	if err != nil {
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
+		encode.WriteJSONServer(w, map[string]string{"message": "bad integer arg"}, http.StatusBadRequest)
 		return
 	}
 
-	value, err := GetJSONFieldsServer(r, "name", "phone")
+	value, err := encode.GetJSONFieldsServer(r, "name", "phone")
 	switch {
-	case errors.Is(err, ErrNoDataJSON):
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
-		return
-	case err != nil:
-		WriteJSONServer(w, map[string]string{"message": "internal server error: " + err.Error()}, http.StatusInternalServerError)
+	case err == nil:
+	case errors.Is(err, encode.ErrNoDataJSON):
+		encode.WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
 		return
 	default:
+		encode.WriteJSONServer(w, []interface{}{}, http.StatusInternalServerError)
+		return
 	}
 
 	nameReq, nameOk := value["name"].(string)
 	phoneReq, phoneOk := value["phone"].(string)
 	if !nameOk || !phoneOk {
-		WriteJSONServer(w, map[string]string{"message": "Bad request params"}, http.StatusBadRequest)
+		encode.WriteJSONServer(w, map[string]string{"message": "Bad request params"}, http.StatusBadRequest)
 		return
 	}
 
 	data, err := h.ContactRepo.Update(id, nameReq, phoneReq)
-	switch {
-	case errors.Is(err, db.ErrNoContact) || errors.Is(err, contact.ErrIncorrectPhone):
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
-		return
-	case err != nil:
-		WriteJSONServer(w, map[string]string{"message": "Internal error: " + err.Error()}, http.StatusInternalServerError)
-		return
-	default:
+	reqArgs := map[string]interface{}{
+		"reqArgs": map[string]interface{}{
+			"id":    id,
+			"name":  nameReq,
+			"phone": phoneReq,
+		},
 	}
 
-	WriteJSONServer(w, data, http.StatusOK)
+	switch {
+	case err == nil:
+	case errors.Is(err, contact.ErrIncorrectPhone):
+		reqArgs["message"] = contact.ErrIncorrectPhone.Error()
+		encode.WriteJSONServer(w, reqArgs, http.StatusBadRequest)
+		return
+	case errors.Is(err, db.ErrNoContact):
+		reqArgs["message"] = db.ErrNoContact.Error()
+		encode.WriteJSONServer(w, reqArgs, http.StatusUnprocessableEntity)
+		return
+	default:
+		encode.WriteJSONServer(w, reqArgs, http.StatusInternalServerError)
+		return
+	}
+
+	encode.WriteJSONServer(w, data, http.StatusOK)
 }
 
 func (h *ContactHandler) DeleteContact(w http.ResponseWriter, r *http.Request) {
-	// http://127.0.0.1:8080/contacts/{id} - id
-	idString := strings.Split(r.URL.Path, "/")[2]
+	vars := mux.Vars(r)
+	idString := vars["id"]
 	id, err := strconv.Atoi(idString)
 	if err != nil {
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
+		encode.WriteJSONServer(w, map[string]string{"message": "bad integer arg"}, http.StatusBadRequest)
 		return
 	}
 
 	err = h.ContactRepo.Delete(id)
-	switch {
-	case errors.Is(err, db.ErrNoContact):
-		WriteJSONServer(w, map[string]string{"message": "Bad request: " + err.Error()}, http.StatusBadRequest)
-		return
-	case err != nil:
-		WriteJSONServer(w, map[string]string{"message": "Internal error: " + err.Error()}, http.StatusInternalServerError)
-		return
-	default:
+	reqArgs := map[string]interface{}{
+		"reqArgs": map[string]interface{}{
+			"id": id,
+		},
 	}
 
-	WriteJSONServer(w, map[string]string{"message": "Success delete"}, http.StatusOK)
+	switch {
+	case err == nil:
+	case errors.Is(err, db.ErrNoContact):
+		reqArgs["message"] = db.ErrNoContact.Error()
+		encode.WriteJSONServer(w, reqArgs, http.StatusUnprocessableEntity)
+		return
+	default:
+		encode.WriteJSONServer(w, reqArgs, http.StatusInternalServerError)
+		return
+	}
+
+	reqArgs["message"] = "Success delete"
+	encode.WriteJSONServer(w, reqArgs, http.StatusOK)
 }

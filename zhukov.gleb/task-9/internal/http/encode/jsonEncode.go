@@ -1,17 +1,24 @@
-package handler
+package encode
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 )
 
+var (
+	ErrDecodingJSON = errors.New("error decoding JSON")
+	ErrNoDataJSON   = errors.New("error no data JSON")
+)
+
+// TODO в пакет encode
 func WriteJSONServer(w http.ResponseWriter, response interface{}, statusCode int) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 	err := json.NewEncoder(w).Encode(response)
 	if err != nil {
-		http.Error(w, "Internal error: "+err.Error(), http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 

@@ -28,15 +28,13 @@ func (a *App) Run() error {
 	}
 
 	pgSQL, err := db.NewPgSQLController(
-		a.Cfg.UDBName,
-		a.Cfg.UDBPass,
-		a.Cfg.PgSQLHost,
-		a.Cfg.DBPgSQLName,
-		a.Cfg.PortPgSQL,
+		a.Cfg.DBCfg,
 	)
 	if err != nil {
 		return fmt.Errorf("error with db.NewPgSQLController: %w", err)
 	}
+	//TODO defer close
+	defer pgSQL.DB.Close()
 
 	contactRepo := contact.NewContactRepo(&pgSQL)
 	contactHandler := &handler.ContactHandler{
@@ -56,7 +54,7 @@ func (a *App) Run() error {
 
 	addr := strings.Builder{}
 	addr.WriteString(":")
-	addr.WriteString(a.Cfg.Host)
-
+	addr.WriteString(a.Cfg.Port)
+	//TODO full address - зачем
 	return http.ListenAndServe(addr.String(), h)
 }

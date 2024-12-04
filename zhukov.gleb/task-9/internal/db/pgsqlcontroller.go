@@ -27,9 +27,10 @@ type PgSQLRepository struct {
 	DB *sql.DB
 }
 
-func NewPgSQLController(uName, uPass, host, dbName string, port int) (PgSQLRepository, error) {
+// TODO структуру передавать вместо полей
+func NewPgSQLController(config Cfg) (PgSQLRepository, error) {
 	dsn := fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable",
-		uName, uPass, host, port, dbName)
+		config.UDBName, config.UDBPass, config.PgSQLHost, config.PortPgSQL, config.DBPgSQLName)
 
 	repo := &PgSQLRepository{}
 	var err error
@@ -102,11 +103,12 @@ func (m *PgSQLRepository) GetContact(id int) (contact.Contact, error) {
 		&newContact.CreatedAt,
 		&newContact.UpdatedAt,
 	)
-	if err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return contact.Contact{}, fmt.Errorf("%w getContact DB: %w", ErrNoContact, err)
-		}
-		return contact.Contact{}, fmt.Errorf("getContact DB: %w", err)
+	switch {
+	case err == nil:
+	case errors.Is(err, sql.ErrNoRows):
+		return contact.Contact{}, fmt.Errorf("%w getContact DB: %d", ErrNoContact, id)
+	default:
+		return contact.Contact{}, fmt.Errorf("getContact DB err: %w", err)
 	}
 
 	return newContact, nil
@@ -157,10 +159,11 @@ func (m *PgSQLRepository) UpdateContact(id int, name, phone string, time time.Ti
 		&updatedContact.CreatedAt,
 		&updatedContact.UpdatedAt,
 	)
-	if err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return contact.Contact{}, fmt.Errorf("%w UpdateContact DB: %d", ErrNoContact, id)
-		}
+	switch {
+	case err == nil:
+	case errors.Is(err, sql.ErrNoRows):
+		return contact.Contact{}, fmt.Errorf("%w UpdateContact DB: %d", ErrNoContact, id)
+	default:
 		return contact.Contact{}, fmt.Errorf("UpdateContact DB err: %w", err)
 	}
 
