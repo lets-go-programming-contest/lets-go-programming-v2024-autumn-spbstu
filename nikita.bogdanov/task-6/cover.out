@@ -1,0 +1,13 @@
+mode: set
+github.com/solomonalfred/task-6/cmd/db/main.go:11.13,15.16 3 0
+github.com/solomonalfred/task-6/cmd/db/main.go:15.16,17.3 1 0
+github.com/solomonalfred/task-6/cmd/db/main.go:18.2,23.16 4 0
+github.com/solomonalfred/task-6/cmd/db/main.go:23.16,25.3 1 0
+github.com/solomonalfred/task-6/cmd/db/main.go:27.2,27.29 1 0
+github.com/solomonalfred/task-6/cmd/db/main.go:27.29,29.3 1 0
+github.com/solomonalfred/task-6/cmd/wifi/main.go:11.13,13.16 2 0
+github.com/solomonalfred/task-6/cmd/wifi/main.go:13.16,16.3 2 0
+github.com/solomonalfred/task-6/cmd/wifi/main.go:18.2,21.16 3 0
+github.com/solomonalfred/task-6/cmd/wifi/main.go:21.16,24.3 2 0
+github.com/solomonalfred/task-6/cmd/wifi/main.go:26.2,26.29 1 0
+github.com/solomonalfred/task-6/cmd/wifi/main.go:26.29,28.3 1 0
