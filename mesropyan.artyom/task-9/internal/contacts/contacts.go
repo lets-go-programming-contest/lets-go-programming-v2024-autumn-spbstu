@@ -33,6 +33,7 @@ func GetContact(name string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer rows.Close()
 	for rows.Next() {
 		var contact Contact
 		rows.Scan(&contact.Name, &contact.Number)
@@ -98,6 +99,7 @@ func Exists(name string) error {
 	if err != nil {
 		return err
 	}
+	defer rows.Close()
 	if rows.Next() {
 		return errors.New("number already exists")
 	}
