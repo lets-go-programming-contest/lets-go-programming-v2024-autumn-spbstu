@@ -6,6 +6,8 @@ import (
 
 	"github.com/EmptyInsid/task-9/internal/config"
 	"github.com/EmptyInsid/task-9/internal/database"
+	"github.com/EmptyInsid/task-9/internal/route"
+	"github.com/gorilla/mux"
 )
 
 type MyApp struct {
@@ -19,11 +21,12 @@ func NewApp(cfg config.Config) (*MyApp, error) {
 		log.Printf("Error while connect with database: %v", err)
 		return nil, err
 	}
+	defer db.Close()
 	log.Println("Succsess connect with db")
 
 	//init router
-
-	//init handlers
+	router := mux.NewRouter()
+	route.Setting(router)
 
 	//init server
 
