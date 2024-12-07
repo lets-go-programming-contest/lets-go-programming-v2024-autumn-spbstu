@@ -134,3 +134,33 @@ func UpdateContact(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 }
+
+func DeleteContact(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Counter-Type", "application/json")
+	vars := mux.Vars(r)
+	contactID, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		http.Error(w, "Invalid ID in delete-method", http.StatusBadRequest)
+		return
+	}
+
+	cont, err := db.DB.Exec(context.Background(), "DELETE FROM contacts WHERE id = $1", contactID)
+	if err != nil {
+		http.Error(w, "error while deleting contact", http.StatusInternalServerError)
+		return
+	}
+
+	rowsAffected := cont.RowsAffected()
+	if rowsAffected == 0 {
+		http.Error(w, "error while deleting contact", http.StatusInternalServerError)
+		return
+	}
+
+	err = json.NewEncoder(w).Encode(map[string]string{"message": "contact has been deleted"})
+	if err != nil {
+		http.Error(w, "error while encoding in delete-method", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
