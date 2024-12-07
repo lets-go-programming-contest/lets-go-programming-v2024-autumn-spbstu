@@ -29,11 +29,11 @@ func main() {
 	log.Printf("Succsess read config file %s", cfg.DBCfg.DBName)
 
 	//make new app with config
-	app := app.NewApp(cfg)
+	app, err := app.NewApp(cfg)
+	if err != nil {
+		panic(err)
+	}
 
 	app.Run()
 	defer app.Close()
-
-	//start app
-	//defer a.Close()
 }
