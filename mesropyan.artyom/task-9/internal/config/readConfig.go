@@ -17,7 +17,7 @@ type ServerData struct {
 }
 
 func ReadDbConfig() DbData {
-	data, err := os.ReadFile(fileName)
+	data, err := os.ReadFile(dbFileName)
 	if err != nil {
 		panic(err)
 	}
@@ -30,7 +30,7 @@ func ReadDbConfig() DbData {
 }
 
 func ReadServerConfig() ServerData {
-	data, err := os.ReadFile(fileName)
+	data, err := os.ReadFile(serverFileName)
 	if err != nil {
 		panic(err)
 	}
