@@ -4,8 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 	"regexp"
+	"strconv"
 	"task-9-1/database"
 
+	"github.com/gorilla/mux"
 	"golang.org/x/net/context"
 )
 
@@ -61,4 +63,31 @@ func CreateContact(w http.ResponseWriter, r http.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
+}
+
+func GetContact(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Counter-Type", "application/json")
+
+	vars := mux.Vars(r)
+	contactID, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	var contact Contact
+	err = db.DB.QueryRow(context.Background(), "SELECT * FROM contacts WHERE id = $1", contactID).Scan(&contact.ID, &contact.Name, &contact.Phone)
+	if contact.ID == 0 || err != nil {
+		http.Error(w, "error while getting a contact", http.StatusNotFound)
+		return
+	}
+
+	err = json.NewEncoder(w).Encode(contact)
+	if err != nil {
+		http.Error(w, "error while encoding in get-method", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+
 }
