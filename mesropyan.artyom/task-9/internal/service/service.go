@@ -1,8 +1,11 @@
 package service
 
 import (
-	"errors"
 	"fmt"
+
+	errs "errors"
+
+	"github.com/artem6554/task-9/internal/errors"
 
 	"github.com/artem6554/task-9/internal/contacts"
 )
@@ -13,8 +16,10 @@ type Service struct {
 func (s Service) Upload(name string, number string) error {
 	err := contacts.Exists(name)
 	if err != nil {
-		err = errors.New("contact already exists")
-		return fmt.Errorf("%w: %s", err, name)
+		if errs.Is(err, errors.ErrContactAlreadyExists) {
+			return fmt.Errorf("%w: %s", err, name)
+		}
+		return err
 	}
 	err = contacts.CorrectNumber(number)
 	if err != nil {
@@ -22,7 +27,7 @@ func (s Service) Upload(name string, number string) error {
 	}
 	err = contacts.AddContact(name, number)
 	if err != nil {
-		return fmt.Errorf("%w: %s, %s", err, name, number)
+		return err
 	}
 
 	return nil
@@ -31,13 +36,13 @@ func (s Service) Upload(name string, number string) error {
 func (s Service) Delete(name string) error {
 	err := contacts.Exists(name)
 	if err == nil {
-		err = errors.New("contact does not exist")
+		err = errors.ErrContacteNotExists
 		return fmt.Errorf("%w: %s", err, name)
 	}
 
 	err = contacts.DeleteContact(name)
 	if err != nil {
-		return fmt.Errorf("%w: %s", err, name)
+		return err
 	}
 	return nil
 
@@ -46,13 +51,13 @@ func (s Service) Delete(name string) error {
 func (s Service) Get(name string) ([]byte, error) {
 	err := contacts.Exists(name)
 	if err == nil {
-		err = errors.New("contact does not exist")
+		err = errors.ErrContacteNotExists
 		return nil, fmt.Errorf("%w: %s", err, name)
 	}
 
 	data, err := contacts.GetContact(name)
 	if err != nil {
-		return nil, fmt.Errorf("%w: %s", err, name)
+		return nil, err
 	}
 	return data, nil
 }
@@ -60,7 +65,7 @@ func (s Service) Get(name string) ([]byte, error) {
 func (s Service) Update(name string, number string) error {
 	err := contacts.Exists(name)
 	if err == nil {
-		err = errors.New("contact does not exist")
+		err = errors.ErrContacteNotExists
 		return fmt.Errorf("%w: %s", err, name)
 	}
 
@@ -71,7 +76,7 @@ func (s Service) Update(name string, number string) error {
 
 	err = contacts.EditNumber(name, number)
 	if err != nil {
-		return fmt.Errorf("%w: %s, %s", err, name, number)
+		return err
 	}
 	return nil
 }

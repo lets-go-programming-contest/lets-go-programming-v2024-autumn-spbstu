@@ -1,7 +1,6 @@
 package http
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -35,26 +34,28 @@ func (h *handler) upload(w http.ResponseWriter, r *http.Request) {
 	number := r.FormValue("number")
 
 	if err := h.service.Upload(name, number); err != nil {
-		http.Error(w, fmt.Errorf("error while uploading contact: %w", err).Error(), http.StatusInternalServerError)
+		code := getMappedStatusCode(errorsUploadMap, err)
+		http.Error(w, err.Error(), code)
 		return
 	}
 }
 
 func (h *handler) delete(w http.ResponseWriter, r *http.Request) {
-	name := r.FormValue("name")
+	name := r.URL.Query().Get("name")
 
 	if err := h.service.Delete(name); err != nil {
-		http.Error(w, fmt.Errorf("error while deleting contact: %w", err).Error(), http.StatusNotFound)
-		return
+		code := getMappedStatusCode(errorsDeleteMap, err)
+		http.Error(w, err.Error(), code)
 	}
 }
 
 func (h *handler) get(w http.ResponseWriter, r *http.Request) {
-	name := r.FormValue("name")
+	name := r.URL.Query().Get("name")
 
 	data, err := h.service.Get(name)
 	if err != nil {
-		http.Error(w, fmt.Errorf("error while getting contact: %w", err).Error(), http.StatusNotFound)
+		code := getMappedStatusCode(errorsGetMap, err)
+		http.Error(w, err.Error(), code)
 		return
 	}
 	w.Write(data)
@@ -65,7 +66,8 @@ func (h *handler) update(w http.ResponseWriter, r *http.Request) {
 	number := r.FormValue("number")
 
 	if err := h.service.Update(name, number); err != nil {
-		http.Error(w, fmt.Errorf("error while updating contact: %w", err).Error(), http.StatusInternalServerError)
+		code := getMappedStatusCode(errorsUpdateMap, err)
+		http.Error(w, err.Error(), code)
 		return
 	}
 }
