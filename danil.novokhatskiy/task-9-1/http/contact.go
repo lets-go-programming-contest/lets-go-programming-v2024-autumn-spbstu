@@ -29,8 +29,8 @@ func InitDataBase(other *database.DataBase) {
 	db = other
 }
 
-func CreateContact(w http.ResponseWriter, r http.Request) {
-	w.Header().Set("Counter-Type", "application/json")
+func CreateContact(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var contact Contact
 	err := json.NewDecoder(r.Body).Decode(&contact)
 	if err != nil {
@@ -66,7 +66,7 @@ func CreateContact(w http.ResponseWriter, r http.Request) {
 }
 
 func GetContact(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Counter-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 
 	vars := mux.Vars(r)
 	contactID, err := strconv.Atoi(vars["id"])
@@ -93,7 +93,7 @@ func GetContact(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateContact(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Counter-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 
 	vars := mux.Vars(r)
 	contactID, err := strconv.Atoi(vars["id"])
@@ -136,7 +136,7 @@ func UpdateContact(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteContact(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Counter-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	contactID, err := strconv.Atoi(vars["id"])
 	if err != nil {

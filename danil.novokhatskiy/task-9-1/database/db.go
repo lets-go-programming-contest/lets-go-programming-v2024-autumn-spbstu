@@ -13,7 +13,7 @@ type DataBase struct {
 }
 
 func CreateDb(cfg config.DataBaseCfg) (*DataBase, error) {
-	connection := fmt.Sprintf("postgres://%s:%s@%s:d/%s?sslmode=disable",
+	connection := fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable",
 		cfg.UserDB,
 		cfg.PasswordDB,
 		cfg.HostDB,
