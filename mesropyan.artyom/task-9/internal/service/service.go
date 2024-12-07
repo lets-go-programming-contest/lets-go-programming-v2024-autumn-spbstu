@@ -17,13 +17,13 @@ func (s Service) Upload(name string, number string) error {
 	err := contacts.Exists(name)
 	if err != nil {
 		if errs.Is(err, errors.ErrContactAlreadyExists) {
-			return fmt.Errorf("%w: %s", err, name)
+			return fmt.Errorf("%w: %q", err, name)
 		}
 		return err
 	}
 	err = contacts.CorrectNumber(number)
 	if err != nil {
-		return fmt.Errorf("%w: %s", err, number)
+		return fmt.Errorf("%w: %q", err, number)
 	}
 	err = contacts.AddContact(name, number)
 	if err != nil {
@@ -37,7 +37,7 @@ func (s Service) Delete(name string) error {
 	err := contacts.Exists(name)
 	if err == nil {
 		err = errors.ErrContacteNotExists
-		return fmt.Errorf("%w: %s", err, name)
+		return fmt.Errorf("%w: %q", err, name)
 	}
 
 	err = contacts.DeleteContact(name)
@@ -52,7 +52,7 @@ func (s Service) Get(name string) ([]byte, error) {
 	err := contacts.Exists(name)
 	if err == nil {
 		err = errors.ErrContacteNotExists
-		return nil, fmt.Errorf("%w: %s", err, name)
+		return nil, fmt.Errorf("%w: %q", err, name)
 	}
 
 	data, err := contacts.GetContact(name)
@@ -66,12 +66,12 @@ func (s Service) Update(name string, number string) error {
 	err := contacts.Exists(name)
 	if err == nil {
 		err = errors.ErrContacteNotExists
-		return fmt.Errorf("%w: %s", err, name)
+		return fmt.Errorf("%w: %q", err, name)
 	}
 
 	err = contacts.CorrectNumber(number)
 	if err != nil {
-		return fmt.Errorf("%w: %s", err, number)
+		return fmt.Errorf("%w: %q", err, number)
 	}
 
 	err = contacts.EditNumber(name, number)
