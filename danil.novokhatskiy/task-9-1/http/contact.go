@@ -36,7 +36,7 @@ func CreateContact(w http.ResponseWriter, r http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
-	} else if CheckPhone(contact.Phone) || contact.Name == "" || contact.Phone == "" {
+	} else if !CheckPhone(contact.Phone) || contact.Name == "" || contact.Phone == "" {
 		http.Error(w, "Wrong input or no input is required", http.StatusBadRequest)
 		return
 	}
@@ -90,4 +90,47 @@ func GetContact(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 
+}
+
+func UpdateContact(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Counter-Type", "application/json")
+
+	vars := mux.Vars(r)
+	contactID, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		http.Error(w, "Invalid ID in update-method", http.StatusBadRequest)
+		return
+	}
+
+	var contact Contact
+	err = json.NewDecoder(r.Body).Decode(&contact)
+	if err != nil {
+		http.Error(w, "error while decoding", http.StatusBadRequest)
+		return
+	}
+
+	if contact.Name == "" || contact.Phone == "" || !CheckPhone(contact.Phone) {
+		http.Error(w, "Wrong input or no input is required", http.StatusBadRequest)
+		return
+	}
+
+	cont, err := db.DB.Exec(context.Background(), "UPDATE contacts SET name =$1, phone =$2 WHERE id = $3", contact.Name, contact.Phone, contactID)
+	if err != nil {
+		http.Error(w, "error while updating contact", http.StatusInternalServerError)
+		return
+	}
+
+	rowsAffected := cont.RowsAffected()
+	if rowsAffected == 0 {
+		http.Error(w, "error while updating contact", http.StatusInternalServerError)
+		return
+	}
+
+	err = json.NewEncoder(w).Encode(map[string]string{"message": "contact has been updated"})
+	if err != nil {
+		http.Error(w, "error while encoding in update-method", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
 }
