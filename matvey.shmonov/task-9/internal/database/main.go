@@ -43,6 +43,29 @@ func (cm *ContactManager) GetContact(id int) (*Contact, error) {
 	return contact, nil
 }
 
+func (cm *ContactManager) GetContacts() ([]Contact, error) {
+	var contacts []Contact                                      
+	rows, err := cm.db.Query("SELECT id, name, phone FROM contacts") 
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var contact Contact
+		if err := rows.Scan(&contact.ID, &contact.Name, &contact.Phone); err != nil {
+			return nil, err
+		}
+		contacts = append(contacts, contact) 
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err 
+	}
+
+	return contacts, nil
+}
+
 func (cm *ContactManager) UpdateContact(id int, name, phone string) error {
 	_, err := cm.db.Exec("UPDATE contacts SET name = $1, phone = $2 WHERE id = $3", name, phone, id)
 	return err
