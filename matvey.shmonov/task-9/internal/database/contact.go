@@ -6,9 +6,9 @@ import (
 )
 
 type Contact struct {
-	ID    int
-	Name  string
-	Phone string
+	ID    int    `json:"id"`
+	Name  string `json:"name"`
+	Phone string `json:"phone"`
 }
 
 func (c *Contact) Validate() error {
