@@ -1,15 +1,22 @@
 package main
 
 import (
-	"fmt"
+	"flag"
 	"log"
+	"net/http"
 
+	"github.com/Koshsky/task-9/internal/api"
 	"github.com/Koshsky/task-9/internal/config"
 	db "github.com/Koshsky/task-9/internal/database"
+	"github.com/gorilla/mux"
 )
 
 func main() {
-	config, _ := config.LoadConfig("./config/config.json")
+	var path string
+	flag.StringVar(&path, "config", "./config/config.json", "config file path")
+	flag.Parse()
+
+	config, _ := config.LoadConfig(path)
 	cm, err := db.NewContactManager(
 		config.DBHost,
 		config.DBPort,
@@ -21,29 +28,11 @@ func main() {
 		log.Fatal(err)
 	}
 	defer cm.Close()
+	r := mux.NewRouter()
+	api.RegisterRoutes(r, cm)
 
-	// Пример использования CRUD операций
-	contactID, err := cm.CreateContact("John Doe", "123-456-7890")
-	if err != nil {
-		log.Fatal(err)
+	log.Println("Starting server on :8080")
+	if err := http.ListenAndServe(":8080", r); err != nil {
+		log.Fatalf("Could not start server : %v", err)
 	}
-	fmt.Printf("Создан контакт с ID: %d\n", contactID)
-
-	contact, err := cm.GetContact(contactID)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("Получен контакт: %+v\n", contact)
-
-	err = cm.UpdateContact(contactID, "Jane Doe", "098-765-4321")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("Контакт обновлен")
-
-	err = cm.DeleteContact(contactID)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("Контакт удален")
 }
