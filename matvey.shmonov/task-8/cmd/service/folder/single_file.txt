@@ -1,2 +1,0 @@
-печать AST в терминале: go tool compile -W 
-в линуксе SSA можно вывести командой GOSSAFUNC=main go tool compile ./main.go > ssa.html
