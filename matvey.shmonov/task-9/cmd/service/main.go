@@ -4,18 +4,19 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/Koshsky/task-9/internal/config"
 	db "github.com/Koshsky/task-9/internal/database"
 )
 
 func main() {
-	// Параметры подключения
-	host := "localhost"
-	port := 5432
-	user := "postgres"
-	password := "postgres"
-	dbname := "contact_db"
-
-	cm, err := db.NewContactManager(host, port, user, password, dbname)
+	config, _ := config.LoadConfig("./config/config.json")
+	cm, err := db.NewContactManager(
+		config.DBHost,
+		config.DBPort,
+		config.DBUser,
+		config.DBPassword,
+		config.DBName,
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
