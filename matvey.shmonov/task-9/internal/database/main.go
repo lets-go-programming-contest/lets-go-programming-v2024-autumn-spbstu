@@ -7,12 +7,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type Contact struct {
-	ID    int
-	Name  string
-	Phone string
-}
-
 type ContactManager struct {
 	db *sql.DB
 }
@@ -29,9 +23,19 @@ func NewContactManager(host, port, user, password, dbname string) (*ContactManag
 }
 
 func (cm *ContactManager) CreateContact(name, phone string) (int, error) {
+	contact := &Contact{Name: name, Phone: phone}
+
+	if err := contact.Validate(); err != nil {
+		return 0, err
+	}
+
 	var id int
-	err := cm.db.QueryRow("INSERT INTO contacts(name, phone) VALUES($1, $2) RETURNING id", name, phone).Scan(&id)
-	return id, err
+	err := cm.db.QueryRow("INSERT INTO contacts(name, phone) VALUES($1, $2) RETURNING id", contact.Name, contact.Phone).Scan(&id)
+	if err != nil {
+		return 0, err
+	}
+
+	return id, nil
 }
 
 func (cm *ContactManager) GetContact(id int) (*Contact, error) {
@@ -44,8 +48,8 @@ func (cm *ContactManager) GetContact(id int) (*Contact, error) {
 }
 
 func (cm *ContactManager) GetContacts() ([]Contact, error) {
-	var contacts []Contact                                      
-	rows, err := cm.db.Query("SELECT id, name, phone FROM contacts") 
+	var contacts []Contact
+	rows, err := cm.db.Query("SELECT id, name, phone FROM contacts")
 	if err != nil {
 		return nil, err
 	}
@@ -56,18 +60,24 @@ func (cm *ContactManager) GetContacts() ([]Contact, error) {
 		if err := rows.Scan(&contact.ID, &contact.Name, &contact.Phone); err != nil {
 			return nil, err
 		}
-		contacts = append(contacts, contact) 
+		contacts = append(contacts, contact)
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil, err 
+		return nil, err
 	}
 
 	return contacts, nil
 }
 
 func (cm *ContactManager) UpdateContact(id int, name, phone string) error {
-	_, err := cm.db.Exec("UPDATE contacts SET name = $1, phone = $2 WHERE id = $3", name, phone, id)
+	contact := &Contact{Name: name, Phone: phone}
+
+	if err := contact.Validate(); err != nil {
+		return err
+	}
+
+	_, err := cm.db.Exec("UPDATE contacts SET name = $1, phone = $2 WHERE id = $3", contact.Name, contact.Phone, id)
 	return err
 }
 
