@@ -43,18 +43,22 @@ func (api *API) GetContact(w http.ResponseWriter, r *http.Request) {
 
 func (api *API) CreateContact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var contact database.Contact
-	if err := json.NewDecoder(r.Body).Decode(&contact); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+
+	name := r.URL.Query().Get("name")
+	phone := r.URL.Query().Get("phone")
+
+	if name == "" || phone == "" {
+		http.Error(w, "name and phone are required", http.StatusBadRequest)
 		return
 	}
 
-	id, err := api.ContactManager.CreateContact(contact.Name, contact.Phone)
+	id, err := api.ContactManager.CreateContact(name, phone)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	contact.ID = id
+
+	contact := database.Contact{ID: id, Name: name, Phone: phone}
 	json.NewEncoder(w).Encode(contact)
 }
 
@@ -67,17 +71,20 @@ func (api *API) UpdateContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var contact database.Contact
-	if err := json.NewDecoder(r.Body).Decode(&contact); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+	name := r.URL.Query().Get("name")
+	phone := r.URL.Query().Get("phone")
+
+	if name == "" && phone == "" {
+		http.Error(w, "At least one of name or phone must be provided", http.StatusBadRequest)
 		return
 	}
 
-	if err := api.ContactManager.UpdateContact(id, contact.Name, contact.Phone); err != nil {
-		http.Error(w, "Contact not found", http.StatusNotFound)
+	if err := api.ContactManager.UpdateContact(id, name, phone); err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
 		return
 	}
-	contact.ID = id
+
+	contact := database.Contact{ID: id, Name: name, Phone: phone}
 	json.NewEncoder(w).Encode(contact)
 }
 
