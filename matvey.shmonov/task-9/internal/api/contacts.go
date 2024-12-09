@@ -84,7 +84,7 @@ func (api *API) UpdateContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	contact := database.Contact{ID: id, Name: name, Phone: phone}
+	contact, _ := api.ContactManager.GetContact(id)
 	json.NewEncoder(w).Encode(contact)
 }
 

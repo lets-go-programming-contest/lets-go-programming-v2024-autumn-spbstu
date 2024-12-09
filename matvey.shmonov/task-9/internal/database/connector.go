@@ -42,7 +42,10 @@ func (cm *ContactManager) GetContact(id int) (*Contact, error) {
 	contact := &Contact{}
 	err := cm.db.QueryRow("SELECT id, name, phone FROM contacts WHERE id = $1", id).Scan(&contact.ID, &contact.Name, &contact.Phone)
 	if err != nil {
-		return nil, err
+		if err == sql.ErrNoRows {
+			return nil, fmt.Errorf("contact with id %d not found", id)
+		}
+		return nil, fmt.Errorf("error when receiving contact: %v", err)
 	}
 	return contact, nil
 }
@@ -71,17 +74,28 @@ func (cm *ContactManager) GetContacts() ([]Contact, error) {
 }
 
 func (cm *ContactManager) UpdateContact(id int, name, phone string) error {
-	contact := &Contact{Name: name, Phone: phone}
-
+	contact, err := cm.GetContact(id)
+	if err != nil {
+		return err
+	}
+	if name != "" {
+		contact.Name = name
+	}
+	if phone != "" {
+		contact.Phone = phone
+	}
 	if err := contact.Validate(); err != nil {
 		return err
 	}
 
-	_, err := cm.db.Exec("UPDATE contacts SET name = $1, phone = $2 WHERE id = $3", contact.Name, contact.Phone, id)
+	_, err = cm.db.Exec("UPDATE contacts SET name = $1, phone = $2 WHERE id = $3", contact.Name, contact.Phone, contact.ID)
 	return err
 }
 
 func (cm *ContactManager) DeleteContact(id int) error {
+	if _, err := cm.GetContact(id); err != nil {
+		return err
+	}
 	_, err := cm.db.Exec("DELETE FROM contacts WHERE id = $1", id)
 	return err
 }
