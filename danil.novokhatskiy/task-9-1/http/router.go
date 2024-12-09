@@ -8,4 +8,5 @@ func CreateRoutes(r *mux.Router) {
 	r.HandleFunc("/contacts/{id:[0-9]+}", DeleteContact).Methods("DELETE")
 	r.HandleFunc("/contacts", CreateContact).Methods("POST")
 	r.HandleFunc("/contacts", GetContacts).Methods("GET")
+	r.HandleFunc("/contacts", DeleteContacts).Methods("DELETE")
 }

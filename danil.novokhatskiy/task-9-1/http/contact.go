@@ -120,6 +120,30 @@ func GetContacts(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+func DeleteContacts(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	res, err := db.DB.Exec(context.Background(), `DELETE FROM contacts`)
+	if err != nil {
+		http.Error(w, "error while deleting contacts", http.StatusInternalServerError)
+		return
+	}
+
+	con := res.RowsAffected()
+	if con == 0 {
+		http.Error(w, "no contacts deleted", http.StatusNotFound)
+		return
+	}
+
+	err = json.NewEncoder(w).Encode(map[string]int64{"deleted": con})
+	if err != nil {
+		http.Error(w, "error while encoding data", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
 func UpdateContact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
