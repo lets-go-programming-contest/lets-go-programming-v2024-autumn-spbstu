@@ -26,10 +26,3 @@ func (h *HeapOfDishes) Pop() interface{} {
 	*h = old[0 : n-1]
 	return x
 }
-
-func (h *HeapOfDishes) Get(index int) (int, bool) {
-	if index < 0 || index >= len(*h) {
-		return 0, false
-	}
-	return (*h)[index], true
-}
