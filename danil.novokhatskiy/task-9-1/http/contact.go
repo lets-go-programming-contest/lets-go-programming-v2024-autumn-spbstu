@@ -78,7 +78,7 @@ func GetContact(w http.ResponseWriter, r *http.Request) {
 	var contact Contact
 	err = db.DB.QueryRow(context.Background(), "SELECT * FROM contacts WHERE id = $1", contactID).Scan(&contact.ID, &contact.Name, &contact.Phone)
 	if contact.ID == 0 || err != nil {
-		http.Error(w, "error while getting a contact", http.StatusNotFound)
+		http.Error(w, "can't find a contact", http.StatusNotFound)
 		return
 	}
 
@@ -90,6 +90,34 @@ func GetContact(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 
+}
+
+func GetContacts(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	rows, err := db.DB.Query(context.Background(), `SELECT id, name, phone FROM contacts`)
+	if err != nil {
+		http.Error(w, "error while getting contacts from database", http.StatusInternalServerError)
+		return
+	}
+
+	defer rows.Close()
+	var contacts []Contact
+	for rows.Next() {
+		var contact Contact
+		err = rows.Scan(&contact.ID, &contact.Name, &contact.Phone)
+		if err != nil {
+			http.Error(w, "error while scanning contacts from rows", http.StatusInternalServerError)
+			return
+		}
+		contacts = append(contacts, contact)
+	}
+	err = json.NewEncoder(w).Encode(contacts)
+	if err != nil {
+		http.Error(w, "error while encoding contacts", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
 }
 
 func UpdateContact(w http.ResponseWriter, r *http.Request) {
