@@ -33,9 +33,9 @@ func validateName(name string) error {
 }
 
 func validatePhone(phone string) error {
-	re := regexp.MustCompile(`^\d{3}-\d{3}-\d{4}$`)
+	re := regexp.MustCompile(`^\d{11}$`)
 	if !re.MatchString(phone) {
-		return errors.New("phone must be in the format 123-456-7890")
+		return errors.New("phone must be in the format 01234567890")
 	}
 	return nil
 }
