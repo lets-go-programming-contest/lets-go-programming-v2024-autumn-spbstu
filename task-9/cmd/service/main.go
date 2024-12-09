@@ -40,7 +40,7 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), loggedRouter))
 
-	err = dbase.KillDB(db)
+	err = dbase.CloseDB(db)
 	if err != nil {
 		panic(err)
 	}

@@ -28,7 +28,7 @@ func ConnectToDB(config config.Config) (*sql.DB, error) {
 	return db, nil
 }
 
-func KillDB(db *sql.DB) error {
+func CloseDB(db *sql.DB) error {
 
 	err := db.Close()
 	if err != nil {

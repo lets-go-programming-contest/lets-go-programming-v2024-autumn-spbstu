@@ -3,8 +3,8 @@ package manager
 import (
 	// "contactManager/internal/dbase"
 	"database/sql"
-	// "fmt"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -14,7 +14,7 @@ import (
 
 func isValidPhoneNumber(phone string) bool {
 
-	re := regexp.MustCompile(`^\+\d{1,2} \(\d{3}\) \d{3}-\d{2}-\d{2}$`)
+	re := regexp.MustCompile(`^(?:\+7|8)\d{10}$`)
 	return re.MatchString(phone)
 }
 
@@ -141,18 +141,27 @@ func UpdateContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if contact.Name == "" || contact.Phone == "" {
-		http.Error(w, "Name and phone are required", http.StatusBadRequest)
+	if contact.Name == "" && contact.Phone == "" {
+		http.Error(w, "Name or phone are required", http.StatusBadRequest)
 		return
 	}
 
-	if !isValidPhoneNumber(contact.Phone) {
-		http.Error(w, "Invalid phone number format. Example: +7 (123) 456-78-90", http.StatusBadRequest)
-		return
+	query := ""
+	if contact.Phone == "" {
+		query = fmt.Sprintf("UPDATE contacts SET name = '%s'"+" WHERE id = %d;", contact.Name, contactID)
+	} else if contact.Name == "" {
+		if !isValidPhoneNumber(contact.Phone) {
+			http.Error(w, "Invalid phone number format. +7 or 8 and another 10 numerics", http.StatusBadRequest)
+			return
+		}
+		query = fmt.Sprintf("UPDATE contacts SET phone = '%s' "+
+			"WHERE id = %d;", contact.Phone, contactID)
+	} else {
+		query = fmt.Sprintf("UPDATE contacts SET phone = '%s', name = '%s' WHERE id = %d;", contact.Phone, contact.Name, contactID)
 	}
 
-	res, err := db.Exec("UPDATE contacts SET name = $1, phone = $2 "+
-		"WHERE id = $3", contact.Name, contact.Phone, contactID)
+	// fmt.Println(query)
+	res, err := db.Exec(query)
 
 	if err != nil {
 		http.Error(w, "Failed to update contact", http.StatusInternalServerError)
