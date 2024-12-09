@@ -24,10 +24,5 @@ func CreateDb(cfg config.DataBaseCfg) (*DataBase, error) {
 		return nil, err
 	}
 
-	err = pool.Ping(context.Background())
-	if err != nil {
-		return nil, err
-	}
-
 	return &DataBase{DB: pool}, nil
 }

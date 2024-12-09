@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	cfg, err := config.ParseConfig("config/config.yaml")
+	cfg, err := config.ParseConfig("config/config.yaml") // добавить флаг
 	if err != nil {
 		panic(err)
 	}
@@ -30,7 +30,7 @@ func main() {
 	headers := handlers.AllowedHeaders([]string{"Content-Type"})
 	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
 
-	origins := handlers.AllowedOrigins([]string{"http://localhost:8080"})
+	origins := handlers.AllowedOrigins([]string{"http://localhost:8080"}) //fix
 	logs := handlers.CORS(headers, methods, origins)(router)
 
 	port := cfg.Server.Port

@@ -17,7 +17,7 @@ type Contact struct {
 	Phone string `json:"phone"`
 }
 
-var phoneRegexp = regexp.MustCompile("\\+?\\d[ ]?[-(]?\\d{3}[-)]?[ ]?\\d{3}[- ]?\\d{2}[- ]?\\d{2}")
+var phoneRegexp = regexp.MustCompile("^\\+?\\d[ ]?[-(]?\\d{3}[-)]?[ ]?\\d{3}[- ]?\\d{2}[- ]?\\d{2}$")
 
 func CheckPhone(phone string) bool {
 	return phoneRegexp.MatchString(phone)
@@ -36,7 +36,8 @@ func CreateContact(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
-	} else if !CheckPhone(contact.Phone) || contact.Name == "" || contact.Phone == "" {
+	}
+	if contact.Name == "" || contact.Phone == "" || !CheckPhone(contact.Phone) {
 		http.Error(w, "Wrong input or no input is required", http.StatusBadRequest)
 		return
 	}
