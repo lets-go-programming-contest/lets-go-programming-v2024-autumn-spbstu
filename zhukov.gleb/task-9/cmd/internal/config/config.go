@@ -15,7 +15,6 @@ var (
 	ErrEnv = errors.New("LoadConfig error")
 )
 
-// TODO env into configs dir
 const (
 	envPath = ".env"
 )

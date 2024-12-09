@@ -33,7 +33,6 @@ func (a *App) Run() error {
 	if err != nil {
 		return fmt.Errorf("error with db.NewPgSQLController: %w", err)
 	}
-	//TODO defer close
 	defer pgSQL.DB.Close()
 
 	contactRepo := contact.NewContactRepo(&pgSQL)
@@ -55,6 +54,6 @@ func (a *App) Run() error {
 	addr := strings.Builder{}
 	addr.WriteString(":")
 	addr.WriteString(a.Cfg.Port)
-	//TODO full address - зачем
+
 	return http.ListenAndServe(addr.String(), h)
 }

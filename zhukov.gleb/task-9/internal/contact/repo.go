@@ -56,7 +56,6 @@ func (r *ContactRepository) GetByID(id int) (Contact, error) {
 	return r.ContactDBInface.GetContact(id)
 }
 
-// TODO rename phoneRegex
 var phoneRegex = regexp.MustCompile("^(\\+7|8)?[\\s\\-]?\\(?[489][0-9]{2}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}$")
 
 func validatePhone(phone string) bool {

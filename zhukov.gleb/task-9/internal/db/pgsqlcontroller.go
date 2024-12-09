@@ -27,7 +27,6 @@ type PgSQLRepository struct {
 	DB *sql.DB
 }
 
-// TODO структуру передавать вместо полей
 func NewPgSQLController(config Cfg) (PgSQLRepository, error) {
 	dsn := fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable",
 		config.UDBName, config.UDBPass, config.PgSQLHost, config.PortPgSQL, config.DBPgSQLName)

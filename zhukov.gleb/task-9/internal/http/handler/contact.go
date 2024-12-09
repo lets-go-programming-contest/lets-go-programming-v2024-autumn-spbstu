@@ -42,7 +42,6 @@ func (h *ContactHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *ContactHandler) GetByID(w http.ResponseWriter, r *http.Request) {
-	//TODO mux vars
 	vars := mux.Vars(r)
 	idString := vars["id"]
 	id, err := strconv.Atoi(idString)
@@ -57,7 +56,6 @@ func (h *ContactHandler) GetByID(w http.ResponseWriter, r *http.Request) {
 			"id": id,
 		},
 	}
-	//TODO id name добавить в сообщение
 
 	switch {
 	case err == nil:
@@ -92,7 +90,6 @@ func (h *ContactHandler) AddContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//TODO 422 статус добавить
 	data, err := h.ContactRepo.Add(nameReq, phoneReq)
 	reqArgs := map[string]interface{}{
 		"reqArgs": map[string]interface{}{

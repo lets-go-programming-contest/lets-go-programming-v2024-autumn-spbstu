@@ -12,7 +12,6 @@ var (
 	ErrNoDataJSON   = errors.New("error no data JSON")
 )
 
-// TODO в пакет encode
 func WriteJSONServer(w http.ResponseWriter, response interface{}, statusCode int) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
