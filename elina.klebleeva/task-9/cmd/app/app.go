@@ -29,17 +29,18 @@ func NewApp(cfg config.Config) (*MyApp, error) {
 
 	//init router
 	router := mux.NewRouter()
-	router = handlers.NewHandler(&dbService, router)
+	dbHandler := handlers.NewHandler(&dbService, router)
 
 	//init server
+	server := &http.Server{
+		Addr:    cfg.ServerCfg.Port,
+		Handler: dbHandler,
+	}
 
-	return &MyApp{}, nil
+	return &MyApp{server: server}, nil
 }
 
-func (a *MyApp) Run() {
-
-}
-
-func (a *MyApp) Close() {
-
+func (a *MyApp) Run() error {
+	defer a.server.Close()
+	return a.server.ListenAndServe()
 }
