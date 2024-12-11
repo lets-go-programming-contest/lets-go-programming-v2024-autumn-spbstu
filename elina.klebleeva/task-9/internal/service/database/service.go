@@ -10,7 +10,7 @@ import (
 type database interface {
 	GetContacts(ctx context.Context) ([]models.Contact, error)
 	GetContact(ctx context.Context, id int) (*models.Contact, error)
-	CreateContact(ctx context.Context, newContact models.Contact) error
+	CreateContact(ctx context.Context, newContact models.Contact) (int, error)
 	UpdateContact(ctx context.Context, contact models.Contact) error
 	DeleteContact(ctx context.Context, id int) error
 }
@@ -41,11 +41,12 @@ func (s *DbService) GetContact(id int) (*models.Contact, error) {
 	return contact, nil
 }
 
-func (s *DbService) CreateContact(contact models.Contact) error {
-	if err := s.db.CreateContact(context.Background(), contact); err != nil {
-		return fmt.Errorf("service :: %w; db :: %w", errCreateContact, err)
+func (s *DbService) CreateContact(contact models.Contact) (int, error) {
+	id, err := s.db.CreateContact(context.Background(), contact)
+	if err != nil {
+		return 0, fmt.Errorf("service :: %w; db :: %w", errCreateContact, err)
 	}
-	return nil
+	return id, nil
 }
 
 func (s *DbService) UpdateContact(contact models.Contact) error {

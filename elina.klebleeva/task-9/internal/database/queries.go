@@ -38,27 +38,24 @@ func (db *Database) GetContact(ctx context.Context, id int) (*models.Contact, er
 	return &contact, nil
 }
 
-func (db *Database) CreateContact(ctx context.Context, newContact models.Contact) error {
+func (db *Database) CreateContact(ctx context.Context, newContact models.Contact) (int, error) {
 	tx, err := db.pool.Begin(ctx)
 	if err != nil {
-		return err
+		return 0, err
 	}
 	defer tx.Rollback(ctx)
 
-	query := `INSERT INTO contacts(name, phone) VALUES($1, $2)`
+	query := `INSERT INTO contacts(name, phone) VALUES($1, $2) RETURNING id`
 
-	commandTag, err := tx.Exec(ctx, query, newContact.Name, newContact.Phone)
-	if err != nil {
-		return err
-	}
-	if commandTag.RowsAffected() == 0 {
-		return fmt.Errorf("empty row after insert contact")
+	var id int
+	if err := tx.QueryRow(ctx, query, newContact.Name, newContact.Phone).Scan(&id); err != nil {
+		return 0, err
 	}
 
 	if err := tx.Commit(ctx); err != nil {
-		return err
+		return 0, err
 	}
-	return nil
+	return id, nil
 
 }
 

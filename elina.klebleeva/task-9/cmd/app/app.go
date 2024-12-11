@@ -6,7 +6,8 @@ import (
 
 	"github.com/EmptyInsid/task-9/internal/config"
 	"github.com/EmptyInsid/task-9/internal/database"
-	"github.com/EmptyInsid/task-9/internal/route"
+	handlers "github.com/EmptyInsid/task-9/internal/handlers/http"
+	service "github.com/EmptyInsid/task-9/internal/service/database"
 	"github.com/gorilla/mux"
 )
 
@@ -24,9 +25,11 @@ func NewApp(cfg config.Config) (*MyApp, error) {
 	defer db.Close()
 	log.Println("Succsess connect with db")
 
+	dbService := service.NewDbService(db)
+
 	//init router
 	router := mux.NewRouter()
-	route.Setting(router)
+	router = handlers.NewHandler(&dbService, router)
 
 	//init server
 
