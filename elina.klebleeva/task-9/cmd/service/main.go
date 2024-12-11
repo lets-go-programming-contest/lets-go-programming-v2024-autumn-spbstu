@@ -20,7 +20,7 @@ func main() {
 		panic(err)
 	}
 
-	// Loade date from config file
+	// Load date from config file
 	cfg, err := config.LoadConfig(configFile)
 	if err != nil {
 		panic(err)
