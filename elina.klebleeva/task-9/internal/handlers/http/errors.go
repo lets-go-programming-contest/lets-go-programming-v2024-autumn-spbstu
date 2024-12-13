@@ -28,6 +28,7 @@ var (
 
 	errorsUpdMap = errorMap{
 		myErr.ErrNoContact:        http.StatusNotFound,
+		myErr.ErrExistContact:     http.StatusConflict,
 		myErr.ErrEmptyData:        http.StatusBadRequest,
 		myErr.ErrWrongPhoneFormat: http.StatusBadRequest,
 		myErr.ErrDecodeJson:       http.StatusBadRequest,

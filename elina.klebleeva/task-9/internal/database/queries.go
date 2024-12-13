@@ -59,28 +59,33 @@ func (db *Database) CreateContact(ctx context.Context, newContact models.Contact
 
 }
 
-func (db *Database) UpdateContact(ctx context.Context, contact models.Contact) error {
+func (db *Database) UpdateContact(ctx context.Context, contact models.Contact) (*models.Contact, error) {
 	tx, err := db.pool.Begin(ctx)
 	if err != nil {
-		return nil
+		return nil, err
 	}
 	defer tx.Rollback(ctx)
 
-	query := `UPDATE contacts SET name = $1, phone = $2 WHERE id = $3`
-
-	commandTag, err := tx.Exec(ctx, query, contact.Name, contact.Phone, contact.Id)
-	if err != nil {
-		return err
+	if contact.Name == "" {
+		query := `UPDATE contacts SET phone = $1 WHERE id = $2 RETURNING id, name, phone`
+		err = tx.QueryRow(ctx, query, contact.Phone, contact.Id).Scan(&contact.Id, &contact.Name, &contact.Phone)
+	} else if contact.Phone == "" {
+		query := `UPDATE contacts SET name = $1 WHERE id = $2 RETURNING id, name, phone`
+		err = tx.QueryRow(ctx, query, contact.Name, contact.Id).Scan(&contact.Id, &contact.Name, &contact.Phone)
+	} else {
+		query := `UPDATE contacts SET name = $1, phone = $2 WHERE id = $3 RETURNING id, name, phone`
+		err = tx.QueryRow(ctx, query, contact.Name, contact.Phone, contact.Id).Scan(&contact.Id, &contact.Name, &contact.Phone)
 	}
-	if commandTag.RowsAffected() == 0 {
-		return pgx.ErrNoRows
+
+	if err != nil {
+		return nil, err
 	}
 
 	if err := tx.Commit(ctx); err != nil {
-		return nil
+		return nil, err
 	}
 
-	return nil
+	return &contact, nil
 }
 
 func (db *Database) DeleteContact(ctx context.Context, id int) error {

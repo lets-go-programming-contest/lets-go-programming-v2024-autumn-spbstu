@@ -14,7 +14,7 @@ type dbService interface {
 	GetContacts() ([]models.Contact, error)
 	GetContact(id int) (*models.Contact, error)
 	CreateContact(contact models.Contact) (int, error)
-	UpdateContact(contact models.Contact) error
+	UpdateContact(contact models.Contact) (*models.Contact, error)
 	DeleteContact(id int) error
 }
 
@@ -126,18 +126,19 @@ func (h *handler) updateContact(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, myErr.ErrEmptyData.Error(), getStatusCode(errorsUpdMap, myErr.ErrEmptyData))
 		return
 
-	} else if !isValidPhone(contact.Phone) {
+	} else if !isEmpty(contact.Phone) && !isValidPhone(contact.Phone) {
 		http.Error(w, myErr.ErrWrongPhoneFormat.Error(), getStatusCode(errorsUpdMap, myErr.ErrWrongPhoneFormat))
 		return
 	}
 
 	contact.Id = id
-	if err := h.service.UpdateContact(contact); err != nil {
+	newContact, err := h.service.UpdateContact(contact)
+	if err != nil {
 		http.Error(w, err.Error(), getStatusCode(errorsUpdMap, err))
 		return
 	}
 
-	if err := json.NewEncoder(w).Encode(contact); err != nil {
+	if err := json.NewEncoder(w).Encode(newContact); err != nil {
 		http.Error(w, myErr.ErrEncodeJson.Error(), getStatusCode(errorsUpdMap, myErr.ErrEncodeJson))
 		return
 	}

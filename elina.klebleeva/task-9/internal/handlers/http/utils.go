@@ -2,14 +2,12 @@ package handlers
 
 import (
 	"regexp"
-	"strings"
 )
 
 func isValidPhone(phone string) bool {
 
-	e164Regex := `^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$`
-	re := regexp.MustCompile(e164Regex)
-	phone = strings.ReplaceAll(phone, " ", "")
+	phoneReg := `^(8|7|\+7)\s(\(\d{3}\))\s(\d{3})\-(\d{2})\-(\d{2})$`
+	re := regexp.MustCompile(phoneReg)
 
 	return re.Find([]byte(phone)) != nil
 }
