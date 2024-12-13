@@ -2,6 +2,7 @@ package app
 
 import (
 	"log"
+	"log/slog"
 	"net/http"
 
 	"github.com/EmptyInsid/task-9/internal/config"
@@ -16,22 +17,24 @@ type MyApp struct {
 	db     *database.Database
 }
 
-func NewApp(cfg config.Config) (*MyApp, error) {
+func NewApp(logger *slog.Logger, cfg config.Config) (*MyApp, error) {
 	//init db
 	db, err := database.NewDb(&cfg.DBCfg)
 	if err != nil {
-		log.Printf("Error while connect with database :: %v", err)
+		logger.Error("connect with db", "error", err)
 		return nil, err
 	}
-	log.Println("Succsess connect with db")
+	logger.Info("connect with db")
 
-	dbService := service.NewDbService(db)
-	log.Println("Succsess create db service")
+	dbService := service.NewDbService(db, logger)
+	logger.Info("create new db service")
 
 	//init router
 	router := mux.NewRouter()
+	router.Use(handlers.LoggingMiddleware(logger))
 	dbHandler := handlers.NewHandler(&dbService, router)
-	log.Println("Succsess create db service")
+
+	logger.Info("create router")
 
 	//init server
 	server := &http.Server{

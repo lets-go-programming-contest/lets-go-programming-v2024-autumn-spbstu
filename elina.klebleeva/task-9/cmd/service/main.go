@@ -2,11 +2,12 @@ package main
 
 import (
 	"flag"
-	"log"
+	"log/slog"
 	"os"
 
 	"github.com/EmptyInsid/task-9/cmd/app"
 	"github.com/EmptyInsid/task-9/internal/config"
+	myLog "github.com/EmptyInsid/task-9/internal/log"
 )
 
 func main() {
@@ -17,32 +18,32 @@ func main() {
 	// Open config file
 	configFile, err := os.Open(*CfigPathFlag)
 	if err != nil {
-		log.Printf("Error open config :: %v", err)
 		panic(err)
 	}
-
-	log.Printf("Succsess open config file: %s", configFile.Name())
 
 	// Load date from config file
 	cfg, err := config.LoadConfig(configFile)
 	if err != nil {
-		log.Printf("Error read config :: %v", err)
 		panic(err)
 	}
 
-	log.Printf("Succsess read config file %s", cfg.DBCfg.DBName)
+	//Setup logger
+	logger := myLog.Setup(cfg.LoggerCfg)
+	logger.Info("initializing server", slog.String("address", cfg.ServerCfg.Port))
+	logger.Debug("logger debug mode enabled")
 
 	//make new app with config
-	app, err := app.NewApp(cfg)
+	app, err := app.NewApp(logger, cfg)
 	if err != nil {
-		log.Printf("Error rcreate App :: %v", err)
+		logger.Error("create app", "error", err)
 		panic(err)
 	}
 
-	log.Println("Succsess create new app.")
+	logger.Info("succsess create new app")
 
+	//Start app
 	if err := app.Run(); err != nil {
-		log.Printf("Error run app :: %v", err)
+		logger.Error("run app", "error", err)
 		panic(err)
 	}
 }

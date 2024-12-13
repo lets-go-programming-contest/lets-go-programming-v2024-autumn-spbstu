@@ -19,9 +19,14 @@ type ServerConfig struct {
 	Port string `yaml:"port"`
 }
 
+type LoggerConfig struct {
+	Mod string `yaml:"mod"`
+}
+
 type Config struct {
 	DBCfg     DatabaseConfig `yaml:"database"`
 	ServerCfg ServerConfig   `yaml:"server"`
+	LoggerCfg LoggerConfig   `yaml:"logger"`
 }
 
 func LoadConfig(r io.Reader) (Config, error) {

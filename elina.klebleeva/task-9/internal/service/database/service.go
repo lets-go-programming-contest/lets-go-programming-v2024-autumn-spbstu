@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log/slog"
 
 	myErr "github.com/EmptyInsid/task-9/internal/errors"
 	"github.com/EmptyInsid/task-9/internal/models"
@@ -19,12 +20,14 @@ type database interface {
 }
 
 type DbService struct {
-	db database
+	db     database
+	logger *slog.Logger
 }
 
-func NewDbService(db database) DbService {
+func NewDbService(db database, logger *slog.Logger) DbService {
 	return DbService{
-		db: db,
+		db:     db,
+		logger: logger.With(slog.String("component", "service/database")),
 	}
 }
 
@@ -32,9 +35,11 @@ func (s *DbService) GetContacts() ([]models.Contact, error) {
 	contacts, err := s.db.GetContacts(context.Background())
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
+			s.logger.Warn("get contacts", slog.String("return", "no contacts"))
 			return nil, nil
 		}
-		return nil, fmt.Errorf("service :: %w :: db :: %w", myErr.ErrInternal, err)
+		s.logger.Error("get contacts", slog.String("return", err.Error()))
+		return nil, fmt.Errorf("%w", myErr.ErrInternal)
 	}
 	return contacts, nil
 }
@@ -42,10 +47,12 @@ func (s *DbService) GetContacts() ([]models.Contact, error) {
 func (s *DbService) GetContact(id int) (*models.Contact, error) {
 	contact, err := s.db.GetContact(context.Background(), id)
 	if err != nil {
+		s.logger.Error("get contact", slog.Int("id", id), slog.String("return", err.Error()))
+
 		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, fmt.Errorf("[service] %w :: [id] %d :: [db] %w", myErr.ErrNoContact, id, err)
+			return nil, fmt.Errorf("[id=%d] %w", id, myErr.ErrNoContact)
 		}
-		return nil, fmt.Errorf("[service] %w :: [id] %d :: [db] %w", myErr.ErrInternal, id, err)
+		return nil, fmt.Errorf("%w", myErr.ErrInternal)
 	}
 	return contact, nil
 }
@@ -53,30 +60,40 @@ func (s *DbService) GetContact(id int) (*models.Contact, error) {
 func (s *DbService) CreateContact(contact models.Contact) (int, error) {
 	id, err := s.db.CreateContact(context.Background(), contact)
 	if err != nil {
-		if errors.Is(err, pgx.ErrNoRows) {
-			return 0, fmt.Errorf("[service] %w :: [id] %d :: [db] %w", myErr.ErrNoContact, id, err)
+		s.logger.Error("create contact", slog.Int("id", id), slog.String("return", err.Error()))
+
+		if id == 0 {
+			return 0, fmt.Errorf("%w", myErr.ErrExistContact)
+
+		} else if errors.Is(err, pgx.ErrNoRows) {
+			return 0, fmt.Errorf("[id=%d] %w", id, myErr.ErrNoContact)
 		}
-		return 0, fmt.Errorf("[service] %w :: [id] %d :: [db] %w", myErr.ErrInternal, id, err)
+
+		return 0, fmt.Errorf("[id=%d] %w", id, myErr.ErrInternal)
 	}
 	return id, nil
 }
 
 func (s *DbService) UpdateContact(contact models.Contact) error {
 	if err := s.db.UpdateContact(context.Background(), contact); err != nil {
+		s.logger.Error("upd contact", slog.Int("id", contact.Id), slog.String("return", err.Error()))
+
 		if errors.Is(err, pgx.ErrNoRows) {
-			return fmt.Errorf("[service] %w :: [id] %d :: [db] %w", myErr.ErrNoContact, contact.Id, err)
+			return fmt.Errorf("[id=%d] %w", contact.Id, myErr.ErrNoContact)
 		}
-		return fmt.Errorf("[service] %w :: [id] %d :: [db] %w", myErr.ErrInternal, contact.Id, err)
+		return fmt.Errorf("[id=%d] %w", contact.Id, myErr.ErrInternal)
 	}
 	return nil
 }
 
 func (s *DbService) DeleteContact(id int) error {
 	if err := s.db.DeleteContact(context.Background(), id); err != nil {
+		s.logger.Error("delete contact", slog.Int("id", id), slog.String("return", err.Error()))
+
 		if errors.Is(err, pgx.ErrNoRows) {
-			return fmt.Errorf("[service] %w :: [id] %d :: [db] %w", myErr.ErrNoContact, id, err)
+			return fmt.Errorf("[id=%d] %w", id, myErr.ErrNoContact)
 		}
-		return fmt.Errorf("[service] %w :: [id] %d :: [db] %w", myErr.ErrInternal, id, err)
+		return fmt.Errorf("[id=%d] %w", id, myErr.ErrInternal)
 	}
 	return nil
 }
