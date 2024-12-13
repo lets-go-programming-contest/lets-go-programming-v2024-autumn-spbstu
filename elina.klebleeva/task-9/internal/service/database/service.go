@@ -28,7 +28,7 @@ func NewDbService(db database) DbService {
 func (s *DbService) GetContacts() ([]models.Contact, error) {
 	contacts, err := s.db.GetContacts(context.Background())
 	if err != nil {
-		return nil, fmt.Errorf("service :: %w; db :: %w", errGetContacts, err)
+		return nil, fmt.Errorf("service :: %w :: db :: %w", errGetContacts, err)
 	}
 	return contacts, nil
 }

@@ -17,12 +17,16 @@ func main() {
 	// Open config file
 	configFile, err := os.Open(*CfigPathFlag)
 	if err != nil {
+		log.Printf("Error open config :: %v", err)
 		panic(err)
 	}
+
+	log.Printf("Succsess open config file: %s", configFile.Name())
 
 	// Load date from config file
 	cfg, err := config.LoadConfig(configFile)
 	if err != nil {
+		log.Printf("Error read config :: %v", err)
 		panic(err)
 	}
 
@@ -31,10 +35,14 @@ func main() {
 	//make new app with config
 	app, err := app.NewApp(cfg)
 	if err != nil {
+		log.Printf("Error rcreate App :: %v", err)
 		panic(err)
 	}
 
+	log.Println("Succsess create new app.")
+
 	if err := app.Run(); err != nil {
+		log.Printf("Error run app :: %v", err)
 		panic(err)
 	}
 }

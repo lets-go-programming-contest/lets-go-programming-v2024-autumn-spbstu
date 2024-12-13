@@ -8,7 +8,7 @@ import (
 )
 
 func (db *Database) GetContacts(ctx context.Context) ([]models.Contact, error) {
-	query := `SELECT * FROM contacts`
+	query := `SELECT id, name, phone FROM contacts`
 	rows, err := db.pool.Query(ctx, query)
 	if err != nil {
 		return nil, err

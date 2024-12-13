@@ -13,23 +13,25 @@ import (
 
 type MyApp struct {
 	server *http.Server
+	db     *database.Database
 }
 
 func NewApp(cfg config.Config) (*MyApp, error) {
 	//init db
 	db, err := database.NewDb(&cfg.DBCfg)
 	if err != nil {
-		log.Printf("Error while connect with database: %v", err)
+		log.Printf("Error while connect with database :: %v", err)
 		return nil, err
 	}
-	defer db.Close()
 	log.Println("Succsess connect with db")
 
 	dbService := service.NewDbService(db)
+	log.Println("Succsess create db service")
 
 	//init router
 	router := mux.NewRouter()
 	dbHandler := handlers.NewHandler(&dbService, router)
+	log.Println("Succsess create db service")
 
 	//init server
 	server := &http.Server{
@@ -37,10 +39,15 @@ func NewApp(cfg config.Config) (*MyApp, error) {
 		Handler: dbHandler,
 	}
 
-	return &MyApp{server: server}, nil
+	return &MyApp{
+		server: server,
+		db:     db,
+	}, nil
 }
 
 func (a *MyApp) Run() error {
+	log.Println("Run app")
+	defer a.db.Close()
 	defer a.server.Close()
 	return a.server.ListenAndServe()
 }
