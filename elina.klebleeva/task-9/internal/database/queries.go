@@ -2,13 +2,13 @@ package database
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/EmptyInsid/task-9/internal/models"
+	"github.com/jackc/pgx/v5"
 )
 
 func (db *Database) GetContacts(ctx context.Context) ([]models.Contact, error) {
-	query := `SELECT id, name, phone FROM contacts`
+	query := `SELECT * FROM contacts`
 	rows, err := db.pool.Query(ctx, query)
 	if err != nil {
 		return nil, err
@@ -73,7 +73,7 @@ func (db *Database) UpdateContact(ctx context.Context, contact models.Contact) e
 		return err
 	}
 	if commandTag.RowsAffected() == 0 {
-		return fmt.Errorf("empty row after update contact")
+		return pgx.ErrNoRows
 	}
 
 	if err := tx.Commit(ctx); err != nil {
@@ -94,10 +94,10 @@ func (db *Database) DeleteContact(ctx context.Context, id int) error {
 
 	commandTag, err := tx.Exec(ctx, query, id)
 	if err != nil {
-		return nil
+		return err
 	}
 	if commandTag.RowsAffected() == 0 {
-		return fmt.Errorf("empty row after delete contact")
+		return pgx.ErrNoRows
 	}
 
 	if err := tx.Commit(ctx); err != nil {
