@@ -34,5 +34,6 @@ func LoadConfig(r io.Reader) (Config, error) {
 	if err := yaml.NewDecoder(r).Decode(&cfg); err != nil {
 		return Config{}, fmt.Errorf("parse config error: %w", err)
 	}
+
 	return cfg, nil
 }

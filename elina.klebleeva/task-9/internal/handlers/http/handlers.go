@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gorilla/mux"
+
 	myErr "github.com/EmptyInsid/task-9/internal/errors"
 	"github.com/EmptyInsid/task-9/internal/models"
-	"github.com/gorilla/mux"
 )
 
 type dbService interface {
@@ -42,13 +43,16 @@ func (h *handler) getContacts(w http.ResponseWriter, r *http.Request) {
 	contacts, err := h.service.GetContacts()
 	if err != nil {
 		http.Error(w, err.Error(), getStatusCode(errorsGetMap, err))
+
 		return
 	}
 
 	if err = json.NewEncoder(w).Encode(contacts); err != nil {
-		http.Error(w, myErr.ErrEncodeJson.Error(), getStatusCode(errorsGetMap, myErr.ErrEncodeJson))
+		http.Error(w, myErr.ErrEncodeJSON.Error(), getStatusCode(errorsGetMap, myErr.ErrEncodeJSON))
+
 		return
 	}
+
 	w.WriteHeader(http.StatusOK)
 }
 
@@ -56,22 +60,27 @@ func (h *handler) getContact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	vars := mux.Vars(r)
+
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
 		http.Error(w, myErr.ErrNoContact.Error(), getStatusCode(errorsGetMap, myErr.ErrNoContact))
+
 		return
 	}
 
 	contact, err := h.service.GetContact(id)
 	if err != nil {
 		http.Error(w, err.Error(), getStatusCode(errorsGetMap, err))
+
 		return
 	}
 
 	if err = json.NewEncoder(w).Encode(contact); err != nil {
-		http.Error(w, myErr.ErrEncodeJson.Error(), getStatusCode(errorsGetMap, myErr.ErrEncodeJson))
+		http.Error(w, myErr.ErrEncodeJSON.Error(), getStatusCode(errorsGetMap, myErr.ErrEncodeJSON))
+
 		return
 	}
+
 	w.WriteHeader(http.StatusOK)
 }
 
@@ -81,90 +90,105 @@ func (h *handler) createContact(w http.ResponseWriter, r *http.Request) {
 	var contact models.Contact
 	err := json.NewDecoder(r.Body).Decode(&contact)
 	if err != nil {
-		http.Error(w, myErr.ErrDecodeJson.Error(), getStatusCode(errorsCreateMap, myErr.ErrDecodeJson))
-		return
+		http.Error(w, myErr.ErrDecodeJSON.Error(), getStatusCode(errorsCreateMap, myErr.ErrDecodeJSON))
 
+		return
 	} else if isEmpty(contact.Name) || isEmpty(contact.Phone) {
 		http.Error(w, myErr.ErrEmptyData.Error(), getStatusCode(errorsCreateMap, myErr.ErrEmptyData))
-		return
 
+		return
 	} else if !isValidPhone(contact.Phone) {
 		http.Error(w, myErr.ErrWrongPhoneFormat.Error(), getStatusCode(errorsCreateMap, myErr.ErrWrongPhoneFormat))
+
 		return
 	}
 
 	id, err := h.service.CreateContact(contact)
 	if err != nil {
 		http.Error(w, err.Error(), getStatusCode(errorsCreateMap, err))
+
 		return
 	}
 
-	contact.Id = id
+	contact.ID = id
 	if err = json.NewEncoder(w).Encode(contact); err != nil {
-		http.Error(w, myErr.ErrEncodeJson.Error(), getStatusCode(errorsCreateMap, myErr.ErrEncodeJson))
+		http.Error(w, myErr.ErrEncodeJSON.Error(), getStatusCode(errorsCreateMap, myErr.ErrEncodeJSON))
+
 		return
 	}
-	w.WriteHeader(http.StatusCreated)
 
+	w.WriteHeader(http.StatusCreated)
 }
 
 func (h *handler) updateContact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	vars := mux.Vars(r)
+
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
 		http.Error(w, myErr.ErrNoContact.Error(), getStatusCode(errorsUpdMap, myErr.ErrNoContact))
+
 		return
 	}
 
 	var contact models.Contact
 	if err := json.NewDecoder(r.Body).Decode(&contact); err != nil {
-		http.Error(w, myErr.ErrDecodeJson.Error(), getStatusCode(errorsCreateMap, myErr.ErrDecodeJson))
+		http.Error(w, myErr.ErrDecodeJSON.Error(), getStatusCode(errorsCreateMap, myErr.ErrDecodeJSON))
+
 		return
 	} else if isEmpty(contact.Name) && isEmpty(contact.Phone) {
 		http.Error(w, myErr.ErrEmptyData.Error(), getStatusCode(errorsUpdMap, myErr.ErrEmptyData))
-		return
 
+		return
 	} else if !isEmpty(contact.Phone) && !isValidPhone(contact.Phone) {
 		http.Error(w, myErr.ErrWrongPhoneFormat.Error(), getStatusCode(errorsUpdMap, myErr.ErrWrongPhoneFormat))
+
 		return
 	}
 
-	contact.Id = id
+	contact.ID = id
+
 	newContact, err := h.service.UpdateContact(contact)
 	if err != nil {
 		http.Error(w, err.Error(), getStatusCode(errorsUpdMap, err))
+
 		return
 	}
 
 	if err := json.NewEncoder(w).Encode(newContact); err != nil {
-		http.Error(w, myErr.ErrEncodeJson.Error(), getStatusCode(errorsUpdMap, myErr.ErrEncodeJson))
+		http.Error(w, myErr.ErrEncodeJSON.Error(), getStatusCode(errorsUpdMap, myErr.ErrEncodeJSON))
+
 		return
 	}
-	w.WriteHeader(http.StatusOK)
 
+	w.WriteHeader(http.StatusOK)
 }
 
 func (h *handler) deleteContact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 
 	vars := mux.Vars(r)
+
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
 		http.Error(w, myErr.ErrNoContact.Error(), getStatusCode(errorsDeleteMap, myErr.ErrNoContact))
+
 		return
 	}
 
 	if err := h.service.DeleteContact(id); err != nil {
 		http.Error(w, err.Error(), getStatusCode(errorsDeleteMap, err))
+
 		return
 	}
 
 	err = json.NewEncoder(w).Encode(map[string]string{"contact": "deleted"})
 	if err != nil {
-		http.Error(w, myErr.ErrEncodeJson.Error(), getStatusCode(errorsDeleteMap, myErr.ErrEncodeJson))
+		http.Error(w, myErr.ErrEncodeJSON.Error(), getStatusCode(errorsDeleteMap, myErr.ErrEncodeJSON))
+
 		return
 	}
+
 	w.WriteHeader(http.StatusOK)
 }

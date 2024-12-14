@@ -13,7 +13,7 @@ type errorMap map[error]int
 var (
 	errorsGetMap = errorMap{
 		myErr.ErrNoContact:  http.StatusNotFound,
-		myErr.ErrEncodeJson: http.StatusInternalServerError,
+		myErr.ErrEncodeJSON: http.StatusInternalServerError,
 		myErr.ErrInternal:   http.StatusInternalServerError,
 	}
 
@@ -21,8 +21,8 @@ var (
 		myErr.ErrExistContact:     http.StatusConflict,
 		myErr.ErrEmptyData:        http.StatusBadRequest,
 		myErr.ErrWrongPhoneFormat: http.StatusBadRequest,
-		myErr.ErrDecodeJson:       http.StatusBadRequest,
-		myErr.ErrEncodeJson:       http.StatusInternalServerError,
+		myErr.ErrDecodeJSON:       http.StatusBadRequest,
+		myErr.ErrEncodeJSON:       http.StatusInternalServerError,
 		myErr.ErrInternal:         http.StatusInternalServerError,
 	}
 
@@ -31,14 +31,14 @@ var (
 		myErr.ErrExistContact:     http.StatusConflict,
 		myErr.ErrEmptyData:        http.StatusBadRequest,
 		myErr.ErrWrongPhoneFormat: http.StatusBadRequest,
-		myErr.ErrDecodeJson:       http.StatusBadRequest,
-		myErr.ErrEncodeJson:       http.StatusInternalServerError,
+		myErr.ErrDecodeJSON:       http.StatusBadRequest,
+		myErr.ErrEncodeJSON:       http.StatusInternalServerError,
 		myErr.ErrInternal:         http.StatusInternalServerError,
 	}
 
 	errorsDeleteMap = errorMap{
 		myErr.ErrNoContact:  http.StatusNotFound,
-		myErr.ErrEncodeJson: http.StatusInternalServerError,
+		myErr.ErrEncodeJSON: http.StatusInternalServerError,
 		myErr.ErrInternal:   http.StatusInternalServerError,
 	}
 )
@@ -50,10 +50,12 @@ func getStatusCode(m errorMap, err error) int {
 	if err == nil {
 		return http.StatusOK
 	}
+
 	for e, c := range m {
 		if errors.Is(err, e) {
 			return c
 		}
 	}
+
 	return http.StatusInternalServerError
 }

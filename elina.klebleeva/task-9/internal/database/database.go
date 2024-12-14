@@ -5,24 +5,27 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/EmptyInsid/task-9/internal/config"
 	"github.com/jackc/pgx/v5/pgxpool"
+
+	"github.com/EmptyInsid/task-9/internal/config"
 )
 
 type Database struct {
 	pool *pgxpool.Pool
 }
 
-func NewDb(config *config.DatabaseConfig) (*Database, error) {
-	db := &Database{}
-	db.Init(buildConnectionString(config))
+func NewDB(config *config.DatabaseConfig) (*Database, error) {
+	db := &Database{pool: nil}
+	if err := db.Init(buildConnectionString(config)); err != nil {
+		return nil, err
+	}
 
 	// chekc connection
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	if err := db.Pool().Ping(ctx); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("%w", err)
 	}
 
 	return db, nil
@@ -33,10 +36,12 @@ func (db *Database) Init(dsn string) error {
 	defer cancel()
 
 	var err error
+
 	db.pool, err = pgxpool.New(ctx, dsn)
 	if err != nil {
-		return err
+		return fmt.Errorf("%w", err)
 	}
+
 	return nil
 }
 
