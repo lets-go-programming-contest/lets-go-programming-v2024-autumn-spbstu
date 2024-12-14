@@ -6,20 +6,25 @@ import (
 	"log"
 	"net/http"
 	"regexp"
+	"strings"
 
 	"github.com/Madyarov-Gleb/task-9/internal/models"
 
 	"github.com/gorilla/mux"
 )
 
-func ValidatePhone(phone string) error {
-	regex := regexp.MustCompile(`^\+7\d{10}$`)
+func ValidatePhone(phone string) (string, error) {
+	cleanedPhone := strings.ReplaceAll(phone, " ", "")
+	cleanedPhone = strings.ReplaceAll(cleanedPhone, "-", "")
 
-	if !regex.MatchString(phone) {
-		return ErrPhoneFormat
+	regex := regexp.MustCompile(`^(?:\+7|8)(\d{10})$`)
+
+	matches := regex.FindStringSubmatch(cleanedPhone)
+	if len(matches) == 0 {
+		return "", ErrPhoneFormat
 	}
 
-	return nil
+	return "+7" + matches[1], nil
 }
 
 func GetContacts(db *sql.DB) http.HandlerFunc {
@@ -73,13 +78,17 @@ func CreateContact(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		if err := ValidatePhone(contact.Phone); err != nil {
+		contactNormalize, err := ValidatePhone(contact.Phone)
+
+		if err != nil {
 			log.Printf("Phone validation error: %v", err)
-			http.Error(w, err.Error(), http.StatusBadRequest)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		err := db.QueryRow("INSERT INTO contacts (name, phone) VALUES ($1, $2) RETURNING id", contact.Name, contact.Phone).Scan(&contact.ID)
+		contact.Phone = contactNormalize
+
+		err = db.QueryRow("INSERT INTO contacts (name, phone) VALUES ($1, $2) RETURNING id", contact.Name, contact.Phone).Scan(&contact.ID)
 		if err != nil {
 			log.Printf("error: %v: %v", ErrCreate, err)
 			http.Error(w, ErrCreate.Error(), http.StatusInternalServerError)
@@ -94,22 +103,39 @@ func CreateContact(db *sql.DB) http.HandlerFunc {
 func UpdateContact(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id := mux.Vars(r)["id"]
-		var contact models.Contact
-		if err := json.NewDecoder(r.Body).Decode(&contact); err != nil {
-			log.Printf("error: %v: %v", ErrUpdate, err)
+		var updatedContact models.Contact
+
+		if err := json.NewDecoder(r.Body).Decode(&updatedContact); err != nil {
+			log.Printf("Decode error: %v", err)
 			http.Error(w, ErrDecode.Error(), http.StatusBadRequest)
 			return
 		}
 
-		if err := ValidatePhone(contact.Phone); err != nil {
-			log.Printf("Phone validation error: %v", err)
-			http.Error(w, err.Error(), http.StatusBadRequest)
+		var currentContact models.Contact
+		err := db.QueryRow("SELECT name, phone FROM contacts WHERE id = $1", id).Scan(&currentContact.Name, &currentContact.Phone)
+		if err != nil {
+			log.Printf("Fetch error: %v", err)
+			http.Error(w, ErrUpdate.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		_, err := db.Exec("UPDATE contacts SET name = $1, phone = $2 WHERE id = $3", contact.Name, contact.Phone, id)
+		if updatedContact.Name != "" {
+			currentContact.Name = updatedContact.Name
+		}
+
+		if updatedContact.Phone != "" {
+			normalizedPhone, err := ValidatePhone(updatedContact.Phone)
+			if err != nil {
+				log.Printf("Phone validation error: %v", err)
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+			currentContact.Phone = normalizedPhone
+		}
+
+		_, err = db.Exec("UPDATE contacts SET name = $1, phone = $2 WHERE id = $3", currentContact.Name, currentContact.Phone, id)
 		if err != nil {
-			log.Printf("error: %v: %v", ErrUpdate, err)
+			log.Printf("Update error: %v", err)
 			http.Error(w, ErrUpdate.Error(), http.StatusInternalServerError)
 			return
 		}
