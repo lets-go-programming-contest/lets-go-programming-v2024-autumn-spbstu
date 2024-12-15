@@ -3,11 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
+	"net/http"
+
 	"github.com/nayzzerr/task-9/internal/config"
 	"github.com/nayzzerr/task-9/internal/db"
 	"github.com/nayzzerr/task-9/internal/routes"
-	"log"
-	"net/http"
 )
 
 func main() {

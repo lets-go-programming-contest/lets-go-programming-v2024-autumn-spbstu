@@ -2,10 +2,11 @@ package routes
 
 import (
 	"database/sql"
-	"github.com/nayzzerr/task-9/internal/handlers"
 	"net/http"
 
 	"github.com/gorilla/mux"
+
+	"github.com/nayzzerr/task-9/internal/handlers"
 	"github.com/nayzzerr/task-9/internal/repository"
 	"github.com/nayzzerr/task-9/internal/services"
 )

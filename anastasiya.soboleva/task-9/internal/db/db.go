@@ -6,6 +6,7 @@ import (
 	"log"
 
 	_ "github.com/lib/pq"
+
 	"github.com/nayzzerr/task-9/internal/config"
 )
 
