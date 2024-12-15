@@ -33,7 +33,7 @@ func createTable(db *sql.DB) error {
 	CREATE TABLE IF NOT EXISTS contacts (
 		id SERIAL PRIMARY KEY,
 		name VARCHAR(100) NOT NULL,
-		phone VARCHAR(20) NOT NULL UNIQUE
+		phone VARCHAR(12) NOT NULL
 	);
 	`
 	_, err := db.Exec(query)

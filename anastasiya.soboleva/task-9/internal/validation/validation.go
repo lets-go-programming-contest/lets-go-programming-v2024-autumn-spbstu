@@ -7,7 +7,7 @@ import (
 )
 
 func ValidatePhoneNumber(phone string) error {
-	phoneRegex := regexp.MustCompile(`^(\+7|7|8)?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$`)
+	phoneRegex := regexp.MustCompile(`^(\+7|7|8)?\d{10}$`)
 	if !phoneRegex.MatchString(phone) {
 		return errors.New("invalid phone number format")
 	}
@@ -17,8 +17,8 @@ func ValidatePhoneNumber(phone string) error {
 func ValidateName(name string) error {
 	name = strings.TrimSpace(name)
 
-	if len(name) < 2 || len(name) > 50 {
-		return errors.New("name must be between 2 and 50 characters")
+	if len(name) < 2 || len(name) > 100 {
+		return errors.New("name must be between 2 and 100 characters")
 	}
 
 	nameRegex := regexp.MustCompile(`^[a-zA-Zа-яА-ЯёЁ]+([-\s][a-zA-Zа-яА-ЯёЁ]+)*$`)

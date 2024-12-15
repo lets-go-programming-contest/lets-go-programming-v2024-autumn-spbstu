@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/nayzzerr/task-9/internal/config"
 	"github.com/nayzzerr/task-9/internal/db"
@@ -10,7 +11,10 @@ import (
 )
 
 func main() {
-	cfg, err := config.LoadConfig("config.json")
+	configPath := flag.String("config", "config.json", "Path to the configuration file")
+	flag.Parse()
+
+	cfg, err := config.LoadConfig(*configPath)
 	if err != nil {
 		log.Fatalf("Error loading configuration: %v", err)
 	}
