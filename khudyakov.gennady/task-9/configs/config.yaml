@@ -1,0 +1,8 @@
+db:
+  host: "localhost"
+  port: "5433"
+  name: "contacts"
+  user: "postgres"
+  password: "pass"
+server:
+  host: ":8080"
