@@ -10,25 +10,25 @@ import (
 	"github.com/KRYST4L614/task-9/internal/repository"
 )
 
-type ContactService struct {
+type contactService struct {
 	repo repository.ContactRepositoryIface
 }
 
-func NewContactService(repo repository.ContactRepositoryIface) *ContactService {
-	return &ContactService{
+func NewContactService(repo repository.ContactRepositoryIface) *contactService {
+	return &contactService{
 		repo: repo,
 	}
 }
 
-func (r *ContactService) GetContact(ctx context.Context, id int) (*domain.Contact, error) {
+func (r *contactService) GetContact(ctx context.Context, id int) (*domain.Contact, error) {
 	return r.repo.Get(ctx, id)
 }
 
-func (r *ContactService) GetAllContacts(ctx context.Context) ([]*domain.Contact, error) {
+func (r *contactService) GetAllContacts(ctx context.Context) ([]*domain.Contact, error) {
 	return r.repo.GetAll(ctx)
 }
 
-func (r *ContactService) AddContact(ctx context.Context, contact domain.Contact) (*domain.Contact, error) {
+func (r *contactService) AddContact(ctx context.Context, contact domain.Contact) (*domain.Contact, error) {
 	err := isValidContact(contact)
 	if err != nil {
 		return nil, err
@@ -37,7 +37,7 @@ func (r *ContactService) AddContact(ctx context.Context, contact domain.Contact)
 	return r.repo.Create(ctx, contact)
 }
 
-func (r *ContactService) UpdateContact(ctx context.Context, contact domain.Contact) (*domain.Contact, error) {
+func (r *contactService) UpdateContact(ctx context.Context, contact domain.Contact) (*domain.Contact, error) {
 	err := isValidContact(contact)
 	if err != nil {
 		return nil, err
@@ -45,7 +45,7 @@ func (r *ContactService) UpdateContact(ctx context.Context, contact domain.Conta
 	return r.repo.Update(ctx, contact)
 }
 
-func (r *ContactService) DeleteContactById(ctx context.Context, id int) error {
+func (r *contactService) DeleteContactById(ctx context.Context, id int) error {
 	return r.repo.DeleteById(ctx, id)
 }
 

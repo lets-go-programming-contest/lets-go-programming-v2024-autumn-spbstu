@@ -9,17 +9,17 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
-type ContactRepository struct {
+type contactRepository struct {
 	dbPool *pgxpool.Pool
 }
 
 func NewRepository(dbPool *pgxpool.Pool) ContactRepositoryIface {
-	return &ContactRepository{
+	return &contactRepository{
 		dbPool: dbPool,
 	}
 }
 
-func (cr *ContactRepository) Get(ctx context.Context, id int) (*domain.Contact, error) {
+func (cr *contactRepository) Get(ctx context.Context, id int) (*domain.Contact, error) {
 	tx, err := cr.dbPool.Begin(ctx)
 	if err != nil {
 		return nil, err
@@ -41,7 +41,7 @@ func (cr *ContactRepository) Get(ctx context.Context, id int) (*domain.Contact, 
 	return &contact, nil
 }
 
-func (cr *ContactRepository) GetAll(ctx context.Context) ([]*domain.Contact, error) {
+func (cr *contactRepository) GetAll(ctx context.Context) ([]*domain.Contact, error) {
 	tx, err := cr.dbPool.Begin(ctx)
 	if err != nil {
 		return nil, err
@@ -71,7 +71,7 @@ func (cr *ContactRepository) GetAll(ctx context.Context) ([]*domain.Contact, err
 	return contacts, nil
 }
 
-func (cr *ContactRepository) Create(ctx context.Context, contact domain.Contact) (*domain.Contact, error) {
+func (cr *contactRepository) Create(ctx context.Context, contact domain.Contact) (*domain.Contact, error) {
 	tx, err := cr.dbPool.Begin(ctx)
 	if err != nil {
 		return nil, err
@@ -92,7 +92,7 @@ func (cr *ContactRepository) Create(ctx context.Context, contact domain.Contact)
 	return &createdContact, nil
 }
 
-func (cr *ContactRepository) Update(ctx context.Context, contact domain.Contact) (*domain.Contact, error) {
+func (cr *contactRepository) Update(ctx context.Context, contact domain.Contact) (*domain.Contact, error) {
 	tx, err := cr.dbPool.Begin(ctx)
 	if err != nil {
 		return nil, err
@@ -117,7 +117,7 @@ func (cr *ContactRepository) Update(ctx context.Context, contact domain.Contact)
 	return &createdContact, nil
 }
 
-func (cr *ContactRepository) DeleteById(ctx context.Context, id int) error {
+func (cr *contactRepository) DeleteById(ctx context.Context, id int) error {
 	tx, err := cr.dbPool.Begin(ctx)
 	if err != nil {
 		return err
