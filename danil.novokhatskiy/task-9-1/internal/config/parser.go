@@ -6,7 +6,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// перенести в internal
+// перенести в tmp
 type Config struct {
 	DataBase DataBaseCfg
 	Server   ServerCfg

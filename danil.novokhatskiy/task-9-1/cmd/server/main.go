@@ -3,16 +3,17 @@ package main
 import (
 	"log"
 	"net/http"
-	"task-9-1/config"
-	"task-9-1/database"
-	myhttp "task-9-1/http"
+	"task-9-1/internal/config"
+	"task-9-1/internal/database"
+	http2 "task-9-1/internal/http"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
 func main() {
-	cfg, err := config.ParseConfig("config/config.yaml") // добавить флаг
+	path := config.GetPathOfFile()
+	cfg, err := config.ParseConfig(path)
 	if err != nil {
 		panic(err)
 	}
@@ -23,15 +24,11 @@ func main() {
 	}
 	defer db.DB.Close()
 
-	myhttp.InitDataBase(db)
+	http2.InitDataBase(db)
 	router := mux.NewRouter()
-	myhttp.CreateRoutes(router)
+	http2.CreateRoutes(router)
 
-	headers := handlers.AllowedHeaders([]string{"Content-Type"})
-	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
-
-	origins := handlers.AllowedOrigins([]string{"http://localhost:8080"}) //fix
-	logs := handlers.CORS(headers, methods, origins)(router)
+	logs := handlers.CORS()(router)
 
 	port := cfg.Server.Port
 	log.Fatal(http.ListenAndServe(":"+port, logs))

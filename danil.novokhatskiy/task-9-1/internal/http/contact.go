@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"regexp"
 	"strconv"
-	"task-9-1/database"
+	"task-9-1/internal/database"
 
 	"github.com/gorilla/mux"
 	"golang.org/x/net/context"

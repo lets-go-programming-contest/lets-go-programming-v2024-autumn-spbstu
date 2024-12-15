@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"task-9-1/config"
+	"task-9-1/internal/config"
 
 	"github.com/jackc/pgx/v4/pgxpool"
 	"golang.org/x/net/context"
