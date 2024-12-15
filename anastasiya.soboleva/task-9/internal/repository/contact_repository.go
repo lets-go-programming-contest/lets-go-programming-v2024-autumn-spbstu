@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"errors"
 	"github.com/nayzzerr/task-9/internal/models"
 )
 
@@ -35,7 +36,7 @@ func (r *ContactRepository) GetByID(id int) (*models.Contact, error) {
 	var contact models.Contact
 	err := r.db.QueryRow("SELECT id, name, phone FROM contacts WHERE id = $1", id).
 		Scan(&contact.ID, &contact.Name, &contact.Phone)
-	if err == sql.ErrNoRows {
+	if errors.Is(err, sql.ErrNoRows) {
 		return nil, nil
 	}
 	return &contact, err
