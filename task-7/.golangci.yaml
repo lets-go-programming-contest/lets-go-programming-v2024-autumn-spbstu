@@ -1,0 +1,21 @@
+run:
+  timeout: 5m
+  issues-exit-code: 1
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+  fast: false
+
+linters-settings:
+  govet:
+    check-shadow: true
+  golint:
+    min-confidence: 0.8
