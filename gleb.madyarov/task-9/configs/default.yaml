@@ -1,0 +1,6 @@
+host: localhost
+port_db: 5432
+dbName: db_2
+dbUser: gleb
+password: 1234
+port_server: 8080
