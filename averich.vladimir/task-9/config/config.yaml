@@ -2,7 +2,7 @@ database:
   host: "localhost"
   port: 5432
   user: "postgres"
-  Password: "mysecretpassword"
+  Password: "123"
   dbname: "contacts"
 server:
   port: 8080

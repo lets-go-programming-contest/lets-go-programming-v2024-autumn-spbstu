@@ -40,3 +40,27 @@ func main() {
 		panic(err)
 	}
 }
+
+/*
+-- Создание базы данных
+CREATE DATABASE Contacts;
+
+-- Подключение к базе данных
+\c Contacts;
+
+-- Создание таблицы contacts
+CREATE TABLE contacts (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL
+);
+
+-- Добавление данных
+INSERT INTO contacts (name, phone) VALUES
+('Alice', '+1234567890'),
+('Bob', '+0987654321'),
+('Charlie', '+1122334455');
+
+-- Просмотр данных
+SELECT * FROM contacts;
+*/
