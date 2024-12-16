@@ -42,8 +42,6 @@ func (handler *ContactHandler) GetContact(w http.ResponseWriter, r *http.Request
 }
 
 func (handler *ContactHandler) GetAllContacts(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
 	foundContacts, err := handler.service.GetAllContacts(r.Context())
 	if err != nil {
 		util.WriteJSONError(w, err)
@@ -54,8 +52,6 @@ func (handler *ContactHandler) GetAllContacts(w http.ResponseWriter, r *http.Req
 }
 
 func (handler *ContactHandler) AddContact(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
 	var contact domain.Contact
 	err := json.NewDecoder(r.Body).Decode(&contact)
 
