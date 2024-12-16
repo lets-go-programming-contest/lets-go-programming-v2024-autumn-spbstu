@@ -1,0 +1,9 @@
+host: "8080"
+
+db:
+  username: "admin"
+  password: "12345"
+  host: "localhost"
+  port: "5432"
+  dbname: "test_db"
+  sslmode: "disable"
