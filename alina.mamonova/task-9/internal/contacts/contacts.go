@@ -12,6 +12,7 @@ import (
 )
 
 var dbConfig config.DbData
+var numberRegExp = regexp.MustCompile("^\\+(\\d{1,3})\\s\\d{3}\\s\\d{3}-\\d{2}-\\d{2}$")
 
 func init() {
 	dbConfig = config.ReadDbConfig()
@@ -176,7 +177,6 @@ func ExistsByID(id string) error {
 }
 
 func IsCorrectNumber(number string) error {
-	numberRegExp := regexp.MustCompile("^\\+(\\d{1,3})\\s\\d{3}\\s\\d{3}-\\d{2}-\\d{2}$")
 	if numberRegExp.MatchString(number) {
 		return nil
 	}
