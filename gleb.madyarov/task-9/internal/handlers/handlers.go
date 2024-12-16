@@ -13,13 +13,13 @@ import (
 	"github.com/gorilla/mux"
 )
 
+var phoneRegex = regexp.MustCompile(`^(?:\+7|8)(\d{10})$`)
+
 func ValidatePhone(phone string) (string, error) {
 	cleanedPhone := strings.ReplaceAll(phone, " ", "")
 	cleanedPhone = strings.ReplaceAll(cleanedPhone, "-", "")
 
-	regex := regexp.MustCompile(`^(?:\+7|8)(\d{10})$`)
-
-	matches := regex.FindStringSubmatch(cleanedPhone)
+	matches := phoneRegex.FindStringSubmatch(cleanedPhone)
 	if len(matches) == 0 {
 		return "", ErrPhoneFormat
 	}
