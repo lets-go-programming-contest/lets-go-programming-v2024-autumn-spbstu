@@ -1,7 +1,6 @@
 package server
 
 import (
-	"log"
 	"net/http"
 )
 
@@ -11,8 +10,8 @@ type Server struct {
 
 func NewServer(config *ServerConfig, router http.Handler) *Server {
 	httpServer := &http.Server{
-		Addr:         config.Host,
-		Handler:      router,
+		Addr:    config.Host,
+		Handler: router,
 	}
 
 	serv := &Server{
@@ -22,8 +21,8 @@ func NewServer(config *ServerConfig, router http.Handler) *Server {
 	return serv
 }
 
-func (s *Server) Start() {
-	log.Fatal(s.server.ListenAndServe())
+func (s *Server) Start() error {
+	return s.server.ListenAndServe()
 }
 
 func (s *Server) Stop() error {

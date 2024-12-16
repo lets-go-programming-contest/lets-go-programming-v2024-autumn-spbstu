@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 
 	"github.com/KRYST4L614/task-9/internal/app"
 	"github.com/KRYST4L614/task-9/internal/config"
@@ -30,6 +31,6 @@ func main() {
 
 	err = app.Start()
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 }

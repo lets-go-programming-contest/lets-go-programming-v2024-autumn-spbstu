@@ -38,8 +38,7 @@ func NewApp(config *Config) (*App, error) {
 }
 
 func (app *App) Start() error {
-	app.server.Start()
-	return nil
+	return app.server.Start()
 }
 
 func (app *App) Stop() error {
