@@ -2,7 +2,7 @@ package db
 
 import (
 	"database/sql"
-	"log"
+	"fmt"
 )
 
 type Database interface {
@@ -31,7 +31,7 @@ func (service DBService) GetNames() ([]string, error) {
 	for rows.Next() {
 		var name string
 		if err := rows.Scan(&name); err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("%w", err)
 		}
 		names = append(names, name)
 	}
@@ -40,7 +40,7 @@ func (service DBService) GetNames() ([]string, error) {
 		return nil, err
 	}
 
-	return names, err
+	return names, nil
 }
 
 func (service DBService) SelectUniqueValues(columnName string, tableName string) ([]string, error) {
@@ -56,7 +56,7 @@ func (service DBService) SelectUniqueValues(columnName string, tableName string)
 	for rows.Next() {
 		var value string
 		if err := rows.Scan(&value); err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("%w", err)
 		}
 		values = append(values, value)
 	}
@@ -65,5 +65,5 @@ func (service DBService) SelectUniqueValues(columnName string, tableName string)
 		return nil, err
 	}
 
-	return values, err
+	return values, nil // Возвращаем nil вместо неопределённой переменной err1
 }
