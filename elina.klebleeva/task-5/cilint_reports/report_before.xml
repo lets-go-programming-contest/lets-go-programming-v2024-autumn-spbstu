@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle version="5.0">
+  <file name="cmd\db\main.go">
+    <error column="9" line="22" message="ineffectual assignment to err" severity="error" source="ineffassign"></error>
+  </file>
+  <file name="cmd\wifi\main.go">
+    <error column="0" line="1" message="File is not `gci`-ed with -s standard -s default -s prefix(example_mock) --custom-order" severity="error" source="gci"></error>
+    <error column="0" line="29" message="File is not `gofumpt`-ed" severity="error" source="gofumpt"></error>
+    <error column="3" line="14" message="return with no blank line before" severity="error" source="nlreturn"></error>
+    <error column="3" line="22" message="return with no blank line before" severity="error" source="nlreturn"></error>
+  </file>
+  <file name="internal\db\db_functions.go">
+    <error column="0" line="1" message="File is not `gci`-ed with -s standard -s default -s prefix(example_mock) --custom-order" severity="error" source="gci"></error>
+    <error column="4" line="34" message="exitAfterDefer: log.Fatal will exit, and `defer rows.Close()` will not run" severity="error" source="gocritic"></error>
+    <error column="4" line="59" message="exitAfterDefer: log.Fatal will exit, and `defer rows.Close()` will not run" severity="error" source="gocritic"></error>
+    <error column="0" line="70" message="File is not `gofumpt`-ed" severity="error" source="gofumpt"></error>
+    <error column="6" line="12" message="exported: type name will be used as db.DBService by other packages, and that stutters; consider calling this Service" severity="warning" source="revive"></error>
+    <error column="15" line="25" message="error returned from interface method should be wrapped: sig: func (github.com/EmptyInsid/task-5/internal/db.Database).Query(query string, args ...any) (*database/sql.Rows, error)" severity="error" source="wrapcheck"></error>
+    <error column="15" line="40" message="error returned from external package is unwrapped: sig: func (*database/sql.Rows).Err() error" severity="error" source="wrapcheck"></error>
+    <error column="16" line="43" message="error returned from interface method should be wrapped: sig: func (github.com/EmptyInsid/task-5/internal/db.Database).Query(query string, args ...any) (*database/sql.Rows, error)" severity="error" source="wrapcheck"></error>
+    <error column="15" line="50" message="error returned from interface method should be wrapped: sig: func (github.com/EmptyInsid/task-5/internal/db.Database).Query(query string, args ...any) (*database/sql.Rows, error)" severity="error" source="wrapcheck"></error>
+    <error column="15" line="65" message="error returned from external package is unwrapped: sig: func (*database/sql.Rows).Err() error" severity="error" source="wrapcheck"></error>
+    <error column="3" line="36" message="append only allowed to cuddle with appended value" severity="error" source="wsl"></error>
+    <error column="2" line="49" message="only one cuddle assignment allowed before if statement" severity="error" source="wsl"></error>
+    <error column="2" line="52" message="only one cuddle assignment allowed before defer statement" severity="error" source="wsl"></error>
+    <error column="3" line="61" message="append only allowed to cuddle with appended value" severity="error" source="wsl"></error>
+  </file>
+  <file name="internal\wifi\wi-fi.go">
+    <error column="0" line="1" message="File is not `gci`-ed with -s standard -s default -s prefix(example_mock) --custom-order" severity="error" source="gci"></error>
+    <error column="0" line="47" message="File is not `gofumpt`-ed" severity="error" source="gofumpt"></error>
+    <error column="2" line="26" message="Consider pre-allocating `addrs`" severity="error" source="prealloc"></error>
+    <error column="2" line="40" message="Consider pre-allocating `name_list`" severity="error" source="prealloc"></error>
+    <error column="6" line="13" message="exported: type name will be used as wifi.WiFiService by other packages, and that stutters; consider calling this Service" severity="warning" source="revive"></error>
+    <error column="2" line="45" message="return with no blank line before" severity="error" source="nlreturn"></error>
+    <error column="15" line="24" message="error returned from interface method should be wrapped: sig: func (github.com/EmptyInsid/task-5/internal/wifi.WiFi).Interfaces() ([]*github.com/mdlayher/wifi.Interface, error)" severity="error" source="wrapcheck"></error>
+    <error column="15" line="38" message="error returned from interface method should be wrapped: sig: func (github.com/EmptyInsid/task-5/internal/wifi.WiFi).Interfaces() ([]*github.com/mdlayher/wifi.Interface, error)" severity="error" source="wrapcheck"></error>
+  </file>
+</checkstyle>
