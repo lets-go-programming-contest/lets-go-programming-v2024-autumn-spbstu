@@ -1,0 +1,111 @@
+syntax = "proto3";
+package contact.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "contact/gen/proto/contact/v1;contact";
+
+// Service for managing contacts
+service ContactService {
+  // Get all contacts
+  rpc GetAllContacts(GetAllContactsRequest) returns (GetAllContactsResponse) {
+    option (google.api.http) = {get: "/contacts"};
+  }
+
+  // Get contact by ID
+  rpc GetContactByID(GetContactByIDRequest) returns (GetContactByIDResponse) {
+    option (google.api.http) = {get: "/contacts/{id}"};
+  }
+
+  // Add new contact
+  rpc AddContact(AddContactRequest) returns (AddContactResponse) {
+    option (google.api.http) = {
+      post: "/contacts"
+      body: "*"
+    };
+  }
+
+  // Update contact
+  rpc UpdateContact(UpdateContactRequest) returns (UpdateContactResponse) {
+    option (google.api.http) = {
+      put: "/contacts/{id}"
+      body: "*"
+    };
+  }
+
+  // Delete contact
+  rpc DeleteContact(DeleteContactRequest) returns (DeleteContactResponse) {
+    option (google.api.http) = {delete: "/contacts/{id}"};
+  }
+}
+
+message Contact {
+  // Contact ID
+  int32 id = 1;
+  // Contact name
+  string name = 2;
+  // Contact phone
+  string phone = 3;
+  // Created_at timestamp
+  google.protobuf.Timestamp created_at = 4;
+  // Updated_at timestamp
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message GetAllContactsRequest {
+  // Field to sort answer
+  string order_by = 1 [(buf.validate.field).string = {pattern: "^(id|phone|created_at|updated_at)$"}];
+}
+
+message GetAllContactsResponse {
+  // List of all contacts in DB
+  repeated Contact contacts = 1;
+}
+
+message GetContactByIDRequest {
+  // Requesting ID of contact
+  int32 id = 1;
+}
+
+message GetContactByIDResponse {
+  // Contact returned by ID
+  Contact contact = 1;
+}
+
+message AddContactRequest {
+  // Requesting name of contact to add
+  string name = 1;
+  // Requesting phone of contact to add
+  string phone = 2;
+}
+
+message AddContactResponse {
+  // New contact that was created
+  Contact contact = 1;
+}
+
+message UpdateContactRequest {
+  // Requesting id of contact to update
+  int32 id = 1;
+  // Requesting name of contact to update
+  string name = 2;
+  // Requesting phone of contact to update
+  string phone = 3;
+}
+
+message UpdateContactResponse {
+  // Contact that was updated
+  Contact contact = 1;
+}
+
+message DeleteContactRequest {
+  // Requesting id of contact to delete
+  int32 id = 1;
+}
+
+message DeleteContactResponse {
+  // Result of deleting contact
+  bool success = 1;
+}
