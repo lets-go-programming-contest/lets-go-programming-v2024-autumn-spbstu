@@ -137,7 +137,7 @@ func (h *handler) updateContact(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, myErr.ErrDecodeJSON.Error(), getStatusCode(errorsCreateMap, myErr.ErrDecodeJSON))
 
 		return
-	} else if isEmpty(contact.Name) && isEmpty(contact.Phone) {
+	} else if isEmpty(contact.Name) || isEmpty(contact.Phone) {
 		http.Error(w, myErr.ErrEmptyData.Error(), getStatusCode(errorsUpdMap, myErr.ErrEmptyData))
 
 		return

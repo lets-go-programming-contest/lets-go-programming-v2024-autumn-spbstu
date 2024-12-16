@@ -1,21 +1,20 @@
 package main
 
 import (
-	"flag"
 	"log/slog"
 	"os"
 
 	"github.com/EmptyInsid/task-9/cmd/app"
 	"github.com/EmptyInsid/task-9/internal/config"
+	"github.com/EmptyInsid/task-9/internal/flags"
 	myLog "github.com/EmptyInsid/task-9/internal/log"
 )
 
 func main() {
-	CfigPathFlag := flag.String("config", "../../configs/config.yml", "Path to YAML config")
-	flag.Parse()
+	CfigPathFlag := flags.ConfigParse()
 
 	// Open config file
-	configFile, err := os.Open(*CfigPathFlag)
+	configFile, err := os.Open(CfigPathFlag)
 	if err != nil {
 		panic(err)
 	}
