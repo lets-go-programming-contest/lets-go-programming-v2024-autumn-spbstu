@@ -1,0 +1,12 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "postgres",
+    "password": "1223",
+    "name": "go_project"
+  },
+  "server": {
+    "port": 8080
+  }
+}
