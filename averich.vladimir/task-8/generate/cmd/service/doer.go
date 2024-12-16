@@ -1,4 +1,4 @@
-// go:generate mockery --all --testonly --quiet --outpkg mock_test --output .
+// go generate mockgen -destination=mock_foo.go -package=generate . Doer
 package mock
 
 type Doer interface {
