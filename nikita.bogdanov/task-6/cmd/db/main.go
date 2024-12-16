@@ -16,9 +16,7 @@ func main() {
 		log.Fatal(err)
 	}
 	defer db.Close()
-
 	dbService := dbPack.New(db)
-
 	names, err := dbService.GetNames()
 	if err != nil {
 		fmt.Println(err)
