@@ -1,0 +1,5 @@
+построение AST: go tool compile -W .\main.go
+получение формы SSA:
+$env:GOSSAFUNC="main"
+go tool compile ./main.go > some.html
+получить последнюю версию mockgen: go get github.com/golang/mock/mockgen@latest

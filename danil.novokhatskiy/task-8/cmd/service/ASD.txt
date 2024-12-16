@@ -1,0 +1,1944 @@
+
+before walk main
+.   DCL # main.go:9:6
+.   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   AS tc(1) # main.go:9:6
+.   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   DCL # main.go:10:6
+.   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   AS tc(1) # main.go:10:6
+.   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   DCL # main.go:11:13
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:11:13
+.   AS2 Def tc(1) # main.go:11:13
+.   AS2-Lhs
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:11:13
+.   AS2-Rhs
+.   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:11:13
+.   .   SLICELIT-List
+.   .   .   CONVIFACE esc(h) Implicit any tc(1) # main.go:11:14
+.   .   .   .   NAME-main..stmp_0 Class:PEXTERN Offset:0 Readonly Used string tc(1) # main.go:11:14
+.   DCL # main.go:11:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:11:13
+.   AS tc(1) # main.go:11:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:11:13
+.   DCL # main.go:11:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:11:13
+.   AS tc(1) # main.go:11:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:11:13
+.   INLMARK # +main.go:11:13
+.   DCL tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   DCL tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC-Lhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC-Rhs
+.   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # print.go:274:17,main.go:11:13
+.   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   CALLFUNC-Args
+.   .   .   CONVIFACE io.Writer tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:11:13
+.   AS2 tc(1) # print.go:274:17,main.go:11:13
+.   AS2-Lhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2-Rhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS2 tc(1) # main.go:11:13
+.   AS2-Lhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:11:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:11:13
+.   AS2-Rhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   GOTO main..i0 tc(1) # main.go:11:13
+.   LABEL main..i0 # main.go:11:13
+.   DCL # main.go:12:5
+.   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   DCL # main.go:12:22
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:12:22
+.   AS tc(1) # main.go:12:23
+.   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   .   ADDR PTR-*float64 tc(1) # main.go:12:23
+.   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   AS2 Def tc(1) # main.go:12:22
+.   AS2-Lhs
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:12:22
+.   AS2-Rhs
+.   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:12:22
+.   .   SLICELIT-List
+.   .   .   CONVIFACE Implicit any tc(1) # main.go:12:23
+.   .   .   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   VARKILL tc(1) # main.go:12:22
+.   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   DCL # main.go:12:22
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:12:22
+.   AS tc(1) # main.go:12:22
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:12:22
+.   DCL # main.go:12:22
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:12:22
+.   AS tc(1) # main.go:12:22
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:12:22
+.   INLMARK Index:1 # +main.go:12:22
+.   DCL tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:12:22
+.   AS tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:12:22
+.   DCL tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:12:22
+.   AS tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:12:22
+.   AS tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC tc(1) # scan.go:70:16,main.go:12:22
+.   AS2FUNC-Lhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC-Rhs
+.   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   NAME-fmt.Fscanln Class:PFUNC Offset:0 FUNC-func(io.Reader, ...any) (int, error) tc(1) # scan.go:130:6
+.   .   CALLFUNC-Args
+.   .   .   CONVIFACE io.Reader tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   .   NAME-os.Stdin Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:66:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:12:22
+.   AS2 tc(1) # scan.go:70:16,main.go:12:22
+.   AS2-Lhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:12:22
+.   AS2-Rhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS2 tc(1) # main.go:12:22
+.   AS2-Lhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:12:22
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:12:22
+.   AS2-Rhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:12:22
+.   GOTO main..i1 tc(1) # main.go:12:22
+.   LABEL main..i1 # main.go:12:22
+.   AS2 Def tc(1) # main.go:12:9
+.   AS2-Lhs
+.   .   NAME-main._ Offset:0 blank tc(1)
+.   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   AS2-Rhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:12:22
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:12:22
+.   IF # main.go:13:2
+.   IF-Cond
+.   .   NE bool tc(1) # main.go:13:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NIL error tc(1) # main.go:13:12
+.   IF-Body
+.   .   DCL # main.go:14:14
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:14:14
+.   .   AS2 Def tc(1) # main.go:14:14
+.   .   AS2-Lhs
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:14:14
+.   .   AS2-Rhs
+.   .   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:14:14
+.   .   .   SLICELIT-List
+.   .   .   .   CONVIFACE esc(h) Implicit any tc(1) # main.go:14:15
+.   .   .   .   .   NAME-main..stmp_1 Class:PEXTERN Offset:0 Readonly Used string tc(1) # main.go:14:15
+.   .   DCL # main.go:14:14
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:14:14
+.   .   AS tc(1) # main.go:14:14
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:14:14
+.   .   DCL # main.go:14:14
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:14:14
+.   .   AS tc(1) # main.go:14:14
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:14:14
+.   .   INLMARK Index:2 # +main.go:14:14
+.   .   DCL tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:14:14
+.   .   AS tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:14:14
+.   .   DCL tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:14:14
+.   .   AS tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:14:14
+.   .   AS tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   AS2FUNC tc(1) # print.go:274:17,main.go:14:14
+.   .   AS2FUNC-Lhs
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   AS2FUNC-Rhs
+.   .   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   .   CALLFUNC-Args
+.   .   .   .   CONVIFACE io.Writer tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:14:14
+.   .   AS2 tc(1) # print.go:274:17,main.go:14:14
+.   .   AS2-Lhs
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:14:14
+.   .   AS2-Rhs
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   VARKILL tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   VARKILL tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS2 tc(1) # main.go:14:14
+.   .   AS2-Lhs
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:14:14
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:14:14
+.   .   AS2-Rhs
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:14:14
+.   .   GOTO main..i2 tc(1) # main.go:14:14
+.   .   LABEL main..i2 # main.go:14:14
+.   .   RETURN tc(1) # main.go:15:3
+.   DCL # main.go:17:6
+.   .   NAME-main.operation esc(h) Class:PAUTO Offset:0 Addrtaken string tc(1) # main.go:17:6
+.   AS tc(1) # main.go:17:6
+.   .   NAME-main.operation esc(h) Class:PAUTO Offset:0 Addrtaken string tc(1) # main.go:17:6
+.   DCL # main.go:18:13
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:18:13
+.   AS2 Def tc(1) # main.go:18:13
+.   AS2-Lhs
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:18:13
+.   AS2-Rhs
+.   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:18:13
+.   .   SLICELIT-List
+.   .   .   CONVIFACE esc(h) Implicit any tc(1) # main.go:18:14
+.   .   .   .   NAME-main..stmp_2 Class:PEXTERN Offset:0 Readonly Used string tc(1) # main.go:18:14
+.   DCL # main.go:18:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:18:13
+.   AS tc(1) # main.go:18:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:18:13
+.   DCL # main.go:18:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:18:13
+.   AS tc(1) # main.go:18:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:18:13
+.   INLMARK Index:3 # +main.go:18:13
+.   DCL tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:18:13
+.   AS tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:18:13
+.   DCL tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:18:13
+.   AS tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:18:13
+.   AS tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC tc(1) # print.go:274:17,main.go:18:13
+.   AS2FUNC-Lhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC-Rhs
+.   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # print.go:274:17,main.go:18:13
+.   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   CALLFUNC-Args
+.   .   .   CONVIFACE io.Writer tc(1) # print.go:274:17,main.go:18:13
+.   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:18:13
+.   AS2 tc(1) # print.go:274:17,main.go:18:13
+.   AS2-Lhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:18:13
+.   AS2-Rhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS2 tc(1) # main.go:18:13
+.   AS2-Lhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:18:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:18:13
+.   AS2-Rhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:18:13
+.   GOTO main..i3 tc(1) # main.go:18:13
+.   LABEL main..i3 # main.go:18:13
+.   DCL # main.go:19:21
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:19:21
+.   AS tc(1) # main.go:19:22
+.   .   NAME-main..autotmp_58 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*string tc(1) # main.go:19:22
+.   .   ADDR PTR-*string tc(1) # main.go:19:22
+.   .   .   NAME-main.operation esc(h) Class:PAUTO Offset:0 Addrtaken string tc(1) # main.go:17:6
+.   AS2 Def tc(1) # main.go:19:21
+.   AS2-Lhs
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:19:21
+.   AS2-Rhs
+.   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:19:21
+.   .   SLICELIT-List
+.   .   .   CONVIFACE Implicit any tc(1) # main.go:19:22
+.   .   .   .   NAME-main..autotmp_58 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*string tc(1) # main.go:19:22
+.   VARKILL tc(1) # main.go:19:21
+.   .   NAME-main..autotmp_58 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*string tc(1) # main.go:19:22
+.   DCL # main.go:19:21
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:19:21
+.   AS tc(1) # main.go:19:21
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:19:21
+.   DCL # main.go:19:21
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:19:21
+.   AS tc(1) # main.go:19:21
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:19:21
+.   INLMARK Index:4 # +main.go:19:21
+.   DCL tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:19:21
+.   AS tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:19:21
+.   DCL tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:19:21
+.   AS tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:19:21
+.   AS tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC tc(1) # scan.go:70:16,main.go:19:21
+.   AS2FUNC-Lhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC-Rhs
+.   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   NAME-fmt.Fscanln Class:PFUNC Offset:0 FUNC-func(io.Reader, ...any) (int, error) tc(1) # scan.go:130:6
+.   .   CALLFUNC-Args
+.   .   .   CONVIFACE io.Reader tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   .   NAME-os.Stdin Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:66:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:19:21
+.   AS2 tc(1) # scan.go:70:16,main.go:19:21
+.   AS2-Lhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:19:21
+.   AS2-Rhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS2 tc(1) # main.go:19:21
+.   AS2-Lhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:19:21
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:19:21
+.   AS2-Rhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:19:21
+.   GOTO main..i4 tc(1) # main.go:19:21
+.   LABEL main..i4 # main.go:19:21
+.   AS2 tc(1) # main.go:19:9
+.   AS2-Lhs
+.   .   NAME-main._ Offset:0 blank tc(1)
+.   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   AS2-Rhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:19:21
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:19:21
+.   IF # main.go:20:2
+.   IF-Cond
+.   .   NE bool tc(1) # main.go:20:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NIL error tc(1) # main.go:20:12
+.   IF-Body
+.   .   CALLFUNC IsDDD tc(1) # main.go:21:12
+.   .   .   NAME-log.Fatal Class:PFUNC Offset:0 FUNC-func(...any) tc(1) # log.go:364:6
+.   .   CALLFUNC-Args
+.   .   .   SLICELIT esc(no) Len:1 Implicit Transient SLICE-[]any tc(1) # main.go:21:12
+.   .   .   SLICELIT-List
+.   .   .   .   CONVIFACE Implicit any tc(1) # main.go:21:12
+.   .   .   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   SLICELIT-Prealloc
+.   .   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   .   VARKILL tc(1) # main.go:21:12
+.   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   DCL # main.go:23:13
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:23:13
+.   AS2 Def tc(1) # main.go:23:13
+.   AS2-Lhs
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:23:13
+.   AS2-Rhs
+.   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:23:13
+.   .   SLICELIT-List
+.   .   .   CONVIFACE esc(h) Implicit any tc(1) # main.go:23:14
+.   .   .   .   NAME-main..stmp_3 Class:PEXTERN Offset:0 Readonly Used string tc(1) # main.go:23:14
+.   DCL # main.go:23:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:23:13
+.   AS tc(1) # main.go:23:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:23:13
+.   DCL # main.go:23:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:23:13
+.   AS tc(1) # main.go:23:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:23:13
+.   INLMARK Index:5 # +main.go:23:13
+.   DCL tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:23:13
+.   AS tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:23:13
+.   DCL tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:23:13
+.   AS tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:23:13
+.   AS tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC tc(1) # print.go:274:17,main.go:23:13
+.   AS2FUNC-Lhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC-Rhs
+.   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # print.go:274:17,main.go:23:13
+.   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   CALLFUNC-Args
+.   .   .   CONVIFACE io.Writer tc(1) # print.go:274:17,main.go:23:13
+.   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:23:13
+.   AS2 tc(1) # print.go:274:17,main.go:23:13
+.   AS2-Lhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:23:13
+.   AS2-Rhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS2 tc(1) # main.go:23:13
+.   AS2-Lhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:23:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:23:13
+.   AS2-Rhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:23:13
+.   GOTO main..i5 tc(1) # main.go:23:13
+.   LABEL main..i5 # main.go:23:13
+.   DCL # main.go:24:19
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:63:11,main.go:24:19
+.   AS tc(1) # main.go:24:20
+.   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   .   ADDR PTR-*float64 tc(1) # main.go:24:20
+.   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   AS2 Def tc(1) # main.go:24:19
+.   AS2-Lhs
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:63:11,main.go:24:19
+.   AS2-Rhs
+.   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:24:19
+.   .   SLICELIT-List
+.   .   .   CONVIFACE Implicit any tc(1) # main.go:24:20
+.   .   .   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   VARKILL tc(1) # main.go:24:19
+.   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   DCL # main.go:24:19
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:63:22,main.go:24:19
+.   AS tc(1) # main.go:24:19
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:63:22,main.go:24:19
+.   DCL # main.go:24:19
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:63:29,main.go:24:19
+.   AS tc(1) # main.go:24:19
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:63:29,main.go:24:19
+.   INLMARK Index:6 # +main.go:24:19
+.   DCL tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:64:14,main.go:24:19
+.   AS tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:64:14,main.go:24:19
+.   DCL tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:64:14,main.go:24:19
+.   AS tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:64:14,main.go:24:19
+.   AS tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC tc(1) # scan.go:64:14,main.go:24:19
+.   AS2FUNC-Lhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC-Rhs
+.   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   NAME-fmt.Fscan Class:PFUNC Offset:0 FUNC-func(io.Reader, ...any) (int, error) tc(1) # scan.go:121:6
+.   .   CALLFUNC-Args
+.   .   .   CONVIFACE io.Reader tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   .   NAME-os.Stdin Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:66:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:63:11,main.go:24:19
+.   AS2 tc(1) # scan.go:64:14,main.go:24:19
+.   AS2-Lhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:64:14,main.go:24:19
+.   AS2-Rhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS2 tc(1) # main.go:24:19
+.   AS2-Lhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:63:22,main.go:24:19
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:63:29,main.go:24:19
+.   AS2-Rhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:64:14,main.go:24:19
+.   GOTO main..i6 tc(1) # main.go:24:19
+.   LABEL main..i6 # main.go:24:19
+.   AS2 tc(1) # main.go:24:9
+.   AS2-Lhs
+.   .   NAME-main._ Offset:0 blank tc(1)
+.   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   AS2-Rhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:63:22,main.go:24:19
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:63:29,main.go:24:19
+.   IF # main.go:25:2
+.   IF-Cond
+.   .   NE bool tc(1) # main.go:25:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NIL error tc(1) # main.go:25:12
+.   IF-Body
+.   .   CALLFUNC IsDDD tc(1) # main.go:26:12
+.   .   .   NAME-log.Fatal Class:PFUNC Offset:0 FUNC-func(...any) tc(1) # log.go:364:6
+.   .   CALLFUNC-Args
+.   .   .   SLICELIT esc(no) Len:1 Implicit Transient SLICE-[]any tc(1) # main.go:26:12
+.   .   .   SLICELIT-List
+.   .   .   .   CONVIFACE Implicit any tc(1) # main.go:26:12
+.   .   .   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   SLICELIT-Prealloc
+.   .   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   .   VARKILL tc(1) # main.go:26:12
+.   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   DCL # main.go:28:6
+.   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack float64 tc(1) # main.go:28:6
+.   AS tc(1) # main.go:28:6
+.   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack float64 tc(1) # main.go:28:6
+.   SWITCH # main.go:29:2
+.   SWITCH-Tag
+.   .   NAME-main.operation esc(h) Class:PAUTO Offset:0 Addrtaken string tc(1) # main.go:17:6
+.   SWITCH-Cases
+.   .   CASE # main.go:30:2
+.   .   CASE-List
+.   .   .   LITERAL-"+" string tc(1) # main.go:30:7
+.   .   CASE-Body
+.   .   .   AS tc(1) # main.go:31:7
+.   .   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack float64 tc(1) # main.go:28:6
+.   .   .   .   ADD float64 tc(1) # main.go:31:13
+.   .   .   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   .   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   CASE # main.go:32:2
+.   .   CASE-List
+.   .   .   LITERAL-"-" string tc(1) # main.go:32:7
+.   .   CASE-Body
+.   .   .   AS tc(1) # main.go:33:7
+.   .   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack float64 tc(1) # main.go:28:6
+.   .   .   .   SUB float64 tc(1) # main.go:33:13
+.   .   .   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   .   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   CASE # main.go:34:2
+.   .   CASE-List
+.   .   .   LITERAL-"*" string tc(1) # main.go:34:7
+.   .   CASE-Body
+.   .   .   AS tc(1) # main.go:35:7
+.   .   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack float64 tc(1) # main.go:28:6
+.   .   .   .   MUL float64 tc(1) # main.go:35:13
+.   .   .   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   .   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   CASE # main.go:36:2
+.   .   CASE-List
+.   .   .   LITERAL-"/" string tc(1) # main.go:36:7
+.   .   CASE-Body
+.   .   .   IF # main.go:37:3
+.   .   .   IF-Cond
+.   .   .   .   EQ bool tc(1) # main.go:37:10
+.   .   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   .   .   .   LITERAL-0 float64 tc(1) # main.go:37:13
+.   .   .   IF-Body
+.   .   .   .   DCL # main.go:38:15
+.   .   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:38:15
+.   .   .   .   AS2 Def tc(1) # main.go:38:15
+.   .   .   .   AS2-Lhs
+.   .   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:38:15
+.   .   .   .   AS2-Rhs
+.   .   .   .   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:38:15
+.   .   .   .   .   SLICELIT-List
+.   .   .   .   .   .   CONVIFACE esc(h) Implicit any tc(1) # main.go:38:16
+.   .   .   .   .   .   .   NAME-main..stmp_4 Class:PEXTERN Offset:0 Readonly Used string tc(1) # main.go:38:16
+.   .   .   .   DCL # main.go:38:15
+.   .   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:38:15
+.   .   .   .   AS tc(1) # main.go:38:15
+.   .   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:38:15
+.   .   .   .   DCL # main.go:38:15
+.   .   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:38:15
+.   .   .   .   AS tc(1) # main.go:38:15
+.   .   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:38:15
+.   .   .   .   INLMARK Index:7 # +main.go:38:15
+.   .   .   .   DCL tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   AS tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   DCL tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   AS tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   AS tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   AS2FUNC tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   AS2FUNC-Lhs
+.   .   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   AS2FUNC-Rhs
+.   .   .   .   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   .   .   .   CALLFUNC-Args
+.   .   .   .   .   .   CONVIFACE io.Writer tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:38:15
+.   .   .   .   AS2 tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   AS2-Lhs
+.   .   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   AS2-Rhs
+.   .   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   VARKILL tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   VARKILL tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   AS2 tc(1) # main.go:38:15
+.   .   .   .   AS2-Lhs
+.   .   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:38:15
+.   .   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:38:15
+.   .   .   .   AS2-Rhs
+.   .   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   GOTO main..i7 tc(1) # main.go:38:15
+.   .   .   .   LABEL main..i7 # main.go:38:15
+.   .   .   IF-Else
+.   .   .   .   AS tc(1) # main.go:40:8
+.   .   .   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack float64 tc(1) # main.go:28:6
+.   .   .   .   .   DIV float64 tc(1) # main.go:40:14
+.   .   .   .   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   .   .   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   CASE # main.go:42:2
+.   .   CASE-Body
+.   .   .   DCL # main.go:43:14
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:43:14
+.   .   .   AS2 Def tc(1) # main.go:43:14
+.   .   .   AS2-Lhs
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:43:14
+.   .   .   AS2-Rhs
+.   .   .   .   SLICELIT esc(no) Len:1 Implicit SLICE-[]any tc(1) # main.go:43:14
+.   .   .   .   SLICELIT-List
+.   .   .   .   .   CONVIFACE esc(h) Implicit any tc(1) # main.go:43:15
+.   .   .   .   .   .   NAME-main..stmp_5 Class:PEXTERN Offset:0 Readonly Used string tc(1) # main.go:43:15
+.   .   .   DCL # main.go:43:14
+.   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:43:14
+.   .   .   AS tc(1) # main.go:43:14
+.   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:43:14
+.   .   .   DCL # main.go:43:14
+.   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:43:14
+.   .   .   AS tc(1) # main.go:43:14
+.   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:43:14
+.   .   .   INLMARK Index:8 # +main.go:43:14
+.   .   .   DCL tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:43:14
+.   .   .   AS tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:43:14
+.   .   .   DCL tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:43:14
+.   .   .   AS tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:43:14
+.   .   .   AS tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   AS2FUNC tc(1) # print.go:274:17,main.go:43:14
+.   .   .   AS2FUNC-Lhs
+.   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   AS2FUNC-Rhs
+.   .   .   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   .   .   CALLFUNC-Args
+.   .   .   .   .   CONVIFACE io.Writer tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:43:14
+.   .   .   AS2 tc(1) # print.go:274:17,main.go:43:14
+.   .   .   AS2-Lhs
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:43:14
+.   .   .   AS2-Rhs
+.   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   VARKILL tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   VARKILL tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   AS2 tc(1) # main.go:43:14
+.   .   .   AS2-Lhs
+.   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:43:14
+.   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:43:14
+.   .   .   AS2-Rhs
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:43:14
+.   .   .   GOTO main..i8 tc(1) # main.go:43:14
+.   .   .   LABEL main..i8 # main.go:43:14
+.   .   .   RETURN tc(1) # main.go:44:3
+.   DCL # main.go:46:13
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:46:13
+.   AS2 Def tc(1) # main.go:46:13
+.   AS2-Lhs
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:46:13
+.   AS2-Rhs
+.   .   SLICELIT esc(no) Len:2 Implicit SLICE-[]any tc(1) # main.go:46:13
+.   .   SLICELIT-List
+.   .   .   CONVIFACE esc(h) Implicit any tc(1) # main.go:46:14
+.   .   .   .   NAME-main..stmp_6 Class:PEXTERN Offset:0 Readonly Used string tc(1) # main.go:46:14
+.   .   .   CONVIFACE esc(h) Implicit any tc(1) # main.go:46:14
+.   .   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack float64 tc(1) # main.go:28:6
+.   DCL # main.go:46:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:46:13
+.   AS tc(1) # main.go:46:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:46:13
+.   DCL # main.go:46:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:46:13
+.   AS tc(1) # main.go:46:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:46:13
+.   INLMARK Index:9 # +main.go:46:13
+.   DCL tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:46:13
+.   AS tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:46:13
+.   DCL tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:46:13
+.   AS tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:46:13
+.   AS tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC tc(1) # print.go:274:17,main.go:46:13
+.   AS2FUNC-Lhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS2FUNC-Rhs
+.   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # print.go:274:17,main.go:46:13
+.   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   CALLFUNC-Args
+.   .   .   CONVIFACE io.Writer tc(1) # print.go:274:17,main.go:46:13
+.   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:46:13
+.   AS2 tc(1) # print.go:274:17,main.go:46:13
+.   AS2-Lhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:46:13
+.   AS2-Rhs
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS2 tc(1) # main.go:46:13
+.   AS2-Lhs
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:46:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:46:13
+.   AS2-Rhs
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:46:13
+.   GOTO main..i9 tc(1) # main.go:46:13
+.   LABEL main..i9 # main.go:46:13
+after walk main
+.   DCL # main.go:9:6
+.   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   AS tc(1) # main.go:9:6
+.   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   DCL # main.go:10:6
+.   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   AS tc(1) # main.go:10:6
+.   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   DCL # main.go:11:13
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:11:13
+.   BLOCK # main.go:11:13
+.   BLOCK-List
+.   .   AS tc(1) # main.go:11:13
+.   .   .   NAME-main..autotmp_61 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:11:13
+.   .   AS tc(1) # main.go:11:13
+.   .   .   NAME-main..autotmp_60 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:11:13
+.   .   .   ADDR PTR-*[1]any tc(1) # main.go:11:13
+.   .   .   .   NAME-main..autotmp_61 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:11:13
+.   .   BLOCK # main.go:11:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:11:14
+.   .   .   .   INDEX Bounded any tc(1) # main.go:11:13
+.   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:11:13
+.   .   .   .   .   .   NAME-main..autotmp_60 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:11:13
+.   .   .   .   .   LITERAL-0 int tc(1) # main.go:11:13
+.   .   .   .   EFACE any tc(1) # main.go:11:14
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:11:14
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   ADDR PTR-*string tc(1) # main.go:11:14
+.   .   .   .   .   .   NAME-main..stmp_0 Class:PEXTERN Offset:0 Addrtaken Readonly Used string tc(1) # main.go:11:14
+.   .   BLOCK # main.go:11:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:11:14
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:11:13
+.   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:11:14
+.   .   .   .   .   NAME-main..autotmp_60 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:11:13
+.   .   BLOCK # main.go:11:13
+.   DCL # main.go:11:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:11:13
+.   AS tc(1) # main.go:11:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:11:13
+.   DCL # main.go:11:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:11:13
+.   AS tc(1) # main.go:11:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:11:13
+.   INLMARK # +main.go:11:13
+.   DCL tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   AS tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   DCL tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   AS tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK-init
+.   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # print.go:274:17,main.go:11:13
+.   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   CALLFUNC-Args
+.   .   .   EFACE io.Writer tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   ADDR PTR-*uint8 tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:11:13
+.   BLOCK # print.go:274:17,main.go:11:13
+.   BLOCK-List
+.   .   AS # print.go:274:17,main.go:11:13
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS # print.go:274:17,main.go:11:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT Index:1 error tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK # print.go:274:17,main.go:11:13
+.   BLOCK-List
+.   .   AS tc(1) # print.go:274:17,main.go:11:13
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS tc(1) # print.go:274:17,main.go:11:13
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:11:13
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK # main.go:11:13
+.   BLOCK-List
+.   .   AS tc(1) # main.go:11:13
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:11:13
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS tc(1) # main.go:11:13
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:11:13
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   GOTO main..i0 tc(1) # main.go:11:13
+.   LABEL main..i0 # main.go:11:13
+.   DCL # main.go:12:5
+.   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   DCL # main.go:12:22
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:12:22
+.   AS tc(1) # main.go:12:23
+.   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   .   ADDR PTR-*float64 tc(1) # main.go:12:23
+.   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   BLOCK # main.go:12:22
+.   BLOCK-List
+.   .   AS tc(1) # main.go:12:22
+.   .   .   NAME-main..autotmp_63 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:12:22
+.   .   AS tc(1) # main.go:12:22
+.   .   .   NAME-main..autotmp_62 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:12:22
+.   .   .   ADDR PTR-*[1]any tc(1) # main.go:12:22
+.   .   .   .   NAME-main..autotmp_63 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:12:22
+.   .   BLOCK # main.go:12:23
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:12:23
+.   .   .   .   INDEX Bounded any tc(1) # main.go:12:22
+.   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:12:22
+.   .   .   .   .   .   NAME-main..autotmp_62 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:12:22
+.   .   .   .   .   LITERAL-0 int tc(1) # main.go:12:22
+.   .   .   .   EFACE any tc(1) # main.go:12:23
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:12:23
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   .   BLOCK # main.go:12:23
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:12:23
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:12:22
+.   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:12:23
+.   .   .   .   .   NAME-main..autotmp_62 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:12:22
+.   .   BLOCK # main.go:12:22
+.   VARKILL tc(1) # main.go:12:22
+.   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   DCL # main.go:12:22
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:12:22
+.   AS tc(1) # main.go:12:22
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:12:22
+.   DCL # main.go:12:22
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:12:22
+.   AS tc(1) # main.go:12:22
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:12:22
+.   INLMARK Index:1 # +main.go:12:22
+.   DCL tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:12:22
+.   AS tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:12:22
+.   DCL tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:12:22
+.   AS tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:12:22
+.   AS tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK-init
+.   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   NAME-fmt.Fscanln Class:PFUNC Offset:0 FUNC-func(io.Reader, ...any) (int, error) tc(1) # scan.go:130:6
+.   .   CALLFUNC-Args
+.   .   .   EFACE io.Reader tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   .   ADDR PTR-*uint8 tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   NAME-os.Stdin Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:66:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:12:22
+.   BLOCK # scan.go:70:16,main.go:12:22
+.   BLOCK-List
+.   .   AS # scan.go:70:16,main.go:12:22
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT int tc(1) # scan.go:70:16,main.go:12:22
+.   .   AS # scan.go:70:16,main.go:12:22
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT Index:1 error tc(1) # scan.go:70:16,main.go:12:22
+.   BLOCK # scan.go:70:16,main.go:12:22
+.   BLOCK-List
+.   .   AS tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:12:22
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:70:16,main.go:12:22
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK # main.go:12:22
+.   BLOCK-List
+.   .   AS tc(1) # main.go:12:22
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:12:22
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:12:22
+.   .   AS tc(1) # main.go:12:22
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:12:22
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:12:22
+.   GOTO main..i1 tc(1) # main.go:12:22
+.   LABEL main..i1 # main.go:12:22
+.   BLOCK # main.go:12:9
+.   BLOCK-List
+.   .   AS tc(1) # main.go:12:9
+.   .   .   NAME-main._ Offset:0 blank tc(1)
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:12:22
+.   .   AS tc(1) # main.go:12:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:12:22
+.   IF # main.go:13:2
+.   IF-Cond
+.   .   NE bool tc(1) # main.go:13:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NIL error tc(1) # main.go:13:12
+.   IF-Body
+.   .   DCL # main.go:14:14
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:14:14
+.   .   BLOCK # main.go:14:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:14:14
+.   .   .   .   NAME-main..autotmp_65 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:14:14
+.   .   .   AS tc(1) # main.go:14:14
+.   .   .   .   NAME-main..autotmp_64 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:14:14
+.   .   .   .   ADDR PTR-*[1]any tc(1) # main.go:14:14
+.   .   .   .   .   NAME-main..autotmp_65 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:14:14
+.   .   .   BLOCK # main.go:14:15
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # main.go:14:15
+.   .   .   .   .   INDEX Bounded any tc(1) # main.go:14:14
+.   .   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:14:14
+.   .   .   .   .   .   .   NAME-main..autotmp_64 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:14:14
+.   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:14:14
+.   .   .   .   .   EFACE any tc(1) # main.go:14:15
+.   .   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:14:15
+.   .   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   .   ADDR PTR-*string tc(1) # main.go:14:15
+.   .   .   .   .   .   .   NAME-main..stmp_1 Class:PEXTERN Offset:0 Addrtaken Readonly Used string tc(1) # main.go:14:15
+.   .   .   BLOCK # main.go:14:15
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # main.go:14:15
+.   .   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:14:14
+.   .   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:14:15
+.   .   .   .   .   .   NAME-main..autotmp_64 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:14:14
+.   .   .   BLOCK # main.go:14:14
+.   .   DCL # main.go:14:14
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:14:14
+.   .   AS tc(1) # main.go:14:14
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:14:14
+.   .   DCL # main.go:14:14
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:14:14
+.   .   AS tc(1) # main.go:14:14
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:14:14
+.   .   INLMARK Index:2 # +main.go:14:14
+.   .   DCL tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:14:14
+.   .   AS tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:14:14
+.   .   DCL tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:14:14
+.   .   AS tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:14:14
+.   .   AS tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   BLOCK-init
+.   .   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   .   CALLFUNC-Args
+.   .   .   .   EFACE io.Writer tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:14:14
+.   .   BLOCK # print.go:274:17,main.go:14:14
+.   .   BLOCK-List
+.   .   .   AS # print.go:274:17,main.go:14:14
+.   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   RESULT int tc(1) # print.go:274:17,main.go:14:14
+.   .   .   AS # print.go:274:17,main.go:14:14
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   RESULT Index:1 error tc(1) # print.go:274:17,main.go:14:14
+.   .   BLOCK # print.go:274:17,main.go:14:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   AS tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:14:14
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   VARKILL tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   VARKILL tc(1) # print.go:274:17,main.go:14:14
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   BLOCK # main.go:14:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:14:14
+.   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:14:14
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:14:14
+.   .   .   AS tc(1) # main.go:14:14
+.   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:14:14
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:14:14
+.   .   GOTO main..i2 tc(1) # main.go:14:14
+.   .   LABEL main..i2 # main.go:14:14
+.   .   RETURN tc(1) # main.go:15:3
+.   DCL # main.go:17:6
+.   .   NAME-main.operation esc(h) Class:PAUTO Offset:0 Addrtaken Used string tc(1) # main.go:17:6
+.   AS tc(1) # main.go:17:6
+.   .   NAME-main.operation esc(h) Class:PAUTO Offset:0 Addrtaken Used string tc(1) # main.go:17:6
+.   DCL # main.go:18:13
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:18:13
+.   BLOCK # main.go:18:13
+.   BLOCK-List
+.   .   AS tc(1) # main.go:18:13
+.   .   .   NAME-main..autotmp_67 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:18:13
+.   .   AS tc(1) # main.go:18:13
+.   .   .   NAME-main..autotmp_66 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:18:13
+.   .   .   ADDR PTR-*[1]any tc(1) # main.go:18:13
+.   .   .   .   NAME-main..autotmp_67 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:18:13
+.   .   BLOCK # main.go:18:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:18:14
+.   .   .   .   INDEX Bounded any tc(1) # main.go:18:13
+.   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:18:13
+.   .   .   .   .   .   NAME-main..autotmp_66 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:18:13
+.   .   .   .   .   LITERAL-0 int tc(1) # main.go:18:13
+.   .   .   .   EFACE any tc(1) # main.go:18:14
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:18:14
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   ADDR PTR-*string tc(1) # main.go:18:14
+.   .   .   .   .   .   NAME-main..stmp_2 Class:PEXTERN Offset:0 Addrtaken Readonly Used string tc(1) # main.go:18:14
+.   .   BLOCK # main.go:18:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:18:14
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:18:13
+.   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:18:14
+.   .   .   .   .   NAME-main..autotmp_66 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:18:13
+.   .   BLOCK # main.go:18:13
+.   DCL # main.go:18:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:18:13
+.   AS tc(1) # main.go:18:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:18:13
+.   DCL # main.go:18:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:18:13
+.   AS tc(1) # main.go:18:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:18:13
+.   INLMARK Index:3 # +main.go:18:13
+.   DCL tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:18:13
+.   AS tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:18:13
+.   DCL tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:18:13
+.   AS tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:18:13
+.   AS tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK-init
+.   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # print.go:274:17,main.go:18:13
+.   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   CALLFUNC-Args
+.   .   .   EFACE io.Writer tc(1) # print.go:274:17,main.go:18:13
+.   .   .   .   ADDR PTR-*uint8 tc(1) # print.go:274:17,main.go:18:13
+.   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:18:13
+.   BLOCK # print.go:274:17,main.go:18:13
+.   BLOCK-List
+.   .   AS # print.go:274:17,main.go:18:13
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT int tc(1) # print.go:274:17,main.go:18:13
+.   .   AS # print.go:274:17,main.go:18:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT Index:1 error tc(1) # print.go:274:17,main.go:18:13
+.   BLOCK # print.go:274:17,main.go:18:13
+.   BLOCK-List
+.   .   AS tc(1) # print.go:274:17,main.go:18:13
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:18:13
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS tc(1) # print.go:274:17,main.go:18:13
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:18:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:18:13
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK # main.go:18:13
+.   BLOCK-List
+.   .   AS tc(1) # main.go:18:13
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:18:13
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:18:13
+.   .   AS tc(1) # main.go:18:13
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:18:13
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:18:13
+.   GOTO main..i3 tc(1) # main.go:18:13
+.   LABEL main..i3 # main.go:18:13
+.   DCL # main.go:19:21
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:19:21
+.   AS tc(1) # main.go:19:22
+.   .   NAME-main..autotmp_58 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*string tc(1) # main.go:19:22
+.   .   ADDR PTR-*string tc(1) # main.go:19:22
+.   .   .   NAME-main.operation esc(h) Class:PAUTO Offset:0 Addrtaken Used string tc(1) # main.go:17:6
+.   BLOCK # main.go:19:21
+.   BLOCK-List
+.   .   AS tc(1) # main.go:19:21
+.   .   .   NAME-main..autotmp_69 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:19:21
+.   .   AS tc(1) # main.go:19:21
+.   .   .   NAME-main..autotmp_68 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:19:21
+.   .   .   ADDR PTR-*[1]any tc(1) # main.go:19:21
+.   .   .   .   NAME-main..autotmp_69 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:19:21
+.   .   BLOCK # main.go:19:22
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:19:22
+.   .   .   .   INDEX Bounded any tc(1) # main.go:19:21
+.   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:19:21
+.   .   .   .   .   .   NAME-main..autotmp_68 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:19:21
+.   .   .   .   .   LITERAL-0 int tc(1) # main.go:19:21
+.   .   .   .   EFACE any tc(1) # main.go:19:22
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:19:22
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   NAME-main..autotmp_58 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*string tc(1) # main.go:19:22
+.   .   BLOCK # main.go:19:22
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:19:22
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:19:21
+.   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:19:22
+.   .   .   .   .   NAME-main..autotmp_68 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:19:21
+.   .   BLOCK # main.go:19:21
+.   VARKILL tc(1) # main.go:19:21
+.   .   NAME-main..autotmp_58 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*string tc(1) # main.go:19:22
+.   DCL # main.go:19:21
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:19:21
+.   AS tc(1) # main.go:19:21
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:19:21
+.   DCL # main.go:19:21
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:19:21
+.   AS tc(1) # main.go:19:21
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:19:21
+.   INLMARK Index:4 # +main.go:19:21
+.   DCL tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:19:21
+.   AS tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:19:21
+.   DCL tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:19:21
+.   AS tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:19:21
+.   AS tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK-init
+.   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   NAME-fmt.Fscanln Class:PFUNC Offset:0 FUNC-func(io.Reader, ...any) (int, error) tc(1) # scan.go:130:6
+.   .   CALLFUNC-Args
+.   .   .   EFACE io.Reader tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   .   ADDR PTR-*uint8 tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   NAME-os.Stdin Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:66:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:69:13,main.go:19:21
+.   BLOCK # scan.go:70:16,main.go:19:21
+.   BLOCK-List
+.   .   AS # scan.go:70:16,main.go:19:21
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT int tc(1) # scan.go:70:16,main.go:19:21
+.   .   AS # scan.go:70:16,main.go:19:21
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT Index:1 error tc(1) # scan.go:70:16,main.go:19:21
+.   BLOCK # scan.go:70:16,main.go:19:21
+.   BLOCK-List
+.   .   AS tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:19:21
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:70:16,main.go:19:21
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK # main.go:19:21
+.   BLOCK-List
+.   .   AS tc(1) # main.go:19:21
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:19:21
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:70:16,main.go:19:21
+.   .   AS tc(1) # main.go:19:21
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:19:21
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:70:16,main.go:19:21
+.   GOTO main..i4 tc(1) # main.go:19:21
+.   LABEL main..i4 # main.go:19:21
+.   BLOCK # main.go:19:9
+.   BLOCK-List
+.   .   AS tc(1) # main.go:19:9
+.   .   .   NAME-main._ Offset:0 blank tc(1)
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:69:24,main.go:19:21
+.   .   AS tc(1) # main.go:19:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:69:31,main.go:19:21
+.   IF # main.go:20:2
+.   IF-Cond
+.   .   NE bool tc(1) # main.go:20:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NIL error tc(1) # main.go:20:12
+.   IF-Body
+.   .   BLOCK # main.go:21:12
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:21:12
+.   .   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   .   .   AS tc(1) # main.go:21:12
+.   .   .   .   NAME-main..autotmp_71 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:21:12
+.   .   .   .   ADDR PTR-*[1]any tc(1) # main.go:21:12
+.   .   .   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   .   .   BLOCK # main.go:21:12
+.   .   .   BLOCK-List
+.   .   .   .   AS-init
+.   .   .   .   .   AS # main.go:21:12
+.   .   .   .   .   .   NAME-main..autotmp_72 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # main.go:21:12
+.   .   .   .   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   .   .   AS # main.go:21:12
+.   .   .   .   .   .   NAME-main..autotmp_73 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:21:12
+.   .   .   .   .   .   ITAB PTR-*uintptr tc(1) # main.go:21:12
+.   .   .   .   .   .   .   NAME-main..autotmp_72 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # main.go:21:12
+.   .   .   .   .   IF # main.go:21:12
+.   .   .   .   .   IF-Cond
+.   .   .   .   .   .   NE untyped bool tc(1) # main.go:21:12
+.   .   .   .   .   .   .   NAME-main..autotmp_73 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:21:12
+.   .   .   .   .   .   .   NIL PTR-*uint8 tc(1) # main.go:21:12
+.   .   .   .   .   IF-Body
+.   .   .   .   .   .   AS # main.go:21:12
+.   .   .   .   .   .   .   NAME-main..autotmp_73 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:21:12
+.   .   .   .   .   .   .   DOTPTR runtime._type Bounded PTR-*uint8 tc(1) # main.go:21:12
+.   .   .   .   .   .   .   .   NAME-main..autotmp_73 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:21:12
+.   .   .   .   AS tc(1) # main.go:21:12
+.   .   .   .   .   INDEX Bounded any tc(1) # main.go:21:12
+.   .   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:21:12
+.   .   .   .   .   .   .   NAME-main..autotmp_71 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:21:12
+.   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:21:12
+.   .   .   .   .   EFACE any tc(1) # main.go:21:12
+.   .   .   .   .   .   NAME-main..autotmp_73 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:21:12
+.   .   .   .   .   .   IDATA PTR-*uint8 tc(1) # main.go:21:12
+.   .   .   .   .   .   .   NAME-main..autotmp_72 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # main.go:21:12
+.   .   .   BLOCK # main.go:21:12
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # main.go:21:12
+.   .   .   .   .   NAME-main..autotmp_70 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used SLICE-[]any tc(1) # main.go:21:12
+.   .   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:21:12
+.   .   .   .   .   .   NAME-main..autotmp_71 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:21:12
+.   .   .   CALLFUNC IsDDD Walked tc(1) # main.go:21:12
+.   .   .   .   NAME-log.Fatal Class:PFUNC Offset:0 FUNC-func(...any) tc(1) # log.go:364:6
+.   .   .   CALLFUNC-Args
+.   .   .   .   NAME-main..autotmp_70 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used SLICE-[]any tc(1) # main.go:21:12
+.   .   VARKILL tc(1) # main.go:21:12
+.   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   DCL # main.go:23:13
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:23:13
+.   BLOCK # main.go:23:13
+.   BLOCK-List
+.   .   AS tc(1) # main.go:23:13
+.   .   .   NAME-main..autotmp_75 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:23:13
+.   .   AS tc(1) # main.go:23:13
+.   .   .   NAME-main..autotmp_74 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:23:13
+.   .   .   ADDR PTR-*[1]any tc(1) # main.go:23:13
+.   .   .   .   NAME-main..autotmp_75 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:23:13
+.   .   BLOCK # main.go:23:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:23:14
+.   .   .   .   INDEX Bounded any tc(1) # main.go:23:13
+.   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:23:13
+.   .   .   .   .   .   NAME-main..autotmp_74 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:23:13
+.   .   .   .   .   LITERAL-0 int tc(1) # main.go:23:13
+.   .   .   .   EFACE any tc(1) # main.go:23:14
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:23:14
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   ADDR PTR-*string tc(1) # main.go:23:14
+.   .   .   .   .   .   NAME-main..stmp_3 Class:PEXTERN Offset:0 Addrtaken Readonly Used string tc(1) # main.go:23:14
+.   .   BLOCK # main.go:23:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:23:14
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:23:13
+.   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:23:14
+.   .   .   .   .   NAME-main..autotmp_74 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:23:13
+.   .   BLOCK # main.go:23:13
+.   DCL # main.go:23:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:23:13
+.   AS tc(1) # main.go:23:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:23:13
+.   DCL # main.go:23:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:23:13
+.   AS tc(1) # main.go:23:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:23:13
+.   INLMARK Index:5 # +main.go:23:13
+.   DCL tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:23:13
+.   AS tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:23:13
+.   DCL tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:23:13
+.   AS tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:23:13
+.   AS tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK-init
+.   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # print.go:274:17,main.go:23:13
+.   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   CALLFUNC-Args
+.   .   .   EFACE io.Writer tc(1) # print.go:274:17,main.go:23:13
+.   .   .   .   ADDR PTR-*uint8 tc(1) # print.go:274:17,main.go:23:13
+.   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:23:13
+.   BLOCK # print.go:274:17,main.go:23:13
+.   BLOCK-List
+.   .   AS # print.go:274:17,main.go:23:13
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT int tc(1) # print.go:274:17,main.go:23:13
+.   .   AS # print.go:274:17,main.go:23:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT Index:1 error tc(1) # print.go:274:17,main.go:23:13
+.   BLOCK # print.go:274:17,main.go:23:13
+.   BLOCK-List
+.   .   AS tc(1) # print.go:274:17,main.go:23:13
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:23:13
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS tc(1) # print.go:274:17,main.go:23:13
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:23:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:23:13
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK # main.go:23:13
+.   BLOCK-List
+.   .   AS tc(1) # main.go:23:13
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:23:13
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:23:13
+.   .   AS tc(1) # main.go:23:13
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:23:13
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:23:13
+.   GOTO main..i5 tc(1) # main.go:23:13
+.   LABEL main..i5 # main.go:23:13
+.   DCL # main.go:24:19
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:63:11,main.go:24:19
+.   AS tc(1) # main.go:24:20
+.   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   .   ADDR PTR-*float64 tc(1) # main.go:24:20
+.   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   BLOCK # main.go:24:19
+.   BLOCK-List
+.   .   AS tc(1) # main.go:24:19
+.   .   .   NAME-main..autotmp_77 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:24:19
+.   .   AS tc(1) # main.go:24:19
+.   .   .   NAME-main..autotmp_76 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:24:19
+.   .   .   ADDR PTR-*[1]any tc(1) # main.go:24:19
+.   .   .   .   NAME-main..autotmp_77 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:24:19
+.   .   BLOCK # main.go:24:20
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:24:20
+.   .   .   .   INDEX Bounded any tc(1) # main.go:24:19
+.   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:24:19
+.   .   .   .   .   .   NAME-main..autotmp_76 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:24:19
+.   .   .   .   .   LITERAL-0 int tc(1) # main.go:24:19
+.   .   .   .   EFACE any tc(1) # main.go:24:20
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:24:20
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   .   BLOCK # main.go:24:20
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:24:20
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:63:11,main.go:24:19
+.   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:24:20
+.   .   .   .   .   NAME-main..autotmp_76 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:24:19
+.   .   BLOCK # main.go:24:19
+.   VARKILL tc(1) # main.go:24:19
+.   .   NAME-main..autotmp_57 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*float64 tc(1) # main.go:12:23
+.   DCL # main.go:24:19
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:63:22,main.go:24:19
+.   AS tc(1) # main.go:24:19
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:63:22,main.go:24:19
+.   DCL # main.go:24:19
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:63:29,main.go:24:19
+.   AS tc(1) # main.go:24:19
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:63:29,main.go:24:19
+.   INLMARK Index:6 # +main.go:24:19
+.   DCL tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:64:14,main.go:24:19
+.   AS tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:64:14,main.go:24:19
+.   DCL tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:64:14,main.go:24:19
+.   AS tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:64:14,main.go:24:19
+.   AS tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK-init
+.   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   NAME-fmt.Fscan Class:PFUNC Offset:0 FUNC-func(io.Reader, ...any) (int, error) tc(1) # scan.go:121:6
+.   .   CALLFUNC-Args
+.   .   .   EFACE io.Reader tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   .   ADDR PTR-*uint8 tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   NAME-os.Stdin Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:66:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # scan.go:63:11,main.go:24:19
+.   BLOCK # scan.go:64:14,main.go:24:19
+.   BLOCK-List
+.   .   AS # scan.go:64:14,main.go:24:19
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT int tc(1) # scan.go:64:14,main.go:24:19
+.   .   AS # scan.go:64:14,main.go:24:19
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT Index:1 error tc(1) # scan.go:64:14,main.go:24:19
+.   BLOCK # scan.go:64:14,main.go:24:19
+.   BLOCK-List
+.   .   AS tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:64:14,main.go:24:19
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # scan.go:64:14,main.go:24:19
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK # main.go:24:19
+.   BLOCK-List
+.   .   AS tc(1) # main.go:24:19
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:63:22,main.go:24:19
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # scan.go:64:14,main.go:24:19
+.   .   AS tc(1) # main.go:24:19
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:63:29,main.go:24:19
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # scan.go:64:14,main.go:24:19
+.   GOTO main..i6 tc(1) # main.go:24:19
+.   LABEL main..i6 # main.go:24:19
+.   BLOCK # main.go:24:9
+.   BLOCK-List
+.   .   AS tc(1) # main.go:24:9
+.   .   .   NAME-main._ Offset:0 blank tc(1)
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # scan.go:63:22,main.go:24:19
+.   .   AS tc(1) # main.go:24:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # scan.go:63:29,main.go:24:19
+.   IF # main.go:25:2
+.   IF-Cond
+.   .   NE bool tc(1) # main.go:25:9
+.   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   NIL error tc(1) # main.go:25:12
+.   IF-Body
+.   .   BLOCK # main.go:26:12
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:26:12
+.   .   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   .   .   AS tc(1) # main.go:26:12
+.   .   .   .   NAME-main..autotmp_79 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:26:12
+.   .   .   .   ADDR PTR-*[1]any tc(1) # main.go:26:12
+.   .   .   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   .   .   BLOCK # main.go:26:12
+.   .   .   BLOCK-List
+.   .   .   .   AS-init
+.   .   .   .   .   AS # main.go:26:12
+.   .   .   .   .   .   NAME-main..autotmp_80 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # main.go:26:12
+.   .   .   .   .   .   NAME-main.err esc(no) Class:PAUTO Offset:0 OnStack error tc(1) # main.go:12:5
+.   .   .   .   .   AS # main.go:26:12
+.   .   .   .   .   .   NAME-main..autotmp_81 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:26:12
+.   .   .   .   .   .   ITAB PTR-*uintptr tc(1) # main.go:26:12
+.   .   .   .   .   .   .   NAME-main..autotmp_80 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # main.go:26:12
+.   .   .   .   .   IF # main.go:26:12
+.   .   .   .   .   IF-Cond
+.   .   .   .   .   .   NE untyped bool tc(1) # main.go:26:12
+.   .   .   .   .   .   .   NAME-main..autotmp_81 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:26:12
+.   .   .   .   .   .   .   NIL PTR-*uint8 tc(1) # main.go:26:12
+.   .   .   .   .   IF-Body
+.   .   .   .   .   .   AS # main.go:26:12
+.   .   .   .   .   .   .   NAME-main..autotmp_81 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:26:12
+.   .   .   .   .   .   .   DOTPTR runtime._type Bounded PTR-*uint8 tc(1) # main.go:26:12
+.   .   .   .   .   .   .   .   NAME-main..autotmp_81 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:26:12
+.   .   .   .   AS tc(1) # main.go:26:12
+.   .   .   .   .   INDEX Bounded any tc(1) # main.go:26:12
+.   .   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:26:12
+.   .   .   .   .   .   .   NAME-main..autotmp_79 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:26:12
+.   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:26:12
+.   .   .   .   .   EFACE any tc(1) # main.go:26:12
+.   .   .   .   .   .   NAME-main..autotmp_81 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*uint8 tc(1) # main.go:26:12
+.   .   .   .   .   .   IDATA PTR-*uint8 tc(1) # main.go:26:12
+.   .   .   .   .   .   .   NAME-main..autotmp_80 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # main.go:26:12
+.   .   .   BLOCK # main.go:26:12
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # main.go:26:12
+.   .   .   .   .   NAME-main..autotmp_78 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used SLICE-[]any tc(1) # main.go:26:12
+.   .   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:26:12
+.   .   .   .   .   .   NAME-main..autotmp_79 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:26:12
+.   .   .   CALLFUNC IsDDD Walked tc(1) # main.go:26:12
+.   .   .   .   NAME-log.Fatal Class:PFUNC Offset:0 FUNC-func(...any) tc(1) # log.go:364:6
+.   .   .   CALLFUNC-Args
+.   .   .   .   NAME-main..autotmp_78 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used SLICE-[]any tc(1) # main.go:26:12
+.   .   VARKILL tc(1) # main.go:26:12
+.   .   .   NAME-main..autotmp_59 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:21:12
+.   DCL # main.go:28:6
+.   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack Used float64 tc(1) # main.go:28:6
+.   AS tc(1) # main.go:28:6
+.   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack Used float64 tc(1) # main.go:28:6
+.   SWITCH Walked # main.go:29:2
+.   SWITCH-Compiled
+.   .   AS tc(1) # main.go:29:2
+.   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   NAME-main.operation esc(h) Class:PAUTO Offset:0 Addrtaken Used string tc(1) # main.go:17:6
+.   .   IF # main.go:29:2
+.   .   IF-Cond
+.   .   .   EQ bool tc(1) # main.go:29:2
+.   .   .   .   LEN int tc(1) # main.go:29:2
+.   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   LITERAL-1 int tc(1) # main.go:29:2
+.   .   IF-Body
+.   .   .   IF # main.go:29:2
+.   .   .   IF-Cond
+.   .   .   .   LE bool tc(1) # main.go:29:2
+.   .   .   .   .   CALLFUNC Walked int tc(1) # main.go:29:2
+.   .   .   .   .   .   NAME-runtime.cmpstring Class:PFUNC Offset:0 Used FUNC-func(string, string) int tc(1)
+.   .   .   .   .   CALLFUNC-Args
+.   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   LITERAL-"+" string tc(1) # main.go:30:7
+.   .   .   .   .   LITERAL-0 int tc(1) # main.go:29:2
+.   .   .   IF-Body
+.   .   .   .   IF # _main.go:29:2
+.   .   .   .   IF-Cond
+.   .   .   .   .   ANDAND bool tc(1) # main.go:34:2
+.   .   .   .   .   .   EQ bool tc(1) # main.go:34:2
+.   .   .   .   .   .   .   LEN int tc(1) # main.go:34:2
+.   .   .   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   .   LITERAL-1 int tc(1) # main.go:34:2
+.   .   .   .   .   .   EQ bool tc(1) # main.go:34:2
+.   .   .   .   .   .   .   INDEX byte tc(1) # main.go:34:2
+.   .   .   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:34:2
+.   .   .   .   .   .   .   LITERAL-42 byte tc(1) # main.go:34:2
+.   .   .   .   IF-Body
+.   .   .   .   .   GOTO main..s12 # main.go:34:2
+.   .   .   .   IF-Else
+.   .   .   .   .   IF # _main.go:29:2
+.   .   .   .   .   IF-Cond
+.   .   .   .   .   .   ANDAND bool tc(1) # main.go:30:2
+.   .   .   .   .   .   .   EQ bool tc(1) # main.go:30:2
+.   .   .   .   .   .   .   .   LEN int tc(1) # main.go:30:2
+.   .   .   .   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   .   .   LITERAL-1 int tc(1) # main.go:30:2
+.   .   .   .   .   .   .   EQ bool tc(1) # main.go:30:2
+.   .   .   .   .   .   .   .   INDEX byte tc(1) # main.go:30:2
+.   .   .   .   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:30:2
+.   .   .   .   .   .   .   .   LITERAL-43 byte tc(1) # main.go:30:2
+.   .   .   .   .   IF-Body
+.   .   .   .   .   .   GOTO main..s10 # main.go:30:2
+.   .   .   IF-Else
+.   .   .   .   IF # _main.go:29:2
+.   .   .   .   IF-Cond
+.   .   .   .   .   ANDAND bool tc(1) # main.go:32:2
+.   .   .   .   .   .   EQ bool tc(1) # main.go:32:2
+.   .   .   .   .   .   .   LEN int tc(1) # main.go:32:2
+.   .   .   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   .   LITERAL-1 int tc(1) # main.go:32:2
+.   .   .   .   .   .   EQ bool tc(1) # main.go:32:2
+.   .   .   .   .   .   .   INDEX byte tc(1) # main.go:32:2
+.   .   .   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:32:2
+.   .   .   .   .   .   .   LITERAL-45 byte tc(1) # main.go:32:2
+.   .   .   .   IF-Body
+.   .   .   .   .   GOTO main..s11 # main.go:32:2
+.   .   .   .   IF-Else
+.   .   .   .   .   IF # _main.go:29:2
+.   .   .   .   .   IF-Cond
+.   .   .   .   .   .   ANDAND bool tc(1) # main.go:36:2
+.   .   .   .   .   .   .   EQ bool tc(1) # main.go:36:2
+.   .   .   .   .   .   .   .   LEN int tc(1) # main.go:36:2
+.   .   .   .   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   .   .   LITERAL-1 int tc(1) # main.go:36:2
+.   .   .   .   .   .   .   EQ bool tc(1) # main.go:36:2
+.   .   .   .   .   .   .   .   INDEX byte tc(1) # main.go:36:2
+.   .   .   .   .   .   .   .   .   NAME-main..autotmp_82 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used string tc(1) # main.go:29:2
+.   .   .   .   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:36:2
+.   .   .   .   .   .   .   .   LITERAL-47 byte tc(1) # main.go:36:2
+.   .   .   .   .   IF-Body
+.   .   .   .   .   .   GOTO main..s13 # main.go:36:2
+.   .   GOTO main..s14 # main.go:42:2
+.   .   LABEL main..s10 # main.go:30:2
+.   .   AS tc(1) # main.go:31:7
+.   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack Used float64 tc(1) # main.go:28:6
+.   .   .   ADD float64 tc(1) # main.go:31:13
+.   .   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   BREAK # main.go:31:7
+.   .   LABEL main..s11 # main.go:32:2
+.   .   AS tc(1) # main.go:33:7
+.   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack Used float64 tc(1) # main.go:28:6
+.   .   .   SUB float64 tc(1) # main.go:33:13
+.   .   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   BREAK # main.go:33:7
+.   .   LABEL main..s12 # main.go:34:2
+.   .   AS tc(1) # main.go:35:7
+.   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack Used float64 tc(1) # main.go:28:6
+.   .   .   MUL float64 tc(1) # main.go:35:13
+.   .   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   BREAK # main.go:35:7
+.   .   LABEL main..s13 # main.go:36:2
+.   .   IF # main.go:37:3
+.   .   IF-Cond
+.   .   .   EQ bool tc(1) # main.go:37:10
+.   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   .   .   LITERAL-0 float64 tc(1) # main.go:37:13
+.   .   IF-Body
+.   .   .   DCL # main.go:38:15
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:38:15
+.   .   .   BLOCK # main.go:38:15
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_84 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:38:15
+.   .   .   .   AS tc(1) # main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_83 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:38:15
+.   .   .   .   .   ADDR PTR-*[1]any tc(1) # main.go:38:15
+.   .   .   .   .   .   NAME-main..autotmp_84 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:38:15
+.   .   .   .   BLOCK # main.go:38:16
+.   .   .   .   BLOCK-List
+.   .   .   .   .   AS tc(1) # main.go:38:16
+.   .   .   .   .   .   INDEX Bounded any tc(1) # main.go:38:15
+.   .   .   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:38:15
+.   .   .   .   .   .   .   .   NAME-main..autotmp_83 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:38:15
+.   .   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:38:15
+.   .   .   .   .   .   EFACE any tc(1) # main.go:38:16
+.   .   .   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:38:16
+.   .   .   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   .   .   ADDR PTR-*string tc(1) # main.go:38:16
+.   .   .   .   .   .   .   .   NAME-main..stmp_4 Class:PEXTERN Offset:0 Addrtaken Readonly Used string tc(1) # main.go:38:16
+.   .   .   .   BLOCK # main.go:38:16
+.   .   .   .   BLOCK-List
+.   .   .   .   .   AS tc(1) # main.go:38:16
+.   .   .   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:38:15
+.   .   .   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:38:16
+.   .   .   .   .   .   .   NAME-main..autotmp_83 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:38:15
+.   .   .   .   BLOCK # main.go:38:15
+.   .   .   DCL # main.go:38:15
+.   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:38:15
+.   .   .   AS tc(1) # main.go:38:15
+.   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:38:15
+.   .   .   DCL # main.go:38:15
+.   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:38:15
+.   .   .   AS tc(1) # main.go:38:15
+.   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:38:15
+.   .   .   INLMARK Index:7 # +main.go:38:15
+.   .   .   DCL tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   AS tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   DCL tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   AS tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   AS tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   BLOCK-init
+.   .   .   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   .   .   CALLFUNC-Args
+.   .   .   .   .   EFACE io.Writer tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   .   ADDR PTR-*uint8 tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:38:15
+.   .   .   BLOCK # print.go:274:17,main.go:38:15
+.   .   .   BLOCK-List
+.   .   .   .   AS # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   .   RESULT int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   AS # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   .   RESULT Index:1 error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   BLOCK # print.go:274:17,main.go:38:15
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   AS tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   VARKILL tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   VARKILL tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   BLOCK # main.go:38:15
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # main.go:38:15
+.   .   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:38:15
+.   .   .   .   AS tc(1) # main.go:38:15
+.   .   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:38:15
+.   .   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:38:15
+.   .   .   GOTO main..i7 tc(1) # main.go:38:15
+.   .   .   LABEL main..i7 # main.go:38:15
+.   .   IF-Else
+.   .   .   AS tc(1) # main.go:40:8
+.   .   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack Used float64 tc(1) # main.go:28:6
+.   .   .   .   DIV float64 tc(1) # main.go:40:14
+.   .   .   .   .   NAME-main.op1 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:9:6
+.   .   .   .   .   NAME-main.op2 esc(h) Class:PAUTO Offset:0 Addrtaken float64 tc(1) # main.go:10:6
+.   .   BREAK # main.go:37:3
+.   .   LABEL main..s14 # main.go:42:2
+.   .   DCL # main.go:43:14
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:43:14
+.   .   BLOCK # main.go:43:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:43:14
+.   .   .   .   NAME-main..autotmp_86 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:43:14
+.   .   .   AS tc(1) # main.go:43:14
+.   .   .   .   NAME-main..autotmp_85 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:43:14
+.   .   .   .   ADDR PTR-*[1]any tc(1) # main.go:43:14
+.   .   .   .   .   NAME-main..autotmp_86 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[1]any tc(1) # main.go:43:14
+.   .   .   BLOCK # main.go:43:15
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # main.go:43:15
+.   .   .   .   .   INDEX Bounded any tc(1) # main.go:43:14
+.   .   .   .   .   .   DEREF Implicit ARRAY-[1]any tc(1) # main.go:43:14
+.   .   .   .   .   .   .   NAME-main..autotmp_85 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:43:14
+.   .   .   .   .   .   LITERAL-0 int tc(1) # main.go:43:14
+.   .   .   .   .   EFACE any tc(1) # main.go:43:15
+.   .   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:43:15
+.   .   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   .   ADDR PTR-*string tc(1) # main.go:43:15
+.   .   .   .   .   .   .   NAME-main..stmp_5 Class:PEXTERN Offset:0 Addrtaken Readonly Used string tc(1) # main.go:43:15
+.   .   .   BLOCK # main.go:43:15
+.   .   .   BLOCK-List
+.   .   .   .   AS tc(1) # main.go:43:15
+.   .   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:43:14
+.   .   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:43:15
+.   .   .   .   .   .   NAME-main..autotmp_85 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[1]any tc(1) # main.go:43:14
+.   .   .   BLOCK # main.go:43:14
+.   .   DCL # main.go:43:14
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:43:14
+.   .   AS tc(1) # main.go:43:14
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:43:14
+.   .   DCL # main.go:43:14
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:43:14
+.   .   AS tc(1) # main.go:43:14
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:43:14
+.   .   INLMARK Index:8 # +main.go:43:14
+.   .   DCL tc(1) # print.go:274:17,main.go:43:14
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:43:14
+.   .   AS tc(1) # print.go:274:17,main.go:43:14
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:43:14
+.   .   DCL tc(1) # print.go:274:17,main.go:43:14
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:43:14
+.   .   AS tc(1) # print.go:274:17,main.go:43:14
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:43:14
+.   .   AS tc(1) # print.go:274:17,main.go:43:14
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   BLOCK-init
+.   .   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   .   CALLFUNC-Args
+.   .   .   .   EFACE io.Writer tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:43:14
+.   .   BLOCK # print.go:274:17,main.go:43:14
+.   .   BLOCK-List
+.   .   .   AS # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   RESULT int tc(1) # print.go:274:17,main.go:43:14
+.   .   .   AS # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   .   RESULT Index:1 error tc(1) # print.go:274:17,main.go:43:14
+.   .   BLOCK # print.go:274:17,main.go:43:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   AS tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:43:14
+.   .   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   VARKILL tc(1) # print.go:274:17,main.go:43:14
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   VARKILL tc(1) # print.go:274:17,main.go:43:14
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   BLOCK # main.go:43:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:43:14
+.   .   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:43:14
+.   .   .   AS tc(1) # main.go:43:14
+.   .   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:43:14
+.   .   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:43:14
+.   .   GOTO main..i8 tc(1) # main.go:43:14
+.   .   LABEL main..i8 # main.go:43:14
+.   .   RETURN tc(1) # main.go:44:3
+.   .   BREAK # main.go:44:3
+.   DCL # main.go:46:13
+.   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:46:13
+.   BLOCK # main.go:46:13
+.   BLOCK-List
+.   .   AS tc(1) # main.go:46:13
+.   .   .   NAME-main..autotmp_88 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[2]any tc(1) # main.go:46:13
+.   .   AS tc(1) # main.go:46:13
+.   .   .   NAME-main..autotmp_87 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[2]any tc(1) # main.go:46:13
+.   .   .   ADDR PTR-*[2]any tc(1) # main.go:46:13
+.   .   .   .   NAME-main..autotmp_88 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used ARRAY-[2]any tc(1) # main.go:46:13
+.   .   BLOCK # main.go:46:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:46:14
+.   .   .   .   INDEX Bounded any tc(1) # main.go:46:13
+.   .   .   .   .   DEREF Implicit ARRAY-[2]any tc(1) # main.go:46:13
+.   .   .   .   .   .   NAME-main..autotmp_87 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[2]any tc(1) # main.go:46:13
+.   .   .   .   .   LITERAL-0 int tc(1) # main.go:46:13
+.   .   .   .   EFACE any tc(1) # main.go:46:14
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:46:14
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   ADDR PTR-*string tc(1) # main.go:46:14
+.   .   .   .   .   .   NAME-main..stmp_6 Class:PEXTERN Offset:0 Addrtaken Readonly Used string tc(1) # main.go:46:14
+.   .   BLOCK # main.go:46:14
+.   .   BLOCK-List
+.   .   .   AS-init
+.   .   .   .   AS tc(1) # main.go:46:14
+.   .   .   .   .   NAME-main..autotmp_89 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used float64 tc(1) # main.go:46:14
+.   .   .   .   .   NAME-main.res esc(no) Class:PAUTO Offset:0 OnStack Used float64 tc(1) # main.go:28:6
+.   .   .   .   AS tc(1) # main.go:46:14
+.   .   .   .   .   NAME-main..autotmp_90 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used uint64 tc(1) # main.go:46:14
+.   .   .   .   .   DEREF uint64 tc(1) # main.go:46:14
+.   .   .   .   .   .   CONVNOP PTR-*uint64 tc(1) # main.go:46:14
+.   .   .   .   .   .   .   ADDR PTR-*float64 tc(1) # main.go:46:14
+.   .   .   .   .   .   .   .   NAME-main..autotmp_89 esc(N) Class:PAUTO Offset:0 Addrtaken AutoTemp OnStack Used float64 tc(1) # main.go:46:14
+.   .   .   .   AS tc(1) # main.go:46:14
+.   .   .   .   .   NAME-main..autotmp_91 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used UNSAFEPTR-unsafe.Pointer tc(1) # main.go:46:14
+.   .   .   .   .   CALLFUNC Walked UNSAFEPTR-unsafe.Pointer tc(1) # main.go:46:14
+.   .   .   .   .   .   NAME-runtime.convT64 Class:PFUNC Offset:0 Used FUNC-func(uint64) unsafe.Pointer tc(1)
+.   .   .   .   .   CALLFUNC-Args
+.   .   .   .   .   .   NAME-main..autotmp_90 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used uint64 tc(1) # main.go:46:14
+.   .   .   AS tc(1) # main.go:46:14
+.   .   .   .   INDEX Bounded any tc(1) # main.go:46:14
+.   .   .   .   .   DEREF Implicit ARRAY-[2]any tc(1) # main.go:46:14
+.   .   .   .   .   .   NAME-main..autotmp_87 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[2]any tc(1) # main.go:46:13
+.   .   .   .   .   LITERAL-1 int tc(1) # main.go:46:14
+.   .   .   .   EFACE any tc(1) # main.go:46:14
+.   .   .   .   .   ADDR PTR-*uint8 tc(1) # main.go:46:14
+.   .   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   .   NAME-main..autotmp_91 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used UNSAFEPTR-unsafe.Pointer tc(1) # main.go:46:14
+.   .   BLOCK # main.go:46:14
+.   .   BLOCK-List
+.   .   .   AS tc(1) # main.go:46:14
+.   .   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:46:13
+.   .   .   .   SLICEARR SLICE-[]any tc(1) # main.go:46:14
+.   .   .   .   .   NAME-main..autotmp_87 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used PTR-*[2]any tc(1) # main.go:46:13
+.   .   BLOCK # main.go:46:13
+.   DCL # main.go:46:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:46:13
+.   AS tc(1) # main.go:46:13
+.   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:46:13
+.   DCL # main.go:46:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:46:13
+.   AS tc(1) # main.go:46:13
+.   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:46:13
+.   INLMARK Index:9 # +main.go:46:13
+.   DCL tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:46:13
+.   AS tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:46:13
+.   DCL tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:46:13
+.   AS tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:46:13
+.   AS tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK-init
+.   .   CALLFUNC IsDDD Walked STRUCT-(int, error) tc(1) # print.go:274:17,main.go:46:13
+.   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:262:6
+.   .   CALLFUNC-Args
+.   .   .   EFACE io.Writer tc(1) # print.go:274:17,main.go:46:13
+.   .   .   .   ADDR PTR-*uint8 tc(1) # print.go:274:17,main.go:46:13
+.   .   .   .   .   LINKSYMOFFSET Offset:0 uint8 tc(1)
+.   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   NAME-fmt.a esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:273:14,main.go:46:13
+.   BLOCK # print.go:274:17,main.go:46:13
+.   BLOCK-List
+.   .   AS # print.go:274:17,main.go:46:13
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT int tc(1) # print.go:274:17,main.go:46:13
+.   .   AS # print.go:274:17,main.go:46:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   .   .   RESULT Index:1 error tc(1) # print.go:274:17,main.go:46:13
+.   BLOCK # print.go:274:17,main.go:46:13
+.   BLOCK-List
+.   .   AS tc(1) # print.go:274:17,main.go:46:13
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:46:13
+.   .   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   .   AS tc(1) # print.go:274:17,main.go:46:13
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:46:13
+.   .   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-main..autotmp_56 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used error tc(1) # print.go:274:17,main.go:11:13
+.   VARKILL tc(1) # print.go:274:17,main.go:46:13
+.   .   NAME-main..autotmp_55 esc(N) Class:PAUTO Offset:0 AutoTemp OnStack Used int tc(1) # print.go:274:17,main.go:11:13
+.   BLOCK # main.go:46:13
+.   BLOCK-List
+.   .   AS tc(1) # main.go:46:13
+.   .   .   NAME-fmt.n esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:273:25,main.go:46:13
+.   .   .   NAME-fmt..autotmp_0 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:274:17,main.go:46:13
+.   .   AS tc(1) # main.go:46:13
+.   .   .   NAME-fmt.err esc(no) Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:273:32,main.go:46:13
+.   .   .   NAME-fmt..autotmp_1 esc(no) Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:274:17,main.go:46:13
+.   GOTO main..i9 tc(1) # main.go:46:13
+.   LABEL main..i9 # main.go:46:13

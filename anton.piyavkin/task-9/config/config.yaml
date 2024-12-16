@@ -1,0 +1,8 @@
+database:
+  dbUser: postgres
+  dbPassword: postgres
+  dbHost: localhost
+  dbPort: 5432
+  dbName: postgres
+server:
+  port: 8080
